@@ -5,6 +5,7 @@ import cors from 'cors';
 
 import authRoutes from './routes/authRoutes.js';
 import protectedRoutes from './routes/protectedRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 
 dotenv.config();
 
@@ -21,6 +22,8 @@ app.get('/api/ping', (req, res) => {
 app.use('/api/auth', authRoutes);
 // protected route
 app.use('/api/protected', protectedRoutes);
+// admin route
+app.use('/api/admin', adminRoutes);
 
 // koble til mongoDB og start server
 const PORT = process.env.PORT || 5050;

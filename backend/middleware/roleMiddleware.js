@@ -1,0 +1,10 @@
+// sjekker req-user-role (fra verifyToken) og mather mot listen over tillatte roller i allowedRoles
+export const authorizeRoles = (...allowedRoles) => {
+    return (req, res, next) => {
+        if (!req.user || !allowedRoles.includes(req.user.role)) {
+            return res.status(403).json({message: "Access forbidden: insufficient role"});
+        }
+
+        next();
+    };
+};
