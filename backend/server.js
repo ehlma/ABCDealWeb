@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
+import authRoutes from './routes/authRoutes.js';
+
 dotenv.config();
 
 const app = express();
@@ -14,8 +16,11 @@ app.get('/api/ping', (req, res) => {
     res.json({ message: "Server is running" });
 });
 
+// ruten til test-route(?)
+app.use('/api/auth', authRoutes);
+
 // koble til mongoDB og start server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5050;
 mongoose
     .connect(process.env.MONGO_URI)
     .then(() => {

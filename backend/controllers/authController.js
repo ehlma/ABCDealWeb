@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import User from '../models/User';
+import User from '../models/User.js';
 
 // registrering
 export const registerUser = async (req, res) => {
@@ -12,7 +12,7 @@ export const registerUser = async (req, res) => {
         if (existingUser) return res.status(400).json({message: "User already exists"});
 
         // hash passord
-        const passwordHash = await bcrypt.hash(password, 10);
+        const passwordHash = await bcrypt.hash(password, 10); // nb: hvorfor 10?
 
         // lagre ny bruker
         const newUser = new User({
