@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 
 import authRoutes from './routes/authRoutes.js';
+import protectedRoutes from './routes/protectedRoutes.js';
 
 dotenv.config();
 
@@ -18,6 +19,8 @@ app.get('/api/ping', (req, res) => {
 
 // ruten til test-route(?)
 app.use('/api/auth', authRoutes);
+// protected route
+app.use('/api/protected', protectedRoutes);
 
 // koble til mongoDB og start server
 const PORT = process.env.PORT || 5050;
