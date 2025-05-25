@@ -7,6 +7,8 @@ import authRoutes from './routes/authRoutes.js';
 import protectedRoutes from './routes/protectedRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 
+import complaintRoutes from './routes/complaintRoutes.js';
+
 dotenv.config();
 
 const app = express();
@@ -18,12 +20,17 @@ app.get('/api/ping', (req, res) => {
     res.json({ message: "Server is running" });
 });
 
+// complaint route
+app.use(express.json()); // lese json-body
+
 // ruten til test-route(?)
 app.use('/api/auth', authRoutes);
 // protected route
 app.use('/api/protected', protectedRoutes);
 // admin route
 app.use('/api/admin', adminRoutes);
+// complaint route
+app.use('/api', complaintRoutes);
 
 // koble til mongoDB og start server
 const PORT = process.env.PORT || 5050;
