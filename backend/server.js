@@ -8,6 +8,7 @@ import protectedRoutes from './routes/protectedRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 
 import complaintRoutes from './routes/complaintRoutes.js';
+import contactRoutes from './routes/contactRoutes.js'
 
 dotenv.config();
 
@@ -31,6 +32,8 @@ app.use('/api/protected', protectedRoutes);
 app.use('/api/admin', adminRoutes);
 // complaint route
 app.use('/api', complaintRoutes);
+// contact route
+app.use('/api', contactRoutes);
 
 // koble til mongoDB og start server
 const PORT = process.env.PORT || 5050;
