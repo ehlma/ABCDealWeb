@@ -5,8 +5,8 @@ const contactFormSchema = new mongoose.Schema({
     email: {type: String, required: true},
     phoneNum: {type: String, required: true},
     text: {type: String, required: true},
-    image: {type: String}, // URL eller filnavn
-    createdAt: {type: Date, required: Date.now}
+    image: {type: String}, // valgfri URL eller filnavn
+    createdAt: {type: Date, default: Date.now}
 });
 
 export default mongoose.model('ContactForm', contactFormSchema);
