@@ -16,7 +16,7 @@ const AdminContacts = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                setContacts(res, data);
+                setContacts(res.data);
             } catch (error) {
                 setError("Could not fetch contact forms");
             }
