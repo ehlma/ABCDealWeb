@@ -18,4 +18,14 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
+// Endepunktene 
+export const API_ENDPOINTS = {
+    login: '/auth/login',
+    register: '/auth/register',
+    contacts: '/contact',
+    complaints: '/complaints',
+    me: '/me'
+
+};
+
 export default api;
