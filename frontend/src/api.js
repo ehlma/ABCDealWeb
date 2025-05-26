@@ -24,7 +24,8 @@ export const API_ENDPOINTS = {
     register: '/auth/register',
     contacts: '/contact',
     complaints: '/complaints',
-    me: '/me'
+    me: '/me', 
+    users: '/users'
 
 };
 
