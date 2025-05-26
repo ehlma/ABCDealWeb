@@ -5,6 +5,7 @@ import AdminContacts from './pages/AdminContacts';
 import Login from './pages/Login';
 import AdminComplaints from './pages/AdminComplaints';
 import AdminLayout from './pages/AdminLayout';
+import AdminSettings from './pages/AdminSettings';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route path='/admin' element={<AdminLayout/>}>
             <Route path='/admin/contacts' element={<AdminContacts/>}/>
             <Route path='/admin/complaints' element={<AdminComplaints/>}/>
+            <Route path='/admin/settings' element={<AdminSettings/>}></Route>
           </Route>
         </Routes>
       </Router>
