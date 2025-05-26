@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AdminContacts from './pages/AdminContacts';
 import Login from './pages/Login';
 import AdminComplaints from './pages/AdminComplaints';
+import AdminLayout from './pages/AdminLayout';
 
 function App() {
 
@@ -12,9 +13,12 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Login/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/admin/contacts' element={<AdminContacts/>}/>
-          <Route path='/admin/complaints' element={<AdminComplaints/>}/>
+
+          {/* nestede ruter under AdminLayout */}
+          <Route path='/admin' element={<AdminLayout/>}>
+            <Route path='/admin/contacts' element={<AdminContacts/>}/>
+            <Route path='/admin/complaints' element={<AdminComplaints/>}/>
+          </Route>
         </Routes>
       </Router>
     </>
