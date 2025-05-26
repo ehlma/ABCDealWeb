@@ -11,6 +11,8 @@ const Login = () => {
         e.preventDefault();
         setError("");
 
+        
+
         try {
             const res = await axios.post("/auth/login", {
                 email,
