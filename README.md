@@ -11,6 +11,6 @@ Key reasons for this choice:
 - Node.js strikes a good balance between performance, developer speed, and extensibility, making it a natural fit for a modern web application like this.
 
 Dependencies - Frontend: 
-Run the following commands in "frontend/"-folder before you start: 
-
+Run the following commands before you start: 
+cd frontend
 npm install
