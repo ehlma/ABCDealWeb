@@ -21,7 +21,7 @@ api.interceptors.request.use((config) => {
 // Endepunktene 
 export const API_ENDPOINTS = {
     login: '/auth/login',
-    register: 'auth/register',
+    register: '/auth/register',
     contacts: '/contact',
     complaints: '/complaints',
     me: '/me'
