@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import api from "../api";
+import api, {API_ENDPOINTS} from "../api";
 
 const AdminContacts = () => {
     const [contacts, setContacts] = useState([]);
     const [error, setError] = useState([]);
 
+    // sett inn JWT (token)
+    const token = localStorage.getItem("token");
+    const API_URL = import.meta.env.VITE_API_URL;
+
+
     useEffect(() => {
         const fetchContacts = async () => {
             try {
-                const res = await axios.get("/contact");
+                const res = await api.get(API_ENDPOINTS.contacts);
                 setContacts(res.data);
             } catch (error) {
                 setError("Could not fetch contact forms");

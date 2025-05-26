@@ -1,11 +1,12 @@
 import { useState } from "react";
-import axios from "axios";
-import api from "../api";
+import {useNavigate} from "react-router-dom";
+import api, {API_ENDPOINTS} from "../api";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -14,7 +15,7 @@ const Login = () => {
         
 
         try {
-            const res = await axios.post("/auth/login", {
+            const res = await api.post(API_ENDPOINTS.login, {
                 email,
                 password
             });
@@ -26,8 +27,7 @@ const Login = () => {
             localStorage.setItem("user", JSON.stringify(res.data.user));
 
             // naviger videre eller vis suksess
-            alert("Logget inn");
-            window.location.href = '/admin/contacts'; // NB: endre til riktig?
+           navigate("/admin/contacts");
         } catch (error) {
             console.error(error);
             setError("Wrong e-mail or password");
