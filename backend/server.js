@@ -6,6 +6,7 @@ import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
 import protectedRoutes from './routes/protectedRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 import complaintRoutes from './routes/complaintRoutes.js';
 import contactRoutes from './routes/contactRoutes.js'
@@ -34,6 +35,8 @@ app.use('/api/admin', adminRoutes);
 app.use('/api', complaintRoutes);
 // contact route
 app.use('/api', contactRoutes);
+// user route
+app.use('/api', userRoutes);
 
 // koble til mongoDB og start server
 const PORT = process.env.PORT || 5050;
