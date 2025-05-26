@@ -37,6 +37,7 @@ app.use('/api', contactRoutes);
 
 // koble til mongoDB og start server
 const PORT = process.env.PORT || 5050;
+console.log("MongoURI: ", process.env.MONGO_URI);
 mongoose
     .connect(process.env.MONGO_URI)
     .then(() => {
