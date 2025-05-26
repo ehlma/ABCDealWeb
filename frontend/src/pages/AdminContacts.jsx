@@ -7,11 +7,12 @@ const AdminContacts = () => {
 
     // sett inn JWT (token)
     const token = localStorage.getItem("token");
+    const API_URL = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         const fetchContacts = async () => {
             try {
-                const res = await axios.get("http://localhost:5050/api/contact", { // NB: endre url til variabel?
+                const res = await axios.get(`${API_URL}/api/contact`, { // NB: endre url til variabel?
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
