@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // base url til backend
-const API_BASE = 'http://localhost:5050/api';
+const API_BASE = import.meta.env.VITE_API_URL + '/api';
 
 // lag axios-instans
 const api = axios.create({
@@ -17,5 +17,15 @@ api.interceptors.request.use((config) => {
 
     return config;
 });
+
+// Endepunktene 
+export const API_ENDPOINTS = {
+    login: '/auth/login',
+    register: 'auth/register',
+    contacts: '/contact',
+    complaints: '/complaints',
+    me: '/me'
+
+};
 
 export default api;

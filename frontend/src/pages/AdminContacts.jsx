@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import api from "../api";
+import api, {API_ENDPOINTS} from "../api";
 
 const AdminContacts = () => {
     const [contacts, setContacts] = useState([]);
@@ -14,11 +14,7 @@ const AdminContacts = () => {
     useEffect(() => {
         const fetchContacts = async () => {
             try {
-                const res = await axios.get(`${API_URL}/api/contact`, { // NB: endre url til variabel?
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
+                const res = await api.get(API_ENDPOINTS.contacts);
                 setContacts(res.data);
             } catch (error) {
                 setError("Could not fetch contact forms");
