@@ -12,6 +12,8 @@ const Login = () => {
         e.preventDefault();
         setError("");
 
+        
+
         try {
             const res = await api.post(API_ENDPOINTS.login, {
                 email,
