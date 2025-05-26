@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import api from "../api";
 
 const AdminContacts = () => {
     const [contacts, setContacts] = useState([]);
@@ -8,6 +9,7 @@ const AdminContacts = () => {
     // sett inn JWT (token)
     const token = localStorage.getItem("token");
     const API_URL = import.meta.env.VITE_API_URL;
+
 
     useEffect(() => {
         const fetchContacts = async () => {
