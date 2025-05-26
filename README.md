@@ -9,3 +9,8 @@ Key reasons for this choice:
 - Built-in support for authentication and access control – This is essential for implementing secure admin features and restricted content management.
 - Flexible data modeling with MongoDB – Using Mongoose allows us to store articles, inquiries, and claims in a way that adapts to varying content types.
 - Node.js strikes a good balance between performance, developer speed, and extensibility, making it a natural fit for a modern web application like this.
+
+Dependencies - Frontend: 
+Run the following commands in "frontend/"-folder before you start: 
+
+npm install
