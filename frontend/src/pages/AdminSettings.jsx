@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api, { API_ENDPOINTS } from "../api";
+import { roles } from '../constants/roles';
 
 const AdminSettings = () => {
     const [users, setUsers] = useState([]);
@@ -80,70 +81,16 @@ const AdminSettings = () => {
 
     return (
         <div>
-            <h2>Admin-brukere</h2>
             {error && <p>{error}</p>}
 
-            <ul>
-                {users.map((user) => (
-                    <li key={user._id}>
-                        {editUserId === user._id ? (
-                            <>
-                                <input 
-                                    name="firstName" 
-                                    value={editData.firstName}
-                                    onChange={handleEditChange}
-                                />
-                                <input 
-                                    name="lastName"
-                                    value={editData.lastName}
-                                    onChange={handleEditChange}
-                                />
-                                <input 
-                                    name="email" 
-                                    value={editData.email}
-                                    onChange={handleEditChange}
-                                />
-                                <select
-                                    name="role" 
-                                    value={editData.role}
-                                    onChange={handleEditChange}                                
-                                >
-                                    <option value="admin">Admin</option>
-                                    <option value="user">User</option>
-                                </select>
-                                <button onClick={() => handleUpdate(user._id)} style={{marginLeft: "16px"}}>
-                                    Lagre
-                                </button>
-                                <button onClick={() => setEditUserId(null)} style={{marginLeft: "16px"}}>
-                                    Avbryt
-                                </button>
-
-
-
-                            </>
-                        ) : (
-                            <>
-                                {user.firstName} {user.lastName} - {user.email} ({user.role})
-                                <button onClick={() => handleDelete(user._id)} style={{marginLeft: "16px"}}>
-                                    Slett
-                                </button>
-                                <button onClick={() => handleEdit(user)} style={{marginLeft: "16px"}}>
-                                    Rediger
-                                </button>
-                            </>
-                        )}
-                    </li>
-                ))}
-            </ul>
-
-            <h3>Legg til ny admin</h3>
+            <h3>Legg til ny ansatt</h3>
             <form onSubmit={handleSubmit}>
                 <input 
                     type="text"
-                    placeholder="Fornavn"
-                    value={formData.firstName}
-                    onChange={(e) => setFormData({...formData, firstName: e.target.value})}
-                    required
+                        placeholder="Fornavn"
+                        value={formData.firstName}
+                        onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                        required
                     /> <br />
 
                     <input 
@@ -169,9 +116,77 @@ const AdminSettings = () => {
                         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                         required
                     /><br/>
+                    <select
+                        name="role"
+                        value={formData.role}
+                        onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                        required
+                    >
+                        {roles.map((role) => (
+                            <option key={role.value} value={role.value}>
+                                {role.label}
+                            </option>   
+                        ))}
+                    </select><br/>
 
                     <button type="submit">Opprett admin</button>
             </form>
+
+            <h2>Ansatte</h2>
+            <ul>
+                {users.map((user) => (
+                    <li key={user._id}>
+                        {editUserId === user._id ? (
+                            <>
+                                <input 
+                                    name="firstName" 
+                                    value={editData.firstName}
+                                    onChange={handleEditChange}
+                                />
+                                <input 
+                                    name="lastName"
+                                    value={editData.lastName}
+                                    onChange={handleEditChange}
+                                />
+                                <input 
+                                    name="email" 
+                                    value={editData.email}
+                                    onChange={handleEditChange}
+                                />
+                                <select
+                                    name="role" 
+                                    value={editData.role}
+                                    onChange={handleEditChange}                                
+                                >
+                                    {roles.map((role) => (
+                                        <option key={role.value} value={role.value}>
+                                            {role.label}
+                                        </option>
+                                    ))}  
+                                </select>
+
+                                <button onClick={() => handleUpdate(user._id)} style={{marginLeft: "16px"}}>
+                                    Lagre
+                                </button>
+                                <button onClick={() => setEditUserId(null)} style={{marginLeft: "16px"}}>
+                                    Avbryt
+                                </button> 
+                            </>
+                        ) : (
+                            <>
+                                {user.firstName} {user.lastName} - {user.email} ({user.role})
+                                <button onClick={() => handleDelete(user._id)} style={{marginLeft: "16px"}}>
+                                    Slett
+                                </button>
+                                <button onClick={() => handleEdit(user)} style={{marginLeft: "16px"}}>
+                                    Rediger
+                                </button>
+                            </>
+                        )}
+                    </li>
+                ))}
+            </ul>
+
         </div>
     );
 };
