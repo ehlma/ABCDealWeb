@@ -6,7 +6,7 @@ const AdminLayout = () => {
             <nav>
                 <Link to="/admin/contacts">Kontaktskjema</Link>
                 <Link to="/admin/complaints">Reklamasjon</Link>
-                <Link to="/admin/settings">Brukerinstillinger</Link>
+                <Link to="/admin/settings">Ansatte</Link>
             </nav>
             <main>
                 <Outlet/>

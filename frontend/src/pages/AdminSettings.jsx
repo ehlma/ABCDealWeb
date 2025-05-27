@@ -3,6 +3,8 @@ import api, { API_ENDPOINTS } from "../api";
 import { roles } from '../constants/roles';
 
 const AdminSettings = () => {
+    const [deleteConfirmId, setDeleteConfirmId] = useState(null);
+    const [showPassword, setShowPassword] = useState(false);
     const [users, setUsers] = useState([]);
     const [formData, setFormData] = useState({
         firstName: "",
@@ -87,49 +89,80 @@ const AdminSettings = () => {
             <form onSubmit={handleSubmit}>
                 <input 
                     type="text"
-                        placeholder="Fornavn"
-                        value={formData.firstName}
-                        onChange={(e) => setFormData({...formData, firstName: e.target.value})}
-                        required
-                    /> <br />
+                    placeholder="Fornavn"
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                    required
+                /> <br />
 
-                    <input 
-                        type="text" 
-                        placeholder="Etternavn"
-                        value={formData.lastName}
-                        onChange={(e) => setFormData({...formData, lastName: e.target.value})}
-                        required
-                    /> <br />
+                <input 
+                    type="text" 
+                    placeholder="Etternavn"
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+                    required
+                /> <br />
 
+                <input
+                    type="email"
+                    placeholder="E-post"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                /><br/>
+
+                <div style={{ position: "relative", display: "inline-block" }}>
                     <input
-                        type="email"
-                        placeholder="E-post"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        required
-                    /><br/>
-
-                    <input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         placeholder="Passord"
                         value={formData.password}
                         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                         required
-                    /><br/>
-                    <select
-                        name="role"
-                        value={formData.role}
-                        onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                        required
+                    />
+                    <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        style={{
+                            position: "absolute",
+                            top: "60%",
+                            right: "8px",
+                            transform: "translateY(-50%)",
+                            background: "none",
+                            border: "none",
+                            cursor: "pointer",    
+                            padding: "0"
+                        }}
+                        aria-label={showPassword ? "Skjul passord" : "Vis passord"}
                     >
-                        {roles.map((role) => (
-                            <option key={role.value} value={role.value}>
-                                {role.label}
-                            </option>   
-                        ))}
-                    </select><br/>
+                        {showPassword ? (
+                            // Øye med strek (skjult)
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.4 21.4 0 0 1 5.06-7.06M9.88 9.88A3 3 0 0 0 12 15a3 3 0 0 0 2.12-5.12" />
+                                <line x1="1" y1="1" x2="23" y2="23" />
+                            </svg>
+                        ) : (
+                            // Vanlig øye (synlig)
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                        )}
+                    </button>
+                </div> <br />
+                <select
+                    name="role"
+                    value={formData.role}
+                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                    required
+                >
+                    {roles.map((role) => (
+                        <option key={role.value} value={role.value}>
+                            {role.label}
+                        </option>   
+                    ))}
+                </select><br/>
 
-                    <button type="submit">Opprett admin</button>
+                <button type="submit">Opprett ansatt</button>
             </form>
 
             <h2>Ansatte</h2>
@@ -173,20 +206,56 @@ const AdminSettings = () => {
                                 </button> 
                             </>
                         ) : (
-                            <>
+                            <>  
                                 {user.firstName} {user.lastName} - {user.email} ({user.role})
-                                <button onClick={() => handleDelete(user._id)} style={{marginLeft: "16px"}}>
-                                    Slett
-                                </button>
-                                <button onClick={() => handleEdit(user)} style={{marginLeft: "16px"}}>
-                                    Rediger
-                                </button>
+
+                                {deleteConfirmId === user._id ? (
+                                    <>
+                                        <p style={{ fontWeight: "bold", margin: "5px 0" }}>Er du sikker?</p>
+
+                                        <button
+                                            onClick={() => handleDelete(user._id)}
+                                            style={{
+                                                marginRight: "5px",
+                                                padding: "4px 8px",
+                                                fontSize: "0.85rem",
+                                                backgroundColor: "#4CAF50",
+                                                color: "white",
+                                                border: "none",
+                                                borderRadius: "4px",
+                                                cursor: "pointer"
+                                            }}
+                                        >
+                                            Aksepter
+                                        </button>
+                                        <button
+                                            onClick={() => setDeleteConfirmId(null)}
+                                            style={{
+                                                padding: "4px 8px",
+                                                fontSize: "0.85rem",
+                                                backgroundColor: "#f44336",
+                                                color: "white", 
+                                                border: "none",
+                                                borderRadius: "4px",
+                                                cursor: "pointer"
+                                            }}
+                                        >
+                                            Avbryt
+                                        </button>
+                                    </>
+                                ) : (
+                                    <button onClick={() => setDeleteConfirmId(user._id)} style={{ marginLeft: "10px" }}>
+                                        Slett
+                                    </button>
+                                )}
+                                    <button onClick={() => handleEdit(user)} style={{marginLeft: "16px"}}>
+                                        Rediger
+                                    </button>
                             </>
-                        )}
+                        )}  
                     </li>
                 ))}
             </ul>
-
         </div>
     );
 };
