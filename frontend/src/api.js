@@ -25,7 +25,7 @@ export const API_ENDPOINTS = {
     contacts: '/contact',
     complaints: '/complaints',
     me: '/me', 
-    users: '/users'
+    users: '/settings/users'
 
 };
 

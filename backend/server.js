@@ -36,7 +36,7 @@ app.use('/api', complaintRoutes);
 // contact route
 app.use('/api', contactRoutes);
 // user route
-app.use('/api', userRoutes);
+app.use('/api/settings', userRoutes);
 
 // koble til mongoDB og start server
 const PORT = process.env.PORT || 5050;
