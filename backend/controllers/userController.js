@@ -39,11 +39,11 @@ export const createUser = async (req, res) => {
 // PUT /api/users/:id
 export const updateUser = async (req, res) => {
     try {
-        const {firstName, lastName, role} = req.body;
+        const {firstName, lastName, email, role} = req.body;
 
         const updated = await User.findByIdAndUpdate(
             req.params.id,
-            {firstName, lastName, role},
+            {firstName, lastName, email, role},
             {new: true}
         );
 
