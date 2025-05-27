@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api, {API_ENDPOINTS} from "../api";
+import AccordionItem from "../components/AccordionItem";
 
 const AdminContacts = () => {
     const [contacts, setContacts] = useState([]);
@@ -24,18 +25,23 @@ const AdminContacts = () => {
     }, [])
 
     return (
-        <div>
-            <h2>Innsendte meldinger</h2>
-            {error && <p>{error}</p>}
-            <ul>
-                {contacts.map((msg) => (
-                    <li key={msg._id}>
-                        <strong>{msg.name}</strong> ({msg.email}, {msg.phoneNum})<br/>
-                        {msg.text}<br/>
-                        {msg.image && <img src={msg.image} alt="Vedlegg" width="100"/>}
-                    </li>
-                ))}
-            </ul>
+        <div className="max-w-2x1 mx-auto mt-6">
+            <h2 className="text-2x1 font-bild mb-4">Innsendte meldinger</h2>
+            {error && <p className="test-red-500">{error}</p>}
+            {contacts.map((msg) => (
+                <AccordionItem
+                    key={msg._id}
+                    item={{
+                        name: msg.name,
+                        email: msg.email,
+                        date: new Date(msg.createdAt).toLocaleString(),
+                        message: msg.text,
+                        image: msg.image,
+                        hasAttachment: !!msg.image,
+                        status: "new",
+                    }}
+                />
+            ))}
         </div>
     );
 };
