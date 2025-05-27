@@ -11,6 +11,8 @@ const AdminSettings = () => {
         role: "admin"
     });
 
+    const [editUserId, setEditUserId] = useState(null);
+    const [editData, setEditData] = useState({});
     const [error, setError] = useState("");
 
     // Hent brukere
@@ -33,7 +35,6 @@ const AdminSettings = () => {
 
         try {
             await api.post(API_ENDPOINTS.users, formData);
-            await api.post(API_ENDPOINTS.users, formData);
             setFormData({ firstName: "", lastName: "", email: "", password: "", role: "admin" });
             fetchUsers();
         } catch (err) {
@@ -52,6 +53,31 @@ const AdminSettings = () => {
         }
     };
 
+    const handleEdit = async (user) => {
+        setEditUserId(user._id);
+        setEditData({
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            role: user.role
+        });
+    };
+
+    const handleEditChange = (e) => {
+        setEditData({...editData, [e.target.name]: e.target.value});
+    };
+
+    const handleUpdate = async (id) => {
+        try {
+            await api.put(`${API_ENDPOINTS.users}/${id}`, editData);
+            await fetchUsers();
+            setEditUserId(null);
+            setEditData({});
+        } catch (e) {
+            setError("Kunne ikke oppdatere bruker");
+        }
+    };
+
     return (
         <div>
             <h2>Admin-brukere</h2>
@@ -60,10 +86,52 @@ const AdminSettings = () => {
             <ul>
                 {users.map((user) => (
                     <li key={user._id}>
-                        {user.firstName} {user.lastName} - {user.email} ({user.role})
-                        <button onClick={() => handleDelete(user._id)} style={{marginLeft: "10px"}}>
-                            Slett
-                        </button>
+                        {editUserId === user._id ? (
+                            <>
+                                <input 
+                                    name="firstName" 
+                                    value={editData.firstName}
+                                    onChange={handleEditChange}
+                                />
+                                <input 
+                                    name="lastName"
+                                    value={editData.lastName}
+                                    onChange={handleEditChange}
+                                />
+                                <input 
+                                    name="email" 
+                                    value={editData.email}
+                                    onChange={handleEditChange}
+                                />
+                                <select
+                                    name="role" 
+                                    value={editData.role}
+                                    onChange={handleEditChange}                                
+                                >
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
+                                </select>
+                                <button onClick={() => handleUpdate(user._id)} style={{marginLeft: "16px"}}>
+                                    Lagre
+                                </button>
+                                <button onClick={() => setEditUserId(null)} style={{marginLeft: "16px"}}>
+                                    Avbryt
+                                </button>
+
+
+
+                            </>
+                        ) : (
+                            <>
+                                {user.firstName} {user.lastName} - {user.email} ({user.role})
+                                <button onClick={() => handleDelete(user._id)} style={{marginLeft: "16px"}}>
+                                    Slett
+                                </button>
+                                <button onClick={() => handleEdit(user)} style={{marginLeft: "16px"}}>
+                                    Rediger
+                                </button>
+                            </>
+                        )}
                     </li>
                 ))}
             </ul>
