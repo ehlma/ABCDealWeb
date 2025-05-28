@@ -5,17 +5,22 @@ import { format } from 'date-fns';
 
 const AccordionItem = ({ item }) => {
     const [open, setOpen] = useState(false);
+    const [status, setStatus] = useState(item.status || "new");
 
     const statusColor = {
         new: "bg-red-500",
         pending: "bg-yellow-400",
         resolved: "bg-green-500",
-    }[item.status] || "bg-gray-400";
+    }[status] || "bg-gray-400";
 
     // fallback hvis item.date ikke er ferdig formatert
     const formattedDate = item.date
         ? item.date
         : format(new Date(item.createdAt), "dd.MM.yyyy, HH:mm");
+
+    const handleStatusChange = (e) => {
+        setStatus(e.target.value);
+    }
 
     return (
         <Card className="mb-4 shadow-md transition-all duration-300">
@@ -26,13 +31,23 @@ const AccordionItem = ({ item }) => {
                 <div className="flex flex-wrap gap-x-4 gap-y-1 items-center text-sm">
                     <div className={`w-2 h-2 rounded-full ${statusColor}`} title={item.status}></div>
                     <span className="font-medium">{item.name}</span>
-                    <span className="text-sm text-gray-600">📧{item.email}</span>
                     <div className="text-sm text-gray-500">🗓️{formattedDate}</div>
-                    {item.regNum && (
-                        <div className="text-gray-500">🚗 Reg.nr: {item.regNum}</div>
-                    )}
                 </div>
-                <div>{open ? <ChevronUp size={20} /> : <ChevronDown size={20} />}</div>
+
+                <div className="flex items-center gap-2">
+                    <select
+                        value={status}
+                        onChange={handleStatusChange}
+                        className="text-sm border border-gray-300 rounded px-2 py-1 bg-white"
+                    >
+                        <option value="new">Ny</option>
+                        <option value="pending">Påbegynt</option>
+                        <option value="resolved">Ferdig</option>
+                    </select>
+                    <div onClick={() => setOpen(!open)} className="cursor-pointer">
+                        {open ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                    </div>
+                </div>
             </div>
 
             <div
@@ -41,6 +56,10 @@ const AccordionItem = ({ item }) => {
             >
                 <CardContent className="overflow-hidden px-6 py-4 space-y-3 bg-gray-50">
                     <div className="text-sm whitespace-pre-line leading-relaxed">
+                        <div className="text-sm text-gray-600">📧 {item.email}</div>
+                        {item.regNum && (
+                            <div className="text-gray-500">🚗 Reg.nr: {item.regNum}</div>
+                        )}
                         {item.text && (
                             <p>
                                 <strong>Melding:</strong> {item.text}
