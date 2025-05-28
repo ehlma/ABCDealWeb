@@ -163,7 +163,7 @@ const AdminSettings = () => {
                 </form>
             </div>
             <br />
-            <div className="max-w-4xl mx-auto mt-12 px-4">
+            <div className="max-full mx-auto mt-12 px-4">
                 {/*Viser alle ansatte*/}
                 <h2 className="text-xl mb-4">Ansatte</h2>
                 <ul className="grid grid-cols-1 gap-6">
