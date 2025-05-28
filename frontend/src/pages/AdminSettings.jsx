@@ -155,7 +155,7 @@ const AdminSettings = () => {
       
               <button
                 type="submit"
-                className="bg-blue-100 font-medium py-2 px-4 rounded hover:bg-blue-200"
+                className="mt-4 bg-blue-100 font-medium py-2 px-4 rounded hover:bg-blue-200"
               >
                 Opprett ansatt
               </button>
@@ -192,7 +192,7 @@ const AdminSettings = () => {
                     <div className="flex flex-col items-center sm:flex-row sm:justify-between sm:items-center gap-4">
                       <p className="mb-2">{user.firstName} {user.lastName} - {user.email} ({user.role})</p>
 
-                      <div className="flex flex-row justify-center gap-2 mt-2">
+                      <div className="flex flex-row justify-center">
                         {deleteConfirmId === user._id ? (
                           <>
                             <p className="text-blue-500">Er du sikker?</p>
