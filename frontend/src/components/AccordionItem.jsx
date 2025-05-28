@@ -7,7 +7,7 @@ import api from "../api";
 const AccordionItem = ({ item }) => {
     const [open, setOpen] = useState(false);
     const [status, setStatus] = useState(item.status || "new");
-    console.log("Status for ", item.name, "er ", item.status);
+    console.log("Status for ", item.name, "er ", status);
 
     const statusColor = {
         new: "bg-red-500",
@@ -26,6 +26,8 @@ const AccordionItem = ({ item }) => {
 
         try {
             await api.patch(`/complaints/${item._id}`, {status: newStatus});
+            // kall parent for å oppdatere hele listen
+            if (onStatusChange) onStatusChange();
         } catch (error) {
             console.error("Feil ved oppdatering av status: ", error);
             alert("Kunne ikke oppdatere status. Prøv igjen senere.")
