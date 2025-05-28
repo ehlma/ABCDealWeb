@@ -9,7 +9,7 @@ import AdminLayout from './pages/AdminLayout';
 import AdminSettings from './pages/AdminSettings';
 
 function App() {
-
+  
   return (
     <>
       <Router>
