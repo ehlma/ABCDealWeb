@@ -12,6 +12,11 @@ const AccordionItem = ({item}) => {
         resolved: "bg-green-500",
     } [item.status] || "bg-gray-400";
 
+    // fallback hvis item.date ikke er ferdig formatert
+    const formattedDate = item.date
+        ? item.date
+        : format(new Date(item.createdAt), "dd.MM.yyyy, HH:mm");
+
     return(
         <Card className="mb-4 shadow-md">
             <div
@@ -21,10 +26,10 @@ const AccordionItem = ({item}) => {
                 <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
                     <div className={`w-3 h-3 rounded-full ${statusColor}`} title={item.status}></div>
                     <div className="font-semibold">{item.name}</div>
-                    <div className="text-sm text-gray-600">{item.email}</div>
-                    <div className="text-sm text-gray-500">{format(new Date(item.createdAt), "dd.MM.yyyy, HH:mm")}</div>
+                    <div className="text-sm text-gray-600">📧{item.email}</div>
+                    <div className="text-sm text-gray-500">🗓️{formattedDate}</div>
                     {item.regNum && (
-                    <div className="text-sm text-gray-500">Bilikon{item.regNum}</div>
+                    <div className="text-sm text-gray-500">🚗 Reg.nr: {item.regNum}</div>
                     )}
                 </div>
                 <div>{open ? <ChevronUp/> : <ChevronDown/>}</div>
@@ -34,19 +39,21 @@ const AccordionItem = ({item}) => {
                 <CardContent className="bg-gray-50 px-4 py-2">
                     <div className="text-sm whitespace-pre-line">
                         {item.text && (
-                            <p><strong>Melding:</strong> {item.text}</p>
+                            <p>
+                                <strong>Melding:</strong> {item.text}
+                            </p>
                         )}
 
                         {item.image && (
                             <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
-                                <Paperclip className="h-4 w-4"/>
+                                {/* <Paperclip className="h-4 w-4"/> */}
                                 <a
                                     href={item.image}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="hover:underline"
                                 >
-                                    Last ned vedlegg
+                                    📎Last ned vedlegg
                                 </a>
                             </div>
                         )}
