@@ -34,8 +34,8 @@ const AdminContacts = () => {
                     item={{
                         name: msg.name,
                         email: msg.email,
-                        date: new Date(msg.createdAt).toLocaleString(),
-                        message: msg.text,
+                        createdAt: msg.createdAt,
+                        text: msg.text,
                         image: msg.image,
                         hasAttachment: !!msg.image,
                         status: "new",
