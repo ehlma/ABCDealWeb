@@ -88,8 +88,8 @@ const AdminSettings = () => {
           {/* Tom kolonne venstre */}
           <div></div>
       
-          {/* Skjema i midten */}
-          <div className="mt-12">
+          {/* Skjema  */}
+          <div className="mt-12 col-span-3 sm:col-span-3 md:col-span-1 px-4">
             {error && <p className="text-red-600 font-medium mb-4">{error}</p>}
             <h3 className="text-xl mb-4">Legg til ny ansatt</h3>
             <form onSubmit={handleSubmit}>
