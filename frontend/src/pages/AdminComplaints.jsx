@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import api, {API_ENDPOINTS} from "../api";
+import AccordionItem from "../components/AccordionItem";
+import { format } from "date-fns";
+
 
 const AdminComplaints = () => {
     const [complaints, setComplaints] = useState([]);
@@ -18,39 +21,25 @@ const AdminComplaints = () => {
     }, []);
 
     return (
-        <div>
-            <h2>Innsendte reklamasjoner</h2>
-            {error && <p>{error}</p>}
-            <ul>
-                {complaints.map((c) => (
-                    <li key={c._id} style={{marginBottom: "20px"}}>
-                        <strong>{c.name}</strong> ({c.email}, {c.phoneNum}) <br />
-                        <b>Registreringsnummer: </b> {c.regNum} <br />
-                        <b>Beskrivelse: </b> {c.description} <br />
-                        {c.visibleDamage && <em>Synlig skade rapportert</em>} <br />
-                        {c.image && (
-                            <div>
-                                <b>Bilde: </b>
-                                <img src={c.image} alt="Skade" width="100"/>
-                            </div>
-                        )}
-                        {c.documentation?.length > 0 && (
-                            <div>
-                                <b>Dokumentasjon: </b>
-                                <ul>
-                                    {c.documentation.map((doc, idx) => (
-                                        <li key={idx}>
-                                            <a href="{doc}" target="_blank" rel="noopener noreferrer">
-                                                {doc}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
-                    </li>
-                ))}
-            </ul>
+        <div className="max-w-2x1 mx-auto mt-6">
+            <h2 className="text-2x1 font-bold mb-4">Innsendte reklamasjoner</h2>
+            {error && <p className="text-red-500">{error}</p>}
+            {complaints.map((c) => (
+                <AccordionItem
+                    key={c._id}
+                    item={{
+                        name: c.name,
+                        email: c.email,
+                        date: format(new Date(c.createdAt), "dd.MM.yyyy, HH:mm"),
+                        text: c.description,
+                        regNum: c.regNum,
+                        image: c.image,
+                        hasAttachment: !!c.image,
+                        docs: c.documentation || [],
+                        status: "new",
+                    }}
+                />
+            ))}
         </div>
     );
 };
