@@ -3,9 +3,6 @@ import api, { API_ENDPOINTS } from "../api";
 import { roles } from '../constants/roles';
 import { Eye, EyeOff, ChevronDown } from "lucide-react";
 
-
-
-
 const AdminSettings = () => {
     const [deleteConfirmId, setDeleteConfirmId] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
@@ -86,89 +83,91 @@ const AdminSettings = () => {
     };
 
     return (
-        <div>
+        <div className="max-w-md mx-auto">
             {error && <p className="text-red-600 font-medium mb-4">{error}</p>}
 
             <h3 className="text-xl mb-4">Legg til ny ansatt</h3>
-            <form onSubmit={handleSubmit}>
-                <input 
-                    type="text"
-                    placeholder="Fornavn"
-                    className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
-                    value={formData.firstName}
-                    onChange={(e) => setFormData({...formData, firstName: e.target.value})}
-                    required
-                /> <br />
+            <div >
+                <form onSubmit={handleSubmit}>
+                    <input 
+                        type="text"
+                        placeholder="Fornavn"
+                        className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
+                        value={formData.firstName}
+                        onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                        required
+                    /> <br />
 
-                <input 
-                    type="text" 
-                    placeholder="Etternavn"
-                    className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
-                    value={formData.lastName}
-                    onChange={(e) => setFormData({...formData, lastName: e.target.value})}
-                    required
-                /> <br />
+                    <input 
+                        type="text" 
+                        placeholder="Etternavn"
+                        className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
+                        value={formData.lastName}
+                        onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+                        required
+                    /> <br />
 
-                <input
-                    type="email"
-                    placeholder="E-post"
-                    className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
-                /><br/>
-
-                <div className="relative inline-block w-full mb-2">
                     <input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Passord"
-                        value={formData.password}
-                        className="w-full border border-gray-300 rounded px-3 py-2 pr-10"
-                        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                        type="email"
+                        placeholder="E-post"
+                        className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         required
-                    />
-                    <button
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute top-1/2 right-2 -translate-y-1/2 p-0 bg-transparent border-none cursor-pointer focus:outline-none"
-                        aria-label={showPassword ? "Skjul passord" : "Vis passord"}
-                    >
-                        {showPassword ? (
-                            <EyeOff className="w-5 h-5 text-gray-500"/>
-                        ) : (
-                            <Eye className="w-5 h-5 text-gray-500"/>
-                        )}
-                    </button>
-                </div> <br />
-                <div className="relative">
-                    <select
-                        name="role"
-                        value={formData.role}
-                        onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                        required
-                        className="w-full border border-gray-300 rounded px-3 py-2 mb-2 appearance-none"
-                    >
-                        {roles.map((role) => (
-                            <option key={role.value} value={role.value}>
-                                {role.label}
-                            </option>   
-                        ))}
-                    </select><br/>
-                    <ChevronDown className="absolute right-2 top-[45%] -translate-y-1/2 text-gray-500 pointer-events-none h-5 w-5"/>
-                </div>
+                    /><br/>
 
-                <button 
-                    type="submit"
-                    className="bg-blue-100 font-medium py-2 px-4 rounded hover:bg-blue-200"
-                >Opprett ansatt</button>
-            </form>
+                    <div className="relative inline-block w-full mb-2">
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Passord"
+                            value={formData.password}
+                            className="w-full border border-gray-300 rounded px-3 py-2 pr-10"
+                            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                            required
+                        />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute top-1/2 right-2 -translate-y-1/2 p-0 bg-transparent border-none cursor-pointer focus:outline-none"
+                            aria-label={showPassword ? "Skjul passord" : "Vis passord"}
+                        >
+                            {showPassword ? (
+                                <EyeOff className="w-5 h-5 text-gray-500"/>
+                            ) : (
+                                <Eye className="w-5 h-5 text-gray-500"/>
+                            )}
+                        </button>
+                    </div> <br />
+                    <div className="relative">
+                        <select
+                            name="role"
+                            value={formData.role}
+                            onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                            required
+                            className="w-full border border-gray-300 rounded px-3 py-2 mb-2 appearance-none"
+                        >
+                            {roles.map((role) => (
+                                <option key={role.value} value={role.value}>
+                                    {role.label}
+                                </option>   
+                            ))}
+                        </select><br/>
+                        <ChevronDown className="absolute right-2 top-[45%] -translate-y-1/2 text-gray-500 pointer-events-none h-5 w-5"/>
+                    </div>
+
+                    <button 
+                        type="submit"
+                        className="bg-blue-100 font-medium py-2 px-4 rounded hover:bg-blue-200"
+                    >Opprett ansatt</button>
+                </form>
+            </div>
             <br />
-            <div className="mt-10 space-y-4">
+            <div className="max-w-4xl mx-auto mt-12 px-4">
                 {/*Viser alle ansatte*/}
-                <h2 className="text-xl">Ansatte</h2>
-                <ul className="space-y-4">
+                <h2 className="text-xl mb-4">Ansatte</h2>
+                <ul className="grid grid-cols-1 gap-6">
                     {users.map((user) => (
-                        <li key={user._id} className="bg-white shadow rounded p-4">
+                        <li key={user._id} className="bg-white shadow rounded p-4 w-full">
                             {editUserId === user._id ? (
                                 <div className="space-y-2">
                                     <input 
@@ -216,7 +215,7 @@ const AdminSettings = () => {
                                     </div>
                                 </div> 
                             ) : (
-                                <div className="flex justiy-between items-center flex-wrap gap-4">
+                                <div className="flex justify-between items-center flex-wrap gap-4">
                                     <p className="mb-2">
                                             {user.firstName} {user.lastName} - {user.email} ({user.role})
                                     </p>
@@ -250,7 +249,6 @@ const AdminSettings = () => {
                                                     Rediger
                                                 </button>
                                             </>
-                                
                                         )}  
                                     </div>
                                 </div>
