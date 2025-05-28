@@ -2,10 +2,12 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, Paperclip } from 'lucide-react';
 import { Card, CardContent } from '../components/ui/card';
 import { format } from 'date-fns';
+import api from "../api";
 
 const AccordionItem = ({ item }) => {
     const [open, setOpen] = useState(false);
     const [status, setStatus] = useState(item.status || "new");
+    console.log("Status for ", item.name, "er ", item.status);
 
     const statusColor = {
         new: "bg-red-500",
@@ -18,9 +20,17 @@ const AccordionItem = ({ item }) => {
         ? item.date
         : format(new Date(item.createdAt), "dd.MM.yyyy, HH:mm");
 
-    const handleStatusChange = (e) => {
-        setStatus(e.target.value);
-    }
+    const handleStatusChange = async (e) => {
+        const newStatus = e.target.value;
+        setStatus(newStatus);
+
+        try {
+            await api.patch(`/complaints/${item._id}`, {status: newStatus});
+        } catch (error) {
+            console.error("Feil ved oppdatering av status: ", error);
+            alert("Kunne ikke oppdatere status. Prøv igjen senere.")
+        }
+    };
 
     return (
         <Card className="mb-4 shadow-md transition-all duration-300">

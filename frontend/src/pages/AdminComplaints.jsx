@@ -8,6 +8,16 @@ const AdminComplaints = () => {
     const [complaints, setComplaints] = useState([]);
     const [error, setError] = useState("");
 
+    const getPriority = (status) => {
+        if (status === "new") return 0;
+        if (status === "pending") return 1;
+        if (status === "resolved") return 2;
+    };
+
+    const sortedComplaints = [...complaints].sort(
+        (a, b) => getPriority(a.status) - getPriority(b.status)
+    );
+
     useEffect(() => {
         const fetchComplaints = async () => {
             try {
@@ -24,10 +34,11 @@ const AdminComplaints = () => {
         <div className="max-w-2x1 mx-auto mt-6">
             <h2 className="text-2x1 font-bold mb-4">Innsendte reklamasjoner</h2>
             {error && <p className="text-red-500">{error}</p>}
-            {complaints.map((c) => (
+            {sortedComplaints.map((c) => (
                 <AccordionItem
                     key={c._id}
                     item={{
+                        _id: c._id,
                         name: c.name,
                         email: c.email,
                         date: format(new Date(c.createdAt), "dd.MM.yyyy, HH:mm"),
@@ -36,7 +47,7 @@ const AdminComplaints = () => {
                         image: c.image,
                         hasAttachment: !!c.image,
                         docs: c.documentation || [],
-                        status: "new",
+                        status: c.status || "new",
                     }}
                 />
             ))}
