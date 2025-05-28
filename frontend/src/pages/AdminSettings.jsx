@@ -164,6 +164,34 @@ const AdminSettings = () => {
                 </form>
             </div>
 
+            <br />
+            <div className="max-full mx-auto mt-12 px-4">
+                {/*Viser alle ansatte*/}
+                <h2 className="text-xl mb-4">Ansatte</h2>
+                <ul className="grid grid-cols-1 gap-6">
+                    {users.map((user) => (
+                        <li key={user._id} className="bg-white shadow rounded p-4 w-full">
+                            {editUserId === user._id ? (
+                                <div className="space-y-2">
+                                    <input 
+                                        name="firstName" 
+                                        value={editData.firstName}
+                                        onChange={handleEditChange}
+                                        className="border border-gray-300 rounded px-3 py-2 w-full"
+                                    />
+                                    <input 
+                                        name="lastName"
+                                        value={editData.lastName}
+                                        onChange={handleEditChange}
+                                        className="border border-gray-300 rounded px-3 py-2 w-full"
+                                    />
+                                    <input 
+                                        name="email" 
+                                        value={editData.email}
+                                        onChange={handleEditChange}
+                                        className="border border-gray-300 rounded px-3 py-2 w-full"
+
+
         {/*Viser alle ansatte*/}
         <div className="col-span-3 mt-12 w-full">
             <h2 className="text-xl mb-4 inline-block pb-1 shadow-[0_4px_2px_-2px_rgba(0,0,0,0.2)]">Ansatte</h2>
