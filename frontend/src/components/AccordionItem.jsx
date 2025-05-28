@@ -3,41 +3,44 @@ import { ChevronDown, ChevronUp, Paperclip } from 'lucide-react';
 import { Card, CardContent } from '../components/ui/card';
 import { format } from 'date-fns';
 
-const AccordionItem = ({item}) => {
+const AccordionItem = ({ item }) => {
     const [open, setOpen] = useState(false);
 
     const statusColor = {
         new: "bg-red-500",
         pending: "bg-yellow-400",
         resolved: "bg-green-500",
-    } [item.status] || "bg-gray-400";
+    }[item.status] || "bg-gray-400";
 
     // fallback hvis item.date ikke er ferdig formatert
     const formattedDate = item.date
         ? item.date
         : format(new Date(item.createdAt), "dd.MM.yyyy, HH:mm");
 
-    return(
-        <Card className="mb-4 shadow-md">
+    return (
+        <Card className="mb-4 shadow-md transition-all duration-300">
             <div
-                className="flex items-center justify-between p4 cursor-pointer hover:bg-gray-50"
+                className="flex justify-between items-center px-4 py-3 cursor-pointer hover:bg-gray-50"
                 onClick={() => setOpen(!open)}
             >
-                <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-                    <div className={`w-3 h-3 rounded-full ${statusColor}`} title={item.status}></div>
-                    <div className="font-semibold">{item.name}</div>
-                    <div className="text-sm text-gray-600">📧{item.email}</div>
+                <div className="flex flex-wrap gap-x-4 gap-y-1 items-center text-sm">
+                    <div className={`w-2 h-2 rounded-full ${statusColor}`} title={item.status}></div>
+                    <span className="font-medium">{item.name}</span>
+                    <span className="text-sm text-gray-600">📧{item.email}</span>
                     <div className="text-sm text-gray-500">🗓️{formattedDate}</div>
                     {item.regNum && (
-                    <div className="text-sm text-gray-500">🚗 Reg.nr: {item.regNum}</div>
+                        <div className="text-gray-500">🚗 Reg.nr: {item.regNum}</div>
                     )}
                 </div>
-                <div>{open ? <ChevronUp/> : <ChevronDown/>}</div>
+                <div>{open ? <ChevronUp size={20} /> : <ChevronDown size={20} />}</div>
             </div>
 
-            {open && (
-                <CardContent className="bg-gray-50 px-4 py-2">
-                    <div className="text-sm whitespace-pre-line">
+            <div
+                className={`grid transition-all duration-300 overflow-hidden ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                    }`}
+            >
+                <CardContent className="overflow-hidden px-6 py-4 space-y-3 bg-gray-50">
+                    <div className="text-sm whitespace-pre-line leading-relaxed">
                         {item.text && (
                             <p>
                                 <strong>Melding:</strong> {item.text}
@@ -45,15 +48,14 @@ const AccordionItem = ({item}) => {
                         )}
 
                         {item.image && (
-                            <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
-                                {/* <Paperclip className="h-4 w-4"/> */}
+                            <div className="flex items-center gap-2 text-blue-600">
                                 <a
                                     href={item.image}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="hover:underline"
                                 >
-                                    📎Last ned vedlegg
+                                    📎 Last ned vedlegg
                                 </a>
                             </div>
                         )}
@@ -61,7 +63,7 @@ const AccordionItem = ({item}) => {
                         {item.docs && item.docs.length > 0 && (
                             <div className="mt-2">
                                 <strong>Dokumentasjon:</strong>
-                                <ul className="list-disc list-inside">
+                                <ul className="list-disc list-inside ml-4">
                                     {item.docs.map((doc, i) => (
                                         <li key={i}>
                                             <a
@@ -79,7 +81,7 @@ const AccordionItem = ({item}) => {
                         )}
                     </div>
                 </CardContent>
-            )}
+            </div>
         </Card>
     );
 };
