@@ -27,15 +27,15 @@ const AdminContacts = () => {
     return (
         <div className="max-w-2x1 mx-auto mt-6">
             <h2 className="text-2x1 font-bild mb-4">Innsendte meldinger</h2>
-            {error && <p className="test-red-500">{error}</p>}
+            {error && <p className="text-red-500">{error}</p>}
             {contacts.map((msg) => (
                 <AccordionItem
                     key={msg._id}
                     item={{
                         name: msg.name,
                         email: msg.email,
-                        date: new Date(msg.createdAt).toLocaleString(),
-                        message: msg.text,
+                        createdAt: msg.createdAt,
+                        text: msg.text,
                         image: msg.image,
                         hasAttachment: !!msg.image,
                         status: "new",

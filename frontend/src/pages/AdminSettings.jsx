@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import api, { API_ENDPOINTS } from "../api";
 import { roles } from '../constants/roles';
+
 import { Eye, EyeOff, ChevronDown } from "lucide-react";
 
 
+
+
+import { Eye, EyeOff } from "lucide-react";
 
 
 const AdminSettings = () => {
@@ -128,6 +132,7 @@ const AdminSettings = () => {
                         required
                     />
                     <button
+
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
                         className="absolute top-1/2 right-2 -translate-y-1/2 p-0 bg-transparent border-none cursor-pointer focus:outline-none"
@@ -138,6 +143,24 @@ const AdminSettings = () => {
                         ) : (
                             <Eye className="w-5 h-5 text-gray-500"/>
                         )}
+
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{
+                        position: "absolute",
+                        top: "65%",
+                        right: "8px",
+                        transform: "translateY(-50%)",
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                        padding: "0",
+                        outline: "none"
+                    }}
+                    aria-label={showPassword ? "Skjul passord" : "Vis passord"}
+                    >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+
                     </button>
                 </div> <br />
                 <div className="relative">
