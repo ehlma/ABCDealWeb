@@ -5,7 +5,6 @@ const AdminLayout = () => {
         <div>
             <nav>
                 <Link to="/admin/contacts">Kontaktskjema</Link>
-                <Link to="/admin/settings">Instillinger</Link>
                 <Link to="/admin/complaints">Reklamasjon</Link>
                 <Link to="/admin/settings">Ansatte</Link>
             </nav>

@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import api, { API_ENDPOINTS } from "../api";
 import { roles } from '../constants/roles';
+import { Eye, EyeOff, ChevronDown } from "lucide-react";
+
+
+
 
 const AdminSettings = () => {
     const [deleteConfirmId, setDeleteConfirmId] = useState(null);
@@ -83,13 +87,14 @@ const AdminSettings = () => {
 
     return (
         <div>
-            {error && <p>{error}</p>}
+            {error && <p className="text-red-600 font-medium mb-4">{error}</p>}
 
-            <h3>Legg til ny ansatt</h3>
+            <h3 className="text-xl mb-4">Legg til ny ansatt</h3>
             <form onSubmit={handleSubmit}>
                 <input 
                     type="text"
                     placeholder="Fornavn"
+                    className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
                     value={formData.firstName}
                     onChange={(e) => setFormData({...formData, firstName: e.target.value})}
                     required
@@ -98,6 +103,7 @@ const AdminSettings = () => {
                 <input 
                     type="text" 
                     placeholder="Etternavn"
+                    className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
                     value={formData.lastName}
                     onChange={(e) => setFormData({...formData, lastName: e.target.value})}
                     required
@@ -106,156 +112,153 @@ const AdminSettings = () => {
                 <input
                     type="email"
                     placeholder="E-post"
+                    className="border border-gray-300 rounded px-3 py-2 mb-2 w-full"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
                 /><br/>
 
-                <div style={{ position: "relative", display: "inline-block" }}>
+                <div className="relative inline-block w-full mb-2">
                     <input
                         type={showPassword ? "text" : "password"}
                         placeholder="Passord"
                         value={formData.password}
+                        className="w-full border border-gray-300 rounded px-3 py-2 pr-10"
                         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                         required
                     />
                     <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        style={{
-                            position: "absolute",
-                            top: "60%",
-                            right: "8px",
-                            transform: "translateY(-50%)",
-                            background: "none",
-                            border: "none",
-                            cursor: "pointer",    
-                            padding: "0"
-                        }}
+                        className="absolute top-1/2 right-2 -translate-y-1/2 p-0 bg-transparent border-none cursor-pointer focus:outline-none"
                         aria-label={showPassword ? "Skjul passord" : "Vis passord"}
                     >
                         {showPassword ? (
-                            // Øye med strek (skjult)
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.4 21.4 0 0 1 5.06-7.06M9.88 9.88A3 3 0 0 0 12 15a3 3 0 0 0 2.12-5.12" />
-                                <line x1="1" y1="1" x2="23" y2="23" />
-                            </svg>
+                            <EyeOff className="w-5 h-5 text-gray-500"/>
                         ) : (
-                            // Vanlig øye (synlig)
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
-                                <circle cx="12" cy="12" r="3" />
-                            </svg>
+                            <Eye className="w-5 h-5 text-gray-500"/>
                         )}
                     </button>
                 </div> <br />
-                <select
-                    name="role"
-                    value={formData.role}
-                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                    required
-                >
-                    {roles.map((role) => (
-                        <option key={role.value} value={role.value}>
-                            {role.label}
-                        </option>   
-                    ))}
-                </select><br/>
+                <div className="relative">
+                    <select
+                        name="role"
+                        value={formData.role}
+                        onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                        required
+                        className="w-full border border-gray-300 rounded px-3 py-2 mb-2 appearance-none"
+                    >
+                        {roles.map((role) => (
+                            <option key={role.value} value={role.value}>
+                                {role.label}
+                            </option>   
+                        ))}
+                    </select><br/>
+                    <ChevronDown className="absolute right-2 top-[45%] -translate-y-1/2 text-gray-500 pointer-events-none h-5 w-5"/>
+                </div>
 
-                <button type="submit">Opprett ansatt</button>
+                <button 
+                    type="submit"
+                    className="bg-blue-100 font-medium py-2 px-4 rounded hover:bg-blue-200"
+                >Opprett ansatt</button>
             </form>
+            <br />
+            <div className="mt-10 space-y-4">
+                {/*Viser alle ansatte*/}
+                <h2 className="text-xl">Ansatte</h2>
+                <ul className="space-y-4">
+                    {users.map((user) => (
+                        <li key={user._id} className="bg-white shadow rounded p-4">
+                            {editUserId === user._id ? (
+                                <div className="space-y-2">
+                                    <input 
+                                        name="firstName" 
+                                        value={editData.firstName}
+                                        onChange={handleEditChange}
+                                        className="border border-gray-300 rounded px-3 py-2 w-full"
+                                    />
+                                    <input 
+                                        name="lastName"
+                                        value={editData.lastName}
+                                        onChange={handleEditChange}
+                                        className="border border-gray-300 rounded px-3 py-2 w-full"
+                                    />
+                                    <input 
+                                        name="email" 
+                                        value={editData.email}
+                                        onChange={handleEditChange}
+                                        className="border border-gray-300 rounded px-3 py-2 w-full"
 
-            <h2>Ansatte</h2>
-            <ul>
-                {users.map((user) => (
-                    <li key={user._id}>
-                        {editUserId === user._id ? (
-                            <>
-                                <input 
-                                    name="firstName" 
-                                    value={editData.firstName}
-                                    onChange={handleEditChange}
-                                />
-                                <input 
-                                    name="lastName"
-                                    value={editData.lastName}
-                                    onChange={handleEditChange}
-                                />
-                                <input 
-                                    name="email" 
-                                    value={editData.email}
-                                    onChange={handleEditChange}
-                                />
-                                <select
-                                    name="role" 
-                                    value={editData.role}
-                                    onChange={handleEditChange}                                
-                                >
-                                    {roles.map((role) => (
-                                        <option key={role.value} value={role.value}>
-                                            {role.label}
-                                        </option>
-                                    ))}  
-                                </select>
-
-                                <button onClick={() => handleUpdate(user._id)} style={{marginLeft: "16px"}}>
-                                    Lagre
-                                </button>
-                                <button onClick={() => setEditUserId(null)} style={{marginLeft: "16px"}}>
-                                    Avbryt
-                                </button> 
-                            </>
-                        ) : (
-                            <>  
-                                {user.firstName} {user.lastName} - {user.email} ({user.role})
-
-                                {deleteConfirmId === user._id ? (
-                                    <>
-                                        <p style={{ fontWeight: "bold", margin: "5px 0" }}>Er du sikker?</p>
-
-                                        <button
-                                            onClick={() => handleDelete(user._id)}
-                                            style={{
-                                                marginRight: "5px",
-                                                padding: "4px 8px",
-                                                fontSize: "0.85rem",
-                                                backgroundColor: "#4CAF50",
-                                                color: "white",
-                                                border: "none",
-                                                borderRadius: "4px",
-                                                cursor: "pointer"
-                                            }}
+                                    />
+                                    <select
+                                        name="role" 
+                                        value={editData.role}
+                                        onChange={handleEditChange} 
+                                        className="border border-gray-300 rounded px-3 py-2 w-full"                               
+                                    >
+                                        {roles.map((role) => (
+                                            <option key={role.value} value={role.value}>
+                                                {role.label}
+                                            </option>
+                                        ))}  
+                                    </select>
+                                    <div className="flex gap-2">
+                                        <button onClick={() => handleUpdate(user._id)} 
+                                            className="bg-blue-500 text-white px-2 py-1 text-sm rounded hover:bg-blue-600 mr-2"
                                         >
-                                            Aksepter
+                                            Lagre
                                         </button>
-                                        <button
-                                            onClick={() => setDeleteConfirmId(null)}
-                                            style={{
-                                                padding: "4px 8px",
-                                                fontSize: "0.85rem",
-                                                backgroundColor: "#f44336",
-                                                color: "white", 
-                                                border: "none",
-                                                borderRadius: "4px",
-                                                cursor: "pointer"
-                                            }}
+                                        <button onClick={() => setEditUserId(null)} 
+                                            className="bg-gray-300 text-gray-800 px-2 py-1 text-sm rounded hover:bg-gray-400"
                                         >
                                             Avbryt
-                                        </button>
-                                    </>
-                                ) : (
-                                    <button onClick={() => setDeleteConfirmId(user._id)} style={{ marginLeft: "10px" }}>
-                                        Slett
-                                    </button>
-                                )}
-                                    <button onClick={() => handleEdit(user)} style={{marginLeft: "16px"}}>
-                                        Rediger
-                                    </button>
-                            </>
-                        )}  
-                    </li>
-                ))}
-            </ul>
+                                        </button> 
+                                    </div>
+                                </div> 
+                            ) : (
+                                <div className="flex justiy-between items-center flex-wrap gap-4">
+                                    <p className="mb-2">
+                                            {user.firstName} {user.lastName} - {user.email} ({user.role})
+                                    </p>
+                                    <div className="flex gap-2">
+                                        {deleteConfirmId === user._id ? (
+                                            <>
+                                                <p className="text-blue-500">Er du sikker?</p>
+                                                <button className="bg-green-500 text-white text-sm px-2 py-1 rounded hover:bg-green-600 mr-2 focus:outline-none focus:ring-0"
+                                                    onClick={() => handleDelete(user._id)}
+                                                >
+                                                    Aksepter
+                                                </button>
+                                                <button
+                                                    onClick={() => setDeleteConfirmId(null)}
+                                                    className="ml-2 bg-red-500 text-white text-sm px-2 py-1 rounded hover:bg-red-600 focus:outline-none focus:ring-0"
+                                                >
+                                                    Avbryt
+                                                </button>
+                                            </>  
+                                        ) : (
+                                            <>
+                                                <button onClick={() => setDeleteConfirmId(user._id)} 
+                                                    className="ml-2 px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm focus:outline-none focus:ring-0"
+                                                >
+                                                    Slett
+                                                </button>
+
+                                                <button onClick={() => handleEdit(user)} 
+                                                    className="ml-2 bg-gray-200 text-gray-800 px-2 py-1 rounded hover:bg-gray-300 text-sm focus:outline-none focus:ring-0"
+                                                >
+                                                    Rediger
+                                                </button>
+                                            </>
+                                
+                                        )}  
+                                    </div>
+                                </div>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 };
