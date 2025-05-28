@@ -12,7 +12,6 @@ const router = express.Router();
 
 // Alle routes krever admin
 router.use(verifyToken, authorizeRoles('admin'));
-
 router.get('/users', getAllUsers);
 
 router.post('/users', createUser);
