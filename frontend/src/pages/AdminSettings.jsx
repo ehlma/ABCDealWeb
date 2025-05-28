@@ -183,15 +183,16 @@ const AdminSettings = () => {
                           </option>
                         ))}
                       </select>
-                      <div className="flex gap-2">
+                      <div className="flex flex-row justify-center gap-2">
                         <button onClick={() => handleUpdate(user._id)} className="bg-blue-500 text-white px-2 py-1 text-sm rounded hover:bg-blue-600 mr-2">Lagre</button>
                         <button onClick={() => setEditUserId(null)} className="bg-gray-300 text-gray-800 px-2 py-1 text-sm rounded hover:bg-gray-400">Avbryt</button>
                       </div>
                     </div>
                   ) : (
-                    <div className="flex justify-between items-center flex-wrap gap-4">
+                    <div className="flex flex-col items-center sm:flex-row sm:justify-between sm:items-center gap-4">
                       <p className="mb-2">{user.firstName} {user.lastName} - {user.email} ({user.role})</p>
-                      <div className="flex gap-2">
+
+                      <div className="flex flex-row justify-center gap-2 mt-2">
                         {deleteConfirmId === user._id ? (
                           <>
                             <p className="text-blue-500">Er du sikker?</p>
