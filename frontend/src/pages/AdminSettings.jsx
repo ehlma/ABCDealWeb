@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api, { API_ENDPOINTS } from "../api";
 import { roles } from '../constants/roles';
+import { Eye, EyeOff } from "lucide-react";
 
 const AdminSettings = () => {
     const [deleteConfirmId, setDeleteConfirmId] = useState(null);
@@ -120,33 +121,22 @@ const AdminSettings = () => {
                         required
                     />
                     <button
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        style={{
-                            position: "absolute",
-                            top: "60%",
-                            right: "8px",
-                            transform: "translateY(-50%)",
-                            background: "none",
-                            border: "none",
-                            cursor: "pointer",    
-                            padding: "0"
-                        }}
-                        aria-label={showPassword ? "Skjul passord" : "Vis passord"}
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{
+                        position: "absolute",
+                        top: "65%",
+                        right: "8px",
+                        transform: "translateY(-50%)",
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                        padding: "0",
+                        outline: "none"
+                    }}
+                    aria-label={showPassword ? "Skjul passord" : "Vis passord"}
                     >
-                        {showPassword ? (
-                            // Øye med strek (skjult)
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.4 21.4 0 0 1 5.06-7.06M9.88 9.88A3 3 0 0 0 12 15a3 3 0 0 0 2.12-5.12" />
-                                <line x1="1" y1="1" x2="23" y2="23" />
-                            </svg>
-                        ) : (
-                            // Vanlig øye (synlig)
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
-                                <circle cx="12" cy="12" r="3" />
-                            </svg>
-                        )}
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                     </button>
                 </div> <br />
                 <select
