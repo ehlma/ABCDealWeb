@@ -22,8 +22,11 @@ const AdminLayout = () => {
                     </li>
 
                 </ul>
+            <div className="pointer-events-none fixed top-[55px] left-0 w-full h-20 z-10 bg-gradient-to-b from-white/90 to-transparent"></div>
             </nav>
-            <main className="flex-1 p-6">
+
+
+            <main className="flex-1 p-6 overflow-y-auto">
                 <Outlet/>
             </main>
         </div>
