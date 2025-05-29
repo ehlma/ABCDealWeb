@@ -19,6 +19,8 @@ const AdminSettings = () => {
     const [editUserId, setEditUserId] = useState(null);
     const [editData, setEditData] = useState({});
     const [error, setError] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
+
 
     // Hent brukere
     const fetchUsers = async () => {
@@ -82,6 +84,13 @@ const AdminSettings = () => {
             setError("Kunne ikke oppdatere bruker");
         }
     };
+
+    const filteredUsers = users.filter((user) => {
+        const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
+        return fullName.includes(searchTerm.toLowerCase());
+    });
+
+    const usersToDisplay = searchTerm ? filteredUsers : users;
 
     return (
         <div className="w-full grid grid-cols-3 gap-[16px] px-[8px] max-w-screen-xl mx-auto">
@@ -166,10 +175,21 @@ const AdminSettings = () => {
           <div></div>
       
           {/* Ansattkort - tar hele bredden under grid */}
-          <div className="col-span-3 mt-[48px] w-full">
-            <h2 className="text-xl mb-[16px] inline-block pb-[4px] shadow-[0_4px_2px_-2px_rgba(0,0,0,0.2)]">Ansatte</h2>
+          <div className="col-span-3 mt-[56px] w-full">
+            <h2 className="text-xl mb-[40px] inline-block pb-[4px] shadow-[0_4px_2px_-2px_rgba(0,0,0,0.2)]">Ansatte</h2>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:gap-[16px] mb-[24px]">
+              <label className="text-base font-medium ml-[25%] sm:mb-0 mb-[8px]">Søk etter ansatt</label>
+              <input
+                type="text"
+                placeholder="Søk etter navn..."
+                className="px-[12px] py-[8px] border border-gray-300 rounded w-full max-w-[300px]"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+
             <ul className="grid grid-cols-1 gap-[24px]">
-              {users.map((user) => (
+              {usersToDisplay.map((user) => (
                 <li key={user._id} className="bg-white shadow rounded p-[24px] w-full">
                   {editUserId === user._id ? (
                     <div className="space-y-[8px]">
@@ -213,7 +233,7 @@ const AdminSettings = () => {
             </ul>
           </div>
         </div>
-      );      
+    );  
 };
 
 export default AdminSettings;
