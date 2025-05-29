@@ -176,19 +176,21 @@ const AdminSettings = () => {
       
           {/* Ansattkort - tar hele bredden under grid */}
           <div className="col-span-3 mt-[56px] w-full">
-            <h2 className="text-xl mb-[40px] inline-block pb-[4px] shadow-[0_4px_2px_-2px_rgba(0,0,0,0.2)]">Ansatte</h2>
-            <div className="flex flex-col sm:flex-row sm:items-center sm:gap-[16px] mb-[24px]">
-              <label className="text-base font-medium ml-[25%] sm:mb-0 mb-[8px]">Søk etter ansatt</label>
-              <input
-                type="text"
-                placeholder="Søk etter navn..."
-                className="px-[12px] py-[8px] border border-gray-300 rounded w-full max-w-[300px]"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
+            <div className="w-full shadow-[0_4px_2px_-2px_rgba(0,0,0,0.2)] px-[24px] py-[24px] mb-[32px]">
+                <h2 className="text-xl mb-[32px] pb-[4px] text-center mx-auto">Ansatte</h2>            
+                <div className="flex flex-col sm:flex-row sm:items-center sm:gap-[16px] mb-[8px] w-full">
+                    <label htmlFor="search" className="block text-base font-medium mb-[8px] ml-[8px] text-left sm:text-center">Søk etter ansatt</label>
+                    <input
+                        type="text"
+                        placeholder="Søk etter navn..."
+                        className="px-[12px] py-[8px] border border-gray-300 rounded w-full max-w-[300px]"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    </div>
             </div>
 
-            <ul className="grid grid-cols-1 gap-[24px]">
+            <ul className="grid grid-cols-1 gap-[24px] justify-items-center">
               {usersToDisplay.map((user) => (
                 <li key={user._id} className="bg-white shadow rounded p-[24px] w-full">
                   {editUserId === user._id ? (
