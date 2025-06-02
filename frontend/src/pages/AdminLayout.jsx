@@ -12,6 +12,11 @@ const AdminLayout = () => {
                         </Link>
                     </li>
                     <li>
+                        <Link to="/admin/articles" className="hover:underline hover:text-[#a7f3d0] transition-colors text-white">
+                            Artikler
+                        </Link>
+                    </li>
+                    <li>
                         <Link to="/admin/contacts" className="hover:underline hover:text-[#a7f3d0] transition-colors text-white">
                             Kontaktskjema
                         </Link>

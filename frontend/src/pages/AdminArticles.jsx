@@ -41,8 +41,51 @@ const AdminArticles = () => {
             {error && <p className="text-red-600 mb-[16px]">{error}</p>}
             {success && <p className="text-green-600 mb-[16px]">{success}</p>}
 
-            
-
+            <form onSubmit={handleSubmit} className="space-y-[16px]">
+                <input
+                    name="title"
+                    type="text"
+                    placeholder="Tittel"
+                    value={formData.title}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
+                    required
+                />
+                <input
+                    name="image"
+                    type="text"
+                    placeholder="URL til bilde"
+                    value={formData.image}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
+                    required
+                />
+                <textarea
+                    name="intro"
+                    placeholder="Introduksjonstekst (valgfritt)"
+                    value={formData.intro}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
+                    rows={3}
+                />
+                <textarea
+                    name="bodyText"
+                    placeholder="Brødtekst"
+                    value={formData.body}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
+                    rows={8}
+                    required
+                />
+                <button 
+                    type="submit"
+                    className="mt-[8px] bg-blue-100 font-medium py-[8px] px-[16px] rounded hover:bg-blue-200"
+                >
+                    Opprett artikkel
+                </button>
+            </form>
         </div>
-    )
-}
+    );
+};
+
+export default AdminArticles;

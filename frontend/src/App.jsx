@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import AdminComplaints from './pages/AdminComplaints';
 import AdminLayout from './pages/AdminLayout';
 import AdminSettings from './pages/AdminSettings';
+import AdminArticles from './pages/AdminArticles';
 
 function App() {
   
@@ -20,7 +21,8 @@ function App() {
           <Route path='/admin' element={<AdminLayout/>}>
             <Route path='/admin/contacts' element={<AdminContacts/>}/>
             <Route path='/admin/complaints' element={<AdminComplaints/>}/>
-            <Route path='/admin/settings' element={<AdminSettings/>}></Route>
+            <Route path='/admin/settings' element={<AdminSettings/>}/>
+            <Route path='/admin/articles' element={<AdminArticles/>}/>
           </Route>
         </Routes>
       </Router>
