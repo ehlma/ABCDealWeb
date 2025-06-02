@@ -31,10 +31,10 @@ const AdminLayout = () => {
         {/* Mobilmeny: åpnes under navbar */}
         {menuOpen && (
           <div className="absolute w-[30%] top-[64px] left-0 w-full bg-[#047464] text-white px-6 py-4 sm:hidden z-40 shadow-md flex flex-col rounded-b space-y-2">
-            <Link to="/admin/settings" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:underline " >Ansatte</Link>
-            <Link to="/admin/articles" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:underline">Artikler</Link>
-            <Link to="/admin/contacts" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:underline">Kontaktskjema</Link>
-            <Link to="/admin/complaints" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:underline">Reklamasjon</Link>
+            <Link to="/admin/settings" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200" >Ansatte</Link>
+            <Link to="/admin/articles" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Artikler</Link>
+            <Link to="/admin/contacts" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Kontaktskjema</Link>
+            <Link to="/admin/complaints" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Reklamasjon</Link>
           </div>
         )}
       </nav>
