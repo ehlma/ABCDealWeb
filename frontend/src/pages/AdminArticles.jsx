@@ -21,16 +21,28 @@ const AdminArticles = () => {
         setSuccess("");
         setError("");
 
+        const {title, intro, bodyText, image} = formData;
+
         if(!formData.title || !formData.bodyText || !formData.image) {
-            setError("Tittel, bilde og brødtekst er påkrevd.")    
+            setError("Tittel, bilde og brødtekst er påkrevd.");
+            return;
+
         }
 
+        const data = new FormData();
+        data.append("title", title);
+        data.append("intro", intro);
+        data.append("bodyText", bodyText);
+        data.append("image", image);
+
         try {
-            await api.post("/articles", formData);
-            setSuccess("Artikkel opprettet.");
-            setFormData({title: "", intro: "", bodyText: "", image: ""});
+            await api.post("/articles", data, {
+                headers: {"Content-Type": "multipart/form-data"},
+            });
+            setSuccess("Artikkel opprettet!");
+            setFormData({title: "", intro: "", bodyText: "", image: null});
         } catch (err) {
-            setError("Kunne ikke opprette")
+            setError("Kunne ikke opprette artikkel.")
         }
     };
 
@@ -45,7 +57,7 @@ const AdminArticles = () => {
                 <input
                     name="title"
                     type="text"
-                    placeholder="Tittel"
+                    placeholder="Tittel*"
                     value={formData.title}
                     onChange={handleChange}
                     className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
@@ -53,16 +65,16 @@ const AdminArticles = () => {
                 />
                 <input
                     name="image"
-                    type="text"
-                    placeholder="URL til bilde"
+                    type="file"
+                    accept="image/*"
                     value={formData.image}
-                    onChange={handleChange}
+                    onChange={(e) => setFormData({...formData, image: e.target.files[0] })}
                     className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
                     required
                 />
                 <textarea
                     name="intro"
-                    placeholder="Introduksjonstekst (valgfritt)"
+                    placeholder="Introduksjonstekst"
                     value={formData.intro}
                     onChange={handleChange}
                     className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
@@ -70,7 +82,7 @@ const AdminArticles = () => {
                 />
                 <textarea
                     name="bodyText"
-                    placeholder="Brødtekst"
+                    placeholder="Brødtekst*"
                     value={formData.body}
                     onChange={handleChange}
                     className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
