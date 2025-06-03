@@ -83,7 +83,7 @@ const Login = () => {
                             onClick={async () => {
                                 setResetMsg("");
                                 try {
-                                    const res = await api.post("/auth/reset-password", { email, resetEmail});
+                                    const res = await api.post("/auth/reset-password", { email: resetEmail});
                                         setResetMsg("Passord sendt til e-post");
                                 } catch {
                                         setResetMsg("E-post ikke funnet");
