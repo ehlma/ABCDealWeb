@@ -23,14 +23,14 @@ const AdminLayout = () => {
           <img src={logo} alt="ABC Deal Logo" className="h-[36px] hidden sm:block ml-auto" />
 
           {/* Hamburger (mobile only) */}
-          <button className="sm:hidden text-black" onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4 text-black" />}
+          <button className="sm:hidden bg-transparent border-none p-0 m-0 focus:outline-none" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X className="w-8 h-8 text-white" /> : <Menu className="w-8 h-8 text-white" />}
           </button>
         </div>
 
         {/* Mobilmeny: åpnes under navbar */}
         {menuOpen && (
-          <div className="absolute w-[30%] top-[64px] left-0 w-full bg-[#047464] text-white px-6 py-4 sm:hidden z-40 shadow-md flex flex-col rounded-b space-y-2">
+          <div className="absolute w-[200px] top-[64px] left-0 w-full bg-[#047464] text-white px-6 py-4 sm:hidden z-40 shadow-md flex flex-col rounded-b space-y-2">
             <Link to="/admin/settings" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200" >Ansatte</Link>
             <Link to="/admin/articles" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Artikler</Link>
             <Link to="/admin/contacts" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Kontaktskjema</Link>
