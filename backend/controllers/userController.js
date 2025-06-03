@@ -15,8 +15,9 @@ export const getAllUsers = async (req, res) => {
 export const createUser = async (req, res) => {
     try {
         const {firstName, lastName, email, password, role} = req.body;
+        const emailClean = email.trim().toLowerCase();
 
-        const existing = await User.findOne({email});
+        const existing = await User.findOne({email: emailClean});
         if(existing) return res.status(400).json({message: "Bruker finnes allerede."});
 
         const passwordHash = await bcrypt.hash(password, 10);
@@ -24,7 +25,7 @@ export const createUser = async (req, res) => {
         const user = new User ({
             firstName,
             lastName,
-            email,
+            email: emailClean,
             passwordHash,
             role
         });
