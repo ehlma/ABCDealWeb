@@ -9,23 +9,28 @@ const AdminLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 z-[50] w-full bg-[#047464] text-white shadow">
+      <nav className="fixed top-0 left-0 z-[50] w-full bg-[#047464] text-white shadow ">
         <div className="flex items-center justify-between px-6 py-4">
-          {/* Desktop meny (hidden on mobile) */}
+
+
+          {/* Desktop meny */}
           <ul className="hidden sm:flex gap-6 font-medium">
-            <li><Link to="/admin/settings" className="text-white hover:underline">Ansatte</Link></li>
-            <li><Link to="/admin/articles" className="text-white hover:underline">Artikler</Link></li>
-            <li><Link to="/admin/contacts" className="text-white hover:underline">Kontaktskjema</Link></li>
-            <li><Link to="/admin/complaints" className="text-white hover:underline">Reklamasjon</Link></li>
+            <li><Link to="/admin/settings" className="text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Ansatte</Link></li>
+            <li><Link to="/admin/articles" className="text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Artikler</Link></li>
+            <li><Link to="/admin/contacts" className="text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Kontaktskjema</Link></li>
+            <li><Link to="/admin/complaints" className="text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Reklamasjon</Link></li>
           </ul>
 
-          {/* Logo (desktop) */}
-          <img src={logo} alt="ABC Deal Logo" className="h-[36px] hidden sm:block ml-auto" />
 
           {/* Hamburger (mobile only) */}
           <button className="sm:hidden bg-transparent border-none p-0 m-0 focus:outline-none" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <X className="w-8 h-8 text-white" /> : <Menu className="w-8 h-8 text-white" />}
           </button>
+
+          {/* Logo (desktop) */}
+          <Link to="/">
+            <img src={logo} alt="ABC Deal Logo" className="h-[36px] cursor-pointer"/>
+          </Link>
         </div>
 
         {/* Mobilmeny: åpnes under navbar */}
