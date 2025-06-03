@@ -2,13 +2,12 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import nodemailer from "nodemailer";
-import User from "../models/User.js";
 
 // registrering
 export const registerUser = async (req, res) => {
     try {
         const {firstName, lastName, email, password, role} = req.body;
-
+        const emailClean = email.trim().toLowerCase();
         // sjekk om bruker allerede finnes
         const existingUser = await User.findOne({email});
         if (existingUser) return res.status(400).json({message: "User already exists"});
@@ -20,7 +19,7 @@ export const registerUser = async (req, res) => {
         const newUser = new User({
             firstName,
             lastName,
-            email,
+            email: emailClean,
             passwordHash,
             role
         });
@@ -64,59 +63,64 @@ export const loginUser = async (req, res) => {
 };
 
 export const sendResetLink = async (req, res) => {
-    const {email} = req.body;
 
+    const { email } = req.body;
+  
     try {
-        const user = await User.findOne({email});
-
-        if (!user) return res.status(404).json({message: "E-post ikke funnet."});
-
-        const token = jwt.sign(
-            {userId: user._id},
-            process.env.JWT_RESET_SECRET,
-            {expiresIn: "1h"}
-        );
-
-        const resetLink = `http://localhost:5173/reset-password/${token}`;
-
-        const transporter = nodemailer.createTransport({
-            host: "smtp.office.com",
-            port: 587,
-            secure: false,
-            auth: {
-                user: process.env.MAIL_USER,
-                pass: process.env.MAIL_PASS
-            }
-        });
-
-        await transporter.sendMail({
-            from: `"ABC Deal" <${process.env.MAIL_USER}>`,
-            to: email,
-            subject: "Tilbakestilt passord",
-            text: `Klikk på lenken for å lage nytt passord. Lenken er gyldig i en time: \n\n${resetLink}`
-        });
-
-        res.json({message: "Lenke sendt til e-post."});
+      const user = await User.findOne({
+        email: email.trim().toLowerCase() 
+      });
+  
+      if (!user) {
+        return res.status(404).json({ message: "E-post ikke funnet." });
+      }
+  
+      const token = jwt.sign(
+        { userId: user._id },
+        process.env.JWT_RESET_SECRET,
+        { expiresIn: "1h" }
+      );
+  
+      const resetLink = `http://localhost:5173/reset-password/${token}`;
+  
+      const transporter = nodemailer.createTransport({
+        host: "smtp.office365.com",
+        port: 587,
+        secure: false,
+        auth: {
+          user: process.env.MAIL_USER,
+          pass: process.env.MAIL_PASS
+        }
+      });
+  
+      await transporter.sendMail({
+        from: `"ABC Deal" <${process.env.MAIL_USER}>`,
+        to: email,
+        subject: "Tilbakestilling av passord",
+        text: `Hei!\n\nKlikk på lenken under for å lage nytt passord (gyldig i 1 time):\n\n${resetLink}`
+      });
+  
+      res.json({ message: "Lenke sendt til e-post." });
     } catch (err) {
-        console.error(err);
-        res.status(500).json({message: "Noe gikk galt."});
+      console.error(err);
+      res.status(500).json({ message: "Noe gikk galt." });
+    }
+  };
+
+  export const setNewPassword = async (req, res) => {
+    const { token, password } = req.body;
+  
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_RESET_SECRET);
+      const user = await User.findById(decoded.userId);
+      if (!user) return res.status(404).json({ message: "Bruker ikke funnet" });
+  
+      user.passwordHash = await bcrypt.hash(password, 10);
+      await user.save();
+  
+      res.json({ message: "Passord oppdatert" });
+    } catch (err) {
+      return res.status(400).json({ message: "Ugyldig eller utløpt lenke" });
     }
 };
 
-export const setNewPassword = async (req, res) => {
-    const {token, password} = req.body;
-
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_RESET_SECRET);
-        const user = await User.findById(decoded.userId);
-
-        if (!user) return res.status(404).json({message: "Bruker ikke funnet. "});
-
-        user.passwordHash = await bcrypt.hash(password, 10);
-        await user.save();
-
-        res.json({message: "Passord oppdatert."});
-    } catch (err) {
-        return res.status(400).json({message: "Ugyldig eller utløpt lenke."});
-    }
-};

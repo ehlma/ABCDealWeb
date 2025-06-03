@@ -8,6 +8,7 @@ import AdminComplaints from './pages/AdminComplaints';
 import AdminLayout from './pages/AdminLayout';
 import AdminSettings from './pages/AdminSettings';
 import AdminArticles from './pages/AdminArticles';
+import ResetPasword from './pages/ResetPassword';
 
 function App() {
   
@@ -16,6 +17,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Login/>}/>
+          <Route path='/reset-password/:token' element={<ResetPasword/>}/>
 
           {/* nestede ruter under AdminLayout */}
           <Route path='/admin' element={<AdminLayout/>}>
