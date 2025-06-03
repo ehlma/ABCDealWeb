@@ -35,7 +35,7 @@ const AdminLayout = () => {
 
         {/* Mobilmeny: åpnes under navbar */}
         {menuOpen && (
-          <div className="absolute w-[200px] top-[64px] left-0 w-full bg-[#047464] text-white px-6 py-4 sm:hidden z-40 shadow-md flex flex-col rounded-b space-y-2">
+          <div className="absolute w-[30%] top-[64px] left-0 w-full bg-[#047464] text-white px-6 py-4 sm:hidden z-40 shadow-md flex flex-col rounded-b space-y-2">
             <Link to="/admin/settings" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200" >Ansatte</Link>
             <Link to="/admin/articles" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Artikler</Link>
             <Link to="/admin/contacts" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Kontaktskjema</Link>
@@ -44,7 +44,6 @@ const AdminLayout = () => {
         )}
       </nav>
       <div className="pointer-events-none fixed top-[60px] left-0 w-full h-20 z-10 bg-gradient-to-b from-white/90 to-transparent"></div>
-
 
       {/* Main content */}
       <main className="flex-1 pt-[96px] px-[24px] pb-[24px] overflow-y-auto bg-white">

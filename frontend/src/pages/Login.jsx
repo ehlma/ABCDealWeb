@@ -2,6 +2,7 @@ import { useState } from "react";
 import {useNavigate} from "react-router-dom";
 import api, {API_ENDPOINTS} from "../api";
 import '../index.css';
+import logo from "../assets/Logo.png";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -38,6 +39,7 @@ const Login = () => {
     return (
         <div className="w-full min-h-screen flex items-center justify-center px-4">
             <div className="w-full max-w-sm p-8 bg-gray-100 rounded shadow-md">
+                <img src={logo} alt="ABC Deal logo" className="h-[60px] mx-auto mb-8" />
                 <h2 className="text-2xl font-bold mb-6 text-center">Logg inn</h2>
                 <form onSubmit={handleLogin} className="space-y-4">
                     <input
