@@ -63,6 +63,7 @@ export const loginUser = async (req, res) => {
 };
 
 export const sendResetLink = async (req, res) => {
+
     const { email } = req.body;
   
     try {
@@ -121,4 +122,5 @@ export const sendResetLink = async (req, res) => {
     } catch (err) {
       return res.status(400).json({ message: "Ugyldig eller utløpt lenke" });
     }
-  };
+};
+

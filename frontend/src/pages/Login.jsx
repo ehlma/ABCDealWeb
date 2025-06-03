@@ -86,6 +86,7 @@ const Login = () => {
                                 try {
                                     const res = await api.post("/auth/reset-password", { email: resetEmail.trim().toLowerCase()
                                     });
+
                                         setResetMsg("Passord sendt til e-post");
                                 } catch {
                                         setResetMsg("E-post ikke funnet");
