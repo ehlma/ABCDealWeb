@@ -60,12 +60,41 @@ const Login = () => {
                     /> <br/>
                     <button type="submit" className="w-full bg-[#047464] text-white py-2 rounded hover:bg-[#065f54] transition-colors">Logg inn</button>
                     <div className="text-sm mt-2">
-                        <a href="#" className="text-[#047464] hover:underline hover:text-red-400 transition-all duration-200">
+                        <button type="button" 
+                            onClick={() => setShowReset(!showReset)}
+                            className="text-[#047464] hover:underline hover:text-red-400 transition-all duration-200">
                             Glemt passord ? 
-                        </a>
+                        </button>
                     </div>
                 </form>
                 {error && <p className="text-red-600 text-sm mb-4 text-center">{error}</p>}
+                {showReset && (
+                    <div className="mt-4 space-y-2">
+                        <input 
+                            type="email" 
+                            placeholder="Skriv inn e-post"
+                            value={resetEmail}
+                            onChange={(e) => setResetEmail(e.target.value)}
+                            className="w-full border border-gray-300 rounded px-4 py-2"
+                        />
+                        <button 
+                            onClick={async () => {
+                                setResetMsg("");
+                                try {
+                                    const res = await api.post("/auth/reset-password", { email, resetEmail});
+                                        setResetMsg("Passord sendt til e-post");
+                                } catch {
+                                        setResetMsg("E-post ikke funnet");
+                                }
+                            }}
+                            className="w-full bg-[#047464] text-white py-2 rounded hover:bg-[#065f54] transition-colors"
+                        >
+                            Send nytt passord 
+                        </button>
+                        {resetMsg && <p lassName="text-sm text-center text-gray-700">{resetMsg}</p>}
+
+                    </div>
+                )}
             </div>
         </div>
     );
