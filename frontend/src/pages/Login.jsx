@@ -60,7 +60,7 @@ const Login = () => {
                     /> <br/>
                     <button type="submit" className="w-full bg-[#047464] text-white py-2 rounded hover:bg-[#065f54] transition-colors">Logg inn</button>
                     <div className="text-sm mt-2">
-                        <a href="#" className="text-[#047464] hover:underline hover:text-red-400">
+                        <a href="#" className="text-[#047464] hover:underline hover:text-red-400 transition-all duration-200">
                             Glemt passord ? 
                         </a>
                     </div>
