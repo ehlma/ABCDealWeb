@@ -93,7 +93,7 @@ const AdminSettings = () => {
     const usersToDisplay = searchTerm ? filteredUsers : users;
 
     return (
-        <div className="w-full grid grid-cols-3 gap-[16px] px-[8px] max-w-screen-xl mx-auto">
+        <div className="w-full mt-[-20px] grid grid-cols-3 gap-[16px] px-[8px] max-w-screen-xl mx-auto">
           {/* Tom kolonne venstre */}
           <div></div>
       

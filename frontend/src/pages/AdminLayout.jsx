@@ -38,7 +38,7 @@ const AdminLayout = () => {
           </div>
         )}
       </nav>
-      <div className="pointer-events-none fixed top-[68px] left-0 w-full h-20 z-10 bg-gradient-to-b from-white/90 to-transparent"></div>
+      <div className="pointer-events-none fixed top-[60px] left-0 w-full h-20 z-10 bg-gradient-to-b from-white/90 to-transparent"></div>
 
 
       {/* Main content */}
