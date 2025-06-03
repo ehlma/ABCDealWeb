@@ -59,6 +59,11 @@ const Login = () => {
                         className="w-full border border-gray-300 rounded px-4 py-2"
                     /> <br/>
                     <button type="submit" className="w-full bg-[#047464] text-white py-2 rounded hover:bg-[#065f54] transition-colors">Logg inn</button>
+                    <div className="text-sm mt-2">
+                        <a href="#" className="text-[#047464] hover:underline hover:text-red-400">
+                            Glemt passord ? 
+                        </a>
+                    </div>
                 </form>
                 {error && <p className="text-red-600 text-sm mb-4 text-center">{error}</p>}
             </div>
