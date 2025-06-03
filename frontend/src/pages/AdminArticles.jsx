@@ -47,7 +47,7 @@ const AdminArticles = () => {
     };
 
     return (
-        <div className="max-w-2xl mx-auto mt-[48px] px-[16px]">
+        <div className="max-w-2xl mx-auto mt-[32px] px-[16px]">
             <h2 className="text-2xl font-bold mb-[24px] text-center">Ny artikkel</h2>
             
             {error && <p className="text-red-600 mb-[16px]">{error}</p>}
