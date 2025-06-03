@@ -9,12 +9,14 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const [showReset, setShowReset] = useState(false);
+    const [resetEmail, setResetEmail] = useState("");
+    const [resetMsg, setResetMsg] = useState("");
+
 
     const handleLogin = async (e) => {
         e.preventDefault();
         setError("");
-
-        
 
         try {
             const res = await api.post(API_ENDPOINTS.login, {
@@ -91,7 +93,7 @@ const Login = () => {
                         >
                             Send nytt passord 
                         </button>
-                        {resetMsg && <p lassName="text-sm text-center text-gray-700">{resetMsg}</p>}
+                        {resetMsg && <p className="text-sm text-center text-gray-700">{resetMsg}</p>}
 
                     </div>
                 )}
