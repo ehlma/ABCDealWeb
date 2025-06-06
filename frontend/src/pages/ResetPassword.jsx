@@ -40,10 +40,10 @@ const ResetPasword = () => {
         try {
             const res = await api.post("/auth/set-new-password", {
                 token, 
-                passord
+                password
             });
             setMsg("Passordet er oppdatert. Du kan logge inn.");
-            setTimeout(() => navigate("/"), 2000);
+            setTimeout(() => navigate("/"), 5000);
         } catch (err) {
             setError("Ugyldig eller utløpt lenke.")
         }
