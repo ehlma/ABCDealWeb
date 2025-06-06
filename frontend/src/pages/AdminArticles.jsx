@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../api";
 
 const AdminArticles = () => {
+    const [articles, setArticles] = useState([]);
+
     const [formData, setFormData] = useState ({
         title: "",
         intro: "",
@@ -45,6 +47,20 @@ const AdminArticles = () => {
             setError("Kunne ikke opprette artikkel.")
         }
     };
+
+    useEffect(() => {
+        const fetchArticles = async () => {
+            try {
+                const res = await api.get("/articles");
+                setArticles(res.data);
+
+            } catch (err) {
+                console.error("Kunne ikke hente artikler", err)
+            }
+        };
+        fetchArticles();
+
+    }, []);
 
     return (
         <div className="max-w-2xl mx-auto mt-[32px] px-[16px]">
@@ -96,6 +112,19 @@ const AdminArticles = () => {
                     Opprett artikkel
                 </button>
             </form>
+
+            <div className="mt-[48px]">
+                <h3 className="text-xl mb-[16px]">Publiserte artikler</h3>
+                <ul className="space-y-[16px]">
+                    {articles.map((article) => (
+                        <li key={article._id} className="p-[16px] bg-white shadow rounded">
+                            <h4 className="text-lg font-semibold">{article.title}</h4>
+                            <p className="text-sm text-gray-600 mb-[8px]">{article.createdAt?.slice(0,10)}</p>
+                            <p>{article.intro || article.bodyText?.slice(0,100) + "...."}</p>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 };
