@@ -172,7 +172,6 @@ const AdminSettings = () => {
           </div>
       
           {/* Tom kolonne høyre */}
-          <div></div>
       
           {/* Ansattkort - tar hele bredden under grid */}
           <div className="col-span-3 mt-[56px] w-full">
@@ -190,49 +189,52 @@ const AdminSettings = () => {
                     </div>
             </div>
 
-            <ul className="grid grid-cols-1 gap-[24px] justify-items-center">
-              {usersToDisplay.map((user) => (
-                <li key={user._id} className="bg-white shadow rounded p-[24px] w-full">
-                  {editUserId === user._id ? (
-                    <div className="space-y-[8px]">
-                      <input name="firstName" value={editData.firstName} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full" />
-                      <input name="lastName" value={editData.lastName} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full" />
-                      <input name="email" value={editData.email} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full" />
-                      <select name="role" value={editData.role} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full">
-                        {roles.map((role) => (
-                          <option key={role.value} value={role.value}>
-                            {role.label}
-                          </option>
-                        ))}
-                      </select>
-                      <div className="flex flex-row justify-center gap-[8px]">
-                        <button onClick={() => handleUpdate(user._id)} className="bg-blue-500 text-white px-[8px] py-[4px] text-sm rounded hover:bg-blue-600 mr-[8px]">Lagre</button>
-                        <button onClick={() => setEditUserId(null)} className="bg-gray-300 text-gray-800 px-[8px] py-[4px] text-sm rounded hover:bg-gray-400">Avbryt</button>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="flex flex-col items-center sm:flex-row sm:justify-between sm:items-center gap-[16px]">
-                      <p className="mb-[8px]">{user.firstName} {user.lastName} - {user.email} ({user.role})</p>
+            <div className="col-span-3 px-[16px] md:px-[32px]">
+                <ul className="grid  gap-[24px]">
+                {usersToDisplay.map((user) => (
+                    <li key={user._id} className="bg-white shadow rounded p-[24px] w-full">
+                    {editUserId === user._id ? (
+                        <div className="space-y-[8px]">
+                        <input name="firstName" value={editData.firstName} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full" />
+                        <input name="lastName" value={editData.lastName} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full" />
+                        <input name="email" value={editData.email} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full" />
+                        <select name="role" value={editData.role} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full">
+                            {roles.map((role) => (
+                            <option key={role.value} value={role.value}>
+                                {role.label}
+                            </option>
+                            ))}
+                        </select>
+                        <div className="flex flex-row justify-center gap-[8px]">
+                            <button onClick={() => handleUpdate(user._id)} className="bg-blue-500 text-white px-[8px] py-[4px] text-sm rounded hover:bg-blue-600 mr-[8px]">Lagre</button>
+                            <button onClick={() => setEditUserId(null)} className="bg-gray-300 text-gray-800 px-[8px] py-[4px] text-sm rounded hover:bg-gray-400">Avbryt</button>
+                        </div>
+                        </div>
+                    ) : (
+                        <div className="flex flex-col items-center sm:flex-row sm:justify-between sm:items-center gap-[16px]">
+                        <p className="mb-[8px]">{user.firstName} {user.lastName} - {user.email} ({user.role})</p>
 
-                      <div className="flex flex-row justify-center">
-                        {deleteConfirmId === user._id ? (
-                          <>
-                            <p className="text-blue-500">Er du sikker?</p>
-                            <button onClick={() => handleDelete(user._id)} className="bg-green-500 text-white text-sm px-[8px] py-[4px] rounded hover:bg-green-600 mr-[8px]">Aksepter</button>
-                            <button onClick={() => setDeleteConfirmId(null)} className="ml-[8px] bg-red-500 text-white text-sm px-[8px] py-[4px] rounded hover:bg-red-600">Avbryt</button>
-                          </>
-                        ) : (
-                          <>
-                            <button onClick={() => setDeleteConfirmId(user._id)} className="ml-[8px] px-[8px] py-[4px] bg-red-500 text-white rounded hover:bg-red-600 text-sm">Slett</button>
-                            <button onClick={() => handleEdit(user)} className="ml-[4px] bg-gray-200 text-gray-800 px-[8px] py-[4px] rounded hover:bg-gray-300 text-sm">Rediger</button>
-                          </>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
+                        <div className="flex flex-row justify-center">
+                            {deleteConfirmId === user._id ? (
+                            <>
+                                <p className="text-blue-500">Er du sikker?</p>
+                                <button onClick={() => handleDelete(user._id)} className="bg-green-500 text-white text-sm px-[8px] py-[4px] rounded hover:bg-green-600 mr-[8px]">Aksepter</button>
+                                <button onClick={() => setDeleteConfirmId(null)} className="ml-[8px] bg-red-500 text-white text-sm px-[8px] py-[4px] rounded hover:bg-red-600">Avbryt</button>
+                            </>
+                            ) : (
+                            <>
+                                <button onClick={() => setDeleteConfirmId(user._id)} className="ml-[8px] px-[8px] py-[4px] bg-red-500 text-white rounded hover:bg-red-600 text-sm">Slett</button>
+                                <button onClick={() => handleEdit(user)} className="ml-[4px] bg-gray-200 text-gray-800 px-[8px] py-[4px] rounded hover:bg-gray-300 text-sm">Rediger</button>
+                            </>
+                            )}
+                        </div>
+                        </div>
+                    )}
+                    </li>
+                ))}
+                </ul>
+
+            </div>
           </div>
         </div>
     );  
