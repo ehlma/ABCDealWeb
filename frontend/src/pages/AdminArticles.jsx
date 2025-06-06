@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api";
+import { useNavigate } from "react-router-dom";
 
 const AdminArticles = () => {
     const [articles, setArticles] = useState([]);
@@ -13,6 +14,7 @@ const AdminArticles = () => {
 
     const [success, setSuccess] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({...formData, [e.target.name]: e.target.value});
@@ -61,6 +63,16 @@ const AdminArticles = () => {
         fetchArticles();
 
     }, []);
+    
+    const handleDelete = async (id) => {
+        try {
+            await api.delete(`/articles/${id}`);
+            setArticles(articles.filter(article => article._id !== id));
+          } catch (err) {
+            console.error("Kunne ikke slette artikkel", err);
+            setError("Kunne ikke slette artikkel");
+          }
+    };
 
     return (
         <div className="max-w-2xl mx-auto mt-[32px] px-[16px]">
@@ -127,7 +139,22 @@ const AdminArticles = () => {
                                 />
                             )}
                             <p>{article.intro || article.bodyText?.slice(0,100) + "...."}</p>
+
+                            <button 
+                                onClick={() => navigate(`/admin/articles/edit/${article._id}`)}
+                                className="text-sm text-blue-600 hover:underline mr-4"
+                            >
+                                Rediger
+                            </button>
+                            <button
+                                onClick={() => handleDelete(article._id)}
+                                className="text-sm text-red-600 hover:underline mt-2"
+                            >
+                                Slett
+                            </button>
+
                         </li>
+
                     ))}
                 </ul>
             </div>
