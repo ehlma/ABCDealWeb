@@ -35,7 +35,7 @@ const AdminArticles = () => {
         data.append("title", title);
         data.append("intro", intro);
         data.append("bodyText", bodyText);
-        data.append("image", image);
+        data.append("image", formData.image);
 
         try {
             await api.post("/articles", data, {
@@ -83,7 +83,6 @@ const AdminArticles = () => {
                     name="image"
                     type="file"
                     accept="image/*"
-                    value={formData.image}
                     onChange={(e) => setFormData({...formData, image: e.target.files[0] })}
                     className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
                     required
