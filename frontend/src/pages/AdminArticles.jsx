@@ -53,7 +53,7 @@ const AdminArticles = () => {
             try {
                 const res = await api.get("/articles");
                 setArticles(res.data);
-
+                console.log("Artikler hentet:", res.data);
             } catch (err) {
                 console.error("Kunne ikke hente artikler", err)
             }
@@ -119,6 +119,13 @@ const AdminArticles = () => {
                         <li key={article._id} className="p-[16px] bg-white shadow rounded">
                             <h4 className="text-lg font-semibold">{article.title}</h4>
                             <p className="text-sm text-gray-600 mb-[8px]">{article.createdAt?.slice(0,10)}</p>
+                            {article.image && (
+                                <img
+                                    src={`http://localhost:5050/uploads/${article.image}`}
+                                    alt={article.title}
+                                    className="w-full max-h-[300px] object-cover mb-4 rounded"
+                                />
+                            )}
                             <p>{article.intro || article.bodyText?.slice(0,100) + "...."}</p>
                         </li>
                     ))}
