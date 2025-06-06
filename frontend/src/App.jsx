@@ -9,6 +9,7 @@ import AdminLayout from './pages/AdminLayout';
 import AdminSettings from './pages/AdminSettings';
 import AdminArticles from './pages/AdminArticles';
 import ResetPasword from './pages/ResetPassword';
+import EditArticle from './pages/EditArticle';
 
 function App() {
   
@@ -25,6 +26,7 @@ function App() {
             <Route path='/admin/complaints' element={<AdminComplaints/>}/>
             <Route path='/admin/settings' element={<AdminSettings/>}/>
             <Route path='/admin/articles' element={<AdminArticles/>}/>
+            <Route path="/admin/articles/edit/:id" element={<EditArticle />} />
           </Route>
         </Routes>
       </Router>

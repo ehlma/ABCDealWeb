@@ -31,3 +31,34 @@ export const getArticles = async (req, res) => {
         res.status(500).json({message: "Kunne ikke hente artikler."});
     }
 };
+
+export const updateArticle = async (req, res) => {
+    const { id } = req.params;
+    const { title, intro, bodyText } = req.body;
+    const image = req.file?.filename;
+
+    try {
+        const updateData = { title, intro, bodyText };
+        if (image) updateData.image = image;
+
+        const updated = await ArticleForm.findByIdAndUpdate(id, updateData, { new: true });
+
+        if (!updated) {
+            return res.status(404).json({ message: "Artikkelen ble ikke funnet" });
+        }
+
+        res.json(updated);
+    } catch (err) {
+        res.status(500).json({ message: "Noe gikk galt", error: err.message });
+    }
+};
+
+export const getArticleById = async (req, res) => {
+    try {
+        const article = await ArticleForm.findById(req.params.id);
+        if (!article) return res.status(404).json({ message: "Artikkel ikke funnet" });
+        res.json(article);
+    } catch (err) {
+        res.status(500).json({ message: "Serverfeil", error: err.message });
+    }
+};
