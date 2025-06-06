@@ -84,9 +84,7 @@ export const sendResetLink = async (req, res) => {
       const resetLink = `http://localhost:5173/reset-password/${token}`;
   
       const transporter = nodemailer.createTransport({
-        host: "smtp.office365.com",
-        port: 587,
-        secure: false,
+        service: "gmail",
         auth: {
           user: process.env.MAIL_USER,
           pass: process.env.MAIL_PASS
