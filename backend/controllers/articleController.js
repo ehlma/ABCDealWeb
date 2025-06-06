@@ -3,9 +3,9 @@ import ArticleForm from "../models/ArticleForm.js";
 export const createArticle = async (req, res) => {
     try {
         const {title, intro, bodyText } = req.body;
-        const image = req.file?.filename;
+        const images = req.files?.map(file => file.filename);
 
-        if (!title || !bodyText || !image) {
+        if (!title || !bodyText || !images.length) {
             return res.status(400).json({message: "Tittel, bilde og brødtekst er påkrevd."});
         }
 
@@ -13,7 +13,7 @@ export const createArticle = async (req, res) => {
             title, 
             intro, 
             bodyText, 
-            image
+            images
         });
 
         const saved = await article.save();
@@ -33,25 +33,33 @@ export const getArticles = async (req, res) => {
 };
 
 export const updateArticle = async (req, res) => {
-    const { id } = req.params;
-    const { title, intro, bodyText } = req.body;
-    const image = req.file?.filename;
-
     try {
-        const updateData = { title, intro, bodyText };
-        if (image) updateData.image = image;
-
-        const updated = await ArticleForm.findByIdAndUpdate(id, updateData, { new: true });
-
-        if (!updated) {
-            return res.status(404).json({ message: "Artikkelen ble ikke funnet" });
+        const { id } = req.params;
+        const { title, intro, bodyText } = req.body;
+  
+        const updateFields = {
+            title,
+            intro,
+            bodyText,
+        };
+  
+        if (req.files && req.files.length > 0) {
+            updateFields.images = req.files.map((file) => file.filename);
         }
-
+  
+        const updated = await ArticleForm.findByIdAndUpdate(id, updateFields, { new: true });
+  
+        if (!updated) {
+            return res.status(404).json({ message: "Artikkel ikke funnet" });
+        }
+  
         res.json(updated);
-    } catch (err) {
-        res.status(500).json({ message: "Noe gikk galt", error: err.message });
-    }
-};
+
+        } catch (err) {
+            res.status(500).json({ message: "Serverfeil", error: err.message });
+        }
+    };
+  
 
 export const getArticleById = async (req, res) => {
     try {
@@ -62,3 +70,16 @@ export const getArticleById = async (req, res) => {
         res.status(500).json({ message: "Serverfeil", error: err.message });
     }
 };
+
+export const deleteArticle = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleted = await ArticleForm.findByIdAndDelete(id);
+        if (!deleted) return res.status(404).json({ message: "Artikkel ikke funnet" });
+
+        res.json({ message: "Artikkel slettet" });
+    } catch (err) {
+        res.status(500).json({ message: "Noe gikk galt" });
+    }
+};
+

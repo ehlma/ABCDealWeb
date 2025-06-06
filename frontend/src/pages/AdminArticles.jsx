@@ -9,11 +9,12 @@ const AdminArticles = () => {
         title: "",
         intro: "",
         bodyText: "",
-        image: "",
+        images: [],
     });
 
     const [success, setSuccess] = useState("");
     const [error, setError] = useState("");
+    const [selectedFiles, setSelectedFiles] = useState([]);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -21,34 +22,40 @@ const AdminArticles = () => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault(),
-        setSuccess("");
+        e.preventDefault();
         setError("");
-
-        const {title, intro, bodyText, image} = formData;
-
-        if(!formData.title || !formData.bodyText || !formData.image) {
-            setError("Tittel, bilde og brødtekst er påkrevd.");
-            return;
-
+        setSuccess("");
+      
+        if (!formData.title || !formData.bodyText) {
+          setError("Tittel og brødtekst er påkrevd.");
+          return;
         }
-
+      
         const data = new FormData();
-        data.append("title", title);
-        data.append("intro", intro);
-        data.append("bodyText", bodyText);
-        data.append("image", formData.image);
-
+        data.append("title", formData.title);
+        data.append("intro", formData.intro);
+        data.append("bodyText", formData.bodyText);
+        for (let [key, value] of data.entries()) {
+            console.log(`${key}:`, value);
+        }
+      
+        // Legg til alle nye bilder
+        selectedFiles.forEach((file) => {
+          data.append("images", file);
+        });
+      
         try {
-            await api.post("/articles", data, {
-                headers: {"Content-Type": "multipart/form-data"},
-            });
-            setSuccess("Artikkel opprettet!");
-            setFormData({title: "", intro: "", bodyText: "", image: null});
+          await api.post("/articles", data, {
+            headers: { "Content-Type": "multipart/form-data" },
+          });
+
+          setSuccess("Artikkelen ble oppdatert!");
+          setTimeout(() => navigate("/admin/articles"), 1500);
         } catch (err) {
-            setError("Kunne ikke opprette artikkel.")
+          setError("Noe gikk galt ved oppdatering.");
         }
     };
+
 
     useEffect(() => {
         const fetchArticles = async () => {
@@ -92,13 +99,38 @@ const AdminArticles = () => {
                     required
                 />
                 <input
-                    name="image"
+                    name="images"
                     type="file"
                     accept="image/*"
-                    onChange={(e) => setFormData({...formData, image: e.target.files[0] })}
-                    className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
+                    multiple
+                    onChange={(e) => setSelectedFiles(Array.from(e.target.files))}
+                    className=""
                     required
                 />
+
+                {formData.images?.map((img, index) => (
+                    <img
+                        key={index}
+                        src={`http://localhost:5050/uploads/${img}`}
+                        alt={`Tidligere bilde ${index + 1}`}
+                        className="w-full max-w-[200px] mb-2"
+                    />
+                ))}
+
+                {selectedFiles.length > 0 && (
+                    <div className="flex flex-wrap gap-4 mt-2">
+                        {selectedFiles.map((file, idx) => (
+                            <div key={idx} className="w-[100px] h-[100px] border">
+                                <img
+                                    src={URL.createObjectURL(file)}
+                                    alt={`Forhåndsvisning ${idx}`}
+                                    className="object-cover w-full h-full"
+                                />
+                            </div>
+                        ))}
+                    </div>
+                )}
+
                 <textarea
                     name="intro"
                     placeholder="Introduksjonstekst"
@@ -110,12 +142,13 @@ const AdminArticles = () => {
                 <textarea
                     name="bodyText"
                     placeholder="Brødtekst*"
-                    value={formData.body}
+                    value={formData.bodyText}
                     onChange={handleChange}
                     className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
                     rows={8}
                     required
                 />
+
                 <button 
                     type="submit"
                     className="mt-[8px] bg-blue-100 font-medium py-[8px] px-[16px] rounded hover:bg-blue-200"
@@ -139,6 +172,15 @@ const AdminArticles = () => {
                                 />
                             )}
                             <p>{article.intro || article.bodyText?.slice(0,100) + "...."}</p>
+
+                            {article.images?.map((img, index) => (
+                                <img
+                                    key={index}
+                                    src={`http://localhost:5050/uploads/${img}`}
+                                    alt={`Bilde ${index + 1}`}
+                                    className="w-full max-w-[200px] mb-2"
+                                />
+                            ))}
 
                             <button 
                                 onClick={() => navigate(`/admin/articles/edit/${article._id}`)}

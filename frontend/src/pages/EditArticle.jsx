@@ -5,13 +5,15 @@ import api from "../api";
 const EditArticle = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const [selectedFile, setSelectedFile] = useState(null);
+
 
     const [formData, setFormData] = useState({
         title: "",
         intro: "",
         bodyText: "",
     });
-    const [image, setImage] = useState(null);
+
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
 
@@ -23,6 +25,7 @@ const EditArticle = () => {
                     title: res.data.title,
                     intro: res.data.intro,
                     bodyText: res.data.bodyText,
+                    images: res.data.images || [], 
                 });
             } catch (err) {
                 setError("Kunne ikke hente artikkel");
@@ -45,8 +48,8 @@ const EditArticle = () => {
         data.append("title", formData.title);
         data.append("intro", formData.intro);
         data.append("bodyText", formData.bodyText);
-        if (image) {
-            data.append("image", image);
+        if (selectedFile) {
+            data.append("image", selectedFile);
         }
 
         try {
@@ -67,6 +70,14 @@ const EditArticle = () => {
             {success && <p className="text-green-600 mb-2">{success}</p>}
 
             <form onSubmit={handleSubmit} className="space-y-4">
+                {formData.image && (
+                    <img
+                        src={`http://localhost:5050/uploads/${formData.image}`}
+                        alt="Nåværende bilde"
+                        className="w-full max-w-[200px] mb-4"
+                    />
+                )}
+
                 <input
                     name="title"
                     value={formData.title}
@@ -95,7 +106,7 @@ const EditArticle = () => {
                 <input
                     type="file"
                     accept="image/*"
-                    onChange={(e) => setImage(e.target.files[0])}
+                    onChange={(e) => setSelectedFile(e.target.files[0])}
                     className="w-full"
                 />
                 <button
