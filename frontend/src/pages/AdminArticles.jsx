@@ -150,13 +150,13 @@ const AdminArticles = () => {
                 </button>
             </form>
 
-            <div className="mt-[48px]">
+            <div className="mt-[64px]">
                 <h3 className="text-xl mb-[16px]">Publiserte artikler</h3>
                 <ul className="space-y-[16px]">
                     {articles.map((article) => (
-                        <li key={article._id} className="p-[16px] bg-white shadow rounded">
+                        <li key={article._id} className="p-[16px] bg-white shadow-lg rounded">
                             <h4 className="text-lg font-semibold">{article.title}</h4>
-                            <p className="text-sm text-gray-600 mb-[8px]">{article.createdAt?.slice(0,10)}</p>
+                            <p className="text-sm text-gray-600 mb-4">{article.createdAt?.slice(0,10)}</p>
                             {article.image && (
                                 <img
                                     src={`http://localhost:5050/uploads/${article.image}`}
@@ -179,7 +179,7 @@ const AdminArticles = () => {
                             </div>
 
 
-                            <p>{article.intro || article.bodyText?.slice(0,100) + "...."}</p>
+                            <p className="font-light mb-4">{article.intro || article.bodyText?.slice(0,100) + "...."}</p>
 
 
                             <button 
