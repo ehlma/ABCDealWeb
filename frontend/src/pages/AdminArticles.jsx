@@ -118,7 +118,7 @@ const AdminArticles = () => {
                                 key={idx}
                                 src={URL.createObjectURL(file)}
                                 alt={`Forhåndsvisning ${idx}`}
-                                className="w-full max-w-[100px] mb-2"
+                                className="w-auto h-[100px] mb-2"
                             />
                         ))}
                     </div>
@@ -171,7 +171,7 @@ const AdminArticles = () => {
                                         key={index}
                                         src={`http://localhost:5050/uploads/${img}`}
                                         alt={`Bilde ${index + 1}`}
-                                        className={`w-[150px] h-auto object-cover rounded ${
+                                        className={`w-auto h-[150px] object-cover rounded ${
                                             index > 0 ? "hidden md:block" : ""
                                         }`}
                                     />
