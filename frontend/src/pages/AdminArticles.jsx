@@ -99,34 +99,27 @@ const AdminArticles = () => {
                     required
                 />
                 <input
-                    name="images"
                     type="file"
+                    name="images"
                     accept="image/*"
                     multiple
-                    onChange={(e) => setSelectedFiles(Array.from(e.target.files))}
-                    className=""
+                    onChange={(e) => 
+                        setSelectedFiles((prev) => [...prev, ...Array.from(e.target.files)])
+                    }
+
+                    className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
                     required
                 />
-
-                {formData.images?.map((img, index) => (
-                    <img
-                        key={index}
-                        src={`http://localhost:5050/uploads/${img}`}
-                        alt={`Tidligere bilde ${index + 1}`}
-                        className="w-full max-w-[200px] mb-2"
-                    />
-                ))}
 
                 {selectedFiles.length > 0 && (
                     <div className="flex flex-wrap gap-4 mt-2">
                         {selectedFiles.map((file, idx) => (
-                            <div key={idx} className="w-[100px] h-[100px] border">
-                                <img
-                                    src={URL.createObjectURL(file)}
-                                    alt={`Forhåndsvisning ${idx}`}
-                                    className="object-cover w-full h-full"
-                                />
-                            </div>
+                            <img
+                                key={idx}
+                                src={URL.createObjectURL(file)}
+                                alt={`Forhåndsvisning ${idx}`}
+                                className="w-full max-w-[100px] mb-2"
+                            />
                         ))}
                     </div>
                 )}
@@ -168,10 +161,9 @@ const AdminArticles = () => {
                                 <img
                                     src={`http://localhost:5050/uploads/${article.image}`}
                                     alt={article.title}
-                                    className="w-full max-h-[300px] object-cover mb-4 rounded"
+                                    className="w-full max-h-[100px] object-cover mb-4 rounded"
                                 />
                             )}
-                            <p>{article.intro || article.bodyText?.slice(0,100) + "...."}</p>
 
                             {article.images?.map((img, index) => (
                                 <img
@@ -181,6 +173,9 @@ const AdminArticles = () => {
                                     className="w-full max-w-[200px] mb-2"
                                 />
                             ))}
+
+                            <p>{article.intro || article.bodyText?.slice(0,100) + "...."}</p>
+
 
                             <button 
                                 onClick={() => navigate(`/admin/articles/edit/${article._id}`)}
