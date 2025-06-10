@@ -165,14 +165,19 @@ const AdminArticles = () => {
                                 />
                             )}
 
-                            {article.images?.map((img, index) => (
-                                <img
-                                    key={index}
-                                    src={`http://localhost:5050/uploads/${img}`}
-                                    alt={`Bilde ${index + 1}`}
-                                    className="w-full max-w-[200px] mb-2"
-                                />
-                            ))}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                                {article.images?.map((img, index) => (
+                                    <img
+                                        key={index}
+                                        src={`http://localhost:5050/uploads/${img}`}
+                                        alt={`Bilde ${index + 1}`}
+                                        className={`w-[150px] h-auto object-cover rounded ${
+                                            index > 0 ? "hidden md:block" : ""
+                                        }`}
+                                    />
+                                ))}
+                            </div>
+
 
                             <p>{article.intro || article.bodyText?.slice(0,100) + "...."}</p>
 
