@@ -2,14 +2,14 @@ import { useState } from 'react'
 import './App.css'
 import './index.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AdminContacts from './pages/AdminContacts';
-import Login from './pages/Login';
-import AdminComplaints from './pages/AdminComplaints';
-import AdminLayout from './pages/AdminLayout';
-import AdminSettings from './pages/AdminSettings';
-import AdminArticles from './pages/AdminArticles';
-import ResetPasword from './pages/ResetPassword';
-import EditArticle from './pages/EditArticle';
+import AdminContacts from './pages/admin/AdminContacts';
+import Login from './pages/admin/Login';
+import AdminComplaints from './pages/admin/AdminComplaints';
+import AdminLayout from './pages/admin/AdminLayout';
+import AdminSettings from './pages/admin/AdminSettings';
+import AdminArticles from './pages/admin/AdminArticles';
+import ResetPasword from './pages/admin/ResetPassword';
+import EditArticle from './pages/admin/EditArticle';
 
 function App() {
   
