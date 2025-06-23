@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import api, {API_ENDPOINTS} from "../api";
 import '../index.css';
 import logo from "../assets/Logo.png";
+import { useAuth } from "../contexts/AuthContext";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -12,6 +13,7 @@ const Login = () => {
     const [showReset, setShowReset] = useState(false);
     const [resetEmail, setResetEmail] = useState("");
     const [resetMsg, setResetMsg] = useState("");
+    const { login } = useAuth();
 
 
     const handleLogin = async (e) => {
@@ -24,17 +26,14 @@ const Login = () => {
                 password
             });
 
-            // lagre token i localStorage
-            localStorage.setItem("token", res.data.token);
-
-            // lagre brukerinfo
-            localStorage.setItem("user", JSON.stringify(res.data.user));
+            // Kall login-funksjon fra context i stedet for direkte localStorage
+            login(res.data.token, res.data.user); // Bruker context-funksjonen
 
             // naviger videre eller vis suksess
            navigate("/admin/contacts");
         } catch (error) {
             console.error(error);
-            setError("Wrong e-mail or password");
+            setError(error.response?.data?.message || "Wrong e-mail or password");
         }
     };
 

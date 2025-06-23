@@ -10,26 +10,30 @@ import AdminSettings from './pages/AdminSettings';
 import AdminArticles from './pages/AdminArticles';
 import ResetPasword from './pages/ResetPassword';
 import EditArticle from './pages/EditArticle';
+import { AuthProvider } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
-  
+
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path='/' element={<Login/>}/>
-          <Route path='/reset-password/:token' element={<ResetPasword/>}/>
+      <AuthProvider>
+        <Router>
+          <Routes>
+            <Route path='/' element={<Login />} />
+            <Route path='/reset-password/:token' element={<ResetPasword />} />
 
-          {/* nestede ruter under AdminLayout */}
-          <Route path='/admin' element={<AdminLayout/>}>
-            <Route path='/admin/contacts' element={<AdminContacts/>}/>
-            <Route path='/admin/complaints' element={<AdminComplaints/>}/>
-            <Route path='/admin/settings' element={<AdminSettings/>}/>
-            <Route path='/admin/articles' element={<AdminArticles/>}/>
-            <Route path="/admin/articles/edit/:id" element={<EditArticle />} />
-          </Route>
-        </Routes>
-      </Router>
+            {/* nestede ruter under AdminLayout */}
+            <Route path='/admin' element={<AdminLayout />}>
+              <Route path='/admin/contacts' element={<AdminContacts />} />
+              <Route path='/admin/complaints' element={<AdminComplaints />} />
+              <Route path='/admin/settings' element={<AdminSettings />} />
+              <Route path='/admin/articles' element={<AdminArticles />} />
+              <Route path="/admin/articles/edit/:id" element={<EditArticle />} />
+            </Route>
+          </Routes>
+        </Router>
+      </AuthProvider>
     </>
   )
 }
