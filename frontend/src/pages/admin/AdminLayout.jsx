@@ -1,8 +1,8 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import logo from "../assets/Logo.png";
+import logo from "../../assets/Logo.png";
 import { useState } from "react";
 import { Menu, X, CircleUser, LogOut } from "lucide-react";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 const AdminLayout = () => {
   const [menuOpen, setMenuOpen] = useState(false);
