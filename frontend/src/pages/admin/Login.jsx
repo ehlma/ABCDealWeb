@@ -1,8 +1,8 @@
 import { useState } from "react";
 import {useNavigate} from "react-router-dom";
-import api, {API_ENDPOINTS} from "../api";
-import '../index.css';
-import logo from "../assets/Logo.png";
+import api, {API_ENDPOINTS} from "../../../api/api";
+import '../../index.css';
+import logo from "../../assets/Logo.png";
 
 const Login = () => {
     const [email, setEmail] = useState("");

@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import logo from "../assets/Logo.png";
+import logo from "../../assets/Logo.png";
 import { useState } from "react";
 import { Menu, X, CircleUser } from "lucide-react";
 
