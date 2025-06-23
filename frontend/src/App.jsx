@@ -20,17 +20,25 @@ function App() {
       <AuthProvider>
         <Router>
           <Routes>
+            {/* Admin-beskyttede ruter */}
             <Route path='/' element={<Login />} />
             <Route path='/reset-password/:token' element={<ResetPasword />} />
 
             {/* nestede ruter under AdminLayout */}
+            {/* '/admin' er forelder-ruten for alle admin-sidene */}
+            <Route element={<ProtectedRoute allowedRoles={['admin']} />}> {/* Tillat kun brukere med 'admin' rolle */}
             <Route path='/admin' element={<AdminLayout />}>
-              <Route path='/admin/contacts' element={<AdminContacts />} />
-              <Route path='/admin/complaints' element={<AdminComplaints />} />
-              <Route path='/admin/settings' element={<AdminSettings />} />
-              <Route path='/admin/articles' element={<AdminArticles />} />
-              <Route path="/admin/articles/edit/:id" element={<EditArticle />} />
+              {/* Disse rutene er relative til foreldreruten '/admin' */}
+              <Route path='contacts' element={<AdminContacts />} />
+              <Route path='complaints' element={<AdminComplaints />} />
+              <Route path='settings' element={<AdminSettings />} />
+              <Route path='articles' element={<AdminArticles />} />
+              <Route path="articles/edit/:id" element={<EditArticle />} />
             </Route>
+          </Route>
+
+          {/* Offentlige ruter */}
+
           </Routes>
         </Router>
       </AuthProvider>
