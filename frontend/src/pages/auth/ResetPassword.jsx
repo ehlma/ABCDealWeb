@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import api from "../api";
+import api from "../../api";
 import {Eye, EyeOff} from "lucide-react";
 
-const ResetPasword = () => {
+const ResetPassword = () => {
     const {token} = useParams();
     const navigate = useNavigate();
     const [password, setPassword] = useState("");
@@ -100,4 +100,4 @@ const ResetPasword = () => {
     );
 };
 
-export default ResetPasword;
+export default ResetPassword;
