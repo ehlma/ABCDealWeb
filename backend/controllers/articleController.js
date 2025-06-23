@@ -1,27 +1,28 @@
 import ArticleForm from "../models/ArticleForm.js";
+import { cloudinary } from "../utils/cloudinary.js";
 
 export const createArticle = async (req, res) => {
     try {
-        const {title, intro, bodyText } = req.body;
-        const images = req.files?.map(file => file.filename);
+        const { title, intro, bodyText, images } = req.body;
 
-        if (!title || !bodyText || !images.length) {
-            return res.status(400).json({message: "Tittel, bilde og brødtekst er påkrevd."});
+        if (!title || !bodyText || !images || !images.length) {
+          return res.status(400).json({ message: "Tittel, bilde og brødtekst er påkrevd." });
         }
-
-        const article = new ArticleForm({
-            title, 
-            intro, 
-            bodyText, 
-            images
-        });
-
-        const saved = await article.save();
-        res.status(201).json(saved);
+  
+      const article = new ArticleForm({
+        title,
+        intro,
+        bodyText,
+        images,
+      });
+  
+      const saved = await article.save();
+      res.status(201).json(saved);
     } catch (err) {
-        res.status(500).json({message: "Serverfeil", error: err.message});
+      console.error("Feil ved bildeopplasting:", err);
+      res.status(500).json({ message: "Serverfeil", error: err.message });
     }
-};
+  };
 
 export const getArticles = async (req, res) => {
     try {

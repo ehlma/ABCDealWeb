@@ -12,7 +12,6 @@ router.post(
     "/",
     verifyToken,
     authorizeRoles("admin"),
-    upload.array("images", 5),
     createArticle
 );
 

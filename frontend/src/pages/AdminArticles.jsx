@@ -27,35 +27,45 @@ const AdminArticles = () => {
         setSuccess("");
       
         if (!formData.title || !formData.bodyText) {
-          setError("Tittel og brødtekst er påkrevd.");
-          return;
+            setError("Tittel og brødtekst er påkrevd.");
+            return;
         }
-      
-        const data = new FormData();
-        data.append("title", formData.title);
-        data.append("intro", formData.intro);
-        data.append("bodyText", formData.bodyText);
-        for (let [key, value] of data.entries()) {
-            console.log(`${key}:`, value);
-        }
-      
-        // Legg til alle nye bilder
-        selectedFiles.forEach((file) => {
-          data.append("images", file);
-        });
       
         try {
-          await api.post("/articles", data, {
-            headers: { "Content-Type": "multipart/form-data" },
-          });
+            // Last opp bildene til Cloudinary
+            const imageUploads = await Promise.all(
+                selectedFiles.map(async (file) => {
+                const data = new FormData();
+                data.append("file", file);
+                data.append("upload_preset", "article_uploads"); 
+                const res = await fetch("https://api.cloudinary.com/v1_1/dzsgd5dnu/image/upload", {
+                    method: "POST",
+                    body: data,
+                });
+                const result = await res.json();
+                return result.secure_url;
+            })
+        );
+      
+        const payload = {
+            title: formData.title,
+            bodyText: formData.bodyText, // <- viktig: backend forventer ofte "content"
+        };
 
-          setSuccess("Artikkelen ble oppdatert!");
-          setTimeout(() => navigate("/admin/articles"), 1500);
+        if (formData.intro) payload.intro = formData.intro;
+        if (imageUploads.length > 0) payload.images = imageUploads;
+
+        console.log("Sender artikkel:", payload); // debug
+
+        await api.post("/articles", payload);
+
+        setSuccess("Artikkelen ble opprettet!");
+        setTimeout(() => navigate("/admin/articles"), 1500);
         } catch (err) {
-          setError("Noe gikk galt ved oppdatering.");
+            console.error("Feil:", err);
+            setError("Noe gikk galt ved opprettelse.");
         }
     };
-
 
     useEffect(() => {
         const fetchArticles = async () => {
@@ -75,10 +85,10 @@ const AdminArticles = () => {
         try {
             await api.delete(`/articles/${id}`);
             setArticles(articles.filter(article => article._id !== id));
-          } catch (err) {
+        } catch (err) {
             console.error("Kunne ikke slette artikkel", err);
             setError("Kunne ikke slette artikkel");
-          }
+        }
     };
 
     return (
@@ -151,25 +161,18 @@ const AdminArticles = () => {
             </form>
 
             <div className="mt-[64px]">
-                <h3 className="text-xl mb-[16px]">Publiserte artikler</h3>
+                <h3 className="text-xl mb-[16px] ">Publiserte artikler</h3>
                 <ul className="space-y-[16px]">
                     {articles.map((article) => (
                         <li key={article._id} className="p-[16px] bg-white shadow-lg rounded">
                             <h4 className="text-lg font-semibold">{article.title}</h4>
                             <p className="text-sm text-gray-600 mb-4">{article.createdAt?.slice(0,10)}</p>
-                            {article.image && (
-                                <img
-                                    src={`http://localhost:5050/uploads/${article.image}`}
-                                    alt={article.title}
-                                    className="w-full max-h-[100px] object-cover mb-4 rounded"
-                                />
-                            )}
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
                                 {article.images?.map((img, index) => (
                                     <img
                                         key={index}
-                                        src={`http://localhost:5050/uploads/${img}`}
+                                        src={img}
                                         alt={`Bilde ${index + 1}`}
                                         className={`w-auto h-[150px] object-cover rounded ${
                                             index > 0 ? "hidden md:block" : ""
