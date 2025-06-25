@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Admin sider
 import AdminContacts from './pages/admin/AdminContacts';
-import Login from './pages/admin/Login';
 import AdminComplaints from './pages/admin/AdminComplaints';
 import AdminLayout from './pages/admin/AdminLayout';
 import AdminSettings from './pages/admin/AdminSettings';
@@ -27,9 +26,6 @@ import ContactPage from './pages/client/ContactPage';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute'
 // import NotFoundPage from './pages/NotFoundPage';
-
-import ResetPasword from './pages/admin/ResetPassword';
-import EditArticle from './pages/admin/EditArticle';
 
 function App() {
 
