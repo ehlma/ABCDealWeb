@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import logo from "../../assets/Logo.png";
 import { Menu } from "lucide-react";
-import { useState } from "react";
 
 const ClientLayout = () => {
     const [menuOpen, setMenuOpen] = useState(false);
