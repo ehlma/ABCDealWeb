@@ -1,10 +1,19 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import logo from "../../assets/Logo.png";
 import { useState } from "react";
-import { Menu, X, CircleUser } from "lucide-react";
+import { Menu, X, CircleUser, LogOut } from "lucide-react";
+import { useAuth } from "../../contexts/AuthContext";
 
 const AdminLayout = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user, isAuthenticated, logout } = useAuth(); // Bruker useAuth-hook
+  const navigate = useNavigate(); // Initialiser useNavigate
+
+  const handleLogout = () => {
+    logout(); // Kall logout-funksjon fra context
+    setMenuOpen(false); // Lukk menyen etter utlogging
+    navigate('/'); // Omdiriger til innloggingsside etter utlogging
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -29,11 +38,23 @@ const AdminLayout = () => {
 
           {/* Handlingsbasert lenke i desktop meny */}
           <div className="flex items-center gap-4">
-            <Link to="/" className="hidden sm:flex flex-col items-center gap-1 text-white hover:text-[#d1fae5] hover:drop-shadow-ls transition-all duration-200">
+            {isAuthenticated ? (
+              // Vises når bruker er logget inn (desktop)
+              <button 
+                onClick={handleLogout}
+                className="hidden sm:flex flex-col items-center gap-1 text-white hover:text-[#d1fae5] hover:drop-shadow-ls transition-all duration-200 bg-transparent border-none cursor-pointer p-0"
+              >
+                <LogOut className="w-5 h-5"/>
+                <span>Logg ut</span>
+                <span>{user.firstName || "Pålogget"}</span>
+              </button>
+            ) : (
+              // Vises når bruker ikke er logget inn (desktop)
+              <Link to="/" className="hidden sm:flex flex-col items-center gap-1 text-white hover:text-[#d1fae5] hover:drop-shadow-ls transition-all duration-200">
               <CircleUser className="w-5 h-5"></CircleUser>
               <span>Logg inn</span>
             </Link>
-
+            )}
 
             {/* Hamburger (mobile only) */}
             <button className="sm:hidden bg-transparent border-none p-0 m-0 focus:outline-none" onClick={() => setMenuOpen(!menuOpen)}>
@@ -51,11 +72,23 @@ const AdminLayout = () => {
               <Link to="/admin/contacts" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Kontaktskjema</Link>
               <Link to="/admin/complaints" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Reklamasjon</Link>
               <hr className="border-t border-[#d1fae5]/30 my-2"/>
-              <Link to="/" onClick={() => setMenuOpen(false)} className="flex flex-col items-center gap-2 text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">
+              {isAuthenticated ? (
+                // Vises når bruker er logget inn (mobil)
+                <button
+                  onClick={handleLogout}
+                  className="flex flex-col items-center gap-2 text-white hover:text[#d1fae5] hover:drop-shadow-lg transition-all duration-200 bg-transparent border-none cursor-pointer p-0"
+                >
+                  <LogOut className="w-5 h-5"/>
+                  <span>Logg ut</span>
+                  <span>{user.firstName || "Pålogget"}</span>
+                </button>
+              ) : (
+                // Vises når bruker ikke er logget inn (mobil)
+                <Link to="/" onClick={() => setMenuOpen(false)} className="flex flex-col items-center gap-2 text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">
                 <CircleUser className="w-5 h-5" />
                 <span>Logg inn</span>
               </Link>
-
+              )}
             </div>
           )}
         </div>

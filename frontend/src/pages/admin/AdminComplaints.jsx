@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api, {API_ENDPOINTS} from "../../../api/api";
+import api, {API_ENDPOINTS} from ../../../api/api";
 import AccordionItem from "../../components/AccordionItem";
 import { format } from "date-fns";
 
