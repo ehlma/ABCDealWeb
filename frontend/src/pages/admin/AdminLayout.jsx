@@ -56,7 +56,6 @@ const AdminLayout = () => {
             </Link>
             )}
 
-
             {/* Hamburger (mobile only) */}
             <button className="sm:hidden bg-transparent border-none p-0 m-0 focus:outline-none" onClick={() => setMenuOpen(!menuOpen)}>
               {menuOpen ? <X className="w-8 h-8 text-white" /> : <Menu className="w-8 h-8 text-white" />}
