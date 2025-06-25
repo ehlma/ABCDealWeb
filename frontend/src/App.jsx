@@ -44,7 +44,7 @@ function App() {
             </Route>
 
             {/* Autentiserings-ruter uten felles layout */}
-            <Route path='/' element={<Login />} />
+            <Route path='/login' element={<Login />} />
             <Route path='/reset-password/:token' element={<ResetPasword />} />
 
             {/* nestede ruter under AdminLayout */}
