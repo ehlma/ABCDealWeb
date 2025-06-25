@@ -5,11 +5,11 @@ import cors from 'cors';
 
 import authRoutes from './routes/authRoutes.js';
 import protectedRoutes from './routes/protectedRoutes.js';
-import adminRoutes from './routes/adminRoutes.js';
+import adminRoutes from './routes/admin/adminRoutes.js';
 import userRoutes from './routes/userRoutes.js';
-import complaintRoutes from './routes/complaintRoutes.js';
-import contactRoutes from './routes/contactRoutes.js';
-import articleRoutes from './routes/articleRoutes.js';
+import complaintRoutes from './routes/admin/complaintRoutes.js';
+import contactRoutes from './routes/admin/contactRoutes.js';
+import articleRoutes from './routes/admin/articleRoutes.js';
 
 dotenv.config();
 

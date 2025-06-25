@@ -1,8 +1,8 @@
 import express from 'express';
-import { getAllComplaints, submitComplaint } from '../controllers/complaintController.js';
-import verifyToken from '../middleware/authMiddleware.js';
-import { authorizeRoles } from '../middleware/roleMiddleware.js';
-import complaintForm from '../models/ComplaintForm.js';
+import { getAllComplaints, submitComplaint } from '../../controllers/complaintController.js';
+import verifyToken from '../../middleware/authMiddleware.js';
+import { authorizeRoles } from '../../middleware/roleMiddleware.js';
+import complaintForm from '../../models/ComplaintForm.js';
 
 const router = express.Router();
 
