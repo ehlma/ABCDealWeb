@@ -50,9 +50,8 @@ const ClientLayout = () => {
             {/* Footer */}
             <footer className="bg-[#2c3e50] text-white text-center p-4">
                 <p>&copy; {new Date().getFullYear()} ABC Deal. Alle rettigheter reservert.</p>
-                <p>
-                    <Link to="/contact" className="text-white hover:underline">Kontakt oss</Link>
-                    <Link to="/admin" className="text-white hover:underline">Admin login</Link></p>
+                <p><Link to="/contact" className="text-white hover:underline">Kontakt oss</Link></p>
+                <p><Link to="/login" className="text-white hover:underline">Admin login</Link></p>
             </footer>
         </div>
     );
