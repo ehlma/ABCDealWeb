@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api, { API_ENDPOINTS } from "../../api/api";
+import api, { API_ENDPOINTS } from "../../../api/api.js";
 
 import { roles } from '../../constants/roles';
 import { Eye, EyeOff, ChevronDown } from "lucide-react";
