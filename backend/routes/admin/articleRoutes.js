@@ -1,9 +1,9 @@
 import express from "express";
-import verifyToken from "../middleware/authMiddleware.js";
-import { authorizeRoles } from "../middleware/roleMiddleware.js";
-import upload from "../middleware/uploadMiddleware.js"; // BRUK denne
-import ArticleForm from "../models/ArticleForm.js";
-import { createArticle, getArticles, getArticleById, updateArticle, deleteArticle } from "../controllers/articleController.js";
+import verifyToken from "../../middleware/authMiddleware.js";
+import { authorizeRoles } from "../../middleware/roleMiddleware.js";
+import upload from "../../middleware/uploadMiddleware.js"; // BRUK denne
+import ArticleForm from "../../models/ArticleForm.js";
+import { createArticle, getArticles, getArticleById, updateArticle, deleteArticle } from "../../controllers/articleController.js";
 
 const router = express.Router();
 
