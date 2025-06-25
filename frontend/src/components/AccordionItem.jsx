@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, Paperclip } from 'lucide-react';
 import { Card, CardContent } from '../components/ui/card';
 import { format } from 'date-fns';
-import api from "../api";
+import api from "../../api/api";
 
 const AccordionItem = ({ item }) => {
     const [open, setOpen] = useState(false);
