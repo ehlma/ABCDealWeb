@@ -25,6 +25,7 @@ import ContactPage from './pages/client/ContactPage';
 
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute'
+import ArticlePage from './pages/client/ArticlePage';
 // import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
               <Route path='sales-process' element={<SalesProcessPage/>}/>
               <Route path='complaints' element={<ComplaintsPage/>}/>
               <Route path='contact' element={<ContactPage/>}/>
+              <Route path='/articles/:id' element={<ArticlePage/>}/>
             </Route>
 
             {/* Autentiserings-ruter uten felles layout */}
