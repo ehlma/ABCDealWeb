@@ -50,13 +50,13 @@ const ArticlePage = () => {
                         <>
                             <button
                                 onClick={prevImage}
-                                className="absolute top-1/2 -left-6 transform -translate-y-1/2 bg-white hover:bg-white/80 text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow"
+                                className="absolute top-1/2 -left-6 transform -translate-y-1/2 bg-white hover:bg-white/80 text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-xl ring-1 ring-gray-300"
                             >
                                 ‹
                             </button>
                             <button
                                 onClick={nexImage}
-                                className="absolute top-1/2 -right-6 transform -translate-y-1/2 bg-white hover:bg-white/80 text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow"
+                                className="absolute top-1/2 -right-6 transform -translate-y-1/2 bg-white hover:bg-white/80 text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-xl ring-1 ring-gray-300"
                             >
                                 ›
                             </button>
