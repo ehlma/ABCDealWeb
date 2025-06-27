@@ -71,7 +71,78 @@ const AboutPage = () => {
             </div>
 
             {/* Per Erik */}
-            
+            <div className="max-w-6xl mx-auto mt-16">
+                <div className="flex flex-col md:flex-row gap-8 items-start">
+                    <div className="md:w-1/2 flex justify-center">
+                        <img
+                            src={perErikImage}
+                            alt="Bilde. Per Erik"
+                            className="rounded shadow-lg max-w-[300px] h-auto object-cover"
+                        />
+                    </div>
+
+                    <div className="md:w-1/2">
+                        <h2 className="text-2xl font-bold text-[#047464]">Per Erik Bjørk</h2>
+                        <p className="text-sm text-gray-800 mb-6">Partner</p>
+                        <p className="mb-4">
+                            Per Erik er en trygg og stødig ressurs i ABC Deal AS. Han er den typen mennesker man alltid kan stole på – både internt i teamet og ute hos kundene.
+                        </p>
+                        <p className="mb-4">
+                            Med sin rolige væremåte og pålitelige tilstedeværelse bidrar Per Erik til at kundene våre føler seg ivaretatt gjennom hele prosessen.
+                        </p>
+                        <div className="text-left text-sm text-gray-700 pt-4 space-y-1">
+                            <div className="flex justifty-start">
+                                <span className="font-medium w-20 text-left">Tlf:</span>
+                                <span>+47 479 26 965</span>
+                            </div>
+                            <div className="flex justify-start">
+                                <span className="font-medium w-20 text-left">E-post:</span>
+                                <span>peb@abcdeal.no</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            {/* Leif */}
+            <div className="max-w-6xl mx-auto mt-16">
+                <div className="flex flex-col md:flex-row gap-8 items-start">
+                    <div className="md:w-1/2 flex justify-center">
+                        <img
+                            src={leifImage}
+                            alt="Bilde. Leif"
+                            className="rounded shadow-lg max-w-[300px] h-auto object-cover"
+                        />
+                    </div>
+
+                    <div className="md:w-1/2">
+                        <h2 className="text-2xl font-bold text-[#047464]">Leif Jårvik</h2>
+                        <p className="text-sm text-gray-800 mb-6">Partner</p>
+                        <p className="mb-4">
+                            Leif er kjent for sin ærlige og direkte stil. Han er en jordnær og tydelig stemme i ABC Deal AS, og kundene setter pris på hans evne til å si ting som de er – uten unødvendige omveier.
+                        </p>
+                        <p className="mb-4">
+                            Med Leif får du alltid klare råd, ryddige avtaler og en trygg handel. Han er en viktig ressurs både for selskapet og for våre kunder.
+                        </p>
+                        <div className="text-left text-sm text-gray-700 pt-4 space-y-1">
+                            <div className="flex justifty-start">
+                                <span className="font-medium w-20 text-left">Tlf:</span>
+                                <span>+47 479 17 770</span>
+                            </div>
+                            <div className="flex justify-start">
+                                <span className="font-medium w-20 text-left">E-post:</span>
+                                <span>lj@abcdeal.no</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
 
             
         </div>
