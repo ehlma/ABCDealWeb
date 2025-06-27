@@ -6,28 +6,29 @@ const AdminContacts = () => {
     const [contacts, setContacts] = useState([]);
     const [error, setError] = useState([]);
 
-    // sett inn JWT (token)
-    const token = localStorage.getItem("token");
-    const API_URL = import.meta.env.VITE_API_URL;
+    // Funksjon for å hente oppdaterte kontakter
+    const fetchContacts = async () => {
+        try {
+            // Bruker API_ENDPOINTS.adminContacts for å hente kontakter for admin
+            const res = await api.get(API_ENDPOINTS.adminContacts);
+            setContacts(res.data);
+        } catch (err) {
+            console.error("Feil ved henting av kontaktskjemaer: ", err);
+            setError("Kunne ikke hente kontaktskjemaer.");
+        }
+    };
 
-
+    // Hent kontakter ved første lasting av komponenten
     useEffect(() => {
-        const fetchContacts = async () => {
-            try {
-                const res = await api.get(API_ENDPOINTS.contacts);
-                setContacts(res.data);
-            } catch (error) {
-                setError("Could not fetch contact forms");
-            }
-        };
-
         fetchContacts();
     }, [])
 
     return (
-        <div className="max-w-2x1 mx-auto mt-6">
-            <h2 className="text-2x1 font-bild mb-4">Innsendte meldinger</h2>
-            {error && <p className="text-red-500">{error}</p>}
+        <div className="max-w-2xl mx-auto mt-6">
+            <h2 className="text-2xl font-bold mb-4">Innsendte meldinger</h2>
+            {error && <p className="text-red-500 mb-4">{error}</p>}
+            {contacts.length === 0 && !error && <p className="text-gray-600 text-center">Ingen meldinger funnet.</p>}
+
             {contacts.map((msg) => (
                 <AccordionItem
                     key={msg._id}
@@ -36,8 +37,8 @@ const AdminContacts = () => {
                         email: msg.email,
                         createdAt: msg.createdAt,
                         text: msg.text,
-                        image: msg.image,
-                        hasAttachment: !!msg.image,
+                        // image: msg.image,
+                        // hasAttachment: !!msg.image,
                         status: "new",
                     }}
                 />
