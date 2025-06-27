@@ -10,6 +10,7 @@ import userRoutes from './routes/userRoutes.js';
 import complaintRoutes from './routes/admin/complaintRoutes.js';
 import contactRoutes from './routes/admin/contactRoutes.js';
 import articleRoutes from './routes/admin/articleRoutes.js';
+import publicContactRoutes from './routes/publicContactRoutes.js';
 
 dotenv.config();
 
@@ -20,19 +21,26 @@ app.use(express.json()); // leser JSON i request-body
 app.use("/uploads", express.static("uploads"));
 
 
+// Ruter for API-endepunkter
 // ruten til test-route(?)
 app.use('/api/auth', authRoutes);
 // protected route
 app.use('/api/protected', protectedRoutes);
+
+// Admin-relaterte ruter (beskyttet via frontend ProtectedRoute og backend middleware)
 // admin route
-app.use('/api/admin', adminRoutes);
+app.use('/api/admin', adminRoutes); // Generell admin-rute
 // complaint route
-app.use('/api', complaintRoutes);
+app.use('/api/admin/complaints', complaintRoutes);
 // contact route
-app.use('/api', contactRoutes);
+app.use('/api/admin/contacts', contactRoutes);
 // user route
+app.use('/api/admin/articles', articleRoutes);
 app.use('/api/settings', userRoutes);
-app.use('/api/articles', articleRoutes);
+
+// Offentlig kontaktskjema rute (ingen autentisering nødvendig)
+app.use('/api/contact', publicContactRoutes);
+
 
 // test-route
 app.get('/api/ping', (req, res) => {

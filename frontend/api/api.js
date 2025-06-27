@@ -22,10 +22,15 @@ api.interceptors.request.use((config) => {
 export const API_ENDPOINTS = {
     login: '/auth/login',
     register: '/auth/register',
-    contacts: '/contact',
-    complaints: '/complaints',
+    // contacts: '/contact',
+    // complaints: '/complaints',
     me: '/me', 
-    users: '/settings/users'
+    users: '/settings/users',
+
+    contactSubmit: '/contact',
+    adminContacts: '/admin/contacts/contact',
+    adminComplaints: '/admin/complaints/complaint',
+    adminArticles: 'admin/articles'
 
 };
 
