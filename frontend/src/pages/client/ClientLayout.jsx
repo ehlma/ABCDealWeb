@@ -7,9 +7,9 @@ const ClientLayout = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-        <div className="flex flex-col min-h-screen w-full">
+        <div className="flex flex-col min-h-screen p-0 m-0">
             {/* Nav bar for kunder */}
-            <nav className="fixed top-0 left-0 z-[50] w-full bg-[#047464] text-white shadow">
+            <nav className="fixed top-0 left-0 z-[50] w-full bg-[#047464] text-white shadow p-0 m-0">
                 <div className="flex items-center justify-between px-8 py-4">
                     <Link to="/">
                         <img src={logo} alt="ABC Deal Logo" className="h-[36px] cursor-pointer" />
@@ -45,15 +45,16 @@ const ClientLayout = () => {
 
 
             {/* Main content */}
-            <main className="flex-grow pt-[96px] bg-white">
+            <main className="flex-grow pt-[96px] bg-white w-full">
                 <Outlet/>
             </main>
 
             {/* Footer */}
-            <footer className="bg-gray-200 text-gray-800 text-center p-4 w-full">
+            <footer className="bg-gray-200 text-gray-800 text-center p-4 w-full mt-12">
                 <p>&copy; {new Date().getFullYear()} ABC Deal. Alle rettigheter reservert.</p>
                 <p><Link to="/contact" className="text-gray-800 hover:underline">Kontakt oss</Link></p>
                 <p><Link to="/login" className="text-gray-800 hover:underline">Admin login</Link></p>
+                
             </footer>
 
 
