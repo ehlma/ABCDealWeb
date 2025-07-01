@@ -35,7 +35,7 @@ app.use('/api/admin/complaints', complaintRoutes);
 // contact route
 app.use('/api/admin/contacts', contactRoutes);
 // user route
-app.use('/api/admin/articles', articleRoutes);
+app.use('/api/articles', articleRoutes);
 app.use('/api/settings', userRoutes);
 
 // Offentlig kontaktskjema rute (ingen autentisering nødvendig)
