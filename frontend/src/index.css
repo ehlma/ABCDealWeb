@@ -67,15 +67,26 @@ a:hover {
 html, body {
   margin: 0;
   padding: 0;
-  min-width: 320px;
-  min-height: 100vh;
   overflow-x: hidden;
+  font-family: Calibri, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
 
+#root {
+  height: 100%;  
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+h1, h2 {
+  font-family: 'Raleway', sans-serif;
+
 }
 
 button {

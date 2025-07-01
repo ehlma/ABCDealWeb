@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import logo from "../../assets/Logo.png";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const ClientLayout = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="flex flex-col min-h-screen w-full">
             {/* Nav bar for kunder */}
-            <nav className="fixed top-0 left-0 z-[50] w-full bg-[#34495e] text-white shadow">
-                <div className="flex items-center justfy-between px-8 py-4">
+            <nav className="fixed top-0 left-0 z-[50] w-full bg-[#047464] text-white shadow">
+                <div className="flex items-center justify-between px-8 py-4">
                     <Link to="/">
                         <img src={logo} alt="ABC Deal Logo" className="h-[36px] cursor-pointer" />
                     </Link>
@@ -41,18 +41,24 @@ const ClientLayout = () => {
                     </div>
                 )}
             </nav>
+            <div className="pointer-events-none w-full fixed top-[60px] left-0 w-full h-20 z-10 bg-gradient-to-b from-white/90 to-transparent"></div>
+
 
             {/* Main content */}
-            <main className="flex-1 pt-[96px] px-[24px] pb-[24px] overflow-y-auto bg-white">
+            <main className="flex-grow pt-[96px] bg-white">
                 <Outlet/>
             </main>
 
             {/* Footer */}
-            <footer className="bg-[#2c3e50] text-white text-center p-4">
+            <footer className="bg-gray-200 text-gray-800 text-center p-4 w-full">
                 <p>&copy; {new Date().getFullYear()} ABC Deal. Alle rettigheter reservert.</p>
-                <p><Link to="/contact" className="text-white hover:underline">Kontakt oss</Link></p>
-                <p><Link to="/login" className="text-white hover:underline">Admin login</Link></p>
+                <p><Link to="/contact" className="text-gray-800 hover:underline">Kontakt oss</Link></p>
+                <p><Link to="/login" className="text-gray-800 hover:underline">Admin login</Link></p>
             </footer>
+
+
+
+
         </div>
     );
 };
