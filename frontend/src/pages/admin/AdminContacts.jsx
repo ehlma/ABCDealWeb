@@ -33,6 +33,7 @@ const AdminContacts = () => {
                 <AccordionItem
                     key={msg._id}
                     item={{
+                        _id: msg._id,
                         name: msg.name,
                         email: msg.email,
                         createdAt: msg.createdAt,
@@ -41,6 +42,7 @@ const AdminContacts = () => {
                         // hasAttachment: !!msg.image,
                         status: "new",
                     }}
+                    endpoint={API_ENDPOINTS.adminContacts}
                 />
             ))}
         </div>

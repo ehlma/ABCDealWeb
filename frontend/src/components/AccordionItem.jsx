@@ -2,12 +2,12 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, Paperclip } from 'lucide-react';
 import { Card, CardContent } from '../components/ui/card';
 import { format } from 'date-fns';
-import api from "../../api/api";
+import api, { API_ENDPOINTS } from "../../api/api";
 
 const AccordionItem = ({ item }) => {
     const [open, setOpen] = useState(false);
     const [status, setStatus] = useState(item.status || "new");
-    console.log("Status for ", item.name, "er ", status);
+    const [message, setMessage] = useState(null);
 
     const statusColor = {
         new: "bg-red-500",
@@ -23,14 +23,17 @@ const AccordionItem = ({ item }) => {
     const handleStatusChange = async (e) => {
         const newStatus = e.target.value;
         setStatus(newStatus);
+        setMessage(null);
 
         try {
-            await api.patch(`/complaints/${item._id}`, {status: newStatus});
-            // kall parent for å oppdatere hele listen
+            await api.patch(`<span class="math-inline">\{endpoint\}/</span>{item._id}`, {status: newStatus});
+
+            setMessage({text: "Status oppdatert.", type: "success"});
             if (onStatusChange) onStatusChange();
+            setTimeout(() => setMessage(null), 3000);
         } catch (error) {
             console.error("Feil ved oppdatering av status: ", error);
-            alert("Kunne ikke oppdatere status. Prøv igjen senere.")
+            setMessage({text: "Kunne ikke oppdatere status. Prøv igjen senere.", type: "error"});
         }
     };
 
@@ -61,6 +64,12 @@ const AccordionItem = ({ item }) => {
                     </div>
                 </div>
             </div>
+
+            {message && (
+                <div className={`p-2 text-center text-sm font-semibold ${message.type === "success" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}>
+                    {message.text}
+                </div>
+            )}
 
             <div
                 className={`grid transition-all duration-300 overflow-hidden ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
