@@ -19,7 +19,7 @@ const HomePage = () => {
     }, []);
 
     return (
-        <div className="text-center">
+        <div className="text-center mt-8">
             <h1 className="text-4xl font-bold mb-4 text-[#047464]">Velkommen til ABC Deal</h1>
             <p className="text-lg text-gray-700">Din pålitelige forhandler av biler, campongvogner og bobiler.</p>
             <div className="mt-8 p-8 bg-blue-100 rounged-lg shadow">
@@ -29,7 +29,7 @@ const HomePage = () => {
             <h2 className="text-2xl font-semibold mt-12 mb-3 text-[#047464]">Aktuelt</h2>
             <div className="grid gap-6 md:grid-cols-2">
                 {articles.map((article) => (
-                    <div key={article._id} className="bg-white rounded shadow-md overflow-hidden py-4">
+                    <div key={article._id} className="bg-white rounded shadow-md overflow-hidden py-4 m-12">
                         <h3 className="text-lg mb-2">{article.title}</h3>
                         {article.images && article.images[0] && (
                             <img 
