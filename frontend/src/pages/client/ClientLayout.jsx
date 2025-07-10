@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import logo from "../../assets/Logo.png";
 import { Menu, X } from "lucide-react";
+import Footer from "../../components/Footer";
 
 const ClientLayout = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-        <div className="flex flex-col min-h-screen p-0 m-0">
+        <div className="flex flex-col flex-1 w-full">
             {/* Nav bar for kunder */}
             <nav className="fixed top-0 left-0 z-[50] w-full bg-[#047464] text-white shadow p-0 m-0">
-                <div className="flex items-center justify-between px-8 py-4">
+                <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
                     <Link to="/">
                         <img src={logo} alt="ABC Deal Logo" className="h-[36px] cursor-pointer" />
                     </Link>
@@ -45,20 +46,13 @@ const ClientLayout = () => {
 
 
             {/* Main content */}
-            <main className="flex-grow pt-[96px] bg-white w-full">
-                <Outlet/>
+            <main className="flex-grow pt-[96px] bg-white w-full px-4 sm:px-6 lg:px-8">
+                {/* <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl"> */}
+                    <Outlet />
+                {/* </div> */}
             </main>
 
-            {/* Footer */}
-            <footer className="bg-gray-200 text-gray-800 text-center p-4 w-full mt-12">
-                <p>&copy; {new Date().getFullYear()} ABC Deal. Alle rettigheter reservert.</p>
-                <p><Link to="/contact" className="text-gray-800 hover:underline">Kontakt oss</Link></p>
-                <p><Link to="/login" className="text-gray-800 hover:underline">Admin login</Link></p>
-                
-            </footer>
-
-
-
+            <Footer />
 
         </div>
     );
