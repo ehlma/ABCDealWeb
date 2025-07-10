@@ -18,7 +18,7 @@ const AdminLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 z-[50] w-full bg-[#34495e] text-white shadow ">
+      <nav className="fixed top-0 left-0 z-[50] w-full bg-ui-background text-white shadow ">
         <div className="flex items-center justify-between px-6 py-4">
 
           {/* Logo (desktop) */}
@@ -30,10 +30,10 @@ const AdminLayout = () => {
 
           {/* Desktop meny */}
           <ul className="hidden sm:flex gap-6 font-medium flex-grow justify-center">
-            <li><Link to="/admin/settings" className="text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Ansatte</Link></li>
-            <li><Link to="/admin/articles" className="text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Artikler</Link></li>
-            <li><Link to="/admin/contacts" className="text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Kontaktskjema</Link></li>
-            <li><Link to="/admin/complaints" className="text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Reklamasjon</Link></li>
+            <li><Link to="/admin/settings" className="text-white hover:text-primary-light hover:drop-shadow-lg transition-all duration-200">Ansatte</Link></li>
+            <li><Link to="/admin/articles" className="text-white hover:text-primary-light hover:drop-shadow-lg transition-all duration-200">Artikler</Link></li>
+            <li><Link to="/admin/contacts" className="text-white hover:text-primary-light hover:drop-shadow-lg transition-all duration-200">Kontaktskjema</Link></li>
+            <li><Link to="/admin/complaints" className="text-white hover:text-primary-light hover:drop-shadow-lg transition-all duration-200">Reklamasjon</Link></li>
           </ul>
 
           {/* Handlingsbasert lenke i desktop meny */}
@@ -42,7 +42,7 @@ const AdminLayout = () => {
               // Vises når bruker er logget inn (desktop)
               <button 
                 onClick={handleLogout}
-                className="hidden sm:flex flex-col items-center gap-1 text-white hover:text-[#d1fae5] hover:drop-shadow-ls transition-all duration-200 bg-transparent border-none cursor-pointer p-0"
+                className="hidden sm:flex flex-col items-center gap-1 text-white hover:text-primary-light hover:drop-shadow-lg transition-all duration-200 bg-transparent border-none cursor-pointer p-0"
               >
                 <LogOut className="w-5 h-5"/>
                 <span>Logg ut</span>
@@ -50,7 +50,7 @@ const AdminLayout = () => {
               </button>
             ) : (
               // Vises når bruker ikke er logget inn (desktop)
-              <Link to="/" className="hidden sm:flex flex-col items-center gap-1 text-white hover:text-[#d1fae5] hover:drop-shadow-ls transition-all duration-200">
+              <Link to="/" className="hidden sm:flex flex-col items-center gap-1 text-white hover:text-primary-light hover:drop-shadow-lg transition-all duration-200">
               <CircleUser className="w-5 h-5"></CircleUser>
               <span>Logg inn</span>
             </Link>
@@ -66,17 +66,17 @@ const AdminLayout = () => {
 
           {/* Mobilmeny: åpnes under navbar */}
           {menuOpen && (
-            <div className="absolute w-[30%] top-[64px] left-0 w-full bg-[#047464] text-white px-6 py-4 sm:hidden z-40 shadow-md flex flex-col rounded-b space-y-2">
-              <Link to="/admin/settings" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200" >Ansatte</Link>
-              <Link to="/admin/articles" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Artikler</Link>
-              <Link to="/admin/contacts" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Kontaktskjema</Link>
-              <Link to="/admin/complaints" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">Reklamasjon</Link>
-              <hr className="border-t border-[#d1fae5]/30 my-2"/>
+            <div className="absolute w-[30%] top-[64px] left-0 w-full bg-primary text-white px-6 py-4 sm:hidden z-40 shadow-md flex flex-col rounded-b space-y-2">
+              <Link to="/admin/settings" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-primary-light hover:drop-shadow-lg transition-all duration-200" >Ansatte</Link>
+              <Link to="/admin/articles" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-primary-light hover:drop-shadow-lg transition-all duration-200">Artikler</Link>
+              <Link to="/admin/contacts" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-primary-light hover:drop-shadow-lg transition-all duration-200">Kontaktskjema</Link>
+              <Link to="/admin/complaints" onClick={() => setMenuOpen(false)} className="flex flex-row text-white hover:text-primary-light hover:drop-shadow-lg transition-all duration-200">Reklamasjon</Link>
+              <hr className="border-t border-primary-light/30 my-2"/>
               {isAuthenticated ? (
                 // Vises når bruker er logget inn (mobil)
                 <button
                   onClick={handleLogout}
-                  className="flex flex-col items-center gap-2 text-white hover:text[#d1fae5] hover:drop-shadow-lg transition-all duration-200 bg-transparent border-none cursor-pointer p-0"
+                  className="flex flex-col items-center gap-2 text-white hover:text-primary-light hover:drop-shadow-lg transition-all duration-200 bg-transparent border-none cursor-pointer p-0"
                 >
                   <LogOut className="w-5 h-5"/>
                   <span>Logg ut</span>
@@ -84,7 +84,7 @@ const AdminLayout = () => {
                 </button>
               ) : (
                 // Vises når bruker ikke er logget inn (mobil)
-                <Link to="/" onClick={() => setMenuOpen(false)} className="flex flex-col items-center gap-2 text-white hover:text-[#d1fae5] hover:drop-shadow-lg transition-all duration-200">
+                <Link to="/" onClick={() => setMenuOpen(false)} className="flex flex-col items-center gap-2 text-white hover:text-primary-light hover:drop-shadow-lg transition-all duration-200">
                 <CircleUser className="w-5 h-5" />
                 <span>Logg inn</span>
               </Link>

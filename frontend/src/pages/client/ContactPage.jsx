@@ -56,8 +56,8 @@ const ContactPage = () => {
 
 
     return (
-        <div className="p-8 max-w-lg mx-auto bg-white rounded-ls shadow-md">
-            <h1 className="text-3xl font-bold mb-4 text-[#047464] text-center">Kontakt oss</h1>
+        <div className="p-8 max-w-lg mx-auto bg-white rounded-lg shadow-md">
+            <h1 className="text-3xl font-bold mb-4 text-primary text-center">Kontakt oss</h1>
             <p className="mb-4 text-center text-gray-700">Har du spørsmål, ris eller ros? Fyll ut skjemaet nedenfor!</p>
 
             {/* TODO: Legge til kontaktskjema her? */}
@@ -115,7 +115,7 @@ const ContactPage = () => {
                 </div>
                 <button
                     type="submit"
-                    className="bg-[#047464] hover:bg-[#065f54] text-white font-bold py-4 px-8 rounded focus:outline-none focus:shadow-outline w-full"
+                    className="bg-primary hover:bg-primary-dark text-white font-bold py-4 px-8 rounded focus:outline-none focus:shadow-outline w-full"
                 >
                     Send melding
                 </button>
