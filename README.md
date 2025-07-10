@@ -14,3 +14,16 @@ Dependencies - Frontend:
 Run the following commands before you start: 
 cd frontend
 npm install
+
+## Color Palette
+This project utilizes a set of semantically named colors defined in "tailwind.config.js". These colors represent the project's brand and UI palette and should be used consistently throughout the application.
+
+| Hex Code | Semantic CSS Variable Name | Tailwind CSS Class Name | Usage (Example) |
+| :------- | :------------------------- | :---------------------- | :-------------- |
+| `#047464`| `--color-primary`          | `primary`               | Primary brand color, important buttons, headings |
+| `#d1fae5`| `--color-primary-light`    | `primary-light`         | Lighter accent/hover for primary |
+| `#065f54`| `--color-primary-dark`     | `primary-dark`          | Darker accent/hover for primary |
+| `#34495e`| `--color-ui-background`    | `ui-background`         | General UI background (e.g., navigation bars) |
+| `#2c3e50`| `--color-footer-background`| `footer-background`     | Footer background |
+
+*Note: Standard Tailwind CSS colors (e.g. "gray-300", "text-white") are used directly without a custom variable unless specific override is required.*
