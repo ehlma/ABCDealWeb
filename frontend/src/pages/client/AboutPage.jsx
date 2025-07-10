@@ -8,7 +8,7 @@ import perErikImage from "../../assets/pererik.jpeg";
 const AboutPage = () => {
     return (
         <div className="max-w-6xl max-auto p-12">
-            <h1 className="text-3xl font-bold mb-8 text-[#047464]">Om Oss</h1>
+            <h1 className="text-3xl font-bold mb-8 text-primary">Om Oss</h1>
             <div className="flex flex-col md:flex-row gap-8 items-start">
                 <div className="md:w-1/2 space-y-4 text-gray-800">
                     <p className="mb-4">
@@ -47,7 +47,7 @@ const AboutPage = () => {
 
                     </div>
                     <div className="md:w-1/2 ">
-                        <h2 className="text-2xl font-bold text-[#047464]">Tommy Østli</h2>
+                        <h2 className="text-2xl font-bold text-primary">Tommy Østli</h2>
                         <p className="text-sm text-gray-800 mb-6">Daglig leder</p>
                         <p className="mb-4">
                             Tommy er en erfaren selger med en genuin evne til å bygge relasjoner og skape tillit. Med bakgrunn fra både salg og coaching, har han i mange år hjulpet kunder med å finne løsninger som passer deres behov – alltid med en personlig og ærlig tilnærming.
@@ -82,7 +82,7 @@ const AboutPage = () => {
                     </div>
 
                     <div className="md:w-1/2">
-                        <h2 className="text-2xl font-bold text-[#047464]">Per Erik Bjørk</h2>
+                        <h2 className="text-2xl font-bold text-primary">Per Erik Bjørk</h2>
                         <p className="text-sm text-gray-800 mb-6">Partner</p>
                         <p className="mb-4">
                             Per Erik er en trygg og stødig ressurs i ABC Deal AS. Han er den typen mennesker man alltid kan stole på – både internt i teamet og ute hos kundene.
@@ -118,7 +118,7 @@ const AboutPage = () => {
                     </div>
 
                     <div className="md:w-1/2">
-                        <h2 className="text-2xl font-bold text-[#047464]">Leif Jårvik</h2>
+                        <h2 className="text-2xl font-bold text-primary">Leif Jårvik</h2>
                         <p className="text-sm text-gray-800 mb-6">Partner</p>
                         <p className="mb-4">
                             Leif er kjent for sin ærlige og direkte stil. Han er en jordnær og tydelig stemme i ABC Deal AS, og kundene setter pris på hans evne til å si ting som de er – uten unødvendige omveier.
