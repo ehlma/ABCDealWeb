@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/Logo.png";
 import { Menu, X } from "lucide-react";
 import Footer from "../../components/Footer";
 
 const ClientLayout = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const location = useLocation();
 
     return (
         <div className="flex flex-col flex-1 w-full">
@@ -18,11 +19,68 @@ const ClientLayout = () => {
 
                     {/* Desktop meny */}
                     <ul className="hidden sm:flex flex-grow justify-center gap-6 font-medium">
-                        <li><Link to="/" className="text-navbar-link hover:text-navbar-link-hover  transition-colors">Hjem</Link></li>
-                        <li><Link to="/about" className="text-navbar-link hover:text-navbar-link-hover  transition-colors">Om Oss</Link></li>
-                        <li><Link to="/sales-process" className="text-navbar-link hover:text-navbar-link-hover  transition-colors">Salgsprosessen</Link></li>
-                        <li><Link to="/complaints" className="text-navbar-link hover:text-navbar-link-hover  transition-colors">Reklamasjon</Link></li>
-                        <li><Link to="/contact" className="text-navbar-link hover:text-navbar-link-hover  transition-colors">Kontakt Oss</Link></li>
+                        <li>
+                            <NavLink 
+                                to="/"
+                                className={({isActive}) => 
+                                `text-navbar-link hover:text-navbar-link-hover transition-colors
+                                ${isActive ? `font-bold border-b-2 border-navbar-link-active`: ""}`
+                                }
+                            >
+                                Hjem
+                            </NavLink>
+                        
+                        </li>
+
+                        <li>
+                            <NavLink 
+                                to="/about"
+                                className={({ isActive }) =>
+                                    `text-navbar-link hover:text-navbar-link-hover transition-colors
+                                    ${isActive ? 'font-bold border-b-2 border-navbar-link-active' : ''}`
+                                }
+                            >
+                                Om Oss
+                            </NavLink>
+                        
+                        </li>
+
+                        <li>
+                            <NavLink 
+                                to="/sales-process"
+                                className={({ isActive }) =>
+                                    `text-navbar-link hover:text-navbar-link-hover transition-colors
+                                    ${isActive ? 'font-bold border-b-2 border-navbar-link-active' : ''}`
+                                }
+                            >
+                                Salgsprosessen
+                            </NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink 
+                                to="/complaints"
+                                className={({ isActive }) =>
+                                    `text-navbar-link hover:text-navbar-link-hover transition-colors
+                                    ${isActive ? 'font-bold border-b-2 border-navbar-link-active' : ''}`
+                                }
+                            >
+                                Reklamasjon
+                        </NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink 
+                                to="/contact"
+                                className={({ isActive }) =>
+                                    `text-navbar-link hover:text-navbar-link-hover transition-colors
+                                    ${isActive ? 'font-bold border-b-2 border-navbar-link-active' : ''}`
+                                }
+                            >
+                                Kontakt Oss
+                        </NavLink>
+                        </li>
+
                     </ul>
 
                     {/* Hamburder meny */}
@@ -34,11 +92,60 @@ const ClientLayout = () => {
                 {/* Mobilmeny - åpnes under navbar */}
                 {menuOpen && (
                     <div className="absolute w-full top-[64px] left-0 bg-navbar-bg px-8 py-4 sm:hidden z-40 shadow flex flex-col rounded-b space-y-2">
-                        <Link to="/" onClick={() => setMenuOpen(false)} className="flex flex-row text-navbar-link hover:text-navbar-link-hover  transition-colors">Hjem</Link>
-                        <Link to="/about" onClick={() => setMenuOpen(false)} className="flex flex-row text-navbar-link hover:text-navbar-link-hover  transition-colors">Om Oss</Link>
-                        <Link to="/sales-process" onClick={() => setMenuOpen(false)} className="flex flex-row text-navbar-link hover:text-navbar-link-hover  transition-colors">Salgsprosessen</Link>
-                        <Link to="/complaints" onClick={() => setMenuOpen(false)} className="flex flex-row text-navbar-link hover:text-navbar-link-hover  transition-colors">Reklamasjon</Link>
-                        <Link to="/contact" onClick={() => setMenuOpen(false)} className="flex flex-row text-navbar-link hover:text-navbar-link-hover  transition-colors">Kontakt Oss</Link>
+                        <NavLink 
+                            to="/" 
+                            onClick={() => setMenuOpen(false)} 
+                            className={({ isActive }) =>
+                                `flex flex-row text-navbar-link hover:text-navbar-link-hover transition-colors
+                                ${isActive ? 'font-bold text-navbar-link-active' : ''}` // Ingen understrek her for å unngå layoutproblemer, men fet og farge
+                            }
+                        >
+                            Hjem
+                        </NavLink>
+
+                        <NavLink 
+                            to="/about" 
+                            onClick={() => setMenuOpen(false)} 
+                            className={({ isActive }) =>
+                                `flex flex-row text-navbar-link hover:text-navbar-link-hover transition-colors
+                                ${isActive ? 'font-bold text-navbar-link-active' : ''}`
+                            }
+                        >
+                            Om Oss
+                        </NavLink>
+
+                        <NavLink 
+                            to="/sales-process" 
+                            onClick={() => setMenuOpen(false)} 
+                            className={({ isActive }) =>
+                                `flex flex-row text-navbar-link hover:text-navbar-link-hover transition-colors
+                                ${isActive ? 'font-bold text-navbar-link-active' : ''}`
+                            }
+                        >
+                            Salgsprosessen
+                        </NavLink>
+
+                        <NavLink 
+                            to="/complaints" 
+                            onClick={() => setMenuOpen(false)} 
+                            className={({ isActive }) =>
+                                `flex flex-row text-navbar-link hover:text-navbar-link-hover transition-colors
+                                ${isActive ? 'font-bold text-navbar-link-active' : ''}`
+                            }
+                        >
+                            Reklamasjon
+                        </NavLink>
+                        
+                        <NavLink 
+                            to="/contact" 
+                            onClick={() => setMenuOpen(false)} 
+                            className={({ isActive }) =>
+                                `flex flex-row text-navbar-link hover:text-navbar-link-hover transition-colors
+                                ${isActive ? 'font-bold text-navbar-link-active' : ''}`
+                            }
+                        >
+                            Kontakt Oss
+                        </NavLink>
                     </div>
                 )}
             </nav>
