@@ -91,7 +91,7 @@ const ResetPasword = () => {
 
                     <button
                         type="submit"
-                        className="w-full bg-[#047464] text-white py-2 rounded hover:bg-[#065f54] transition-colors"
+                        className="w-full bg-primary text-white py-2 rounded hover:bg-primary-dark transition-colors"
                     >
                         Lagre passord
                     </button>

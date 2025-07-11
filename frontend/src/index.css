@@ -1,20 +1,41 @@
+/* Font-import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap');
 
+/* Egendefinerte varianter og CSS-variabler */
 @import "tw-animate-css";
-
 @custom-variant dark (&:is(.dark *));
 
-/* TAILWIND */
+/* Importert TAILWIND CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Global CSS */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body); /* Inter for brødtekst og standard UI-elementer */
+}
 
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  /* overflow-x: hidden; */
+  /* font-family: Calibri, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; */
+}
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Egendefinerte fonter */
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
+
   line-height: 1.5;
   font-weight: 400;
 
@@ -69,30 +90,23 @@ a:hover {
   color: #535bf2;
 }
 
+
 html, body, #root {
   margin: 0  !important;
   padding: 0 !important;
   height: 100%;
   overflow: hidden;
   font-family: Calibri, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
 
-#root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-h1, h2 {
-  font-family: 'Raleway', sans-serif;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
 
 }
 
+h1 {font-size: 3.2em;}
+
+/* Buttons */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -112,6 +126,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }*/
 
+/* Media queries for dark/light mode */
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -125,6 +140,14 @@ button:focus-visible {
   }
 }
 
+/* Tailwind layers */
+@layer base {
+  body {
+    @apply bg-white text-black;
+  }
+}
+
+/* Themes */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -195,10 +218,4 @@ button:focus-visible {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-}
-
-@layer base {
-  body {
-    @apply bg-white text-black;
-  }
 }

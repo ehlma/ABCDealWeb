@@ -4,6 +4,7 @@ import { CodeSquare } from "lucide-react";
 import { useAsyncError } from "react-router-dom";
 
 const SalesProcessPage = () => {
+
     const [activeIndex, setActiveIndex] = useState(0);
     const sectionRefs = useRef([]);
 
@@ -30,6 +31,10 @@ const SalesProcessPage = () => {
                 if (section) observer.unobserve(section);
             });
         };
+
+    return (
+        <div className="p-8">
+            <h1 className="text-3xl font-bold mb-4 text-primary">Vår Salgprosess</h1>
 
     }, []);
 

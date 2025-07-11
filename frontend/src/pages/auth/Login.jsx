@@ -59,11 +59,11 @@ const Login = () => {
                         required
                         className="w-full border border-gray-300 rounded px-4 py-2"
                     /> <br/>
-                    <button type="submit" className="w-full bg-[#047464] text-white py-2 rounded hover:bg-[#065f54] transition-colors">Logg inn</button>
+                    <button type="submit" className="w-full bg-primary text-white py-2 rounded hover:bg-primary-dark transition-colors">Logg inn</button>
                     <div className="text-sm mt-2">
                         <button type="button" 
                             onClick={() => setShowReset(!showReset)}
-                            className="text-[#047464] hover:underline hover:text-red-400 transition-all duration-200">
+                            className="text-primary hover:underline hover:text-red-400 transition-all duration-200">
                             Glemt passord ? 
                         </button>
                     </div>
@@ -91,7 +91,7 @@ const Login = () => {
                                         setResetMsg("E-post ikke funnet");
                                 }
                             }}
-                            className="w-full bg-[#047464] text-white py-2 rounded hover:bg-[#065f54] transition-colors"
+                            className="w-full bg-primary text-white py-2 rounded hover:bg-primary-dark transition-colors"
                         >
                             Send nytt passord 
                         </button>
