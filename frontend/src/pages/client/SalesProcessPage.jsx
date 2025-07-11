@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import ScrollIndicator from "./ScrollIndicator";
-import { motion } from "framer-motion"; // ✅ Nytt: framer-motion
+import { motion, useInView } from "framer-motion"; // framer-motion
 
 const steps = [
   "Intro",
@@ -85,61 +85,73 @@ const contents = [
 ];
 
 const SalesProcessPage = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const sectionRefs = useRef([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = sectionRefs.current.indexOf(entry.target);
-            if (index !== -1) {
-              setActiveIndex(index);
+    const [activeIndex, setActiveIndex] = useState(0);
+    const sectionRefs = useRef([]);
+  
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const index = sectionRefs.current.indexOf(entry.target);
+              if (index !== -1) {
+                setActiveIndex(index);
+              }
             }
-          }
-        });
-      },
-      { threshold: 0.6 }
-    );
-
-    sectionRefs.current.forEach((section) => {
-      if (section) observer.observe(section);
-    });
-
-    return () => {
+          });
+        },
+        { threshold: 0.6 }
+      );
+  
       sectionRefs.current.forEach((section) => {
-        if (section) observer.unobserve(section);
+        if (section) observer.observe(section);
       });
-    };
-  }, []);
+  
+      return () => {
+        sectionRefs.current.forEach((section) => {
+          if (section) observer.unobserve(section);
+        });
+      };
+    }, []);
+  
+    return (
+      <>
+        {/* Bakgrunn */}
+        <div className="fixed inset-0 bg-white" />
+  
+        {/* Scrollindikator */}
+        <ScrollIndicator activeIndex={activeIndex} sectionRefs={sectionRefs} steps={steps} />
+  
+        {/* Scroll-container */}
+        <div className="fixed inset-0 z-10 snap-y snap-mandatory overflow-y-scroll hide-scrollbar scroll-smooth">
+        {steps.map((label, index) => {
+            const ref = useRef(null); // 💡 Oppretter ref for denne seksjonen
+            const isInView = useInView(ref, { amount: 0.3 }); // 💡 Bruker hook
 
-  return (
-    <>
-      <ScrollIndicator activeIndex={activeIndex} sectionRefs={sectionRefs} steps={steps} />
-      <div className="fixed inset-0 z-10 snap-y snap-mandatory overflow-y-scroll hide-scrollbar scroll-smooth">
-        {steps.map((label, index) => (
-          <section
-            key={index}
-            ref={(el) => (sectionRefs.current[index] = el)}
-            className={`snap-center h-screen flex items-center justify-center ${
-              index % 2 === 0 ? "bg-white" : "bg-white"
-            } px-4`}
-          >
-            <motion.div
-              className="max-w-3xl text-center sm:text-left pr-12 sm:pr-24"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true, amount: 0.6 }}
-            >
-              {contents[index]}
-            </motion.div>
-          </section>
-        ))}
-      </div>
-    </>
-  );
-};
-
-export default SalesProcessPage;
+            return (
+                <motion.section
+                key={index}
+                ref={(el) => {
+                    sectionRefs.current[index] = el; // for ScrollIndicator
+                    ref.current = el; // for useInView
+                }}
+                className="snap-center h-screen flex items-center justify-center px-4"
+                animate={{
+                    opacity: isInView ? 1 : 0.2,
+                    filter: isInView ? "blur(0px)" : "blur(10px)",
+                    scale: isInView ? 1 : 0.96
+                }}
+                transition={{ duration: 0.5 }}
+                >
+                <div className="max-w-3xl text-center sm:text-left pr-12 sm:pr-24">
+                    {contents[index]}
+                </div>
+                </motion.section>
+            );
+        })}
+        </div>
+      </>
+    );
+  };
+  
+  export default SalesProcessPage;
