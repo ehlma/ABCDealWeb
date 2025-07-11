@@ -20,10 +20,15 @@ This project utilizes a set of semantically named colors defined in "tailwind.co
 
 | Hex Code | Semantic CSS Variable Name | Tailwind CSS Class Name | Usage (Example) |
 | :------- | :------------------------- | :---------------------- | :-------------- |
-| `#047464`| `--color-primary`          | `primary`               | Primary brand color, important buttons, headings |
+| `#047464`| `--color-primary`          | `primary`               | Primary brand color, important buttons, headings, and active/hover states for navbar links |
 | `#d1fae5`| `--color-primary-light`    | `primary-light`         | Lighter accent/hover for primary |
 | `#065f54`| `--color-primary-dark`     | `primary-dark`          | Darker accent/hover for primary |
-| `#34495e`| `--color-ui-background`    | `ui-background`         | General UI background (e.g., navigation bars) |
+| `#34495e`| `--color-ui-background`    | `ui-background`         | General UI background (e.g., navigation bars, modal backgrounds) |
 | `#2c3e50`| `--color-footer-background`| `footer-background`     | Footer background |
+| `#F8F8F8`| `--color-navbar-bg`        | `navbar-bg`             | Background color for the main navigation bar |
+| `#333333`| `--color-navbar-link`      | `navbar-link`           | Default text color for navigation links |
+| `#047464`| `--color-navbar-link-hover`| `navbar-link-hover`     | Text color for navigation links on hover |
+| `#047464`| `--color-navbar-link-active`| `navbar-link-active`   | Text color for the currently active navigation link |
+| `#333333`| `--color-navbar-icon`      | `navbar-icon`           | Color for navigation icons (e.g., hamburger menu icon) |
 
 *Note: Standard Tailwind CSS colors (e.g. "gray-300", "text-white") are used directly without a custom variable unless specific override is required.*
