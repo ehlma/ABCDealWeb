@@ -1,18 +1,6 @@
 import React from "react";
 
-const steps = [
-  "Intro",
-  "Start",
-  "Vurdering",
-  "Visning",
-  "Oppgjør",
-  "Garanti",
-  "Bileier",
-  "Rådgivning",
-  "Vurdering"
-];
-
-const ScrollIndicator = ({ activeIndex, sectionRefs }) => {
+const ScrollIndicator = ({ activeIndex, sectionRefs, steps }) => {
   const handleClick = (index) => {
     const section = sectionRefs.current[index];
     if (section) {
