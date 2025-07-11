@@ -95,7 +95,7 @@ html, body, #root {
   margin: 0  !important;
   padding: 0 !important;
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
   font-family: Calibri, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
