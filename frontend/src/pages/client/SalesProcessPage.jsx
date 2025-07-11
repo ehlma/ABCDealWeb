@@ -37,7 +37,7 @@ const SalesProcessPage = () => {
     
     return (
         <>
-            <ScrollIndicator activeIndex={activeIndex} />
+            <ScrollIndicator activeIndex={activeIndex} sectionRefs={sectionRefs} />
             <div className="snap-y snap-mandatory overflow-y-auto hide-scrollbar scroll-smooth h-screen">
                 <section
                     ref = {(el) => (sectionRefs.current[0] = el)}
@@ -45,7 +45,7 @@ const SalesProcessPage = () => {
                     data-aos="fade-up"
                     data-aos-delay="0"
                 >
-                    <div className="max-w-3xl text-center">
+                    <div className="max-w-3xl text-center sm:text-left pr-20 sm:pr-24">
                         <h1 className="text-3xl font-bold mb-4 text-[#047464]">Vår Salgprosess</h1>
                         <p className="text-lg text-gray-800">
                             Kjernen i vårt konsept oppsummeres i slagordet « <strong>sammen på rett vei</strong> »
@@ -59,7 +59,7 @@ const SalesProcessPage = () => {
                     data-aos="fade-up" 
                     data-aos-delay="100"   
                 >
-                    <div className="max-w-3xl text-center" >
+                    <div className="max-w-3xl text-center pr-12 sm:pr-24" >
                         <h2 className="text-2xl font-semibold text-[#047464] mb-4">Slik starter det</h2>
                         <p className="text-lg text-gray-800">
                             Når du vurderer å selge bobilen din, starter vi prosessen sammen – alltid på dine premisser. 
@@ -74,7 +74,7 @@ const SalesProcessPage = () => {
                     data-aos="fade-up"
                     data-aos-delay="200"
                 >
-                    <div className="max-w-3xl text-center">
+                    <div className="max-w-3xl text-center pr-12 sm:pr-24">
                         <h2 className="text-2xl font-semibold text-[#047464] mb-4">Vurdering og annonsering</h2>
                         <p className="text-lg text-gray-800">
                             Etter at vi har mottatt informasjon om bilen, gjør vi en vurdering og gir deg et tilbud 
@@ -90,7 +90,7 @@ const SalesProcessPage = () => {
                     data-aos="fade-up" 
                     data-aos-delay="300"   
                 >
-                    <div className="max-w-3xl text-center">
+                    <div className="max-w-3xl text-center pr-12 sm:pr-24">
                         <h2 className="text-2xl font-semibold text-[#047464] mb-4">Kontakt og visning</h2>
                         <p className="text-lg text-gray-800">
                             Når interessenter melder seg, setter vi dem i kontakt med deg som eier. 
@@ -105,7 +105,7 @@ const SalesProcessPage = () => {
                     data-aos="fade-up" 
                     data-aos-delay="400"   
                 >
-                    <div className="max-w-3xl text-center">
+                    <div className="max-w-3xl text-center pr-12 sm:pr-24">
                         <h2 className="text-2xl font-semibold text-[#047464] mb-4">Trygt salg og oppgjør</h2>
                         <p className="text-lg text-gray-800">
                             Når kjøper og selger er enige, håndterer vi alt det formelle. 
@@ -120,7 +120,7 @@ const SalesProcessPage = () => {
                     data-aos="fade-up" 
                     data-aos-delay="500"   
                 >
-                    <div className="max-w-3xl text-center">
+                    <div className="max-w-3xl text-center pr-12 sm:pr-24">
                         <h2 className="text-2xl font-semibold text-[#047464] mb-4">Garanti og trygghet</h2>
                         <p className="text-lg text-gray-800">
                             Vi tilbyr garanti til kjøperen, og kjøpet annonseres ut fra oss som forhandler. 
@@ -135,7 +135,7 @@ const SalesProcessPage = () => {
                     data-aos="fade-up" 
                     data-aos-delay="600"  
                 >
-                    <div className="max-w-3xl text-center">
+                    <div className="max-w-3xl text-center pr-12 sm:pr-24">
                         <h2 className="text-2xl font-semibold text-[#047464] mb-4">Bileiers rolle</h2>
                         <p className="text-lg text-gray-800 mb-4">
                             Bileier bidrar med bilder og informasjon til annonsen. Ved behov sørger bileier for 
@@ -153,7 +153,7 @@ const SalesProcessPage = () => {
                     data-aos="fade-up" 
                     data-aos-delay="700"   
                 >
-                    <div className="max-w-3xl text-center">
+                    <div className="max-w-3xl text-center pr-12 sm:pr-24">
                         <h2 className="text-2xl font-semibold text-[#047464] mb-4">Rådgivning ved bilkjøp</h2>
                         <p className="text-lg text-gray-800">
                             De fleste handler skjer med biler i vår portefølje, men vi hjelper deg også gjerne
@@ -168,7 +168,7 @@ const SalesProcessPage = () => {
                     data-aos="fade-up"
                     data-aos-delay="800"    
                 >
-                    <div className="max-w-3xl text-center">
+                    <div className="max-w-3xl text-center pr-12 sm:pr-24">
                         <h2 className="text-2xl font-semibold text-[#047464] mb-4">Ønsker du en vurdering?</h2>
                         <p className="text-lg text-gray-800 mb-4">
                             Har du en bil du ønsker vår uforpliktende vurdering av? Send en e-post til <a href="mailto:peb@abcdeal.no" className="text-blue-600 underline">peb@abcdeal.no</a> med informasjon om:
