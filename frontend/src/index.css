@@ -220,3 +220,15 @@ button:focus-visible {
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+
+/* 
+Scrollbar
+bruk klassenavn for å skjule scrollbaren i nettleser 
+*/
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
