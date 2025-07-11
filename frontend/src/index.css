@@ -97,6 +97,7 @@ html, body, #root {
   height: 100%;
   overflow: hidden;
   font-family: Calibri, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
