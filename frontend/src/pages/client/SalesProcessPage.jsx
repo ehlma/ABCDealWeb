@@ -38,7 +38,7 @@ const SalesProcessPage = () => {
     return (
         <>
             <ScrollIndicator activeIndex={activeIndex} />
-            <div className="snap-y snap-mandatory h-screen overflow-y-scroll scroll-smooth">
+            <div className="snap-y snap-mandatory overflow-y-scroll scroll-smooth" style={{ height: '100vh' }}>
                 <section
                     ref = {(el) => (sectionRefs.current[0] = el)}
                     className="snap-center h-screen flex items-center justify-center bg-white px-4"
