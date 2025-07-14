@@ -14,7 +14,7 @@ const steps = [
   "Ønsker du en vurdering?"
 ];
 
-const contents = [
+const contents = [ // content of each section 
   <>
     <h1 className="text-3xl font-bold mb-4 text-[#047464]">Vår Salgprosess</h1>
     <p className="text-lg text-gray-800">
