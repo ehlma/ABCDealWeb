@@ -22,7 +22,7 @@ const HomePage = () => {
 
     return (
     <div className="w-full overflow-x-hidden">
-        {/* HERO */}
+        {/* HERO. Top of the site */}
         <section
             className="relative h-[85vh] w-screen bg-cover bg-center bg-no-repeat flex items-center justify-center text-white text-center"
             style={{ backgroundImage: `url(${homePhoto})` }}
