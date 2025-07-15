@@ -19,68 +19,39 @@ const ClientLayout = () => {
 
                     {/* Desktop meny */}
                     <ul className="hidden sm:flex flex-grow justify-center gap-6 font-medium">
-                        <li>
-                            <NavLink 
-                                to="/"
-                                className={({isActive}) => 
-                                `text-navbar-link hover:text-navbar-link-hover transition-colors
-                                ${isActive ? `font-bold border-b-2 border-navbar-link-active`: ""}`
-                                }
+                        {[
+                        { to: "/", label: "Hjem" },
+                        { to: "/about", label: "Om Oss" },
+                        { to: "/sales-process", label: "Salgsprosessen" },
+                        { to: "/complaints", label: "Reklamasjon" },
+                        { to: "/contact", label: "Kontakt Oss" }
+                        ].map((link) => (
+                        <li key={link.to}>
+                            <NavLink
+                            to={link.to}
+                            className={({ isActive }) =>
+                                `relative group px-4 py-2 rounded-full overflow-hidden transition duration-300 font-medium`
+                            }
                             >
-                                Hjem
-                            </NavLink>
-                        
-                        </li>
-
-                        <li>
-                            <NavLink 
-                                to="/about"
-                                className={({ isActive }) =>
-                                    `text-navbar-link hover:text-navbar-link-hover transition-colors
-                                    ${isActive ? 'font-bold border-b-2 border-navbar-link-active' : ''}`
-                                }
+                            <span
+                                className={`
+                                absolute inset-0 rounded-full z-0 transition-all duration-300
+                                ${location.pathname === link.to
+                                    ? "bg-[#047464] scale-100 opacity-100"
+                                    : "scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 bg-gray-200"}
+                                `}
+                            />
+                            <span
+                                className={`
+                                relative z-10 transition-colors duration-300
+                                ${location.pathname === link.to ? "text-white" : "text-navbar-link group-hover:text-navbar-link-hover"}
+                                `}
                             >
-                                Om Oss
-                            </NavLink>
-                        
-                        </li>
-
-                        <li>
-                            <NavLink 
-                                to="/sales-process"
-                                className={({ isActive }) =>
-                                    `text-navbar-link hover:text-navbar-link-hover transition-colors
-                                    ${isActive ? 'font-bold border-b-2 border-navbar-link-active' : ''}`
-                                }
-                            >
-                                Salgsprosessen
+                                {link.label}
+                            </span>
                             </NavLink>
                         </li>
-
-                        <li>
-                            <NavLink 
-                                to="/complaints"
-                                className={({ isActive }) =>
-                                    `text-navbar-link hover:text-navbar-link-hover transition-colors
-                                    ${isActive ? 'font-bold border-b-2 border-navbar-link-active' : ''}`
-                                }
-                            >
-                                Reklamasjon
-                        </NavLink>
-                        </li>
-
-                        <li>
-                            <NavLink 
-                                to="/contact"
-                                className={({ isActive }) =>
-                                    `text-navbar-link hover:text-navbar-link-hover transition-colors
-                                    ${isActive ? 'font-bold border-b-2 border-navbar-link-active' : ''}`
-                                }
-                            >
-                                Kontakt Oss
-                        </NavLink>
-                        </li>
-
+                        ))}
                     </ul>
 
                     {/* Hamburder meny */}
@@ -149,11 +120,9 @@ const ClientLayout = () => {
                     </div>
                 )}
             </nav>
-            <div className="pointer-events-none w-full fixed top-[60px] left-0 w-full h-20 z-10 bg-gradient-to-b from-white/90 to-transparent"></div>
-
 
             {/* Main content */}
-            <main className="flex-grow pt-[96px] bg-white w-full px-4 sm:px-6 lg:px-8">
+            <main className="flex-grow pt-0 bg-white w-full p-0 m-0">
                 {/* <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl"> */}
                     <Outlet />
                 {/* </div> */}

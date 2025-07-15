@@ -24,7 +24,7 @@ const HomePage = () => {
     <div className="w-full overflow-x-hidden">
         {/* HERO. Top of the site */}
         <section
-            className="relative h-[85vh] w-screen bg-cover bg-center bg-no-repeat flex items-center justify-center text-white text-center"
+            className="relative h-screen w-screen bg-cover bg-center bg-no-repeat flex items-center justify-center text-white text-center"
             style={{ backgroundImage: `url(${homePhoto})` }}
         >
             <div className="absolute inset-0 bg-black/40" /> {/* Overlegg */}
@@ -37,10 +37,14 @@ const HomePage = () => {
                         href="https://www.finn.no/mobility/search/car/mobilehome?orgId=8250738"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-8 inline-block bg-white text-[#047464] font-semibold px-6 py-3 rounded shadow hover:bg-gray-100 transition"
-                        >
+                        className="mt-8 inline-block font-medium px-6 py-3 text-[#047464] visited:text-[#047464] no-underline 
+                                    focus:outline-none focus:ring-0 bg-white rounded-md shadow 
+                                    hover:rounded-full hover:bg-gray-100 hover:text-[#035b50]
+                                    transition-all duration-1000 ease-[cubic-bezier(0.7, 0, 0.3, 1)]"
+                    >
                         Til salgs
                     </a>
+
                 </div>
             </section>
         
