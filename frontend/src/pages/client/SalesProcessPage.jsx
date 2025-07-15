@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react"; // useref = reference section. usestate and useeffect = wich section is active
 import ScrollIndicator from "./ScrollIndicator";
-import { motion, useInView } from "framer-motion"; // framer-motion
+import { motion, useInView } from "framer-motion"; // framer-motion. motion for animation for components. 
+// useinview checks if an element is in viewport
 
-const steps = [
+const steps = [ // array with name of sections
   "Intro",
   "Start",
   "Vurdering og annonsering",
@@ -14,7 +15,11 @@ const steps = [
   "Ønsker du en vurdering?"
 ];
 
+<<<<<<< Updated upstream
 const contents = [ // content of each section 
+=======
+const contents = [ // array with content for each section 
+>>>>>>> Stashed changes
   <>
     <h1 className="text-3xl font-bold mb-4 text-[#047464]">Vår Salgprosess</h1>
     <p className="text-lg text-gray-800">
@@ -119,14 +124,14 @@ const SalesProcessPage = () => {
         {/* Bakgrunn */}
         <div className="fixed inset-0 bg-white" />
   
-        {/* Scrollindikator */}
+        {/* Scrollindicator */}
         <ScrollIndicator activeIndex={activeIndex} sectionRefs={sectionRefs} steps={steps} />
   
         {/* Scroll-container */}
         <div className="fixed inset-0 z-10 snap-y snap-mandatory overflow-y-scroll hide-scrollbar scroll-smooth">
         {steps.map((label, index) => {
-            const ref = useRef(null); // 💡 Oppretter ref for denne seksjonen
-            const isInView = useInView(ref, { amount: 0.3 }); // 💡 Bruker hook
+            const ref = useRef(null); // Oppretter ref for denne seksjonen
+            const isInView = useInView(ref, { amount: 0.3 }); // Bruker hook
 
             return (
                 <motion.section
