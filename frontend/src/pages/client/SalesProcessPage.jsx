@@ -15,11 +15,8 @@ const steps = [ // array with name of sections
   "Ønsker du en vurdering?"
 ];
 
-<<<<<<< Updated upstream
+
 const contents = [ // content of each section 
-=======
-const contents = [ // array with content for each section 
->>>>>>> Stashed changes
   <>
     <h1 className="text-3xl font-bold mb-4 text-[#047464]">Vår Salgprosess</h1>
     <p className="text-lg text-gray-800">
