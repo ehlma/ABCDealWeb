@@ -52,7 +52,7 @@ const HomePage = () => {
             <section className="py-20 px-4 bg-white text-center">
                 <h2 className="text-3xl font-bold mb-10 text-[#047464]">Hva kan vi hjelpe deg med?</h2>
                 <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
-                    <Link to="/selge" className="bg-gray-50 rounded-lg p-6 shadow hover:shadow-md transition">
+                    <Link to="/sales-process" className="bg-gray-50 rounded-lg p-6 shadow hover:shadow-md transition">
                         <h3 className="text-xl font-semibold mb-2">Selge bobil?</h3>
                         <p className="text-gray-700">Trygt, effektivt og uten stress – vi hjelper deg hele veien.</p>
                     </Link>
@@ -60,7 +60,7 @@ const HomePage = () => {
                         <h3 className="text-xl font-semibold mb-2">Kjøpe bobil?</h3>
                         <p className="text-gray-700">Se våre bobiler og få råd om hvilket kjøp som passer deg.</p>
                     </Link>
-                    <Link to="/kontakt" className="bg-gray-50 rounded-lg p-6 shadow hover:shadow-md transition">
+                    <Link to="/contact" className="bg-gray-50 rounded-lg p-6 shadow hover:shadow-md transition">
                         <h3 className="text-xl font-semibold mb-2">Service eller råd?</h3>
                         <p className="text-gray-700">Kontakt oss for vurdering, rådgivning eller garanti.</p>
                     </Link>
