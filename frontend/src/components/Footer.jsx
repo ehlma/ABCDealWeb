@@ -7,7 +7,6 @@ const Footer = () => {
             <p>&copy; {new Date().getFullYear()} ABC Deal. Alle rettigheter reservert.</p>
             <p><Link to="/contact" className="text-gray-800 hover:underline">Kontakt oss</Link></p>
             <p><Link to="/login" className="text-gray-800 hover:underline">Admin login</Link></p>
-
         </footer>
     )
 }

@@ -30,7 +30,7 @@ const ArticlePage = () => {
     const prevImage = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
 
     return (
-        <div className="max-w-3xl mx-auto p-6">
+        <div className="max-w-3xl mx-auto p-6 mt-16">
             <Link to="/" className="text-blue-500 hover:underline mb-4 inline-block">
                 ← Tilbake
             </Link>
