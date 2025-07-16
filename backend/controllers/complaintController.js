@@ -9,10 +9,11 @@ export const submitComplaint = async (req, res) => {
             phoneNum,
             regNum,
             description,
-            image,
             visibleDamage,
-            documentation
         } = req.body;
+
+        const imageFilename = req.files.image ? req.files.image[0].filename : undefined;
+        const documentationFilenames = req.files.documentation ? req.files.documentation.map(file => file.filename) : [];
 
         const complaint = new ComplaintForm({
             name,
@@ -20,9 +21,9 @@ export const submitComplaint = async (req, res) => {
             phoneNum,
             regNum,
             description,
-            image,
+            image: imageFilename,
             visibleDamage,
-            documentation
+            documentation: documentationFilenames
         });
 
         const savedComplaint = await complaint.save();

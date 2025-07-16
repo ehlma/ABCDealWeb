@@ -5,7 +5,6 @@ import { authorizeRoles } from '../../middleware/roleMiddleware.js';
 
 const router = express.Router();
 
-router.post('/contact', submitContact);
-router.get('/contact', verifyToken, authorizeRoles("admin"), getAllContacts);
+router.get('/', verifyToken, authorizeRoles("admin"), getAllContacts);
 
 export default router;

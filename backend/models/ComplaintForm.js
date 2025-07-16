@@ -6,7 +6,7 @@ const complaintFormSchema = new mongoose.Schema({
     phoneNum: {type: String, required: true},
     regNum: {type: String, required: true},
     description: {type: String, required: true},
-    image: {type: String, required: true}, // bilde av skaden
+    image: {type: String, required: false}, // bilde av skaden
     visibleDamage: {type: Boolean, default: false}, // valgfri
     documentation: [{type: String}], // array med flere bilder eller lenker
     createdAt: {type: Date, default: Date.now},
