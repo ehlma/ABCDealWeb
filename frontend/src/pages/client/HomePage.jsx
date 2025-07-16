@@ -53,7 +53,7 @@ const HomePage = () => {
                 <h2 className="text-3xl font-bold mb-10 text-[#047464]">Hvordan kan vi hjelpe deg?</h2>
                 <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
                     <Link to="/sales-process" className="bg-gray-50 rounded-lg p-6 shadow hover:shadow-md transition">
-                        <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Selge bobil?</h3>
+                        <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Selge bil eller bobil?</h3>
                         <p className="text-gray-700">Trygt, effektivt og uten stress – vi hjelper deg hele veien.</p>
                     </Link>
                     <a
@@ -65,20 +65,25 @@ const HomePage = () => {
                         <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Kjøpe bobil?</h3>
                         <p className="text-gray-700">Se våre bobiler og få råd om hvilket kjøp som passer deg.</p>
                     </a>
+                    <a
+                        href="https://www.finn.no/mobility/search/car?orgId=8250738"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-gray-50 rounded-lg p-6 shadow hover:shadow-md transition"
+                    >
+                        <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Kjøpe bil?</h3>
+                        <p className="text-gray-700">Se våre bobiler og få råd om hvilket kjøp som passer deg.</p>
+                    </a>
+                </div>
+                <div className="grid gap-6 md:grid-cols-2 m-6 max-w-6xl mx-auto">
+                    <div className=" hidden mb:block"></div>
                     <Link to="/contact" className="bg-gray-50 rounded-lg p-6 shadow hover:shadow-md transition">
                         <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Service eller råd?</h3>
                         <p className="text-gray-700">Kontakt oss for vurdering, rådgivning eller garanti.</p>
                     </Link>
-                </div>
-                <div className="grid gap-6 md:grid-cols-2 m-6 max-w-6xl mx-auto">
-                    <div className=" hidden mb:block"></div>
                     <Link to="/complaints" className="bg-gray-50 rounded-lg p-6 shadow hover:shadow-md transistion">
                         <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Reklamasjoner</h3>
                         <p className="text-gray-700">Har noe gått galt? Vi tar reklamasjoner på alvor. Trykk her for reklamasjonsskjema. </p>
-                    </Link>
-                    <Link to="/about" className="bg-gray-50 rounded-lg p-6 shadow hover:shadow-md transistion">
-                        <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Hvem er vi?</h3>
-                        <p className="text-gray-700">Vil du vite mer om hvem vi er og hva vi driver med. Trykk her for å lese om oss. </p>
                     </Link>
 
                 </div>
