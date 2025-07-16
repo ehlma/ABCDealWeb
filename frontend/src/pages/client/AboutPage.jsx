@@ -7,7 +7,7 @@ import perErikImage from "../../assets/pererik.jpeg";
 
 const AboutPage = () => {
     return (
-        <div className="max-w-6xl max-auto p-12">
+        <div className="max-w-6xl max-auto p-12 mt-16">
             <h1 className="text-3xl font-bold mb-8 text-primary">Om Oss</h1>
             <div className="flex flex-col md:flex-row gap-8 items-start">
                 <div className="md:w-1/2 space-y-4 text-gray-800">
@@ -139,12 +139,7 @@ const AboutPage = () => {
                     </div>
 
                 </div>
-
             </div>
-
-
-
-            
         </div>
     )
 }
