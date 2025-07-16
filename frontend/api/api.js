@@ -28,9 +28,10 @@ export const API_ENDPOINTS = {
     users: '/settings/users',
 
     contactSubmit: '/contact',
-    adminContacts: '/admin/contacts/contact',
-    adminComplaints: '/admin/complaints/complaint',
-    adminArticles: 'admin/articles'
+    adminContacts: '/admin/contacts',
+    adminComplaints: '/admin/complaints',
+    complaintSubmit: '/complaints',
+    adminArticles: '/admin/articles'
 
 };
 

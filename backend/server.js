@@ -11,6 +11,7 @@ import complaintRoutes from './routes/admin/complaintRoutes.js';
 import contactRoutes from './routes/admin/contactRoutes.js';
 import articleRoutes from './routes/admin/articleRoutes.js';
 import publicContactRoutes from './routes/publicContactRoutes.js';
+import publicComplaintRoutes from './routes/publicComplaintRoutes.js';
 
 dotenv.config();
 
@@ -38,8 +39,9 @@ app.use('/api/admin/contacts', contactRoutes);
 app.use('/api/articles', articleRoutes);
 app.use('/api/settings', userRoutes);
 
-// Offentlig kontaktskjema rute (ingen autentisering nødvendig)
+// Offentlig kontaktskjema/reklamasjon rute (ingen autentisering nødvendig)
 app.use('/api/contact', publicContactRoutes);
+app.use('/api/complaints', publicComplaintRoutes);
 
 
 // test-route

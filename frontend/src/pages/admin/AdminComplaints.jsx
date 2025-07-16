@@ -11,7 +11,7 @@ const AdminComplaints = () => {
     // 1. funksjon for å hente oppdaterte reklamasjoner
     const fetchComplaints = async () => {
         try {
-            const res = await api.get(API_ENDPOINTS.complaints);
+            const res = await api.get(API_ENDPOINTS.adminComplaints);
             setComplaints(res.data);
         } catch (err) {
             setError("Kunne ikke hente reklamasjon. ")
@@ -35,9 +35,10 @@ const AdminComplaints = () => {
     );
 
     return (
-        <div className="max-w-2x1 mx-auto mt-6">
-            <h2 className="text-2x1 font-bold mb-4">Innsendte reklamasjoner</h2>
-            {error && <p className="text-red-500">{error}</p>}
+        <div className="max-w-2xl mx-auto mt-6">
+            <h2 className="text-2xl font-bold mb-4">Innsendte reklamasjoner</h2>
+            {error && <p className="text-red-500 mb-4">{error}</p>}
+            {complaints.length === 0 && !error && <p className="text-gray-600 text-center">Ingen meldinger funnet</p>}
             {sortedComplaints.map((c) => (
                 <AccordionItem
                     key={c._id}
@@ -54,6 +55,7 @@ const AdminComplaints = () => {
                         status: c.status || "new"
                     }}
                     onStatusChange={fetchComplaints} // 4. send prop
+                    endpoint={API_ENDPOINTS.adminComplaints} // 5. sender med endepunkt for patch-kall
                 />
             ))}
         </div>
