@@ -95,8 +95,6 @@ const AdminArticles = () => {
         <div className="max-w-2xl mx-auto mt-[32px] px-[16px]">
             <h2 className="text-2xl font-bold mb-[24px] text-center">Ny artikkel</h2>
             
-            {error && <p className="text-red-600 mb-[16px]">{error}</p>}
-            {success && <p className="text-green-600 mb-[16px]">{success}</p>}
 
             <form onSubmit={handleSubmit} className="space-y-[16px]">
                 <input
@@ -107,7 +105,7 @@ const AdminArticles = () => {
                     onChange={handleChange}
                     className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
                     required
-                />
+                    />
                 <input
                     type="file"
                     name="images"
@@ -116,21 +114,21 @@ const AdminArticles = () => {
                     onChange={(e) => 
                         setSelectedFiles((prev) => [...prev, ...Array.from(e.target.files)])
                     }
-
+                    
                     className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
                     required
-                />
+                    />
 
                 {selectedFiles.length > 0 && (
                     <div className="flex flex-wrap gap-4 mt-2">
                         {selectedFiles.map((file, idx) => (
                             <img
-                                key={idx}
-                                src={URL.createObjectURL(file)}
-                                alt={`Forhåndsvisning ${idx}`}
-                                className="w-auto h-[100px] mb-2"
+                            key={idx}
+                            src={URL.createObjectURL(file)}
+                            alt={`Forhåndsvisning ${idx}`}
+                            className="w-auto h-[100px] mb-2"
                             />
-                        ))}
+                            ))}
                     </div>
                 )}
 
@@ -141,7 +139,7 @@ const AdminArticles = () => {
                     onChange={handleChange}
                     className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
                     rows={3}
-                />
+                    />
                 <textarea
                     name="bodyText"
                     placeholder="Brødtekst*"
@@ -150,14 +148,16 @@ const AdminArticles = () => {
                     className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
                     rows={8}
                     required
-                />
+                    />
 
                 <button 
                     type="submit"
                     className="mt-[8px] bg-blue-100 font-medium py-[8px] px-[16px] rounded hover:bg-blue-200"
-                >
+                    >
                     Opprett artikkel
                 </button>
+                    {error && <p className="text-red-600 mb-[16px]">{error}</p>}
+                    {success && <p className="text-green-600 mb-[16px]">{success}</p>}
             </form>
 
             <div className="mt-[64px]">
