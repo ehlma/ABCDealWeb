@@ -7,6 +7,7 @@ const ArticlePage = () => {
     const [article, setArticle] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [error, setError] = useState("");
+    const images = article?.images || [];
 
     useEffect(() => {
         const fetchArticle = async () => {
@@ -21,11 +22,27 @@ const ArticlePage = () => {
         fetchArticle();
 
     }, [id]);
+    
+    // Useeffect for å bytte bilde med piltaster 
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if(images.length > 1 ) {
+                if(e.key === "ArrowRight") {
+                    setCurrentIndex((prev) => (prev + 1 ) % images.length);
+                } else if (e.key === "ArrowLeft") {
+                    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+
+                }
+            }
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+
+    }, [images.length]);
 
     if (error) return <p className="text-red-500">{error}</p>
     if (!article) return <p>Laster artikkel...</p>
 
-    const images = article.images || [];
     const nexImage = () => setCurrentIndex((prev) => (prev + 1) % images.length);
     const prevImage = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
 
