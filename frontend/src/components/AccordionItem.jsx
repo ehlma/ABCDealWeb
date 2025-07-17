@@ -4,7 +4,7 @@ import { Card, CardContent } from '../components/ui/card';
 import { format } from 'date-fns';
 import api, { API_ENDPOINTS } from "../../api/api";
 
-const AccordionItem = ({ item }) => {
+const AccordionItem = ({ item, onStatusChange, endpoint }) => {
     const [open, setOpen] = useState(false);
     const [status, setStatus] = useState(item.status || "new");
     const [message, setMessage] = useState(null);
@@ -26,14 +26,14 @@ const AccordionItem = ({ item }) => {
         setMessage(null);
 
         try {
-            await api.patch(`<span class="math-inline">\{endpoint\}/</span>{item._id}`, {status: newStatus});
+            await api.patch(`${endpoint}/${item._id}`, { status: newStatus });
 
-            setMessage({text: "Status oppdatert.", type: "success"});
+            setMessage({ text: "Status oppdatert.", type: "success" });
             if (onStatusChange) onStatusChange();
             setTimeout(() => setMessage(null), 3000);
         } catch (error) {
             console.error("Feil ved oppdatering av status: ", error);
-            setMessage({text: "Kunne ikke oppdatere status. Prøv igjen senere.", type: "error"});
+            setMessage({ text: "Kunne ikke oppdatere status. Prøv igjen senere.", type: "error" });
         }
     };
 
@@ -106,14 +106,16 @@ const AccordionItem = ({ item }) => {
                                 <ul className="list-disc list-inside ml-4">
                                     {item.docs.map((doc, i) => (
                                         <li key={i}>
-                                            <a
-                                                href={doc}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-blue-600 underline"
-                                            >
-                                                {doc.split('/').pop()}
-                                            </a>
+                                            {doc && (
+                                                <a
+                                                    href={doc}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-blue-600 underline"
+                                                >
+                                                    {doc.split('/').pop()}
+                                                </a>
+                                            )}
                                         </li>
                                     ))}
                                 </ul>
