@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useAsyncError, useParams } from "react-router-dom";
 import api from "../../../api/api";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 
 const ArticlePage = () => {
     const {id} = useParams();
@@ -47,41 +49,56 @@ const ArticlePage = () => {
     const prevImage = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
 
     return (
-        <div className="max-w-3xl mx-auto p-6 mt-16">
-            <Link to="/" className="text-blue-500 hover:underline mb-4 inline-block">
-                ← Tilbake
-            </Link>
-            <h1 className="text-3xl font-bold mb-2">{article.title}</h1>
-            <p className="text-sm text-gray-500 mb-4">
-                Publisert: {new Date(article.createdAt).toLocaleDateString()}
-            </p>
-            {images.length > 0 && (
-                <div className="relative mb-6 w-full max-w-[600px] mx-auto">
-                    <img
-                        src={images[currentIndex]}
-                        alt={`Bilde ${currentIndex + 1}`}
-                        className="max-h-[400px] w-full object-cover rounded"
-                    />
+        <div className="bg-[#F8F8F8] min-h-screen py-24 px-4">
+            <div className="max-w-3xl mx-auto bg-white shadow-md p-8 rounded">
 
-                    {images.length > 1 && (
-                        <>
+                <Link 
+                to="/" 
+                className="text-primary hover:underline text-sm mb-4 inline-block">
+                    ← Tilbake
+                </Link>
+                <h1 className="text-4xl font-bold mb-4 text-primary leading-tight">{article.title}</h1>
+                <p className="text-sm text-gray-500 mb-6">
+                    Publisert: {new Date(article.createdAt).toLocaleDateString()}
+                </p>
+                {images.length > 0 && (
+                    <div className="relative mb-6 w-full max-w-[600px] mx-auto">
+                    {/* Wrapper for bilde og piler */}
+                        <div className="relative flex justify-center items-center">
+                            <img
+                                src={images[currentIndex]}
+                                alt={`Bilde ${currentIndex + 1}`}
+                                className="max-h-[400px] w-full object-cover rounded"
+                            />
+                  
+                            {/* Venstre pil */}
                             <button
                                 onClick={prevImage}
-                                className="absolute top-1/2 -left-6 transform -translate-y-1/2 bg-white hover:bg-white/80 text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-xl ring-1 ring-gray-300"
+                                className="absolute left-[-58px] top-1/2 -translate-y-1/2 bg-transparent
+                                text-primary-dark hover:scale-125 transition-transform duration-300"
                             >
-                                ‹
+                                <ChevronLeft className="w-8 h-8" />
                             </button>
+                  
+                            {/* Høyre pil */}
                             <button
                                 onClick={nexImage}
-                                className="absolute top-1/2 -right-6 transform -translate-y-1/2 bg-white hover:bg-white/80 text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-xl ring-1 ring-gray-300"
+                                className="absolute right-[-58px] top-1/2 -translate-y-1/2 bg-transparent
+                                text-primary-dark hover:scale-125 transition-transform duration-300"
                             >
-                                ›
+                                <ChevronRight className="w-8 h-8" />
                             </button>
-                        </>
-                    )}
-                </div>
-            )}
-            <p className="text-lg whitespace-pre-line" >{article.bodyText}</p>
+                        </div>
+                  
+                        {/* Bilde-teller under bildet */}
+                        <p className="text-center text-sm text-gray-500 mt-2">
+                            {currentIndex + 1} / {images.length}
+                        </p>
+                  </div>
+                  
+                )}
+                <p className="text-left text-lg leading-relaxed text-[#333333] whitespace-pre-line" >{article.bodyText}</p>
+            </div>
         </div>
 
     );
