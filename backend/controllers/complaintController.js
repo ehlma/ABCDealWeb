@@ -3,6 +3,9 @@ import ComplaintForm from "../models/ComplaintForm.js";
 // POST /api/complaints
 export const submitComplaint = async (req, res) => {
     try {
+        console.log("--- REQ.BODY ---", req.body);
+        console.log("--- REQ.FILES ---", req.files);
+
         const {
             name,
             email,
@@ -12,8 +15,8 @@ export const submitComplaint = async (req, res) => {
             visibleDamage,
         } = req.body;
 
-        const imageFilename = req.files.image ? req.files.image[0].filename : undefined;
-        const documentationFilenames = req.files.documentation ? req.files.documentation.map(file => file.filename) : [];
+        const imageUrl = req.files.image ? req.files.image[0].path : undefined;
+        const documentationUrls = req.files.documentation ? req.files.documentation.map(file => file.path) : [];
 
         const complaint = new ComplaintForm({
             name,
@@ -21,9 +24,9 @@ export const submitComplaint = async (req, res) => {
             phoneNum,
             regNum,
             description,
-            image: imageFilename,
             visibleDamage,
-            documentation: documentationFilenames
+            image: imageUrl,
+            documentation: documentationUrls
         });
 
         const savedComplaint = await complaint.save();
