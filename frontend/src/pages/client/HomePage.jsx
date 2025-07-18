@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import api from "../../../api/api.js";
 import homePhoto from "../../assets/homePhoto.jpeg";
+import TipsCarousel from "../../components/TipsCarousel.jsx";
 
 
 const HomePage = () => {
@@ -115,6 +116,10 @@ const HomePage = () => {
                     </div>
                   ))}
                 </div>
+              </section>
+
+              <section>
+                <TipsCarousel/>
               </section>
             </div>
         );
