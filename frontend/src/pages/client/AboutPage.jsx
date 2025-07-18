@@ -7,10 +7,10 @@ import perErikImage from "../../assets/pererik.jpeg";
 
 const AboutPage = () => {
     return (
-        <div className="max-w-6xl max-auto p-12 mt-16">
-            <h1 className="text-3xl font-bold mb-8 text-primary">Om Oss</h1>
+        <div className=" max-auto p-12 mt-16">
             <div className="flex flex-col md:flex-row gap-8 items-start">
                 <div className="md:w-1/2 space-y-4 text-gray-800">
+                    <h1 className="text-3xl font-bold mb-8 text-primary text-">Om Oss</h1>
                     <p className="mb-4">
                         <strong>ABC Deal </strong> 
                         er et selskap med solide røtter og flere tiårs samlet erfaring innen salg, kundebehandling, teknisk support og logistikk. Gjennom vårt eierskap og kompetanse har vi opparbeidet en bred forståelse for både markedet og kundenes behov.
@@ -25,7 +25,7 @@ const AboutPage = () => {
                         Miljøet står naturlig nok sentralt i vårt arbeid. Vi etterstreber bærekraftige valg i alle ledd, blant annet ved at kjøretøyene vi formidler for våre kunder som regel står hos eier, og dermed unngår unødvendig transport. I tillegg tilbyr vi miljøvennlig utstyr som solcellepaneler og energieffektiv belysning.
                     </p>
                 </div>
-                <div className="md:w-1/2 flex justify-end self-center">
+                <div className="md:w-1/2 flex justify-center self-center">
                     <img 
                         src={logoImage} 
                         alt=""
