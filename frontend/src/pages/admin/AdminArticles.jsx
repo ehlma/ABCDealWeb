@@ -60,26 +60,40 @@ const AdminArticles = () => {
         await api.post("/articles", payload);
 
         setSuccess("Artikkelen ble opprettet!");
-        setTimeout(() => navigate("/admin/articles"), 1500);
+        
+        
+        setFormData({
+            title: "",
+            intro: "",
+            bodyText: "",
+            images: [],
+          });
+
+          setSelectedFiles([]);
+
+        setTimeout(() => navigate("/admin/articles"), 1000);
         } catch (err) {
             console.error("Feil:", err);
             setError("Noe gikk galt ved opprettelse.");
         }
+        
     };
 
-    useEffect(() => {
-        const fetchArticles = async () => {
-            try {
-                const res = await api.get("/articles");
-                setArticles(res.data);
-                console.log("Artikler hentet:", res.data);
-            } catch (err) {
-                console.error("Kunne ikke hente artikler", err)
-            }
-        };
+    const fetchArticles = async () => {
+        try {
+          const res = await api.get("/articles");
+          setArticles(res.data);
+          console.log("Artikler hentet:", res.data);
+        } catch (err) {
+          console.error("Kunne ikke hente artikler", err);
+        }
+      };
+      
+      useEffect(() => {
         fetchArticles();
+      }, [])
 
-    }, []);
+    
     
     const handleDelete = async (id) => {
         try {
