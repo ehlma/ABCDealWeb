@@ -78,7 +78,7 @@ const ComplaintsPage = () => {
     };
 
     return (
-        <div className="p-8 max-w-lg mx-auto bg-white rounded-lg shadow-md">
+        <div className="p-8 max-w-lg mx-auto bg-white rounded-lg shadow-md mt-24">
             <h1 className="text-3xl font-bold mb-4 text-primary text-center">Reklamasjonsskjema</h1>
 
             {/* TODO: Legg til skjema */}

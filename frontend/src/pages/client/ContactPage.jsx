@@ -56,7 +56,7 @@ const ContactPage = () => {
 
 
     return (
-        <div className="p-8 max-w-lg mx-auto bg-white rounded-lg shadow-md">
+        <div className="p-8 max-w-lg mx-auto bg-white rounded-lg shadow-md mt-24">
             <h1 className="text-3xl font-bold mb-4 text-primary text-center">Kontakt oss</h1>
             <p className="mb-4 text-center text-gray-700">Har du spørsmål, ris eller ros? Fyll ut skjemaet nedenfor!</p>
 
