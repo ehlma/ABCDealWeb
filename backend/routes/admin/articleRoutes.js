@@ -44,7 +44,7 @@ router.put(
     
           res.json(updated);
         } catch (err) {
-          console.error("PUT /:id error:", err); // 🔥 logg feilen
+          console.error("PUT /:id error:", err); // logg feilen
           res.status(500).json({ message: "Serverfeil", error: err.message });
         }
       }
