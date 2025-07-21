@@ -10,10 +10,10 @@ router.get('/', verifyToken, authorizeRoles("admin"), getAllComplaints);
 
 router.patch('/:id', verifyToken, authorizeRoles("admin"), async (req, res) => {
     try {
-        const {status} = req.body;
+        const {status, isArchived} = req.body;
         const updated = await complaintForm.findByIdAndUpdate(
             req.params.id,
-            {status: status},
+            {status: status, isArchived: isArchived},
             {new: true}
         );
 
