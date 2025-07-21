@@ -1,0 +1,77 @@
+import React, { useEffect, useState } from "react";
+import api from "../../api/api.js";
+import AccordionItem from "./AccordionItem";
+import { format } from "date-fns";
+import { useAuth } from "../contexts/AuthContext";
+
+const AdminDataList = ({
+    title,
+    fetchEndpoint,
+    accordionEndpoint,
+    itemFormatter,
+    initialStatus = "new",
+}) => {
+    const [items, setItems] = useState([]);
+    const [error, setError] = useState("");
+    const { isAuthenticated, user, loading } = useAuth();
+
+    // Hente data
+    const fetchData = async () => {
+        if (loading) return; // Vent til auth er lastet
+        if (!isAuthenticated || (user && user.role !== "admin")) {
+            setError("Du har ikke tilgang til denne siden.");
+            return;
+        }
+
+        try {
+            const res = await api.get(fetchEndpoint);
+            setItems(res.data);
+        } catch (err) {
+            console.error(`Feil ved henting av ${title.toLowerCase()}:`, err);
+            setError(`Kunne ikke hente ${title.toLowerCase()}.`);
+        }
+    };
+
+    // Hent data ved første lasting
+    useEffect(() => {
+        if (!loading) {
+            fetchData();
+        }
+    }, [fetchEndpoint, loading, isAuthenticated]);
+
+    // Sortering av elementer etter status-prioritet
+    const getPriority = (status) => {
+        if (status === "new") return 0;
+        if (status === "pending") return 1;
+        if (status === "resolved") return 2;
+        if (status === "archived") return 3;
+        return 100; // fallback for ukjent status
+    }
+
+    const sortedItems = [...items].sort(
+        (a, b) => getPriority(a.status) - getPriority(b.status)
+    );
+
+    return (
+        <div className="max-w-2xl mx-auto mt-8">
+            <h2 className="text-2xl font-bold mb-4 text-left">{title}</h2>
+            {error && <p className="text-red-500 mb-4">{error}</p>}
+            {items.length === 0 && !error && (
+                <p className="text-gray-600 text-center">Ingen {title.toLowerCase()} funnet.</p>
+            )}
+
+            <div className="grid grid-cols-1 gap-2">
+                {sortedItems.map((itemData) => (
+                    <AccordionItem
+                        key={itemData._id}
+                        item={itemFormatter(itemData, initialStatus)}
+                        onStatusChange={fetchData} // Callback for oppdatering
+                        endpoint={accordionEndpoint} // Endepunkt for patch-kall
+                    />
+                ))}
+            </div>
+        </div >
+    )
+}
+
+export default AdminDataList;
