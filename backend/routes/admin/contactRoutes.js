@@ -10,11 +10,11 @@ router.get('/', verifyToken, authorizeRoles("admin"), getAllContacts);
 
 router.patch('/:id', verifyToken, authorizeRoles("admin"), async (req, res) => {
     try {
-        const {status} = req.body;
+        const {status, isArchived} = req.body;
 
         const updated = await ContactForm.findByIdAndUpdate(
             req.params.id,
-            {status: status},
+            {status: status, isArchived: isArchived},
             {new: true}
         );
 

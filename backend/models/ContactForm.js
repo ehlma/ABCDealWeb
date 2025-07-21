@@ -11,7 +11,8 @@ const contactFormSchema = new mongoose.Schema({
         type: String,
         enum: ["new", "pending", "resolved"],
         default: "new"
-    }
+    },
+    isArchived: {type: Boolean, default: false} // for å arkivere reklamasjoner
 });
 
 export default mongoose.model('ContactForm', contactFormSchema);

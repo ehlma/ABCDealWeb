@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Paperclip, User, Mail, Phone } from 'lucide-react';
+import { ChevronDown, ChevronUp, Paperclip, User, Mail, Phone, Archive } from 'lucide-react';
 import { Card, CardContent } from '../components/ui/card';
 import { format } from 'date-fns';
 import api, { API_ENDPOINTS } from "../../api/api";
@@ -56,6 +56,32 @@ const AccordionItem = ({ item, onStatusChange, endpoint }) => {
         }
     };
 
+    const handleArchive = async (e) => {
+        e.stopPropagation();
+        if (!window.confirm("Er du sikker på at du vil arkivere denne saken?")) {
+            return;
+        }
+
+        try {
+            await api.patch(`${endpoint}/${item._id}`, { isArchived: true });
+            setMessage({ text: "Saken er arkivert", type: "success" });
+            setShowStatusToast(true);
+            if (onStatusChange) onStatusChange();
+            setTimeout(() => {
+                setShowStatusToast(false);
+                setMessage(null)
+            }, 2000);
+        } catch (error) {
+            console.error("Feil ved arkivering av saken: ", error);
+            setMessage({ text: "Kunne ikke arkivere saken. Prøv igjen senere.", type: "error" });
+            setShowStatusToast(true);
+            setTimeout(() => {
+                setShowStatusToast(false);
+                setMessage(null)
+            }, 2000);
+        }
+    }
+
     return (
         <>
             <Card className={`mb-4 ${statusClasses} rounded-lg shadow-sm transition-all duration-300`}>
@@ -83,6 +109,15 @@ const AccordionItem = ({ item, onStatusChange, endpoint }) => {
                             <option value="pending">Påbegynt</option>
                             <option value="resolved">Ferdig</option>
                         </select>
+                        
+                        <button
+                            onClick={handleArchive}
+                            className="text-gray-200 hover:text-gray-300 py-1 px2 rounded-md transition-colors"
+                            title="Arkiver sak"
+                        >
+                            <Archive className="w-5 h-5" />
+                        </button>
+
                         <div onClick={() => setOpen(!open)} className="cursor-pointer">
                             {open ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                         </div>
