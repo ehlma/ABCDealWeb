@@ -1,19 +1,26 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Paperclip } from 'lucide-react';
+import { ChevronDown, ChevronUp, Paperclip, User, Mail, Phone } from 'lucide-react';
 import { Card, CardContent } from '../components/ui/card';
 import { format } from 'date-fns';
 import api, { API_ENDPOINTS } from "../../api/api";
+
+// Hjelpefunksjon for å sjekke om URL peker til et bilde
+const isImageUrl = (url) => {
+    return /\.(jpeg|jpg|png|gif|webp)$/i.test(url); // regex
+}
 
 const AccordionItem = ({ item, onStatusChange, endpoint }) => {
     const [open, setOpen] = useState(false);
     const [status, setStatus] = useState(item.status || "new");
     const [message, setMessage] = useState(null);
 
-    const statusColor = {
-        new: "bg-red-500",
-        pending: "bg-yellow-400",
-        resolved: "bg-green-500",
-    }[status] || "bg-gray-400";
+    const statusClasses = {
+        new: "bg-red-50 border border-red-100",
+        pending: "bg-yellow-50 border border-yellow-100",
+        resolved: "bg-green-50 border border-green-100",
+    }[status] || "bg-gray-50 border border-gray-100";
+
+    // const statusBorderColor = `border-2 border-${statusColor}`;
 
     // fallback hvis item.date ikke er ferdig formatert
     const formattedDate = item.date
@@ -38,13 +45,13 @@ const AccordionItem = ({ item, onStatusChange, endpoint }) => {
     };
 
     return (
-        <Card className="mb-4 shadow-md transition-all duration-300">
+        <Card className={`mb-4 ${statusClasses} rounded-lg shadow-sm transition-all duration-300`}>
             <div
-                className="flex justify-between items-center px-4 py-3 cursor-pointer hover:bg-gray-50"
+                className="flex justify-between items-center px-4 py-3 cursor-pointer  text-left"
                 onClick={() => setOpen(!open)}
             >
                 <div className="flex flex-wrap gap-x-4 gap-y-1 items-center text-sm">
-                    <div className={`w-2 h-2 rounded-full ${statusColor}`} title={item.status}></div>
+                    {/* <div className={`w-2 h-2 rounded-full ${statusColor}`} title={item.status}></div> */}
                     <span className="font-medium">{item.name}</span>
                     <div className="text-sm text-gray-500">🗓️{formattedDate}</div>
                 </div>
@@ -72,56 +79,71 @@ const AccordionItem = ({ item, onStatusChange, endpoint }) => {
             )}
 
             <div
-                className={`grid transition-all duration-300 overflow-hidden ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
-                    }`}
+                // className={`grid transition-all duration-300 overflow-hidden ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                //     }`}
+                className={`transition-max-height duration-500 overflow-hidden`}
+                style={{maxHeight: open ? "1000px" : "0px"}}
             >
-                <CardContent className="overflow-hidden px-6 py-4 space-y-3 bg-gray-50">
-                    <div className="text-sm whitespace-pre-line leading-relaxed">
-                        <div className="text-sm text-gray-600">📧 {item.email}</div>
-                        {item.regNum && (
-                            <div className="text-gray-500">🚗 Reg.nr: {item.regNum}</div>
-                        )}
-                        {item.text && (
-                            <p>
-                                <strong>Melding:</strong> {item.text}
-                            </p>
-                        )}
+                <CardContent className="p-6 space-y-4 bg-gray-50 text-left rounded-b-lg">
 
-                        {item.image && (
-                            <div className="flex items-center gap-2 text-blue-600">
-                                <a
-                                    href={item.image}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hover:underline"
-                                >
-                                    📎 Last ned vedlegg
-                                </a>
-                            </div>
-                        )}
-
-                        {item.docs && item.docs.length > 0 && (
-                            <div className="mt-2">
-                                <strong>Dokumentasjon:</strong>
-                                <ul className="list-disc list-inside ml-4">
-                                    {item.docs.map((doc, i) => (
-                                        <li key={i}>
-                                            {doc && (
-                                                <a
-                                                    href={doc}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="text-blue-600 underline"
-                                                >
-                                                    {doc.split('/').pop()}
-                                                </a>
-                                            )}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
+                    {/* Header info for expand view */}
+                    <div className="mb-4 pb-4 border-b border-gray-200">
+                        <div className="text-lg font-bold text-gray-800 mb-2">{item.name}</div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-1 gap-x-6 text-sm text-gray-600">
+                            <p className="flex items-center gap-1"><Mail size={16} />{item.email}</p>
+                            {item.phoneNum && <p className="flex items-center gap-2">{item.phoneNum}</p>}
+                            {item.regNum && <p className="flex items-center gap-2">🚗{item.regNum}</p>}
+                            <p className="flex items-center gap-2">🗓️ {formattedDate}</p>
+                        </div>
                     </div>
+
+                    {/* Seksjon: Problembeskrivelse */}
+                    {item.text && (
+                        <div className="mb-4 pb-4 border-b border-gray-200">
+                            <h4 className="text-base font-semibold text-gray-800 mb-2">Melding fra kunde</h4>
+                            <p className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">{item.text}</p>
+                        </div>
+                    )}
+
+                    {/* Seksjon: Bilde av skade */}
+                    {item.image && (
+                        <div className="mb-4 pb-4 border-b border-gray-200">
+                            <h4 className="text-base font-semibold text-gray-800 mb-2">Bilde av skaden</h4>
+                            <a href={item.image} target="_blank" rel="noopener noreferrer" className="block w-32 h-32 overflow-hidden rounded-md border border-gray-300 shadow-sm">
+                                <img src={item.image} alt="Bilde av skaden" className="w-full h-full object-cover" />
+                            </a>
+                        </div>
+                    )}
+
+                    {/* Seksjon: Dokumentasjon */}
+                    {item.docs && item.docs.length > 0 ? (
+                        <div className="">
+                            <h4 className="text-base font-semibold text-gray-800">Dokumentasjon</h4>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:gris-cols-4 gap-4">
+                                {item.docs.map((doc, i) => (
+                                    <div key={i} className="flex flex-col items-center text-center p-2 bg-white rounded-md shadow-sm border border-gray-100">
+                                        {doc && (
+                                            <a
+                                                href={doc}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex flex-col items-center text-blue-600 hover:underline"
+                                            >
+                                                {isImageUrl(doc) ? (
+                                                    <img src={doc} alt="Dokument" className="w-16 h-16 object-cover rounded-md mb-1 border border-gray-200" />
+                                                ) : (
+                                                    <Paperclip size={32} className="text-gray-500 mb-1" />
+                                                )}
+                                                <span className="text-xs font-medium text-gray-700 break-all">{doc.split('/').pop()}</span>
+                                            </a>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ) : (
+                        !item.image && <p className="text-sm text-gray-500 italic">Ingen vedlegg sendt inn.</p>
+                    )}
                 </CardContent>
             </div>
         </Card>
