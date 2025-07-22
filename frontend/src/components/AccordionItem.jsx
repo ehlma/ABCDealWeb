@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Paperclip, User, Mail, Phone, Archive } from 'lucide-react';
+import { ChevronDown, ChevronUp, Paperclip, User, Mail, Phone, Archive, Car, CalendarDays } from 'lucide-react';
 import { Card, CardContent } from '../components/ui/card';
 import { format } from 'date-fns';
 import api, { API_ENDPOINTS } from "../../api/api";
@@ -109,14 +109,6 @@ const AccordionItem = ({ item, onStatusChange, endpoint }) => {
                             <option value="pending">Påbegynt</option>
                             <option value="resolved">Ferdig</option>
                         </select>
-                        
-                        <button
-                            onClick={handleArchive}
-                            className="text-gray-200 hover:text-gray-300 py-1 px2 rounded-md transition-colors"
-                            title="Arkiver sak"
-                        >
-                            <Archive className="w-5 h-5" />
-                        </button>
 
                         <div onClick={() => setOpen(!open)} className="cursor-pointer">
                             {open ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
@@ -130,7 +122,7 @@ const AccordionItem = ({ item, onStatusChange, endpoint }) => {
                     className={`transition-max-height duration-500 overflow-hidden`}
                     style={{ maxHeight: open ? "1000px" : "0px" }}
                 >
-                    <CardContent className="p-6 space-y-4 bg-gray-50 text-left rounded-b-lg">
+                    <CardContent className="pb-6 space-y-4 bg-gray-50 text-left rounded-b-lg">
 
                         <div className="relative min-h-8 flex items-center justify-center px-4 py-1">
                             {message && (
@@ -145,9 +137,10 @@ const AccordionItem = ({ item, onStatusChange, endpoint }) => {
                             <div className="text-lg font-bold text-gray-800 mb-2">{item.name}</div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-1 gap-x-6 text-sm text-gray-600">
                                 <p className="flex items-center gap-1"><Mail size={16} />{item.email}</p>
-                                {item.phoneNum && <p className="flex items-center gap-2">{item.phoneNum}</p>}
-                                {item.regNum && <p className="flex items-center gap-2">🚗{item.regNum}</p>}
-                                <p className="flex items-center gap-2">🗓️ {formattedDate}</p>
+                                {item.phoneNum && <p className="flex items-center gap-2"><Phone size={16}/>{item.phoneNum}</p>}
+                                <p className="flex items-center gap-2"><CalendarDays size={16}/>{formattedDate}</p>
+                                {item.regNum && <p className="flex items-center gap-2"><Car size={16}/>{item.regNum}</p>}
+                                
                             </div>
                         </div>
 

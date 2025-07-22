@@ -11,7 +11,7 @@ const formatComplaintItem = (complaint) => ({
     email: complaint.email,
     phoneNum: complaint.phoneNum,
     regNum: complaint.regNum,
-    description: complaint.description,
+    text: complaint.description,
     date: format(new Date(complaint.createdAt), "dd.MM.yyyy, HH:mm"),
     status: complaint.status || "new",
     image: complaint.image,
