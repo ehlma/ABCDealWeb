@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 const AdminArticles = () => {
     const [articles, setArticles] = useState([]);
+    const [success, setSuccess] = useState("");
+    const [error, setError] = useState("");
+    const [selectedFiles, setSelectedFiles] = useState([]);
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState ({
         title: "",
@@ -12,15 +16,12 @@ const AdminArticles = () => {
         images: [],
     });
 
-    const [success, setSuccess] = useState("");
-    const [error, setError] = useState("");
-    const [selectedFiles, setSelectedFiles] = useState([]);
-    const navigate = useNavigate();
-
+    //Endre artikkel 
     const handleChange = (e) => {
         setFormData({...formData, [e.target.name]: e.target.value});
     };
 
+    // Opprette artikkel
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
@@ -56,11 +57,8 @@ const AdminArticles = () => {
         if (imageUploads.length > 0) payload.images = imageUploads;
 
         console.log("Sender artikkel:", payload); // debug
-
         await api.post("/articles", payload);
-
         setSuccess("Artikkelen ble opprettet!");
-        
         
         setFormData({
             title: "",
@@ -79,6 +77,7 @@ const AdminArticles = () => {
         
     };
 
+    // Hente artikler
     const fetchArticles = async () => {
         try {
           const res = await api.get("/articles");
@@ -94,7 +93,7 @@ const AdminArticles = () => {
       }, [])
 
     
-    
+    // Slette artikkel
     const handleDelete = async (id) => {
         try {
             await api.delete(`/articles/${id}`);
@@ -119,7 +118,7 @@ const AdminArticles = () => {
                     onChange={handleChange}
                     className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
                     required
-                    />
+                />
                 <input
                     type="file"
                     name="images"
@@ -131,7 +130,7 @@ const AdminArticles = () => {
                     
                     className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
                     required
-                    />
+                />
 
                 {selectedFiles.length > 0 && (
                     <div className="flex flex-wrap gap-4 mt-2">
@@ -153,7 +152,7 @@ const AdminArticles = () => {
                     onChange={handleChange}
                     className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
                     rows={3}
-                    />
+                />
                 <textarea
                     name="bodyText"
                     placeholder="Brødtekst*"
@@ -162,7 +161,7 @@ const AdminArticles = () => {
                     className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
                     rows={8}
                     required
-                    />
+                />
 
                 <button 
                     type="submit"

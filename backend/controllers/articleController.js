@@ -8,17 +8,11 @@ export const createArticle = async (req, res) => {
         if (!title || !bodyText || !images || !images.length) {
           return res.status(400).json({ message: "Tittel, bilde og brødtekst er påkrevd." });
         }
-
-        const footerText = `
-            <p class="mt-8 border-t pt-4 text-sm text-gray-600">
-            For mer informasjon, kontakt oss på <strong>+47 999 99 999</strong> eller via vårt <a href="/contact" class="text-blue-600 underline">kontaktskjema</a>.
-            </p>
-        `;
   
         const article = new ArticleForm({
             title,
             intro,
-            bodyText: `<p>${bodyText}</p>` + footerText,
+            bodyText,
             images,
         });
   
@@ -43,17 +37,11 @@ export const updateArticle = async (req, res) => {
     try {
         const { id } = req.params;
         const { title, intro, bodyText } = req.body;
-  
-        const footerText = `
-        <p class="mt-8 border-t pt-4 text-sm text-gray-600">
-        For mer informasjon, kontakt oss på <strong>+47 999 99 999</strong> eller via vårt <a href="/contact" class="text-blue-600 underline">kontaktskjema</a>.
-        </p>
-      `;
       
       const updateFields = {
         title,
         intro,
-        bodyText: `${bodyText}${footerText}`,
+        bodyText
       };
   
         if (req.files && req.files.length > 0) {

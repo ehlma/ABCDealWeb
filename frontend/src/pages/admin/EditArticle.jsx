@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
 import api from "../../../api/api";
 
 const EditArticle = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [selectedFile, setSelectedFile] = useState(null);
-
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
 
     const [formData, setFormData] = useState({
         title: "",
@@ -15,8 +15,11 @@ const EditArticle = () => {
         bodyText: "",
     });
 
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState("");
+    const stripHtml = (html) => {
+        const div = document.createElement("div");
+        div.innerHTML = html;
+        return div.textContent || div.innerText || "";
+    };
 
     useEffect(() => {
         const fetchArticle = async () => {
@@ -97,7 +100,7 @@ const EditArticle = () => {
                 />
                 <textarea
                     name="bodyText"
-                    value={formData.bodyText}
+                    value={stripHtml(formData.bodyText)}
                     onChange={handleChange}
                     placeholder="Brødtekst"
                     rows={6}
