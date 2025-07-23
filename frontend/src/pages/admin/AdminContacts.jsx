@@ -24,6 +24,9 @@ const AdminContacts = () => {
             fetchEndpoint={API_ENDPOINTS.adminContacts}
             accordionEndpoint={API_ENDPOINTS.adminContacts}
             itemFormatter={formatContactItem}
+            showArchivedLink={true}
+            archivedLinkPath="/admin/archived/contacts"
+            archivedLinkText="Vis arkiverte meldinger"
         />
     );
 };

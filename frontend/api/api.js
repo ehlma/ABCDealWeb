@@ -31,7 +31,9 @@ export const API_ENDPOINTS = {
     adminContacts: '/admin/contacts',
     adminComplaints: '/admin/complaints',
     complaintSubmit: '/complaints',
-    adminArticles: '/admin/articles'
+    adminArticles: '/admin/articles',
+    adminArchivedContacts: '/admin/archived/contacts',
+    adminArchivedComplaints: '/admin/archived/complaints',
 
 };
 

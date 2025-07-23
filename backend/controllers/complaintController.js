@@ -49,7 +49,7 @@ export const getAllComplaints = async (req, res) => {
 // GET/api/complaints/archived (for admin)
 export const getAllArchivedComplaints = async (req, res) => {
   try {
-    const contacts = await ComplaintForm.find({ isArchived: true }).sort({
+    const complaints = await ComplaintForm.find({ isArchived: true }).sort({
       createdAt: -1,
     });
     res.status(200).json(complaints);

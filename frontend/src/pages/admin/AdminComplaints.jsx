@@ -27,6 +27,9 @@ const AdminComplaints = () => {
             fetchEndpoint={API_ENDPOINTS.adminComplaints}
             accordionEndpoint={API_ENDPOINTS.adminComplaints}
             itemFormatter={formatComplaintItem}
+            showArchivedLink={true}
+            archivedLinkPath="/admin/archived/complaints"
+            archivedLinkText="Vis arkiverte reklamasjoner"
         />
     );
 };
