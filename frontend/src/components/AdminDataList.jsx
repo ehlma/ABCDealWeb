@@ -3,6 +3,7 @@ import api from "../../api/api.js";
 import AccordionItem from "./AccordionItem";
 import { format } from "date-fns";
 import { useAuth } from "../contexts/AuthContext";
+import ArchivedCasesLink from "./ArchivedCasesLink.jsx";
 
 const AdminDataList = ({
     title,
@@ -10,6 +11,9 @@ const AdminDataList = ({
     accordionEndpoint,
     itemFormatter,
     initialStatus = "new",
+    showArchivedLink = false,
+    archivedLinkPath,
+    archivedLinkText,
 }) => {
     const [items, setItems] = useState([]);
     const [error, setError] = useState("");
@@ -55,6 +59,17 @@ const AdminDataList = ({
     return (
         <div className="max-w-2xl mx-auto mt-8">
             <h2 className="text-2xl font-bold mb-4 text-left">{title}</h2>
+
+            <div className="flex justify-between items-center mb-4">
+                {showArchivedLink && (
+                <ArchivedCasesLink
+                    to={archivedLinkPath}
+                    text={archivedLinkText}
+                    className="text-base"
+                />
+            )}
+            </div>
+
             {error && <p className="text-red-500 mb-4">{error}</p>}
             {items.length === 0 && !error && (
                 <p className="text-gray-600 text-center">Ingen {title.toLowerCase()} funnet.</p>

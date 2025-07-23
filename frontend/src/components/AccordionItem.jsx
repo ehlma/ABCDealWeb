@@ -124,23 +124,23 @@ const AccordionItem = ({ item, onStatusChange, endpoint }) => {
                 >
                     <CardContent className="pb-6 space-y-4 bg-gray-50 text-left rounded-b-lg">
 
-                        <div className="relative min-h-8 flex items-center justify-center px-4 py-1">
-                            {message && (
-                                <div className={`p-2 text-center text-sm font-semibold ${message.type === "success" ? "text-green-800" : "text-red-800"}`}>
-                                    {message.text}
-                                </div>
-                            )}
-                        </div>
+                        <button
+                            onClick={handleArchive}
+                            className="text-gray-500 hover:text-gray-700 py-1 px2 rounded-md transition-colors"
+                            title="Arkiver sak"
+                        >
+                            <Archive size={20}/>
+                        </button>
 
                         {/* Header info for expand view */}
                         <div className="mb-4 pb-4 border-b border-gray-200">
                             <div className="text-lg font-bold text-gray-800 mb-2">{item.name}</div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-1 gap-x-6 text-sm text-gray-600">
                                 <p className="flex items-center gap-1"><Mail size={16} />{item.email}</p>
-                                {item.phoneNum && <p className="flex items-center gap-2"><Phone size={16}/>{item.phoneNum}</p>}
-                                <p className="flex items-center gap-2"><CalendarDays size={16}/>{formattedDate}</p>
-                                {item.regNum && <p className="flex items-center gap-2"><Car size={16}/>{item.regNum}</p>}
-                                
+                                {item.phoneNum && <p className="flex items-center gap-2"><Phone size={16} />{item.phoneNum}</p>}
+                                <p className="flex items-center gap-2"><CalendarDays size={16} />{formattedDate}</p>
+                                {item.regNum && <p className="flex items-center gap-2"><Car size={16} />{item.regNum}</p>}
+
                             </div>
                         </div>
 
@@ -200,7 +200,7 @@ const AccordionItem = ({ item, onStatusChange, endpoint }) => {
                     <div
                         className={`fixed bottom-4 left-1/2 -translate-x-1/2 p-4 rounded-lg text-white z-50 transition-transform duration-300 transform ${showStatusToast ? "translate-y-0" : "translate-y-full"}
                             ${message.type === "success" ? "bg-gray-700" : "bg-red-500"}`}
-                            role="alert"
+                        role="alert"
                     >
                         <p className="text-sm font-semibold">{message.text}</p>
                     </div>
