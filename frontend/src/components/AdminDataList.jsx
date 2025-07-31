@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import api from "../../api/api.js";
+import api, { API_ENDPOINTS } from "../../api/api.js";
 import AccordionItem from "./AccordionItem";
 import { format } from "date-fns";
 import { useAuth } from "../contexts/AuthContext";
@@ -11,9 +11,7 @@ const AdminDataList = ({
     accordionEndpoint,
     itemFormatter,
     initialStatus = "new",
-    showArchivedLink = false,
-    archivedLinkPath,
-    archivedLinkText,
+    isArchivedView = false
 }) => {
     const [items, setItems] = useState([]);
     const [error, setError] = useState("");
@@ -56,18 +54,33 @@ const AdminDataList = ({
         (a, b) => getPriority(a.status) - getPriority(b.status)
     );
 
+    // Bestemmer tekst og sti for lenken dynamisk
+    const baseTitle = title.replace("Innsendte ", "").replace("Arkiverte ", "").toLowerCase();
+    const linkToOtherViewText = isArchivedView
+        ? `Vis aktive ${baseTitle}`
+        : `Vis arkiverte ${baseTitle}`;
+
+    // Logikk for å bestemme PATH
+    const currentBaseAdminPath = isArchivedView
+        ? (fetchEndpoint === API_ENDPOINTS.adminArchivedContacts ? "/admin/archived/contacts" : "/admin/archived/complaints")
+        : (fetchEndpoint === API_ENDPOINTS.adminContacts ? "/admin/contacts" : "/admin/complaints");
+
+        const isContactsPage = currentBaseAdminPath.includes("contacts");
+
+        const linkToOtherViewPath = isArchivedView
+            ? (isContactsPage ? "/admin/contacts" : "/admin/complaints")
+            : (isContactsPage ? "/admin/archived/contacts" : "/admin/archived/complaints");
+
     return (
         <div className="max-w-2xl mx-auto mt-8">
             <h2 className="text-2xl font-bold mb-4 text-left">{title}</h2>
 
             <div className="flex justify-between items-center mb-4">
-                {showArchivedLink && (
                 <ArchivedCasesLink
-                    to={archivedLinkPath}
-                    text={archivedLinkText}
+                    to={linkToOtherViewPath}
+                    text={linkToOtherViewText}
                     className="text-base"
                 />
-            )}
             </div>
 
             {error && <p className="text-red-500 mb-4">{error}</p>}
