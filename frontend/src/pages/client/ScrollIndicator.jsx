@@ -15,22 +15,13 @@ const ScrollIndicator = ({ activeIndex, sectionRefs, steps }) => {
           key={i}
           onClick={() => handleClick(i)}
           className="relative group flex items-center focus:outline-none bg-transparent border-none p-0"
+        >
+          {/* Label (vises bare på hover) */}
+          <span
+            className={`mr-2 text-sm text-[#047464] opacity-0 group-hover:opacity-100 transition-opacity`}
           >
-          {/* Hover label for inactive */}
-          {i !== activeIndex && (
-            <span
-                className={`mr-2 text-sm text-[#047464] transition-all ${
-                    i === activeIndex ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                }`}
-                >
-                    {label}
-            </span>
-          )}
-
-          {/* Label for active */}
-          {i === activeIndex && (
-            <span className="mr-2 text-sm text-[#047464]">{label}</span>
-          )}
+            {label}
+          </span>
 
           {/* Dot */}
           <div
