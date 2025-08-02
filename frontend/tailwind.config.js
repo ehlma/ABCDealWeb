@@ -13,11 +13,13 @@ export default {
           "ui-background": "#34495e",
           // "footer-background": "#2c3e50",
 
-          "navbar-bg": "#F8F8F8",
+          "navbar-bg": "#f7f5f0",
           "navbar-link": "#333333",
           "navbar-link-hover": "#047464",
           "navbar-link-active": "#047464",
           "navbar-icon": "#333333",
+
+          "warm-off-white": "#fffefc",
         },
         fontFamily: { // Egne fonter
           heading: ["var(--font-heading)", "sans-serif"], // Poppins for overskrifter

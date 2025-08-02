@@ -44,7 +44,7 @@ const TipsCarousel = () => {
   };
 
   return (
-    <div className="bg-white py-12 px-4 text-center">
+    <div className="py-12 px-4 text-center">
       <h2 className="text-2xl font-bold text-[#047464] mb-6">Tips & Vedlikehold</h2>
 
       <div className="relative h-[220px] max-w-xl mx-auto">
