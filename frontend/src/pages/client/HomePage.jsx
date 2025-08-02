@@ -30,18 +30,15 @@ const HomePage = () => {
         >
             <div className="absolute inset-0 bg-black/40" /> {/* Overlegg */}
                 <div className="relative z-10 px-4">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4">Velkommen til ABC Deal</h1>
-                    <p className="text-xl md:text-2xl max-w-2xl mx-auto">
+                    <h1 className="text-4xl md:text-5xl font-bold mb-4 text-warm-off-white">Velkommen til ABC Deal</h1>
+                    <p className="text-xl md:text-2xl max-w-2xl mx-auto text-warm-off-white">
                         Vi gjør det enkelt å kjøpe og selge bobil, campingvogn og bil – trygt og profesjonelt.
                     </p>
                     <a
                         href="https://www.finn.no/mobility/search/car/mobilehome?orgId=8250738"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-8 inline-block font-medium px-6 py-3 text-[#047464] visited:text-[#047464] no-underline 
-                                    focus:outline-none focus:ring-0 bg-white rounded-md shadow 
-                                    hover:rounded-full hover:bg-gray-100 hover:text-[#035b50]
-                                    transition-all duration-1000 ease-[cubic-bezier(0.7, 0, 0.3, 1)]"
+                        className="mt-6 inline-block px-6 py-2 rounded-md bg-[#047464] text-primary font-medium shadow-sm bg-warm-off-white hover:bg-primary hover:text-warm-off-white transition duration-200 ease-in-out"
                     >
                         Til salgs
                     </a>
@@ -50,10 +47,10 @@ const HomePage = () => {
             </section>
         
             {/* HVA KAN VI HJELPE MED */}
-            <section className="py-20 px-4 bg-white text-center">
+            <section className="py-20 px-4 text-center">
                 <h2 className="text-3xl font-bold mb-10 text-[#047464]">Hvordan kan vi hjelpe deg?</h2>
                 <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
-                    <Link to="/sales-process" className="bg-gray-50 rounded-lg p-6 shadow hover:shadow-md transition">
+                    <Link to="/sales-process" className="bg-warm-off-white rounded-lg p-6 shadow hover:shadow-md transition">
                         <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Selge bil eller bobil?</h3>
                         <p className="text-gray-700">Trygt, effektivt og uten stress – vi hjelper deg hele veien.</p>
                     </Link>
@@ -61,7 +58,7 @@ const HomePage = () => {
                         href="https://www.finn.no/mobility/search/car/mobilehome?orgId=8250738"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-gray-50 rounded-lg p-6 shadow hover:shadow-md transition"
+                        className="bg-warm-off-white rounded-lg p-6 shadow hover:shadow-md transition"
                     >
                         <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Kjøpe bobil?</h3>
                         <p className="text-gray-700">Se våre bobiler og få råd om hvilket kjøp som passer deg.</p>
@@ -70,7 +67,7 @@ const HomePage = () => {
                         href="https://www.finn.no/mobility/search/car?orgId=8250738"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-gray-50 rounded-lg p-6 shadow hover:shadow-md transition"
+                        className="bg-warm-off-white rounded-lg p-6 shadow hover:shadow-md transition"
                     >
                         <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Kjøpe bil?</h3>
                         <p className="text-gray-700">Se våre bobiler og få råd om hvilket kjøp som passer deg.</p>
@@ -78,11 +75,11 @@ const HomePage = () => {
                 </div>
                 <div className="grid gap-6 md:grid-cols-2 m-6 max-w-6xl mx-auto">
                     <div className=" hidden mb:block"></div>
-                    <Link to="/contact" className="bg-gray-50 rounded-lg p-6 shadow hover:shadow-md transition">
+                    <Link to="/contact" className="bg-warm-off-white rounded-lg p-6 shadow hover:shadow-md transition">
                         <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Service eller råd?</h3>
                         <p className="text-gray-700">Kontakt oss for vurdering, rådgivning eller garanti.</p>
                     </Link>
-                    <Link to="/complaints" className="bg-gray-50 rounded-lg p-6 shadow hover:shadow-md transistion">
+                    <Link to="/complaints" className="bg-warm-off-white rounded-lg p-6 shadow hover:shadow-md transistion">
                         <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Reklamasjoner</h3>
                         <p className="text-gray-700">Har noe gått galt? Vi tar reklamasjoner på alvor. Trykk her for reklamasjonsskjema. </p>
                     </Link>
@@ -91,11 +88,11 @@ const HomePage = () => {
             </section>
         
               {/* ARTIKLER */}
-            <section className="py-20 px-4 bg-gray-100">
+            <section className="py-20 px-4 bg-[#f0e9df]">
                 <h2 className="text-3xl font-bold text-center text-[#047464] mb-10">Aktuelt</h2>
                 <div className="grid gap-8 md:grid-cols-2 max-w-6xl mx-auto">
                     {articles.map((article) => (
-                        <div key={article._id} className="bg-white rounded-lg shadow overflow-hidden hover:shadow-md transition">
+                        <div key={article._id} className="bg-warm-off-white rounded-lg shadow overflow-hidden hover:shadow-md transition">
                             {article.images?.[0] && (
                             <img
                                 src={article.images[0]}

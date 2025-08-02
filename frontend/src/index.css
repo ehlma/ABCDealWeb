@@ -17,6 +17,8 @@ html, body {
   padding: 0;
   font-family: var(--font-body); /* Inter for brødtekst og standard UI-elementer */
   overflow-x: hidden;
+  background-color: #F8F3ED;
+
 }
 
 *, *::before, *::after {
