@@ -26,7 +26,7 @@ const ScrollIndicator = ({ activeIndex, sectionRefs, steps }) => {
           {/* Dot */}
           <div
             className={`w-2 h-2 rounded-full transition-all ${
-              i === activeIndex ? "bg-[#047464] scale-150" : "bg-gray-300"
+              i === activeIndex ? "bg-[#047464] scale-150" : "bg-[#fffefc]"
             }`}
           />
         </button>

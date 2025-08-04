@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import backgroundImage from "../../assets/salesprocess/backgroundImage.jpg";
 
-const bodyTextColor = "text-[#F8F9FA]";
+const bodyTextColor = "text-[#fffefc]";
 
 const steps = [
     "Intro",
@@ -174,7 +174,7 @@ const SalesProcessPage = () => {
             />
             
         {/* === Sticky side panel === */}
-            <aside className="hidden md:flex fixed left-0 top-0 w-1/3 h-screen bg-white/80 backdrop-blur-sm flex-col justify-between items-center z-20 border-r border-gray-200">
+            <aside className="hidden md:flex fixed left-0 top-0 w-1/3 h-screen bg-warm-off-white/80 backdrop-blur-sm flex-col justify-between items-center z-20 border-r border-gray-200">
             
             {/* Øverste innhold */}
             <div className="flex-1 flex flex-col items-center justify-center">
