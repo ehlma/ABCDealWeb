@@ -77,10 +77,6 @@ const ContactPage = () => {
                 </div>
             </section >
 
-            <section className="text-left max-w-lg">
-                <h2 className="text-primary font-semibold text-xl">Kontaktskjema</h2>
-                <p className="">Skriv noe om forventet svartid, hva vi kan hjelpe med osv.</p>
-            </section>
 
             <section className="flex flex-col md:flex-row gap-12 max-w-5xl w-full mx-auto mt-24">
                 {/* <h1 className="text-3xl font-bold mb-4 text-primary text-center">Kontakt oss</h1>
@@ -89,6 +85,10 @@ const ContactPage = () => {
                 
 
                 <div className="md:w-1/2 text-left">
+                    <section className="text-left max-w-lg mb-12">
+                        <h2 className="text-primary font-semibold text-xl">Kontaktskjema</h2>
+                        <p className="">Skriv noe om forventet svartid, hva vi kan hjelpe med osv.</p>
+                    </section>
                     {/* TODO: Legge til kontaktskjema her? */}
                     {successMessage && <p className="text-green-600 text-center mb-4">{successMessage}</p>}
                     {errorMessage && <p className="text-red-600 text-center mb-4">{errorMessage}</p>}
