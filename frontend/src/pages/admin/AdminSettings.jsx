@@ -87,94 +87,188 @@ const AdminSettings = () => {
     const usersToDisplay = searchTerm ? filteredUsers : users;
 
     return (
-        <div className="w-full grid grid-cols-3 gap-[16px]  bg-[#f0e9df] min-h-screen">
-            <div></div>
-
-            <div className="mt-[48px] col-span-3 sm:col-span-4 md:col-span-1 px-[16px] py-12 bg-warm-off-white rounded-lg shadow-sm">
-                <h3 className="text-xl mb-[16px]">Legg til ny ansatt</h3>
-                <p className="text-sm text-gray-600 mb-[16px]">Brukere med rollen <span className='font-semibold'>admin</span> får tilgang til alle administrative funksjoner, inkludert redigering av ansatte og oppretting av artikler.</p>
-
-                <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder="Fornavn" className="border border-gray-300 rounded px-[12px] py-[8px] mb-[8px] w-full" value={formData.firstName} onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} required />
-                    <input type="text" placeholder="Etternavn" className="border border-gray-300 rounded px-[12px] py-[8px] mb-[8px] w-full" value={formData.lastName} onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} required />
-                    <input type="email" placeholder="E-post" className="border border-gray-300 rounded px-[12px] py-[8px] mb-[8px] w-full" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} required />
-                    <div className="relative inline-block w-full mb-2">
-                        <input type={showPassword ? "text" : "password"} placeholder="Passord" value={formData.password} className="w-full border border-gray-300 rounded px-[12px] py-[8px] pr-[40px]" onChange={(e) => setFormData({ ...formData, password: e.target.value })} required />
-                        <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute top-1/2 right-[8px] -translate-y-1/2 p-0 bg-transparent border-none cursor-pointer focus:outline-none" aria-label={showPassword ? "Skjul passord" : "Vis passord"}>
-                            {showPassword ? <EyeOff className="w-[20px] h-[20px] text-gray-500" /> : <Eye className="w-5 h-5 text-gray-500" />}
-                        </button>
-                    </div>
-                    <div className="relative">
-                        <select name="role" value={formData.role} onChange={(e) => setFormData({ ...formData, role: e.target.value })} required className="w-full border border-gray-300 rounded px-[12px] py-[8px] mb-[8px] appearance-none">
-                            {roles.map((role) => (
-                                <option key={role.value} value={role.value}>{role.label}</option>
-                            ))}
-                        </select>
-                        <ChevronDown className="absolute right-[8px] top-[45%] -translate-y-1/2 text-gray-500 pointer-events-none h-[20px] w-[20px]" />
-                    </div>
-                    <button type="submit" className="mt-[8px] bg-blue-100 font-medium py-[8px] px-[16px] rounded hover:bg-blue-200 transition ease-in-out hover:scale-105">Opprett ansatt</button>
-                    {error && <p className="text-red-600 font-medium mb-[16px]">{error}</p>}
-                </form>
+      <div className="w-full max-w-6xl mx-auto mt-[32px] px-[16px]">
+    
+        {/* Ny ansatt + informasjonstekst */}
+        <div className="bg-warm-off-white shadow-md rounded p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+    
+          {/* Skjema */}
+          <form onSubmit={handleSubmit} className="space-y-[16px]">
+            <h2 className="text-2xl font-bold mb-[24px] text-ui-background">Ny ansatt</h2>
+    
+            <input
+              type="text"
+              placeholder="Fornavn"
+              className="border border-gray-300 rounded px-[12px] py-[8px] w-full"
+              value={formData.firstName}
+              onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Etternavn"
+              className="border border-gray-300 rounded px-[12px] py-[8px] w-full"
+              value={formData.lastName}
+              onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+              required
+            />
+            <input
+              type="email"
+              placeholder="E-post"
+              className="border border-gray-300 rounded px-[12px] py-[8px] w-full"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              required
+            />
+    
+            <div className="relative inline-block w-full">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Passord"
+                value={formData.password}
+                className="w-full border border-gray-300 rounded px-[12px] py-[8px] pr-[40px]"
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute top-1/2 right-[8px] -translate-y-1/2 p-0 bg-transparent border-none cursor-pointer"
+                aria-label={showPassword ? "Skjul passord" : "Vis passord"}
+              >
+                {showPassword ? <EyeOff className="w-[20px] h-[20px] text-gray-500" /> : <Eye className="w-5 h-5 text-gray-500" />}
+              </button>
             </div>
+    
+            <div className="relative">
+              <select
+                name="role"
+                value={formData.role}
+                onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                required
+                className="w-full border border-gray-300 rounded px-[12px] py-[8px] appearance-none"
+              >
+                {roles.map((role) => (
+                  <option key={role.value} value={role.value}>{role.label}</option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-[8px] top-[45%] -translate-y-1/2 text-gray-500 pointer-events-none h-[20px] w-[20px]" />
+            </div>
+    
+            <button
+              type="submit"
+              className="mt-[8px] bg-ui-background text-white font-medium py-[8px] px-[16px] rounded hover:bg-blue-400 hover:scale-105"
+            >
+              Opprett ansatt
+            </button>
+    
+            {error && <p className="text-red-600 font-medium mb-[16px]">{error}</p>}
+          </form>
+    
+          {/* Informasjonsboks */}
+          <div className="text-gray-700 text-sm leading-relaxed text-left mt-20">
+            <h3 className="text-lg font-semibold mb-2 text-ui-background">Administrasjon av ansatte</h3>
+            <p className="mb-6">
+              Her kan du legge til nye ansatte i systemet. Brukere med rollen 
+              <span className="font-semibold"> "admin"</span> får full tilgang til alle administrative funksjoner, 
+              inkludert oppretting og redigering av artikler og ansatte.
+            </p>
+    
+            <h4 className="text-md font-semibold mb-2 text-ui-background">Tips</h4>
+            <ul className="list-disc list-inside space-y-2">
+              <li>Sørg for at e-postadressen er riktig – denne brukes til innlogging</li>
+              <li>Velg riktig rolle for å gi tilgangsnivå</li>
+              <li>Bruk et sterkt passord</li>
+              <li>Kun brukere med <span className="font-semibold">admin-rolle</span> kan redigere ansatte</li>
+            </ul>
+          </div>
+        </div>
+    
+        {/* Liste over ansatte */}
+        <div className="col-span-3 mt-[56px] w-full">
+  <div className="w-full shadow-sm px-[24px] py-[24px] mb-[32px] bg-warm-off-white rounded-lg">
+    <h2 className="text-xl mb-[32px] pb-[4px] text-left text-ui-background font-bold">
+      Ansatte
+    </h2>
 
-            <div className="col-span-3 mt-[56px] w-full">
-              <div className="w-full shadow-sm px-[24px] py-[24px] mb-[32px] bg-warm-off-white rounded-lg">
-                    <h2 className="text-xl mb-[32px] pb-[4px] text-center mx-auto">Ansatte</h2>
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:gap-[16px] mb-[8px] w-full">
-                        <label htmlFor="search" className="block text-base font-medium mb-[8px] ml-[8px] text-left sm:text-center">Søk etter ansatt</label>
-                        <input type="text" placeholder="Søk etter navn..." className="px-[12px] py-[8px] border border-gray-300 rounded w-full max-w-[300px]" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-                    </div>
-                    <div className="col-span-3 px-[16px] md:px-[32px]">
-                        <ul className="grid gap-[24px]">
-                            {usersToDisplay.map((user) => (
-                                <li key={user._id} className="bg-warm-off-white shadow rounded p-[24px] w-full">
-                                    {editUserId === user._id ? (
-                                        <div className="space-y-[8px]">
-                                            <input name="firstName" value={editData.firstName} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full" />
-                                            <input name="lastName" value={editData.lastName} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full" />
-                                            <input name="email" value={editData.email} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full" />
-                                            <select name="role" value={editData.role} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full">
-                                                {roles.map((role) => (
-                                                    <option key={role.value} value={role.value}>{role.label}</option>
-                                                ))}
-                                            </select>
-                                            <div className="flex flex-row justify-center gap-[8px]">
-                                                <button onClick={() => handleUpdate(user._id)} className="bg-blue-500 text-white px-[8px] py-[4px] text-sm rounded hover:bg-blue-600 mr-[8px]">Lagre</button>
-                                                <button onClick={() => setEditUserId(null)} className="bg-gray-300 text-gray-800 px-[8px] py-[4px] text-sm rounded hover:bg-gray-400">Avbryt</button>
-                                            </div>
-                                        </div>
-                                    ) : (
-                                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-[16px]">
-                                            <div className="space-y-[4px] text-left">
-                                                <p><span className="font-semibold text-[#34495e]">Navn:</span> {user.firstName} {user.lastName}</p>
-                                                <p><span className="font-semibold text-[#34495e]">E-post:</span> {user.email}</p>
-                                                <p><span className="font-semibold text-[#34495e]">Rolle:</span> {user.role}</p>
-                                            </div>
-                                            <div className="flex flex-wrap justify-end gap-[8px] mt-[8px]">
-                                                {deleteConfirmId === user._id ? (
-                                                    <>
-                                                        <p className="text-red-500 mr-4">Er du sikker?</p>
-                                                        <button onClick={() => handleDelete(user._id)} className="bg-green-500 text-white text-sm px-[8px] py-[4px] rounded hover:bg-green-600">Aksepter</button>
-                                                        <button onClick={() => setDeleteConfirmId(null)} className="bg-red-500 text-white text-sm px-[8px] py-[4px] rounded hover:bg-red-600">Avbryt</button>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <button onClick={() => setDeleteConfirmId(user._id)} className="bg-red-500 text-white text-sm px-[8px] py-[4px] rounded hover:bg-red-600">Slett</button>
-                                                        <button onClick={() => handleEdit(user)} className="bg-gray-200 text-gray-800 text-sm px-[8px] py-[4px] rounded hover:bg-gray-300">Rediger</button>
-                                                    </>
-                                                )}
-                                            </div>
-                                        </div>
-                                    )}
-                                </li>
-                            ))}
-                        </ul>
-                  </div>
+    {/* Søkefelt */}
+    <div className="flex flex-col sm:flex-row sm:items-center sm:gap-[16px] mb-[16px] w-full">
+      <label htmlFor="search" className="block text-base font-medium mb-[8px] text-left">
+        Søk etter ansatt
+      </label>
+      <input
+        type="text"
+        placeholder="Søk etter navn..."
+        className="px-[12px] py-[8px] border border-gray-300 rounded w-full max-w-[300px]"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+    </div>
+
+            {/* Liste over ansatte */}
+            <ul className="grid gap-[16px]">
+            {usersToDisplay.map((user) => (
+                <li
+                key={user._id}
+                className="bg-white shadow-sm rounded p-[16px] flex flex-col sm:flex-row sm:justify-between sm:items-center"
+                >
+                {/* Info om bruker */}
+                <div className="space-y-[4px] text-left">
+                    <p className="flex items-center gap-2">
+                    👤 <span className="font-semibold">Navn:</span> {user.firstName} {user.lastName}
+                    </p>
+                    <p className="flex items-center gap-2">
+                    ✉️ <span className="font-semibold">E-post:</span> {user.email}
+                    </p>
+                    <p className="flex items-center gap-2">
+                    🔑 <span className="font-semibold">Rolle:</span> {user.role}
+                    </p>
                 </div>
 
-          </div>
+                {/* Handlinger */}
+                <div className="flex gap-2 mt-4 sm:mt-0">
+                    {deleteConfirmId === user._id ? (
+                    <>
+                        <p className="text-red-500 font-medium self-center">Slette bruker?</p>
+                        <button
+                        onClick={() => handleDelete(user._id)}
+                        className="bg-green-600 hover:bg-green-700 text-white text-sm px-3 py-1 rounded"
+                        >
+                            Ja
+                        </button>
+                        <button
+                        onClick={() => setDeleteConfirmId(null)}
+                        className="bg-gray-400 hover:bg-gray-500 text-white text-sm px-3 py-1 rounded"
+                        >
+                            Nei
+                        </button>
+                    </>
+                    ) : (
+                    <>
+                        <button
+                        onClick={() => handleEdit(user)}
+                        className="bg-ui-background hover:bg-blue-700 text-white text-sm px-3 py-1 rounded"
+                        >
+                            Rediger
+                        </button>
+                        <button
+                        onClick={() => setDeleteConfirmId(user._id)}
+                        className="bg-red-900 hover:bg-red-700 text-white text-sm px-3 py-1 rounded"
+                        >
+                            Slett
+                        </button>
+                    </>
+                    )}
+                </div>
+                </li>
+            ))}
+            </ul>
+        </div>
+        </div>
+
       </div>
     );
+    
 };
 
 export default AdminSettings;
