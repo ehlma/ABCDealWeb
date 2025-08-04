@@ -2,7 +2,6 @@ import { useState } from 'react'
 import './App.css'
 import './index.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ScrollToTop from './components/ScrollToTop';
 
 // Admin sider
 import AdminContacts from './pages/admin/AdminContacts';
