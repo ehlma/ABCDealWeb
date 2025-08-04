@@ -22,29 +22,32 @@ import AboutPage from './pages/client/AboutPage';
 import SalesProcessPage from './pages/client/SalesProcessPage';
 import ComplaintsPage from './pages/client/ComplaintsPage';
 import ContactPage from './pages/client/ContactPage';
+import NotFoundPage from './pages/client/NotFoundPage';
 
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute'
 import ArticlePage from './pages/client/ArticlePage';
-// import NotFoundPage from './pages/NotFoundPage';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <>
       <AuthProvider>
-        
+
         <Router>
-          <ScrollToTop/>
+          <ScrollToTop />
           <Routes>
             {/* Offentlige ruter */}
-            <Route path='/' element={<ClientLayout/>}>
-              <Route index element={<HomePage/>}/>
-              <Route path='about' element={<AboutPage/>}/>
-              <Route path='sales-process' element={<SalesProcessPage/>}/>
-              <Route path='complaints' element={<ComplaintsPage/>}/>
-              <Route path='contact' element={<ContactPage/>}/>
-              <Route path='/articles/:id' element={<ArticlePage/>}/>
+            <Route path='/' element={<ClientLayout />}>
+              <Route index element={<HomePage />} />
+              <Route path='about' element={<AboutPage />} />
+              <Route path='sales-process' element={<SalesProcessPage />} />
+              <Route path='complaints' element={<ComplaintsPage />} />
+              <Route path='contact' element={<ContactPage />} />
+              <Route path='/articles/:id' element={<ArticlePage />} />
+
+              {/* Fang alle udefinerte ruter (404) */}          
+          <Route path='*' element={<NotFoundPage/>}/>
             </Route>
 
             {/* Autentiserings-ruter uten felles layout */}
@@ -53,20 +56,16 @@ function App() {
 
             {/* nestede ruter under AdminLayout */}
             {/* '/admin' er forelder-ruten for alle admin-sidene */}
-            <Route element={<ProtectedRoute allowedRoles={['admin']} />}> 
-            <Route path='/admin' element={<AdminLayout />}>
-              {/* Disse rutene er relative til foreldreruten '/admin' */}
-              <Route path='contacts' element={<AdminContacts />} />
-              <Route path='complaints' element={<AdminComplaints />} />
-              <Route path='settings' element={<AdminSettings />} />
-              <Route path='articles' element={<AdminArticles />} />
-              <Route path="articles/edit/:id" element={<EditArticle />} />
+            <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
+              <Route path='/admin' element={<AdminLayout />}>
+                {/* Disse rutene er relative til foreldreruten '/admin' */}
+                <Route path='contacts' element={<AdminContacts />} />
+                <Route path='complaints' element={<AdminComplaints />} />
+                <Route path='settings' element={<AdminSettings />} />
+                <Route path='articles' element={<AdminArticles />} />
+                <Route path="articles/edit/:id" element={<EditArticle />} />
+              </Route>
             </Route>
-          </Route>
-
-          {/* Fang alle udefinerte ruter (404) */}          
-          {/* <Route path='*' element={<NotFoundPage/>}/> */}
-
           </Routes>
         </Router>
       </AuthProvider>
