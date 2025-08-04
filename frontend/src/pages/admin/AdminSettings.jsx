@@ -87,10 +87,10 @@ const AdminSettings = () => {
     const usersToDisplay = searchTerm ? filteredUsers : users;
 
     return (
-        <div className="w-full grid grid-cols-3 gap-[16px] px-[8px]">
+        <div className="w-full grid grid-cols-3 gap-[16px]  bg-[#f0e9df] min-h-screen">
             <div></div>
 
-            <div className="mt-[48px] col-span-3 sm:col-span-4 md:col-span-1 px-[16px]">
+            <div className="mt-[48px] col-span-3 sm:col-span-4 md:col-span-1 px-[16px] py-12 bg-warm-off-white rounded-lg shadow-sm">
                 <h3 className="text-xl mb-[16px]">Legg til ny ansatt</h3>
                 <p className="text-sm text-gray-600 mb-[16px]">Brukere med rollen <span className='font-semibold'>admin</span> får tilgang til alle administrative funksjoner, inkludert redigering av ansatte og oppretting av artikler.</p>
 
@@ -117,61 +117,61 @@ const AdminSettings = () => {
                 </form>
             </div>
 
-            <div className="col-span-3 mt-[56px] w-full bg-gray-50">
-                <div className="w-full shadow-[0_4px_2px_-2px_rgba(0,0,0,0.2)] px-[24px] py-[24px] mb-[32px]">
+            <div className="col-span-3 mt-[56px] w-full">
+              <div className="w-full shadow-sm px-[24px] py-[24px] mb-[32px] bg-warm-off-white rounded-lg">
                     <h2 className="text-xl mb-[32px] pb-[4px] text-center mx-auto">Ansatte</h2>
                     <div className="flex flex-col sm:flex-row sm:items-center sm:gap-[16px] mb-[8px] w-full">
                         <label htmlFor="search" className="block text-base font-medium mb-[8px] ml-[8px] text-left sm:text-center">Søk etter ansatt</label>
                         <input type="text" placeholder="Søk etter navn..." className="px-[12px] py-[8px] border border-gray-300 rounded w-full max-w-[300px]" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                     </div>
+                    <div className="col-span-3 px-[16px] md:px-[32px]">
+                        <ul className="grid gap-[24px]">
+                            {usersToDisplay.map((user) => (
+                                <li key={user._id} className="bg-warm-off-white shadow rounded p-[24px] w-full">
+                                    {editUserId === user._id ? (
+                                        <div className="space-y-[8px]">
+                                            <input name="firstName" value={editData.firstName} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full" />
+                                            <input name="lastName" value={editData.lastName} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full" />
+                                            <input name="email" value={editData.email} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full" />
+                                            <select name="role" value={editData.role} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full">
+                                                {roles.map((role) => (
+                                                    <option key={role.value} value={role.value}>{role.label}</option>
+                                                ))}
+                                            </select>
+                                            <div className="flex flex-row justify-center gap-[8px]">
+                                                <button onClick={() => handleUpdate(user._id)} className="bg-blue-500 text-white px-[8px] py-[4px] text-sm rounded hover:bg-blue-600 mr-[8px]">Lagre</button>
+                                                <button onClick={() => setEditUserId(null)} className="bg-gray-300 text-gray-800 px-[8px] py-[4px] text-sm rounded hover:bg-gray-400">Avbryt</button>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-[16px]">
+                                            <div className="space-y-[4px] text-left">
+                                                <p><span className="font-semibold text-[#34495e]">Navn:</span> {user.firstName} {user.lastName}</p>
+                                                <p><span className="font-semibold text-[#34495e]">E-post:</span> {user.email}</p>
+                                                <p><span className="font-semibold text-[#34495e]">Rolle:</span> {user.role}</p>
+                                            </div>
+                                            <div className="flex flex-wrap justify-end gap-[8px] mt-[8px]">
+                                                {deleteConfirmId === user._id ? (
+                                                    <>
+                                                        <p className="text-red-500 mr-4">Er du sikker?</p>
+                                                        <button onClick={() => handleDelete(user._id)} className="bg-green-500 text-white text-sm px-[8px] py-[4px] rounded hover:bg-green-600">Aksepter</button>
+                                                        <button onClick={() => setDeleteConfirmId(null)} className="bg-red-500 text-white text-sm px-[8px] py-[4px] rounded hover:bg-red-600">Avbryt</button>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <button onClick={() => setDeleteConfirmId(user._id)} className="bg-red-500 text-white text-sm px-[8px] py-[4px] rounded hover:bg-red-600">Slett</button>
+                                                        <button onClick={() => handleEdit(user)} className="bg-gray-200 text-gray-800 text-sm px-[8px] py-[4px] rounded hover:bg-gray-300">Rediger</button>
+                                                    </>
+                                                )}
+                                            </div>
+                                        </div>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                  </div>
                 </div>
 
-                <div className="col-span-3 px-[16px] md:px-[32px]">
-                    <ul className="grid gap-[24px]">
-                        {usersToDisplay.map((user) => (
-                            <li key={user._id} className="bg-white shadow rounded p-[24px] w-full">
-                                {editUserId === user._id ? (
-                                    <div className="space-y-[8px]">
-                                        <input name="firstName" value={editData.firstName} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full" />
-                                        <input name="lastName" value={editData.lastName} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full" />
-                                        <input name="email" value={editData.email} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full" />
-                                        <select name="role" value={editData.role} onChange={handleEditChange} className="border border-gray-300 rounded px-[12px] py-[8px] w-full">
-                                            {roles.map((role) => (
-                                                <option key={role.value} value={role.value}>{role.label}</option>
-                                            ))}
-                                        </select>
-                                        <div className="flex flex-row justify-center gap-[8px]">
-                                            <button onClick={() => handleUpdate(user._id)} className="bg-blue-500 text-white px-[8px] py-[4px] text-sm rounded hover:bg-blue-600 mr-[8px]">Lagre</button>
-                                            <button onClick={() => setEditUserId(null)} className="bg-gray-300 text-gray-800 px-[8px] py-[4px] text-sm rounded hover:bg-gray-400">Avbryt</button>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-[16px]">
-                                        <div className="space-y-[4px] text-left">
-                                            <p><span className="font-semibold text-[#34495e]">Navn:</span> {user.firstName} {user.lastName}</p>
-                                            <p><span className="font-semibold text-[#34495e]">E-post:</span> {user.email}</p>
-                                            <p><span className="font-semibold text-[#34495e]">Rolle:</span> {user.role}</p>
-                                        </div>
-                                        <div className="flex flex-wrap justify-end gap-[8px] mt-[8px]">
-                                            {deleteConfirmId === user._id ? (
-                                                <>
-                                                    <p className="text-red-500 mr-4">Er du sikker?</p>
-                                                    <button onClick={() => handleDelete(user._id)} className="bg-green-500 text-white text-sm px-[8px] py-[4px] rounded hover:bg-green-600">Aksepter</button>
-                                                    <button onClick={() => setDeleteConfirmId(null)} className="bg-red-500 text-white text-sm px-[8px] py-[4px] rounded hover:bg-red-600">Avbryt</button>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <button onClick={() => setDeleteConfirmId(user._id)} className="bg-red-500 text-white text-sm px-[8px] py-[4px] rounded hover:bg-red-600">Slett</button>
-                                                    <button onClick={() => handleEdit(user)} className="bg-gray-200 text-gray-800 text-sm px-[8px] py-[4px] rounded hover:bg-gray-300">Rediger</button>
-                                                </>
-                                            )}
-                                        </div>
-                                    </div>
-                                )}
-                            </li>
-                        ))}
-                    </ul>
-              </div>
           </div>
       </div>
     );

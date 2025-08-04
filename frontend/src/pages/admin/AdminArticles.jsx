@@ -16,7 +16,7 @@ const AdminArticles = () => {
         images: [],
     });
 
-    //Endre artikkel 
+    // Endre artikkel
     const handleChange = (e) => {
         setFormData({...formData, [e.target.name]: e.target.value});
     };
@@ -50,13 +50,12 @@ const AdminArticles = () => {
       
         const payload = {
             title: formData.title,
-            bodyText: formData.bodyText, // <- viktig: backend forventer ofte "content"
+            bodyText: formData.bodyText,
         };
 
         if (formData.intro) payload.intro = formData.intro;
         if (imageUploads.length > 0) payload.images = imageUploads;
 
-        console.log("Sender artikkel:", payload); // debug
         await api.post("/articles", payload);
         setSuccess("Artikkelen ble opprettet!");
         
@@ -65,34 +64,30 @@ const AdminArticles = () => {
             intro: "",
             bodyText: "",
             images: [],
-          });
-
-          setSelectedFiles([]);
+        });
+        setSelectedFiles([]);
 
         setTimeout(() => navigate("/admin/articles"), 1000);
         } catch (err) {
             console.error("Feil:", err);
             setError("Noe gikk galt ved opprettelse.");
         }
-        
     };
 
     // Hente artikler
     const fetchArticles = async () => {
         try {
-          const res = await api.get("/articles");
-          setArticles(res.data);
-          console.log("Artikler hentet:", res.data);
+            const res = await api.get("/articles");
+            setArticles(res.data);
         } catch (err) {
-          console.error("Kunne ikke hente artikler", err);
+            console.error("Kunne ikke hente artikler", err);
         }
-      };
+    };
       
-      useEffect(() => {
+    useEffect(() => {
         fetchArticles();
-      }, [])
+    }, [])
 
-    
     // Slette artikkel
     const handleDelete = async (id) => {
         try {
@@ -105,119 +100,145 @@ const AdminArticles = () => {
     };
 
     return (
-        <div className="max-w-2xl mx-auto mt-[32px] px-[16px]">
-            <h2 className="text-2xl font-bold mb-[24px] text-center">Ny artikkel</h2>
-            
+        <div className="w-full max-w-6xl mx-auto mt-[32px] px-[16px]">
+    
+            {/* Ny artikkel + informasjonstekst */}
+            <div className="bg-warm-off-white shadow-md rounded p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
 
-            <form onSubmit={handleSubmit} className="space-y-[16px]">
-                <input
-                    name="title"
-                    type="text"
-                    placeholder="Tittel*"
-                    value={formData.title}
-                    onChange={handleChange}
-                    className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
-                    required
-                />
-                <input
-                    type="file"
-                    name="images"
-                    accept="image/*"
-                    multiple
-                    onChange={(e) => 
-                        setSelectedFiles((prev) => [...prev, ...Array.from(e.target.files)])
-                    }
-                    
-                    className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
-                    required
-                />
-
-                {selectedFiles.length > 0 && (
-                    <div className="flex flex-wrap gap-4 mt-2">
-                        {selectedFiles.map((file, idx) => (
-                            <img
-                            key={idx}
-                            src={URL.createObjectURL(file)}
-                            alt={`Forhåndsvisning ${idx}`}
-                            className="w-auto h-[100px] mb-2"
-                            />
+                {/* Skjema */}
+                <form onSubmit={handleSubmit} className="space-y-[16px]">
+                    <h2 className="text-2xl font-bold mb-[24px] text-ui-background">Ny artikkel</h2>
+                    <input
+                        name="title"
+                        type="text"
+                        placeholder="Tittel*"
+                        value={formData.title}
+                        onChange={handleChange}
+                        className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
+                        required
+                    />
+                    <input
+                        type="file"
+                        name="images"
+                        accept="image/*"
+                        multiple
+                        onChange={(e) =>
+                            setSelectedFiles((prev) => [...prev, ...Array.from(e.target.files)])
+                        }
+                        className="bg-white w-full border border-gray-300 rounded px-[12px] py-[8px]"
+                        required
+                    />
+    
+                    {selectedFiles.length > 0 && (
+                        <div className="flex flex-wrap gap-4 mt-2">
+                            {selectedFiles.map((file, idx) => (
+                                <img
+                                    key={idx}
+                                    src={URL.createObjectURL(file)}
+                                    alt={`Forhåndsvisning ${idx}`}
+                                    className="w-auto h-[100px] mb-2"
+                                />
                             ))}
-                    </div>
-                )}
-
-                <textarea
-                    name="intro"
-                    placeholder="Introduksjonstekst"
-                    value={formData.intro}
-                    onChange={handleChange}
-                    className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
-                    rows={3}
-                />
-                <textarea
-                    name="bodyText"
-                    placeholder="Brødtekst*"
-                    value={formData.bodyText}
-                    onChange={handleChange}
-                    className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
-                    rows={8}
-                    required
-                />
-
-                <button 
-                    type="submit"
-                    className="mt-[8px] bg-blue-100 font-medium py-[8px] px-[16px] rounded hover:bg-blue-200"
+                        </div>
+                    )}
+    
+                    <textarea
+                        name="intro"
+                        placeholder="Introduksjonstekst"
+                        value={formData.intro}
+                        onChange={handleChange}
+                        className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
+                        rows={3}
+                    />
+                    <textarea
+                        name="bodyText"
+                        placeholder="Brødtekst*"
+                        value={formData.bodyText}
+                        onChange={handleChange}
+                        className="w-full border border-gray-300 rounded px-[12px] py-[8px]"
+                        rows={8}
+                        required
+                    />
+    
+                    <button 
+                        type="submit"
+                        className="mt-[8px] bg-ui-background text-white font-medium py-[8px] px-[16px] rounded hover:bg-blue-400 hover:scale-105"
                     >
-                    Opprett artikkel
-                </button>
+                        Opprett artikkel
+                    </button>
                     {error && <p className="text-red-600 mb-[16px]">{error}</p>}
                     {success && <p className="text-green-600 mb-[16px]">{success}</p>}
-            </form>
+                </form>
+                {/* Informasjonstekst */}
+                <div className="text-gray-700 text-md mt-20 leading-relaxed text-start">
+                    <h3 className="text-lg font-semibold mb-2 text-ui-background">Publisering av artikler</h3>
+                    <p className="mb-8">
+                        Her kan du publisere artikler som vil vises på hjemmesiden under 
+                        <span className="font-semibold"> "Aktuelt"-seksjonen</span>. 
+                        Artiklene kan brukes til å dele nyheter, oppdateringer, råd eller informasjon 
+                        som kan være nyttig for kundene dine.
+                    </p>
 
+                    <h4 className="text-md font-semibold mb-2 text-ui-background">Tips til publisering</h4>
+                    <ul className="list-disc list-inside space-y-2">
+                        <li>Bruk en tydelig og beskrivende tittel</li>
+                        <li>Last opp minst ett bilde (helst i liggende format)</li>
+                        <li>Skriv en kort introduksjon for å fange leserens interesse</li>
+                        <li>Bruk brødteksten til å utdype innholdet</li>
+                        <li>Hold språket enkelt og lett å lese</li>
+                    </ul>
+                </div>
+            </div>
+    
+            {/* Publiserte artikler */}
             <div className="mt-[64px]">
-                <h3 className="text-xl mb-[16px] ">Publiserte artikler</h3>
-                <ul className="space-y-[16px]">
+                <h2 className="text-2xl px-4 text-left mb-[20px] text-ui-background font-bold">Publiserte artikler</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                     {articles.map((article) => (
-                        <li key={article._id} className="p-[16px] bg-white shadow-lg rounded">
+                        <div
+                            key={article._id}
+                            className="p-[16px] bg-warm-off-white shadow-md rounded"
+                        >
                             <h4 className="text-lg font-semibold">{article.title}</h4>
-                            <p className="text-sm text-gray-600 mb-4">{article.createdAt?.slice(0,10)}</p>
-
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                            <p className="text-sm text-gray-600 mb-4">
+                                {article.createdAt?.slice(0, 10)}
+                            </p>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                                 {article.images?.map((img, index) => (
                                     <img
                                         key={index}
                                         src={img}
                                         alt={`Bilde ${index + 1}`}
-                                        className={`w-auto h-[150px] object-cover rounded ${
+                                        className={`w-full h-[150px] object-cover rounded ${
                                             index > 0 ? "hidden md:block" : ""
                                         }`}
                                     />
                                 ))}
                             </div>
-
-
-                            <p className="font-light mb-4">{article.intro || article.bodyText?.slice(0,100) + "...."}</p>
-
-
-                            <button 
-                                onClick={() => navigate(`/admin/articles/edit/${article._id}`)}
-                                className="text-sm text-blue-600 hover:underline mr-4"
-                            >
-                                Rediger
-                            </button>
-                            <button
-                                onClick={() => handleDelete(article._id)}
-                                className="text-sm text-red-600 hover:underline mt-2"
-                            >
-                                Slett
-                            </button>
-
-                        </li>
-
+                            <p className="font-light mb-4">
+                                {article.intro || article.bodyText?.slice(0, 100) + "...."}
+                            </p>
+                            <div className="flex justify-center gap-4">
+                                <button
+                                    onClick={() => navigate(`/admin/articles/edit/${article._id}`)}
+                                    className="text-sm text-warm-off-white bg-ui-background hover:underline"
+                                >
+                                    Rediger
+                                </button>
+                                <button
+                                    onClick={() => handleDelete(article._id)}
+                                    className="text-sm text-warm-off-white bg-red-900 hover:underline"
+                                >
+                                    Slett
+                                </button>
+                            </div>
+                        </div>
                     ))}
-                </ul>
+                </div>
             </div>
         </div>
     );
+    
 };
 
 export default AdminArticles;
