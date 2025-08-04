@@ -1,5 +1,4 @@
 import { NavLink, Outlet, useNavigate, useLocation } from "react-router-dom";
-import logo from "../../assets/Logo.png";
 import { useState } from "react";
 import { Menu, X, CircleUser, LogOut } from "lucide-react";
 import { useAuth } from "../../contexts/AuthContext";
@@ -31,7 +30,7 @@ const AdminLayout = () => {
         <div className="flex items-center justify-between px-6 py-4">
           {/** Logo */}
           <NavLink to="/">
-            <img src={logo} alt="ABC Deal Logo" className="h-[36px] cursor-pointer" />
+            <h2 className="text-warm-off-white text-lg">ABC Deal Admin</h2>
           </NavLink>
 
           {/** Desktop meny med animasjon */}
@@ -128,7 +127,7 @@ const AdminLayout = () => {
       <div className="pointer-events-none fixed top-[60px] left-0 w-full h-20 z-10 bg-gradient-to-b from-white/90 to-transparent"></div>
       
       {/** Sideinnhold  */}
-      <main className="flex-1 pt-[96px] px-[24px] pb-[24px] overflow-y-auto bg-white">
+      <main className="flex-1 pt-[96px] px-[24px] pb-[24px] overflow-y-auto bg-[#f0e9df]">
         <Outlet />
       </main>
     </div>

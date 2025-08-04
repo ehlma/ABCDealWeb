@@ -149,7 +149,7 @@ const ContactPage = () => {
                         <div className="flex">
                             <button
                                 type="submit"
-                                className="bg-primary shadow-sm hover:bg-primary-dark text-white font-bold py-2 px-6 rounded-xl shadow transition w-full md:w-auto block focus:outline-none focus:shadow-outline w-full max-w-fit"
+                                className="bg-primary shadow-sm hover:bg-primary-dark text-white font-bold py-2 px-6 rounded-xl transition md:w-auto block focus:outline-none focus:shadow-outline w-full max-w-fit"
                             >
                                 Send melding
                             </button>
