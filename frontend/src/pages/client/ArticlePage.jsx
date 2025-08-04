@@ -47,11 +47,11 @@ const ArticlePage = () => {
     const prevImage = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
 
     return (
-        <div className="bg-[#F8F8F8] min-h-screen py-24 px-4">
-            <div className=" mx-auto bg-white shadow-md p-8 rounded">
+        <div className="bg-[#f0e9df] min-h-screen py-24 px-4 m-0">
+            <div className=" mx-auto bg-warm-off-white shadow-md p-8 rounded">
                 <Link
                     to="/"
-                    className="text-primary hover:underline text-sm mb-4 inline-block"
+                    className="text-primary hover:text-ui-background hover:underline cursor-pointer text-sm text-start mb-4 inline-block"
                 >
                     ← Tilbake
                 </Link>
@@ -109,7 +109,7 @@ const ArticlePage = () => {
 
             <p className="text-sm text-gray-600 mt-8">
                 For mer informasjon, kontakt oss på <strong>+47 47 15 11 11</strong> eller via vårt{" "}
-                <Link to="/contact" className="text-primary underline">
+                <Link to="/contact" className="text-ui-background underline">
                     kontaktskjema
                 </Link>.
             </p>
