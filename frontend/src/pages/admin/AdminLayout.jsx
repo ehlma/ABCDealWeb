@@ -26,7 +26,7 @@ const AdminLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/** Header */}
-      <nav className="fixed top-0 left-0 z-[50] w-full bg-ui-background text-white shadow">
+      <nav className="fixed top-0 left-0 z-[50] w-full bg-ui-background text-warm-off-white shadow">
         <div className="flex items-center justify-between px-6 py-4">
           {/** Logo */}
           <NavLink to="/">

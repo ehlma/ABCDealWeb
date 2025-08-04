@@ -16,10 +16,10 @@ const AccordionItem = ({ item, onStatusChange, endpoint }) => {
     const [showStatusToast, setShowStatusToast] = useState(false);
 
     const statusClasses = {
-        new: "bg-red-50 border border-red-100",
-        pending: "bg-yellow-50 border border-yellow-100",
-        resolved: "bg-green-50 border border-green-100",
-    }[status] || "bg-gray-50 border border-gray-100";
+        new: "bg-ui-background  text-gray-800",
+        pending: "bg-[#6D8DAE] text-gray-800",
+        resolved: "bg-gray-200 text-gray-400 border-gray-300",
+    }[status] || "bg-gray-50 ";
 
     // const statusBorderColor = `border-2 border-${statusColor}`;
 
@@ -91,8 +91,24 @@ const AccordionItem = ({ item, onStatusChange, endpoint }) => {
                 >
                     <div className="flex flex-col pt-4">
                         {/* <div className={`w-2 h-2 rounded-full ${statusColor}`} title={item.status}></div> */}
-                        <span className="font-semibold text-base leading-none">{item.name}</span>
-                        <span className="text-sm text-gray-500 leadingnone mt-2">{formattedDate}</span>
+                        <span
+                            className={`font-semibold text-base leading-none ${
+                                status === "new" || status === "pending"
+                                ? "text-warm-off-white"
+                                : "text-gray-800"
+                            }`}
+                            >
+                            {item.name}
+                        </span>
+                        <span
+                            className={`text-sm mt-2 ${
+                                status === "resolved"
+                                ? "text-gray-500"
+                                : "text-warm-off-white"
+                            }`}
+                            >
+                            {formattedDate}
+                            </span>                    
                     </div>
 
                     <div className="flex items-center gap-2">
