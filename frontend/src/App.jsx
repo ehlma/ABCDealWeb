@@ -29,13 +29,15 @@ import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute'
 import ArticlePage from './pages/client/ArticlePage';
 // import NotFoundPage from './pages/NotFoundPage';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
-
   return (
     <>
       <AuthProvider>
+        
         <Router>
+          <ScrollToTop/>
           <Routes>
             {/* Offentlige ruter */}
             <Route path='/' element={<ClientLayout/>}>

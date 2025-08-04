@@ -75,7 +75,7 @@ const AboutPage = () => {
                     {/* Løfte */}
                     <div className="text-left col-span-1 md:col-span-1">
                         <h3 className=" mb-2 font-semibold text-xl text-primary">Vårt løfte</h3>
-                        <p className="text-gray-700 text-sm max-w-md ml-auto">
+                        <p className="text-gray-700 text-md max-w-md ml-auto">
                             Vårt mål er å gjøre det enkelt for deg å kjøpe eller selge bobil og campingvogn – uten stress og usikkerhet. Vi tar hånd om alt det praktiske, slik at du slipper papirarbeid, annonsering og usikre avtaler.
                         </p>
                     </div>

@@ -9,7 +9,7 @@ const ClientLayout = () => {
     const location = useLocation();
 
     return (
-        <div className="flex flex-col flex-1 w-full">
+        <div  className="flex flex-col flex-1 w-full">
             {/* Nav bar for kunder */}
             <nav className="fixed top-0 left-0 z-[50] w-full bg-navbar-bg/90 shadow-sm backdrop-blur-md p-0 m-0">
                 <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
@@ -122,7 +122,7 @@ const ClientLayout = () => {
             </nav>
 
             {/* Main content */}
-            <main className="flex-grow pt-0 w-full p-0 m-0">
+            <main id="page-content" className="flex-grow pt-0 w-full p-0 m-0">
                 {/* <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl"> */}
                     <Outlet />
                 {/* </div> */}

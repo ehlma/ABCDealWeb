@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Paperclip, User, Mail, Phone, Archive, Car, CalendarDays } from 'lucide-react';
+import { ChevronDown, ChevronUp, Paperclip, User, Mail, Phone, Archive, Car, CalendarDays, Copy } from 'lucide-react';
 import { Card, CardContent } from '../components/ui/card';
 import { format } from 'date-fns';
 import api, { API_ENDPOINTS } from "../../api/api";
@@ -20,6 +20,7 @@ const AccordionItem = ({ item, onStatusChange, endpoint }) => {
         pending: "bg-[#6D8DAE] text-gray-800",
         resolved: "bg-gray-200 text-gray-400 border-gray-300",
     }[status] || "bg-gray-50 ";
+
 
     // const statusBorderColor = `border-2 border-${statusColor}`;
 
@@ -80,6 +81,17 @@ const AccordionItem = ({ item, onStatusChange, endpoint }) => {
                 setMessage(null)
             }, 2000);
         }
+    }
+
+    const handleCopyEmail = (e) => {
+        e.stopPropagation();
+        navigator.clipboard.writeText(item.email);
+        setMessage({text: "E-post kopiert", type: "success"});
+        setShowStatusToast(true);
+        setTimeout(() => {
+            setShowStatusToast(false);
+            setMessage(null)
+        }, 2000);
     }
 
     return (
@@ -152,7 +164,19 @@ const AccordionItem = ({ item, onStatusChange, endpoint }) => {
                         <div className="mb-4 pb-4 border-b border-gray-200">
                             <div className="text-lg font-bold text-gray-800 mb-2">{item.name}</div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-1 gap-x-6 text-sm text-gray-600">
-                                <p className="flex items-center gap-1"><Mail size={16} />{item.email}</p>
+                                {/* <p className="flex items-center gap-1"><Mail size={16} />{item.email}</p> */}
+                                <div className="flex items-center gap-1 group">
+                                    <Mail size={16}/>
+                                    <span>{item.email}</span>
+                                    <button
+                                        onClick={handleCopyEmail}
+                                        title="Kopier e-post"
+                                        className="opacity-0 group-hover:opacity-100 transition-opacity ml1"
+                                    >
+                                        <Copy size={14} className="text-gray-500 hover:text-gray-700"/>
+                                    </button>
+
+                                </div>
                                 {item.phoneNum && <p className="flex items-center gap-2"><Phone size={16} />{item.phoneNum}</p>}
                                 <p className="flex items-center gap-2"><CalendarDays size={16} />{formattedDate}</p>
                                 {item.regNum && <p className="flex items-center gap-2"><Car size={16} />{item.regNum}</p>}
