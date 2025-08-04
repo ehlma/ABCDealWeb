@@ -1,20 +1,21 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+    const { pathname } = useLocation();
 
-  useEffect(() => {
-    // Sjekk om main-container finnes
-    const main = document.querySelector("main");
-    if (main) {
-      main.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    } else {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    }
-  }, [pathname]);
+    useLayoutEffect(() => {
+        console.log("ScrollToTop trigget:", pathname);
 
-  return null;
-};
+        const container = document.getElementById("root");
+        if (container) {
+            container.scrollTop = 0;
+        } else {
+            
+        }
+    }, [pathname]);
+
+    return null;
+}
 
 export default ScrollToTop;
