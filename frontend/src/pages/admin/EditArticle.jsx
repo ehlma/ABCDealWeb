@@ -68,8 +68,16 @@ const EditArticle = () => {
     };
 
     return (
-        <div className="max-w-xl mx-auto p-4">
-            <h2 className="text-2xl font-bold mb-4">Rediger artikkel</h2>
+        <div className="max-w-xl mx-auto p-4 mt-8 bg-warm-off-white">
+            <button
+                type="button"
+                onClick={() => navigate("/admin/articles")}
+                className="mb-4 bg-warm-off-white text-primary px-3 py-1 rounded hover:bg-gray-400 hover:text-warm-off-white"
+            >
+                ← Tilbake
+            </button>
+
+            <h2 className="text-2xl font-bold mb-4 text-ui-background">Rediger artikkel</h2>
             {error && <p className="text-red-600 mb-2">{error}</p>}
             {success && <p className="text-green-600 mb-2">{success}</p>}
 
@@ -115,7 +123,7 @@ const EditArticle = () => {
                 />
                 <button
                     type="submit"
-                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                    className="bg-ui-background text-warm-off-white px-4 py-2 rounded hover:bg-blue-400 hover:scale-105"
                 >
                     Oppdater
                 </button>

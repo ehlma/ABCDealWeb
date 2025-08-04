@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import './index.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
 
 // Admin sider
 import AdminContacts from './pages/admin/AdminContacts';
@@ -10,8 +11,6 @@ import AdminLayout from './pages/admin/AdminLayout';
 import AdminSettings from './pages/admin/AdminSettings';
 import AdminArticles from './pages/admin/AdminArticles';
 import EditArticle from './pages/admin/EditArticle';
-import ArchivedContactsPage from './pages/admin/archived/ArchivedContactsPage';
-import ArchivedComplaintsPage from './pages/admin/archived/ArchivedComplaintsPage';
 
 // Autentisering sider
 import Login from './pages/auth/Login';
@@ -36,6 +35,7 @@ function App() {
     <>
       <AuthProvider>
         <Router>
+          <ScrollToTop/>
           <Routes>
             {/* Offentlige ruter */}
             <Route path='/' element={<ClientLayout/>}>
@@ -61,9 +61,6 @@ function App() {
               <Route path='settings' element={<AdminSettings />} />
               <Route path='articles' element={<AdminArticles />} />
               <Route path="articles/edit/:id" element={<EditArticle />} />
-              <Route path='archived/contacts' element={<ArchivedContactsPage />} />
-              <Route path='archived/complaints' element={<ArchivedComplaintsPage />} />
-
             </Route>
           </Route>
 
