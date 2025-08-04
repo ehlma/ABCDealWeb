@@ -19,7 +19,6 @@ const formatComplaintItem = (complaint) => ({
 
 })
 
-
 const AdminComplaints = () => {
     return (
         <AdminDataList

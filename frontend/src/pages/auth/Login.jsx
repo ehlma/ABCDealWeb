@@ -39,9 +39,9 @@ const Login = () => {
 
     return (
         <div className="w-full min-h-screen flex items-center justify-center px-4">
-            <div className="w-full max-w-sm p-8 bg-gray-100 rounded shadow-md">
+            <div className="w-full max-w-sm p-8 bg-warm-off-white rounded shadow-md">
                 <img src={logo} alt="ABC Deal logo" className="h-[60px] mx-auto mb-8" />
-                <h2 className="text-2xl font-bold mb-6 text-center">Logg inn</h2>
+                <h2 className="text-2xl font-bold text-ui-background mb-6 text-center">Logg inn</h2>
                 <form onSubmit={handleLogin} className="space-y-4">
                     <input
                         type="email"
@@ -59,11 +59,11 @@ const Login = () => {
                         required
                         className="w-full border border-gray-300 rounded px-4 py-2"
                     /> <br/>
-                    <button type="submit" className="w-full bg-primary text-white py-2 rounded hover:bg-primary-dark transition-colors">Logg inn</button>
+                    <button type="submit" className="w-full bg-ui-background text-warm-off-white py-2 rounded hover:bg-[#6D8DAE] transition-colors">Logg inn</button>
                     <div className="text-sm mt-2">
                         <button type="button" 
                             onClick={() => setShowReset(!showReset)}
-                            className="text-primary hover:underline hover:text-red-400 transition-all duration-200">
+                            className="text-ui-background bg-warm-off-white hover:underline hover:text-red-400 transition-all duration-200">
                             Glemt passord ? 
                         </button>
                     </div>
@@ -91,7 +91,7 @@ const Login = () => {
                                         setResetMsg("E-post ikke funnet");
                                 }
                             }}
-                            className="w-full bg-primary text-white py-2 rounded hover:bg-primary-dark transition-colors"
+                            className="w-full bg-ui-background text-warm-off-white py-2 rounded hover:bg-[#6D8DAE] transition-colors"
                         >
                             Send nytt passord 
                         </button>

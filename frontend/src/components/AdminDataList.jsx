@@ -73,7 +73,7 @@ const AdminDataList = ({
 
     return (
         <div className="max-w-2xl mx-auto mt-8">
-            <h2 className="text-2xl font-bold mb-4 text-left">{title}</h2>
+            <h2 className="text-2xl font-bold mb-4 text-left text-ui-background">{title}</h2>
 
             <div className="flex justify-between items-center mb-4">
                 <ArchivedCasesLink
