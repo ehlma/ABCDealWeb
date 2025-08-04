@@ -78,12 +78,14 @@ const ComplaintsPage = () => {
     };
 
     return (
-        <div className="p-8 max-w-lg mx-auto bg-white rounded-lg shadow-md mt-24">
-            <h1 className="text-3xl font-bold mb-4 text-primary text-center">Reklamasjonsskjema</h1>
+        <div className="p-8 max-w-lg mx-auto mt-24">
+            <h1 className="text-3xl font-bold mb-4 text-primary text-left">Reklamasjonsskjema</h1>
 
             {/* TODO: Legg til skjema */}
-            <p className="mb-4">
-                Hos ABC Deal tar vi reklamasjoner på alvor. Vennligst fyll inn skjemaet nedenfor for å sende inn din sak.
+            <p className="mb-6 text-gray-800 leading-relaxed text-left">
+                <strong>Slik sender du inn reklamasjon</strong><br />
+                Vi tar reklamasjoner på alvor og vil hjelpe deg så raskt som mulig. For å kunne behandle saken effektivt, trenger vi litt informasjon fra deg: bilens registreringsnummer, en beskrivelse av problemet og eventuelt dokumentasjon som bilder eller rapporter fra verksted. <br /><br />
+                Alt sendes inn via skjemaet nedenfor – og du får alltid svar skriftlig fra oss.
             </p>
 
             {successMessage && <p className="text-green-600 text-center mb-4">{successMessage}</p>}
@@ -92,7 +94,7 @@ const ComplaintsPage = () => {
             {/* Personlig info */}
             <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Steg 1. Navn */}
-                <div>
+                <div className="text-left">
                     <div>
                         <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">Navn:</label>
                         <input
@@ -102,12 +104,12 @@ const ComplaintsPage = () => {
                             value={formData.name}
                             onChange={handleChange}
                             required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                         />
                     </div>
 
                     {/* Steg 2: E-post */}
-                    {formData.name && (
+                    {/* {formData.name && ( */}
                         <div>
                             <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">E-post:</label>
                             <input
@@ -120,10 +122,10 @@ const ComplaintsPage = () => {
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             />
                         </div>
-                    )}
+                    {/* )} */}
 
                     {/* Steg 3: Telefonnummer */}
-                    {formData.email && (
+                    {/* {formData.email && ( */}
                         <div>
                             <label htmlFor="phoneNum" className="block text-gray-700 text-sm font-bold mb-2">Telefonnummer:</label>
                             <input
@@ -136,10 +138,10 @@ const ComplaintsPage = () => {
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             />
                         </div>
-                    )}
+                    {/* )} */}
 
                     {/* Steg 4. Reg nummer */}
-                    {formData.phoneNum && (
+                    {/* {formData.phoneNum && ( */}
                         <div>
                             <label htmlFor="regNum" className="block text-gray-700 text-sm font-bold mb-2">Registreringsnummer:</label>
                             <input
@@ -152,10 +154,10 @@ const ComplaintsPage = () => {
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             />
                         </div>
-                    )}
+                    {/* )} */}
 
                     {/* Steg 5. Beskrivelse */}
-                    {formData.regNum && (
+                    {/* {formData.regNum && ( */}
                         <div>
                             <label htmlFor="description" className="block text-gray-700 text-sm font-bold mb-2">Beskrivelse av problem/skade</label>
                             <textarea
@@ -168,10 +170,10 @@ const ComplaintsPage = () => {
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             />
                         </div>
-                    )}
+                    {/* )} */}
 
                     {/* Steg 6. Synlig skade */}
-                    {formData.description && (
+                    {/* {formData.description && ( */}
                         <div>
                             <div className="flex items-center space-x-2 pt-4">
                                 <input
@@ -184,7 +186,7 @@ const ComplaintsPage = () => {
                                 <label htmlFor="visibleDamage" className="text-gray-700 text-sm">Er skaden synlig?</label>
                             </div>
                         </div>
-                    )}
+                    {/* )} */}
                 </div>
 
                 {/* Steg 7. Bildeopplasting */}
@@ -206,7 +208,7 @@ const ComplaintsPage = () => {
                 )}
 
                 {/* Steg 8. Bildeopplasting */}
-                {formData.description && (
+                {/* {formData.description && ( */}
                     <div>
                         <label htmlFor="documentation" className="block text-gray-700 text-sm font-bold mb-2">
                             Last opp dokumentasjon
@@ -220,7 +222,7 @@ const ComplaintsPage = () => {
                             className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                         />
                     </div>
-                )}
+                {/* )} */}
 
                 {/* Submit-knapp */}
                 <div className="mt-6">

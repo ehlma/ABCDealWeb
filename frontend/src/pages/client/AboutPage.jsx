@@ -29,7 +29,7 @@ const AboutPage = () => {
                     <img 
                         src={logoImage} 
                         alt=""
-                        className="rounded shadow-lg max-w-[600px] h-auto object-contain" 
+                        className="rounded max-w-[600px] h-auto object-contain"
                     />
 
                 </div>
