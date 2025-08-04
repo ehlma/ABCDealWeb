@@ -20,6 +20,7 @@ export default {
           "navbar-icon": "#333333",
 
           "warm-off-white": "#fffefc",
+          "bg-color": "#F8F3ED"
         },
         fontFamily: { // Egne fonter
           heading: ["var(--font-heading)", "sans-serif"], // Poppins for overskrifter
