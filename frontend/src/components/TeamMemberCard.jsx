@@ -5,7 +5,7 @@ const TeamMemberCard = ({ name, title, phoneNum, email, image, objectPosition, d
     const [expanded, setExpanded] = useState(false);
 
     return (
-        <div className="bg-white/60 backdrop-blur-sm shadow-sm rounded-lg overflow-hidden text-center transition-all duration-300 max-w-[20em] sm:max-w-none">
+        <div className="bg-white/70 backdrop-blur-md border-white/20 rounded-2xl shadow-sm overflow-hidden text-center transition duration-300 hover:shadow-md">
             <img
                 src={image}
                 alt={`Bilde av ${name}`}
@@ -15,9 +15,9 @@ const TeamMemberCard = ({ name, title, phoneNum, email, image, objectPosition, d
 
             <div className="p-8">
                 <h3 className="text-xl font-semibold text-primary">{name}</h3>
-                <p className="text-sm text-gray-600 mb-2">{title}</p>
-                <p className="text-sm text-gray-500 ">{phoneNum}</p>
-                <p className="text-sm text-gray-500 ">{email}</p>
+                <p className="text-md text-gray-600 mb-2">{title}</p>
+                <p className="text-md text-gray-500 ">{phoneNum}</p>
+                <p className="text-md text-gray-500 ">{email}</p>
 
 
                 {expanded ? (

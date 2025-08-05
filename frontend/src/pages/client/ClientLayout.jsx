@@ -12,13 +12,13 @@ const ClientLayout = () => {
         <div  className="flex flex-col flex-1 w-full">
             {/* Nav bar for kunder */}
             <nav className="fixed top-0 left-0 z-[50] w-full bg-navbar-bg/90 shadow-sm backdrop-blur-md p-0 m-0">
-                <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+                <div className="flex items-center justify-between px-4 custom:px-6 lg:px-8 py-4">
                     <Link to="/">
                         <img src={logo} alt="ABC Deal Logo" className="h-[36px] cursor-pointer" />
                     </Link>
 
                     {/* Desktop meny */}
-                    <ul className="hidden sm:flex flex-grow justify-center gap-6 font-medium">
+                    <ul className="hidden custom:flex flex-grow justify-center gap-6 font-medium">
                         {[
                         { to: "/", label: "Hjem" },
                         { to: "/about", label: "Om Oss" },
@@ -55,14 +55,14 @@ const ClientLayout = () => {
                     </ul>
 
                     {/* Hamburder meny */}
-                    <button className="sm:hidden bg-transparent border-none p-0 m-0 focus:outline-none" onClick={() => setMenuOpen(!menuOpen)}>
+                    <button className="custom:hidden bg-transparent border-none p-0 m-0 focus:outline-none" onClick={() => setMenuOpen(!menuOpen)}>
                         {menuOpen ? <X className="w-8 h-8 text-navbar-icon" /> : <Menu className="w-8 h-8 text-navbar-icon" />}
                     </button>
                 </div>
 
                 {/* Mobilmeny - åpnes under navbar */}
                 {menuOpen && (
-                    <div className="absolute w-full top-[64px] left-0 bg-navbar-bg px-8 py-4 sm:hidden z-40 shadow flex flex-col rounded-b space-y-2">
+                    <div className="absolute w-full top-[64px] left-0 bg-navbar-bg px-8 py-4 custom:hidden z-40 shadow flex flex-col rounded-b space-y-2">
                         <NavLink 
                             to="/" 
                             onClick={() => setMenuOpen(false)} 
