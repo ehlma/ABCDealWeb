@@ -26,6 +26,10 @@ export default {
           heading: ["var(--font-heading)", "sans-serif"], // Poppins for overskrifter
           body: ["var(--font-body)", "sans-serif"], // Inter for brødtekst
         },
+
+        screens: {
+          custom: "789px",
+        }
       },
     },
     plugins: [],
