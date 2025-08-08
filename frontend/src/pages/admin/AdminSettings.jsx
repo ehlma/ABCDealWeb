@@ -7,6 +7,8 @@ const AdminSettings = () => {
     const [deleteConfirmId, setDeleteConfirmId] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
     const [users, setUsers] = useState([]);
+    const [okMessage, setOkMessage] = useState([]);
+
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -35,15 +37,21 @@ const AdminSettings = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+      
         try {
-            await api.post(API_ENDPOINTS.users, formData);
-            setFormData({ firstName: "", lastName: "", email: "", password: "", role: "admin" });
-            fetchUsers();
+          await api.post(API_ENDPOINTS.users, formData);
+          setFormData({ firstName: "", lastName: "", email: "", password: "", role: "admin" });
+          setOkMessage("Ansatt opprettet!");
+          setOkMessage("");
+          fetchUsers();
+      
+          setTimeout(() => setError(""), 3000); // skjul etter 3 sek
         } catch (err) {
-            setError("Feil ved opprettelse av bruker");
+          setError("Feil ved opprettelse av bruker");
+          setError("");
         }
-    };
+      };
+      
 
     const handleDelete = async (id) => {
         try {
@@ -162,7 +170,9 @@ const AdminSettings = () => {
               Opprett ansatt
             </button>
     
+            {okMessage && <p className="text-green-600 font-medium mb-[16px]">{okMessage}</p>}
             {error && <p className="text-red-600 font-medium mb-[16px]">{error}</p>}
+
           </form>
     
           {/* Informasjonsboks */}
@@ -186,88 +196,98 @@ const AdminSettings = () => {
     
         {/* Liste over ansatte */}
         <div className="col-span-3 mt-[56px] w-full">
-  <div className="w-full shadow-sm px-[24px] py-[24px] mb-[32px] bg-warm-off-white rounded-lg">
-    <h2 className="text-xl mb-[32px] pb-[4px] text-left text-ui-background font-bold">
-      Ansatte
-    </h2>
-
-    {/* Søkefelt */}
-    <div className="flex flex-col sm:flex-row sm:items-center sm:gap-[16px] mb-[16px] w-full">
-      <label htmlFor="search" className="block text-base font-medium mb-[8px] text-left">
-        Søk etter ansatt
-      </label>
-      <input
-        type="text"
-        placeholder="Søk etter navn..."
-        className="px-[12px] py-[8px] border border-gray-300 rounded w-full max-w-[300px]"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-    </div>
-
+          <div className="w-full shadow-sm px-[24px] py-[24px] mb-[32px] bg-warm-off-white rounded-lg">
+            <h2 className="text-xl mb-[32px] pb-[4px] text-left text-ui-background font-bold">
+              Ansatte
+            </h2>
+    
+            {/* Søkefelt */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:gap-[16px] mb-[16px] w-full">
+              <label htmlFor="search" className="block text-base font-medium mb-[8px] text-left">
+                Søk etter ansatt
+              </label>
+              <input
+                type="text"
+                placeholder="Søk etter navn..."
+                className="px-[12px] py-[8px] border border-gray-300 rounded w-full max-w-[300px]"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+    
             {/* Liste over ansatte */}
             <ul className="grid gap-[16px]">
-            {usersToDisplay.map((user) => (
-                <li
-                key={user._id}
-                className="bg-white shadow-sm rounded p-[16px] flex flex-col sm:flex-row sm:justify-between sm:items-center"
-                >
-                {/* Info om bruker */}
-                <div className="space-y-[4px] text-left">
-                    <p className="flex items-center gap-2">
-                    👤 <span className="font-semibold">Navn:</span> {user.firstName} {user.lastName}
-                    </p>
-                    <p className="flex items-center gap-2">
-                    ✉️ <span className="font-semibold">E-post:</span> {user.email}
-                    </p>
-                    <p className="flex items-center gap-2">
-                    🔑 <span className="font-semibold">Rolle:</span> {user.role}
-                    </p>
-                </div>
-
-                {/* Handlinger */}
-                <div className="flex gap-2 mt-4 sm:mt-0">
-                    {deleteConfirmId === user._id ? (
-                    <>
-                        <p className="text-red-500 font-medium self-center">Slette bruker?</p>
-                        <button
-                        onClick={() => handleDelete(user._id)}
-                        className="bg-green-600 hover:bg-green-700 text-white text-sm px-3 py-1 rounded"
-                        >
-                            Ja
-                        </button>
-                        <button
-                        onClick={() => setDeleteConfirmId(null)}
-                        className="bg-gray-400 hover:bg-gray-500 text-white text-sm px-3 py-1 rounded"
-                        >
-                            Nei
-                        </button>
-                    </>
-                    ) : (
-                    <>
-                        <button
-                        onClick={() => handleEdit(user)}
-                        className="bg-ui-background hover:bg-blue-700 text-white text-sm px-3 py-1 rounded"
-                        >
-                            Rediger
-                        </button>
-                        <button
-                        onClick={() => setDeleteConfirmId(user._id)}
-                        className="bg-red-900 hover:bg-red-700 text-white text-sm px-3 py-1 rounded"
-                        >
+              {usersToDisplay.map((user) => (
+                <li key={user._id} className="bg-white shadow-sm rounded p-[16px]">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+                    <div className="space-y-[4px] text-left">
+                      <p className="flex items-center gap-2">
+                        👤 <span className="font-semibold">Navn:</span> {user.firstName} {user.lastName}
+                      </p>
+                      <p className="flex items-center gap-2">
+                        ✉️ <span className="font-semibold">E-post:</span> {user.email}
+                      </p>
+                      <p className="flex items-center gap-2">
+                        🔑 <span className="font-semibold">Rolle:</span> {user.role}
+                      </p>
+                    </div>
+    
+                    <div className="flex flex-row justify-center">
+                      {deleteConfirmId === user._id ? (
+                        <>
+                          <p className="text-red-500 font-medium self-center">Slette bruker?</p>
+                          <button onClick={() => handleDelete(user._id)} className="bg-green-600 hover:bg-green-700 text-white text-sm px-3 py-1 rounded">Ja</button>
+                          <button onClick={() => setDeleteConfirmId(null)} className="bg-gray-400 hover:bg-gray-500 text-white text-sm px-3 py-1 rounded">Nei</button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => {
+                              handleEdit(user);
+                              setEditUserId(editUserId === user._id ? null : user._id);
+                            }}
+                            className="bg-ui-background hover:bg-blue-700 text-white text-sm px-3 py-1 rounded"
+                          >
+                            {editUserId === user._id ? "Lukk" : "Rediger"}
+                          </button>
+                          <button
+                            onClick={() => setDeleteConfirmId(user._id)}
+                            className="bg-red-900 hover:bg-red-700 text-white text-sm px-3 py-1 rounded"
+                          >
                             Slett
-                        </button>
-                    </>
-                    )}
-                </div>
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+    
+                  {editUserId === user._id && (
+                    <div className="mt-4 bg-gray-50 p-4 rounded shadow-inner space-y-2">
+                      <input name="firstName" value={editData.firstName} onChange={handleEditChange} className="border border-gray-300 rounded px-3 py-2 w-full" placeholder="Fornavn" />
+                      <input name="lastName" value={editData.lastName} onChange={handleEditChange} className="border border-gray-300 rounded px-3 py-2 w-full" placeholder="Etternavn" />
+                      <input name="email" value={editData.email} onChange={handleEditChange} className="border border-gray-300 rounded px-3 py-2 w-full" placeholder="E-post" />
+                      <select name="role" value={editData.role} onChange={handleEditChange} className="border border-gray-300 rounded px-3 py-2 w-full">
+                        {roles.map((role) => (
+                          <option key={role.value} value={role.value}>
+                            {role.label}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="flex flex-row justify-end gap-2">
+                        <button onClick={() => handleUpdate(user._id)} className="bg-blue-500 text-white px-3 py-1 text-sm rounded hover:bg-blue-600">Lagre</button>
+                        <button onClick={() => setEditUserId(null)} className="bg-gray-300 text-gray-800 px-3 py-1 text-sm rounded hover:bg-gray-400">Avbryt</button>
+                      </div>
+                    </div>
+                  )}
                 </li>
-            ))}
+              ))}
             </ul>
+          </div>
         </div>
-        </div>
-
+    
       </div>
     );
+    
     
 };
 
