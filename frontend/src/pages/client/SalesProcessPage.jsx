@@ -1,8 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import ScrollIndicator from "./ScrollIndicator";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import backgroundImage from "../../assets/salesprocess/backgroundImage.jpg";
+import intro from "../../assets/salesprocess/intro.png";
+import start from "../../assets/salesprocess/start.png";
+import annonsering from "../../assets/salesprocess/annonsering.png";
+import kontaktOgVisning from "../../assets/salesprocess/kontaktVisning.png";
+import oppgjør from "../../assets/salesprocess/oppgjør.png";
+import garanti from "../../assets/salesprocess/garanti.png";
+import bileier from "../../assets/salesprocess/bileier.png";
+import rådgivning from "../../assets/salesprocess/rådgivning.png";
+import vurdering from "../../assets/salesprocess/vurdering.png";
 
 const bodyTextColor = "text-[#fffefc]";
 
@@ -17,6 +26,19 @@ const steps = [
     "Rådgivning",
     "Ønsker du en vurdering?"
 ];
+
+const icons = [
+    intro,
+    start,
+    annonsering,
+    kontaktOgVisning,
+    oppgjør,
+    garanti,
+    bileier,
+    rådgivning,
+    vurdering
+];
+
 
 const contents = [
     <>
@@ -166,93 +188,88 @@ const SalesProcessPage = () => {
     }, []);
 
     return (
-        <div className="flex h-screen overflow-hidden">
+        <div className="relative h-screen w-full overflow-hidden">
+            {/* Bakgrunnsbilde */}
             <img
                 src={backgroundImage}
                 alt="Background"
-                className="fixed inset-0 w-full h-full object-cover z-0 blur-sm"
+                className="fixed inset-0 w-full h-full object-cover z-0"
+            />
+    
+            {/* Scroll-indikator */}
+            <div className="fixed top-0 right-6 h-screen flex flex-col items-center justify-between z-20">
+                <ScrollIndicator
+                    activeIndex={activeIndex}
+                    sectionRefs={sectionRefs}
+                    steps={steps}
                 />
-                
-            {/* === Sticky side panel === */}
-                <aside className="hidden md:flex fixed left-0 top-0 w-1/3 h-screen bg-warm-off-white/80 backdrop-blur-sm flex-col justify-between items-center z-20 border-r border-gray-200">
-                
-                    {/* Øverste innhold */}
-                    <div className="flex-1 flex flex-col items-center justify-center">
-                        <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-[#047464] text-white flex items-center justify-center text-3xl font-bold shadow-lg">
-                            {activeIndex}
-                        </div>
-                        <h2 className="text-2xl font-semibold text-[#047464]">
-                            {steps[activeIndex]}
-                        </h2>
-                    </div>
-
-                    {/* Nederst pil */}
-                    <motion.div
-                        key={activeIndex}
-                        initial={{ y: 0 }}
-                        animate={{
-                            y: [0, 12, 0],
-                            opacity: activeIndex === steps.length - 1 ? 0 : 1
-                        }}
-                        transition={{
-                            duration: 1,
-                            ease: "easeInOut",
-                        }}
-                        className="mb-8 flex justify-center cursor-pointer"
-                        onClick={() => {
-                            const nextIndex = activeIndex + 1;
-                            if (nextIndex < sectionRefs.current.length) {
-                                sectionRefs.current[nextIndex].scrollIntoView({
-                                    behavior: "smooth",
-                                    block: "center"
-                                });
-                            }
-                        }}
-                    >
-                        <ChevronDown className="w-10 h-10 text-[#047464]" />
-                    </motion.div>
-                </aside>
-
-                    {/* === Scrollable content === */}
-                    <main className="ml-[33.3333%] flex-1 relative overflow-y-scroll snap-y snap-mandatory hide-scrollbar scroll-smooth">
-                            {/* ScrollIndicator på høyre side */}
-                        <div className="fixed top-0 right-6 h-screen flex flex-col items-center justify-between z-20">
-                            <ScrollIndicator
-                                activeIndex={activeIndex}
-                                sectionRefs={sectionRefs}
-                                steps={steps}
-                            />
-                        </div>
-                    {steps.map((label, index) => {
+            </div>
+    
+            {/* Seksjoner */}
+            <div className="snap-y snap-mandatory h-screen overflow-y-scroll hide-scrollbar scroll-smooth relative z-10">
+                {steps.map((label, index) => {
                     const ref = useRef(null);
                     const isInView = useInView(ref, { amount: 0.3 });
-
+    
                     return (
-                        <motion.section
+                        <section
                             key={index}
                             ref={(el) => {
                                 sectionRefs.current[index] = el;
                                 ref.current = el;
                             }}
-                            className="snap-center h-screen flex items-center justify-center px-8"
-                            animate={{
-                                opacity: isInView ? 1 : 0.2,
-                                filter: isInView ? "blur(0px)" : "blur(4px)"
-                            }}
-                            transition={{ duration: 0.5 }}
+                            className="snap-center h-screen flex items-center justify-center px-4"
                         >
-                            <div className="max-w-2xl text-left text-white bg-transparent backdrop-blur-md p-6 rounded-lg shadow-lg">
-                                <div className="space-y-4 text-[#F8F9FA]">
-                                    {contents[index]}
+                            <div className={`w-full md:w-2/4 h-[100vh] bg-[#f0e9df]/70 backdrop-blur-md shadow-lg p-10 flex flex-col justify-center`}>
+                                <div className={`flex flex-col md:flex-row ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-8`}>
+                                    
+                                    {/* Ikon */}
+                                    <div className="w-30 h-30 flex-shrink-0">
+                                        <img
+                                            src={icons[index]}
+                                            alt={steps[index]}
+                                            className="w-full h-full object-contain"
+                                        />
+                                    </div>
+
+                                    {/* Tekst */}
+                                    <div className="flex flex-col text-center md:text-left items-center md:items-start space-y-2 max-w-xl">
+                                        <h2 className="text-xl font-semibold text-[#047464]">{steps[index]}</h2>
+                                        <div className="text-lg text-gray-800 font-sans">{contents[index]}</div>
+                                    </div>
                                 </div>
                             </div>
 
-                        </motion.section>
+                        </section>
                     );
                 })}
-            </main>
+            </div>
+    
+            {/* Pil – fast nederst */}
+            {activeIndex < steps.length - 1 && (
+                <motion.div
+                    key={activeIndex}
+                    initial={{ y: 0 }}
+                    animate={{ y: [0, 12, 0] }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-30 cursor-pointer"
+                    onClick={() => {
+                        const next = sectionRefs.current[activeIndex + 1];
+                        if (next) {
+                            next.scrollIntoView({ behavior: "smooth", block: "start" });
+                        }
+                    }}
+                >
+                    <ChevronDown className="w-10 h-10 text-[#047464]" />
+                </motion.div>
+            )}
         </div>
     );
+    
+    
+    
+    
+    
 };
 
 export default SalesProcessPage;
