@@ -5,7 +5,7 @@ import { Facebook } from "lucide-react";
 const Footer = () => {
     return (
         <footer className="bg-gray-800 text-white px-6 py-12 mt-12">
-            <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-left">
+            <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 items-center sm:items-start sm:text-left">
                 {/* Bedriftsinfo */}
                 <div>
                     <h4 className="font-semibold text-lg mb-2">ABC Deal</h4>
@@ -14,7 +14,7 @@ const Footer = () => {
                     <p>Telefon: 47 15 11 11</p>
                 </div>
                 {/* Navigasjon */}
-                <div>
+                <div className="flex flex-col items-center text-left">
                     <h4 className="font-semibold text-lg mb-2">Navigasjon</h4>
                     <ul className="space-y-1">
                         <li><Link to="/" className="text-gray-300 hover:text-white transition-colors duration-200">Hjem</Link></li>
