@@ -18,7 +18,7 @@ const ScrollIndicator = ({ activeIndex, sectionRefs, steps }) => {
         >
           {/* Label (vises bare på hover) */}
           <span
-            className={`mr-2 text-sm text-[#047464] opacity-0 group-hover:opacity-100 transition-opacity`}
+            className={`mr-2 text-sm text-warm-off-white font-semibold font-sans opacity-0 group-hover:opacity-100 transition-opacity`}
           >
             {label}
           </span>
