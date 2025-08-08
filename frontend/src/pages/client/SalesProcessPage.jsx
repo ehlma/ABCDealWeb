@@ -233,8 +233,8 @@ const SalesProcessPage = () => {
                                     </div>
 
                                     {/* Tekst */}
-                                    <div className="flex flex-col text-center md:text-left items-center md:items-start space-y-2 max-w-xl">
-                                        <h2 className="text-xl font-semibold text-[#047464]">{steps[index]}</h2>
+                                    <div className="flex flex-col md:text-left items-center md:items-start font-sans space-y-2 max-w-xl">
+                                        <h2 className="text-xl font-normal text-[#047464]">{steps[index]}</h2>
                                         <div className="text-lg text-gray-800 font-sans">{contents[index]}</div>
                                     </div>
                                 </div>
