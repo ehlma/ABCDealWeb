@@ -38,7 +38,7 @@ const HomePage = () => {
                         href="https://www.finn.no/mobility/search/car/mobilehome?orgId=8250738"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-6 inline-block px-6 py-2 rounded-md text-primary font-medium shadow-sm bg-warm-off-white hover:bg-primary hover:text-warm-off-white transition duration-200 ease-in-out"
+                        className="mt-6 inline-block px-6 py-2 rounded-md text-primary font-medium shadow-sm bg-warm-off-white hover:bg-primary hover:text-warm-off-white hover:scale-110 transition duration-200 ease-in-out"
                     >
                         Til salgs
                     </a>
