@@ -127,8 +127,12 @@ const contents = [
             style={{color : bodyTextColor}}
         >
             <p>
-                Har du en bil du ønsker vår uforpliktende vurdering av? Send en e-post til{" "}
-                <a href="mailto:peb@abcdeal.no" className="text-blue-600 underline">peb@abcdeal.no</a> med informasjon om:
+            Har du en bil du ønsker vår uforpliktende vurdering av?  
+            Bruk vårt{" "}
+            <a href="/contact" className="text-primary underline">
+                kontaktskjema
+            </a>{" "}
+            og legg inn informasjon om:
             </p>
             <ul className="list-disc list-inside">
                 <li>Merke</li>
