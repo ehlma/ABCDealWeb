@@ -23,8 +23,8 @@ const ClientLayout = () => {
                         { to: "/", label: "Hjem" },
                         { to: "/about", label: "Om Oss" },
                         { to: "/sales-process", label: "Salgsprosessen" },
-                        { to: "/complaints", label: "Reklamasjon" },
-                        { to: "/contact", label: "Kontakt Oss" }
+                        { to: "/contact", label: "Kontakt Oss" },
+                        { to: "/complaints", label: "Reklamasjon" }
                         ].map((link) => (
                         <li key={link.to}>
                             <NavLink
@@ -97,6 +97,17 @@ const ClientLayout = () => {
                         </NavLink>
 
                         <NavLink 
+                            to="/contact" 
+                            onClick={() => setMenuOpen(false)} 
+                            className={({ isActive }) =>
+                            `flex flex-row text-navbar-link hover:text-navbar-link-hover transition-colors
+                            ${isActive ? 'font-bold text-navbar-link-active' : ''}`
+                        }
+                        >
+                            Kontakt Oss
+                        </NavLink>
+
+                        <NavLink 
                             to="/complaints" 
                             onClick={() => setMenuOpen(false)} 
                             className={({ isActive }) =>
@@ -107,16 +118,6 @@ const ClientLayout = () => {
                             Reklamasjon
                         </NavLink>
                         
-                        <NavLink 
-                            to="/contact" 
-                            onClick={() => setMenuOpen(false)} 
-                            className={({ isActive }) =>
-                                `flex flex-row text-navbar-link hover:text-navbar-link-hover transition-colors
-                                ${isActive ? 'font-bold text-navbar-link-active' : ''}`
-                            }
-                        >
-                            Kontakt Oss
-                        </NavLink>
                     </div>
                 )}
             </nav>
