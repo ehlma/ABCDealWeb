@@ -9,19 +9,14 @@ const ScrollIndicator = ({ activeIndex, sectionRefs, steps }) => {
   };
 
   return (
-    <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-4">
+    <div className="flex flex-row items-center justify-center gap-6">
       {steps.map((label, i) => (
         <button
           key={i}
           onClick={() => handleClick(i)}
-          className="relative group flex items-center focus:outline-none bg-transparent border-none p-0"
-        >
-          {/* Label (vises bare på hover) */}
-          <span
-            className={`mr-2 text-sm text-warm-off-white font-semibold font-sans opacity-0 group-hover:opacity-100 transition-opacity`}
-          >
-            {label}
-          </span>
+          className="group relative flex flex-col items-center bg-transparent focus:outline-none"
+          style={{ height: "2rem" }} >
+
 
           {/* Dot */}
           <div
@@ -29,6 +24,12 @@ const ScrollIndicator = ({ activeIndex, sectionRefs, steps }) => {
               i === activeIndex ? "bg-[#047464] scale-150" : "bg-[#fffefc]"
             }`}
           />
+          {/* Label (vises bare på hover) */}
+            <span
+              className="absolute top-8 text-xs text-[#047464] opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+            >
+              {label}
+            </span>
         </button>
       ))}
     </div>
