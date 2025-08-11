@@ -9,7 +9,7 @@ const ScrollIndicator = ({ activeIndex, sectionRefs, steps }) => {
   };
 
   return (
-    <div className="flex flex-row items-center justify-center gap-6">
+    <div className="flex flex-row items-center justify-center gap-4">
       {steps.map((label, i) => (
         <button
           key={i}
