@@ -28,10 +28,12 @@ const HomePage = () => {
             className="relative h-screen w-screen bg-cover bg-center bg-no-repeat flex items-center justify-center text-white text-center"
             style={{ backgroundImage: `url(${homePhoto})` }}
         >
+            <div className="absolute inset-0 bg-black bg-opacity-20 z-0"></div>
+
             <div className="absolute inset-0 bg-black/40" /> {/* Overlegg */}
                 <div className="relative z-10 px-4">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4 text-warm-off-white">Velkommen til ABC Deal</h1>
-                    <p className="text-xl md:text-2xl max-w-2xl mx-auto text-warm-off-white">
+                    <h1 className="text-4xl md:text-5xl  font-light mb-4 text-warm-off-white">Velkommen til ABC Deal</h1>
+                    <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto text-warm-off-white">
                         Vi gjør det enkelt å kjøpe og selge bobil, campingvogn og bil – trygt og profesjonelt.
                     </p>
                     <a
