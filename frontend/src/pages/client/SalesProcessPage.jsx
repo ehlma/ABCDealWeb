@@ -127,8 +127,12 @@ const contents = [
             style={{color : bodyTextColor}}
         >
             <p>
-                Har du en bil du ønsker vår uforpliktende vurdering av? Send en e-post til{" "}
-                <a href="mailto:peb@abcdeal.no" className="text-blue-600 underline">peb@abcdeal.no</a> med informasjon om:
+            Har du en bil du ønsker vår uforpliktende vurdering av?  
+            Bruk vårt{" "}
+            <a href="/contact" className="text-primary underline">
+                kontaktskjema
+            </a>{" "}
+            og legg inn informasjon om:
             </p>
             <ul className="list-disc list-inside">
                 <li>Merke</li>
@@ -195,15 +199,15 @@ const SalesProcessPage = () => {
                 alt="Background"
                 className="fixed inset-0 w-full h-full object-cover z-0"
             />
-    
-            {/* Scroll-indikator */}
-            <div className="fixed top-0 right-6 h-screen flex flex-col items-center justify-between z-20">
+            {/* Scroll-indikator – horisontal */}
+            <div className="hidden md:flex fixed top-28 left-1/2 -translate-x-1/2 z-20">
                 <ScrollIndicator
                     activeIndex={activeIndex}
                     sectionRefs={sectionRefs}
                     steps={steps}
                 />
             </div>
+
     
             {/* Seksjoner */}
             <div className="snap-y snap-mandatory h-screen overflow-y-scroll hide-scrollbar scroll-smooth relative z-10">
@@ -220,7 +224,7 @@ const SalesProcessPage = () => {
                             }}
                             className="snap-center h-screen flex items-center justify-center px-4"
                         >
-                            <div className={`w-full md:w-2/4 h-[100vh] bg-[#f0e9df]/70 backdrop-blur-md shadow-lg p-10 flex flex-col justify-center`}>
+                            <div className={`w-full md:w-2/4 h-[100vh] bg-[#f0e9df]/80 backdrop-blur-md shadow-lg p-10 flex flex-col justify-center`}>
                                 <div className={`flex flex-col md:flex-row ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-8`}>
                                     
                                     {/* Ikon */}
