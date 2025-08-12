@@ -24,6 +24,7 @@ const ClientLayout = () => {
                         { to: "/about", label: "Om Oss" },
                         { to: "/sales-process", label: "Salgsprosessen" },
                         { to: "/complaints", label: "Reklamasjon" },
+                        { to: "/for-sale", label: "Til Salgs" },
                         { to: "/contact", label: "Kontakt Oss" }
                         ].map((link) => (
                         <li key={link.to}>
@@ -105,6 +106,17 @@ const ClientLayout = () => {
                             }
                         >
                             Reklamasjon
+                        </NavLink>
+
+                        <NavLink 
+                            to="/for-sale" 
+                            onClick={() => setMenuOpen(false)} 
+                            className={({ isActive }) =>
+                                `flex flex-row text-navbar-link hover:text-navbar-link-hover transition-colors
+                                ${isActive ? 'font-bold text-navbar-link-active' : ''}`
+                            }
+                        >
+                            Til Salgs
                         </NavLink>
                         
                         <NavLink 
