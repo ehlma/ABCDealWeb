@@ -160,7 +160,7 @@ const ContactPage = () => {
                     <h3 className="texg-lg font-semibold text-gray-700">Kontaktinformasjon</h3>
                     <p><span className="font-medium">Telefon:</span> <a href="#" className="text-primary hover:underline"><br />+47 47 15 11 11</a></p>
                     <p><span className="font-medium">E-post:</span> <a href="#" className="text-primary hover:underline"><br />#</a></p>
-                    <p><span className="font-medium">Adresse:</span><br />Spelhaugen 22 A, 5147 Fyllingsdalen</p>
+                    <p><span className="font-medium">Foretningsadresse:</span><br />Spelhaugen 22 A, 5147 Fyllingsdalen</p>
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1973.5341550290277!2d5.270963777437207!3d60.353813475126564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x463cfbb9107a3d8d%3A0x7b4f7f68fa381569!2sSpelhaugen%2022A%2C%205147%20Fyllingsdalen!5e0!3m2!1sen!2sno!4v1754051896972!5m2!1sen!2sno"
                         className="w-full h-40 rounded"
