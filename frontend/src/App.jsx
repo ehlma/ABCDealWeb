@@ -23,6 +23,7 @@ import SalesProcessPage from './pages/client/SalesProcessPage';
 import ComplaintsPage from './pages/client/ComplaintsPage';
 import ContactPage from './pages/client/ContactPage';
 import NotFoundPage from './pages/client/NotFoundPage';
+import ForSalePage from './pages/client/ForSalePage';
 
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute'
@@ -41,6 +42,7 @@ function App() {
             <Route path='/' element={<ClientLayout />}>
               <Route index element={<HomePage />} />
               <Route path='about' element={<AboutPage />} />
+              <Route path='for-sale' element={<ForSalePage />} />
               <Route path='sales-process' element={<SalesProcessPage />} />
               <Route path='complaints' element={<ComplaintsPage />} />
               <Route path='contact' element={<ContactPage />} />
