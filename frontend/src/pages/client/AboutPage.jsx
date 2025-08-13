@@ -6,7 +6,7 @@ import perErikImage from "../../assets/pererik.jpeg";
 import TeamMemberCard from "../../components/TeamMemberCard";
 import norwayImage from "../../assets/norway.svg";
 import roadmapImage from "../../assets/roadmap.jpg";
-import sustainabilityImage from "../../assets/sustainability.jpg";
+import sustainabilityImage from "../../assets/sustainability.png";
 
 const AboutPage = () => {
     const teamData = [
@@ -156,8 +156,8 @@ const AboutPage = () => {
                 <div className="mt-8">
                     <img
                         src={sustainabilityImage}
-                        alt="Bilde av vindmøller."
-                        className="w-full h-auto rounded-lg shadow-md"
+                        alt="Bilde gjenbrukt bil."
+                        className="w-full h-auto rounded-lg"
                     />
                 </div>
 
