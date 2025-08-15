@@ -36,4 +36,5 @@ This project utilizes a set of semantically named colors defined in "tailwind.co
 | bg-color           | `#F8F3ED` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=F8F3ED) |
 
 
+
 *Note: Standard Tailwind CSS colors (e.g. "gray-300", "text-white") are used directly without a custom variable unless specific override is required.*
