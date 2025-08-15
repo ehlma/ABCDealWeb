@@ -17,7 +17,7 @@ npm install
 
 ## Color Palette
 This project utilizes a set of semantically named colors defined in "tailwind.config.js". These colors represent the project's brand and UI palette and should be used consistently throughout the application.
-## 🎨 Fargepalett
+
 
 | Navn                | Hex       | Forhåndsvisning |
 |---------------------|-----------|-----------------|
