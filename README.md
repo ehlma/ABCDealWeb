@@ -19,17 +19,21 @@ npm install
 This project utilizes a set of semantically named colors defined in "tailwind.config.js". These colors represent the project's brand and UI palette and should be used consistently throughout the application.
 
 
-| Navn                | Hex       | Forhåndsvisning |
-|---------------------|-----------|-----------------|
-| primary             | `#047464` | ![#047464](https://via.placeholder.com/20/047464/000000?text=+) |
-| primary-light       | `#d1fae5` | ![#d1fae5](https://via.placeholder.com/20/d1fae5/000000?text=+) |
-| primary-dark        | `#065f54` | ![#065f54](https://via.placeholder.com/20/065f54/000000?text=+) |
-| ui-background       | `#34495e` | ![#34495e](https://via.placeholder.com/20/34495e/000000?text=+) |
-| navbar-bg           | `#f7f5f0` | ![#f7f5f0](https://via.placeholder.com/20/f7f5f0/000000?text=+) |
-| navbar-link         | `#333333` | ![#333333](https://via.placeholder.com/20/333333/000000?text=+) |
-| navbar-link-hover   | `#047464` | ![#047464](https://via.placeholder.com/20/047464/000000?text=+) |
-| navbar-link-active  | `#047464` | ![#047464](https://via.placeholder.com/20/047464/000000?text=+) |
-| navbar-icon         | `#333333` | ![#333333](https://via.placeholder.com/20/333333/000000?text=+) |
-| warm-off-white      | `#fffefc` | ![#fffefc](https://via.placeholder.com/20/fffefc/000000?text=+) |
-| bg-color            | `#F8F3ED` | ![#F8F3ED](https://via.placeholder.com/20/F8F3ED/000000?text=+) |
+## 🎨 Fargepalett
+
+| Name               | Hex       | Preview         |
+|--------------------|-----------|-----------------|
+| primary            | `#047464` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=047464) |
+| primary-light      | `#d1fae5` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=d1fae5) |
+| primary-dark       | `#065f54` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=065f54) |
+| ui-background      | `#34495e` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=34495e) |
+| navbar-bg          | `#f7f5f0` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=f7f5f0) |
+| navbar-link        | `#333333` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=333333) |
+| navbar-link-hover  | `#047464` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=047464) |
+| navbar-link-active | `#047464` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=047464) |
+| navbar-icon        | `#333333` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=333333) |
+| warm-off-white     | `#fffefc` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=fffefc) |
+| bg-color           | `#F8F3ED` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=F8F3ED) |
+
+
 *Note: Standard Tailwind CSS colors (e.g. "gray-300", "text-white") are used directly without a custom variable unless specific override is required.*
