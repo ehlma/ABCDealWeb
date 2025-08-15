@@ -18,17 +18,18 @@ npm install
 ## Color Palette
 This project utilizes a set of semantically named colors defined in "tailwind.config.js". These colors represent the project's brand and UI palette and should be used consistently throughout the application.
 
-| Hex Code | Semantic CSS Variable Name | Tailwind CSS Class Name | Usage (Example) |
-| :------- | :------------------------- | :---------------------- | :-------------- |
-| `#047464`| `--color-primary`          | `primary`               | Primary brand color, important buttons, headings, and active/hover states for navbar links |
-| `#d1fae5`| `--color-primary-light`    | `primary-light`         | Lighter accent/hover for primary |
-| `#065f54`| `--color-primary-dark`     | `primary-dark`          | Darker accent/hover for primary |
-| `#34495e`| `--color-ui-background`    | `ui-background`         | General UI background (e.g., navigation bars, modal backgrounds) |
-| `#2c3e50`| `--color-footer-background`| `footer-background`     | Footer background |
-| `#F8F8F8`| `--color-navbar-bg`        | `navbar-bg`             | Background color for the main navigation bar |
-| `#333333`| `--color-navbar-link`      | `navbar-link`           | Default text color for navigation links |
-| `#047464`| `--color-navbar-link-hover`| `navbar-link-hover`     | Text color for navigation links on hover |
-| `#047464`| `--color-navbar-link-active`| `navbar-link-active`   | Text color for the currently active navigation link |
-| `#333333`| `--color-navbar-icon`      | `navbar-icon`           | Color for navigation icons (e.g., hamburger menu icon) |
 
+| Navn                | Hex       | Forhåndsvisning |
+|---------------------|-----------|-----------------|
+| primary             | `#047464` | ![#047464](https://via.placeholder.com/20/047464/000000?text=+) |
+| primary-light       | `#d1fae5` | ![#d1fae5](https://via.placeholder.com/20/d1fae5/000000?text=+) |
+| primary-dark        | `#065f54` | ![#065f54](https://via.placeholder.com/20/065f54/000000?text=+) |
+| ui-background       | `#34495e` | ![#34495e](https://via.placeholder.com/20/34495e/000000?text=+) |
+| navbar-bg           | `#f7f5f0` | ![#f7f5f0](https://via.placeholder.com/20/f7f5f0/000000?text=+) |
+| navbar-link         | `#333333` | ![#333333](https://via.placeholder.com/20/333333/000000?text=+) |
+| navbar-link-hover   | `#047464` | ![#047464](https://via.placeholder.com/20/047464/000000?text=+) |
+| navbar-link-active  | `#047464` | ![#047464](https://via.placeholder.com/20/047464/000000?text=+) |
+| navbar-icon         | `#333333` | ![#333333](https://via.placeholder.com/20/333333/000000?text=+) |
+| warm-off-white      | `#fffefc` | ![#fffefc](https://via.placeholder.com/20/fffefc/000000?text=+) |
+| bg-color            | `#F8F3ED` | ![#F8F3ED](https://via.placeholder.com/20/F8F3ED/000000?text=+) |
 *Note: Standard Tailwind CSS colors (e.g. "gray-300", "text-white") are used directly without a custom variable unless specific override is required.*
