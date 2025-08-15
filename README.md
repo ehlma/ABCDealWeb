@@ -18,6 +18,7 @@ npm install
 ## Color Palette
 This project utilizes a set of semantically named colors defined in "tailwind.config.js". These colors represent the project's brand and UI palette and should be used consistently throughout the application.
 
+
 | Navn               | Hex      | Forhåndsvisning |
 |--------------------|----------|-----------------|
 | primary            | `#047464` | <svg width="20" height="20"><rect width="20" height="20" fill="#047464" stroke="#000" /></svg> |
@@ -31,6 +32,7 @@ This project utilizes a set of semantically named colors defined in "tailwind.co
 | navbar-icon        | `#333333` | <svg width="20" height="20"><rect width="20" height="20" fill="#333333" stroke="#000" /></svg> |
 | warm-off-white     | `#fffefc` | <svg width="20" height="20"><rect width="20" height="20" fill="#fffefc" stroke="#000" /></svg> |
 | bg-color           | `#F8F3ED` | <svg width="20" height="20"><rect width="20" height="20" fill="#F8F3ED" stroke="#000" /></svg> |
+
 
 
 *Note: Standard Tailwind CSS colors (e.g. "gray-300", "text-white") are used directly without a custom variable unless specific override is required.*
