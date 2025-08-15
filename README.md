@@ -18,17 +18,19 @@ npm install
 ## Color Palette
 This project utilizes a set of semantically named colors defined in "tailwind.config.js". These colors represent the project's brand and UI palette and should be used consistently throughout the application.
 
-| Hex Code | Semantic CSS Variable Name | Tailwind CSS Class Name | Usage (Example) |
-| :------- | :------------------------- | :---------------------- | :-------------- |
-| `#047464`| `--color-primary`          | `primary`               | Primary brand color, important buttons, headings, and active/hover states for navbar links |
-| `#d1fae5`| `--color-primary-light`    | `primary-light`         | Lighter accent/hover for primary |
-| `#065f54`| `--color-primary-dark`     | `primary-dark`          | Darker accent/hover for primary |
-| `#34495e`| `--color-ui-background`    | `ui-background`         | General UI background (e.g., navigation bars, modal backgrounds) |
-| `#2c3e50`| `--color-footer-background`| `footer-background`     | Footer background |
-| `#F8F8F8`| `--color-navbar-bg`        | `navbar-bg`             | Background color for the main navigation bar |
-| `#333333`| `--color-navbar-link`      | `navbar-link`           | Default text color for navigation links |
-| `#047464`| `--color-navbar-link-hover`| `navbar-link-hover`     | Text color for navigation links on hover |
-| `#047464`| `--color-navbar-link-active`| `navbar-link-active`   | Text color for the currently active navigation link |
-| `#333333`| `--color-navbar-icon`      | `navbar-icon`           | Color for navigation icons (e.g., hamburger menu icon) |
+| Navn               | Hex      | Forhåndsvisning |
+|--------------------|----------|-----------------|
+| primary            | `#047464` | <svg width="20" height="20"><rect width="20" height="20" fill="#047464" stroke="#000" /></svg> |
+| primary-light      | `#d1fae5` | <svg width="20" height="20"><rect width="20" height="20" fill="#d1fae5" stroke="#000" /></svg> |
+| primary-dark       | `#065f54` | <svg width="20" height="20"><rect width="20" height="20" fill="#065f54" stroke="#000" /></svg> |
+| ui-background      | `#34495e` | <svg width="20" height="20"><rect width="20" height="20" fill="#34495e" stroke="#000" /></svg> |
+| navbar-bg          | `#f7f5f0` | <svg width="20" height="20"><rect width="20" height="20" fill="#f7f5f0" stroke="#000" /></svg> |
+| navbar-link        | `#333333` | <svg width="20" height="20"><rect width="20" height="20" fill="#333333" stroke="#000" /></svg> |
+| navbar-link-hover  | `#047464` | <svg width="20" height="20"><rect width="20" height="20" fill="#047464" stroke="#000" /></svg> |
+| navbar-link-active | `#047464` | <svg width="20" height="20"><rect width="20" height="20" fill="#047464" stroke="#000" /></svg> |
+| navbar-icon        | `#333333` | <svg width="20" height="20"><rect width="20" height="20" fill="#333333" stroke="#000" /></svg> |
+| warm-off-white     | `#fffefc` | <svg width="20" height="20"><rect width="20" height="20" fill="#fffefc" stroke="#000" /></svg> |
+| bg-color           | `#F8F3ED` | <svg width="20" height="20"><rect width="20" height="20" fill="#F8F3ED" stroke="#000" /></svg> |
+
 
 *Note: Standard Tailwind CSS colors (e.g. "gray-300", "text-white") are used directly without a custom variable unless specific override is required.*
