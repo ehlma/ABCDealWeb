@@ -19,19 +19,21 @@ npm install
 This project utilizes a set of semantically named colors defined in "tailwind.config.js". These colors represent the project's brand and UI palette and should be used consistently throughout the application.
 
 
-| Navn               | Hex      | Forhåndsvisning |
-|--------------------|----------|-----------------|
-| primary            | `#047464` | <svg width="20" height="20"><rect width="20" height="20" fill="#047464" stroke="#000" /></svg> |
-| primary-light      | `#d1fae5` | <svg width="20" height="20"><rect width="20" height="20" fill="#d1fae5" stroke="#000" /></svg> |
-| primary-dark       | `#065f54` | <svg width="20" height="20"><rect width="20" height="20" fill="#065f54" stroke="#000" /></svg> |
-| ui-background      | `#34495e` | <svg width="20" height="20"><rect width="20" height="20" fill="#34495e" stroke="#000" /></svg> |
-| navbar-bg          | `#f7f5f0` | <svg width="20" height="20"><rect width="20" height="20" fill="#f7f5f0" stroke="#000" /></svg> |
-| navbar-link        | `#333333` | <svg width="20" height="20"><rect width="20" height="20" fill="#333333" stroke="#000" /></svg> |
-| navbar-link-hover  | `#047464` | <svg width="20" height="20"><rect width="20" height="20" fill="#047464" stroke="#000" /></svg> |
-| navbar-link-active | `#047464` | <svg width="20" height="20"><rect width="20" height="20" fill="#047464" stroke="#000" /></svg> |
-| navbar-icon        | `#333333` | <svg width="20" height="20"><rect width="20" height="20" fill="#333333" stroke="#000" /></svg> |
-| warm-off-white     | `#fffefc` | <svg width="20" height="20"><rect width="20" height="20" fill="#fffefc" stroke="#000" /></svg> |
-| bg-color           | `#F8F3ED` | <svg width="20" height="20"><rect width="20" height="20" fill="#F8F3ED" stroke="#000" /></svg> |
+## 🎨 Fargepalett
+
+| Name               | Hex       | Preview         |
+|--------------------|-----------|-----------------|
+| primary            | `#047464` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=047464) |
+| primary-light      | `#d1fae5` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=d1fae5) |
+| primary-dark       | `#065f54` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=065f54) |
+| ui-background      | `#34495e` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=34495e) |
+| navbar-bg          | `#f7f5f0` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=f7f5f0) |
+| navbar-link        | `#333333` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=333333) |
+| navbar-link-hover  | `#047464` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=047464) |
+| navbar-link-active | `#047464` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=047464) |
+| navbar-icon        | `#333333` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=333333) |
+| warm-off-white     | `#fffefc` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=fffefc) |
+| bg-color           | `#F8F3ED` | ![](https://img.shields.io/badge/-?style=flat&logoColor=white&color=F8F3ED) |
 
 
 
