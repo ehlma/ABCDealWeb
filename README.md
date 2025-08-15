@@ -19,17 +19,20 @@ npm install
 This project utilizes a set of semantically named colors defined in "tailwind.config.js". These colors represent the project's brand and UI palette and should be used consistently throughout the application.
 
 
-| Navn                | Hex       | Forhåndsvisning |
-|---------------------|-----------|-----------------|
-| primary             | `#047464` | ![#047464](https://via.placeholder.com/20/047464/000000?text=+) |
-| primary-light       | `#d1fae5` | ![#d1fae5](https://via.placeholder.com/20/d1fae5/000000?text=+) |
-| primary-dark        | `#065f54` | ![#065f54](https://via.placeholder.com/20/065f54/000000?text=+) |
-| ui-background       | `#34495e` | ![#34495e](https://via.placeholder.com/20/34495e/000000?text=+) |
-| navbar-bg           | `#f7f5f0` | ![#f7f5f0](https://via.placeholder.com/20/f7f5f0/000000?text=+) |
-| navbar-link         | `#333333` | ![#333333](https://via.placeholder.com/20/333333/000000?text=+) |
-| navbar-link-hover   | `#047464` | ![#047464](https://via.placeholder.com/20/047464/000000?text=+) |
-| navbar-link-active  | `#047464` | ![#047464](https://via.placeholder.com/20/047464/000000?text=+) |
-| navbar-icon         | `#333333` | ![#333333](https://via.placeholder.com/20/333333/000000?text=+) |
-| warm-off-white      | `#fffefc` | ![#fffefc](https://via.placeholder.com/20/fffefc/000000?text=+) |
-| bg-color            | `#F8F3ED` | ![#F8F3ED](https://via.placeholder.com/20/F8F3ED/000000?text=+) |
+| Navn               | Hex      | Forhåndsvisning |
+|--------------------|----------|-----------------|
+| primary            | `#047464` | <svg width="20" height="20"><rect width="20" height="20" fill="#047464" stroke="#000" /></svg> |
+| primary-light      | `#d1fae5` | <svg width="20" height="20"><rect width="20" height="20" fill="#d1fae5" stroke="#000" /></svg> |
+| primary-dark       | `#065f54` | <svg width="20" height="20"><rect width="20" height="20" fill="#065f54" stroke="#000" /></svg> |
+| ui-background      | `#34495e` | <svg width="20" height="20"><rect width="20" height="20" fill="#34495e" stroke="#000" /></svg> |
+| navbar-bg          | `#f7f5f0` | <svg width="20" height="20"><rect width="20" height="20" fill="#f7f5f0" stroke="#000" /></svg> |
+| navbar-link        | `#333333` | <svg width="20" height="20"><rect width="20" height="20" fill="#333333" stroke="#000" /></svg> |
+| navbar-link-hover  | `#047464` | <svg width="20" height="20"><rect width="20" height="20" fill="#047464" stroke="#000" /></svg> |
+| navbar-link-active | `#047464` | <svg width="20" height="20"><rect width="20" height="20" fill="#047464" stroke="#000" /></svg> |
+| navbar-icon        | `#333333` | <svg width="20" height="20"><rect width="20" height="20" fill="#333333" stroke="#000" /></svg> |
+| warm-off-white     | `#fffefc` | <svg width="20" height="20"><rect width="20" height="20" fill="#fffefc" stroke="#000" /></svg> |
+| bg-color           | `#F8F3ED` | <svg width="20" height="20"><rect width="20" height="20" fill="#F8F3ED" stroke="#000" /></svg> |
+
+
+
 *Note: Standard Tailwind CSS colors (e.g. "gray-300", "text-white") are used directly without a custom variable unless specific override is required.*
