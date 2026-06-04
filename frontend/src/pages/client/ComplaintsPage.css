@@ -1,0 +1,121 @@
+.complaints-page {
+    min-height: 100vh;
+    background-color: #f8f3ed;
+    color: #000000;
+    text-align: left;
+}
+
+.complaints-hero {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.complaints-hero__text h1 {
+    margin: 0 0 1.5rem;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.05;
+    font-weight: 700;
+}
+
+.complaints-hero__text p {
+    max-width: 560px;
+    margin: 0 0 2rem;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.72);
+}
+
+.complaints-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    border-radius: 999px;
+    background-color: #ff914d;
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.complaints-button:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.complaints-hero__image {
+    display: block;
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    margin: 0 auto;
+    object-fit: contain;
+    margin-bottom: 40px;
+}
+
+.complaints-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 7rem;
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 4rem;
+}
+
+.complaints-content__heading {
+    display: flex;
+    top: 120px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.complaints-content__heading h2 {
+    margin: 0;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.05;
+    max-width: 350px;
+}
+
+.complaints-content__text {
+    padding: 2.5rem;
+    border-radius: 2rem;
+    background-color: transparent;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.06);
+}
+
+.complaints-content__text p {
+    margin: 0;
+    white-space: pre-line;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: rgba(0, 0, 0, 0.72);
+}
+
+@media (max-width: 900px) {
+
+    .complaints-hero,
+    .complaints-content {
+        grid-template-columns: 1fr;
+    }
+
+    .complaints-hero {
+        padding-top: 4rem;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .complaints-hero,
+    .complaints-content {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    .complaints-button {
+        width: 100%;
+    }
+}
