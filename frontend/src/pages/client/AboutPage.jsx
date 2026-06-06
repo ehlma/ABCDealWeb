@@ -1,8 +1,5 @@
 import React from "react";
-import logoImage from "../../assets/Logo.png";
 import tommyImage from "../../assets/tommy.jpg";
-import leifImage from "../../assets/leif.jpg";
-import perErikImage from "../../assets/pererik.jpeg";
 import TeamMemberCard from "../../components/TeamMemberCard";
 import norwayImage from "../../assets/norway.svg";
 import roadmapImage from "../../assets/roadmap.jpg";
@@ -14,7 +11,7 @@ const AboutPage = () => {
             name: "Tommy Østli",
             title: "Daglig leder",
             phoneNum: "+47 408 28 4948",
-            email: "to@abcdeal.no",
+            email: "tommy@3sbc.no",
             image: tommyImage,
             objectPosition: "top 20%",
             description: "Tommy er en erfaren selger med en genuin evne til å bygge relasjoner og skape tillit. Med bakgrunn fra både salg og coaching, har han i mange år hjulpet kunder med å finne løsninger som passer deres behov – alltid med en personlig og ærlig tilnærming. Hans engasjement og forståelse for mennesker gjør ham til en naturlig kontaktperson for både nye og eksisterende kunder hos ABC Deal.",
@@ -114,7 +111,7 @@ const AboutPage = () => {
             </div>
 
             {/* Team member cards */}
-            <h1 className="text-2xl font-bold text-primary m-12 mt-24">Møt teamet vårt</h1>
+            <h1 className="text-2xl font-bold text-primary m-12 mt-24">Møt 3S Bobil & Caravan</h1>
             <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start justify-items-center">
                 {teamData.map((member) => (
                     <TeamMemberCard key={member.name} {...member} />

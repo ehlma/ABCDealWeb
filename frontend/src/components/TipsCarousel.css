@@ -1,0 +1,148 @@
+.tips-carousel {
+    @apply bg-bg-color text-black;
+
+    padding: 5rem 1.25rem 6rem;
+}
+
+.tips-carousel__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.tips-carousel__heading {
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.tips-carousel__heading p {
+    @apply text-primary;
+
+    margin: 0 0 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.tips-carousel__heading h2 {
+    max-width: 760px;
+    margin: 0 auto;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1;
+}
+
+.tips-carousel__content {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 1.25rem;
+    align-items: center;
+}
+
+.tips-carousel__viewport {
+    position: relative;
+    min-height: 280px;
+}
+
+.tips-carousel__card {
+    @apply bg-warm-off-white;
+
+    min-height: 280px;
+    padding: 3rem;
+    border-radius: 2.25rem;
+    text-align: left;
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.08);
+}
+
+.tips-carousel__card span {
+    @apply text-primary;
+
+    display: block;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 900;
+}
+
+.tips-carousel__card h3 {
+    max-width: 720px;
+    margin: 0 0 1rem;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    line-height: 1.1;
+}
+
+.tips-carousel__card p {
+    max-width: 760px;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.68);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.tips-carousel__arrow {
+    @apply bg-warm-off-white text-navbar-link;
+
+    width: 3.25rem;
+    height: 3.25rem;
+    display: grid;
+    place-items: center;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
+    transition:
+        transform 180ms ease,
+        background-color 180ms ease,
+        color 180ms ease;
+}
+
+.tips-carousel__arrow:hover {
+    @apply bg-primary text-white;
+
+    transform: translateY(-2px);
+}
+
+.tips-carousel__arrow svg {
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
+.tips-carousel__dots {
+    margin-top: 1.75rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.tips-carousel__dots button {
+    width: 0.65rem;
+    height: 0.65rem;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition:
+        width 180ms ease,
+        background-color 180ms ease;
+}
+
+.tips-carousel__dots button.active {
+    @apply bg-primary;
+
+    width: 2.2rem;
+}
+
+@media (max-width: 720px) {
+    .tips-carousel__content {
+        grid-template-columns: 1fr;
+    }
+
+    .tips-carousel__arrow {
+        display: none;
+    }
+
+    .tips-carousel__card {
+        padding: 2rem;
+        border-radius: 1.75rem;
+    }
+}
