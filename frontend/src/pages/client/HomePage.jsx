@@ -1,9 +1,9 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../../api/api.js";
 import homePhoto from "../../assets/homePhoto.jpeg";
 import TipsCarousel from "../../components/TipsCarousel.jsx";
-
+import "./HomePage.css";
 
 const HomePage = () => {
     const [articles, setArticles] = useState([]);
@@ -17,111 +17,124 @@ const HomePage = () => {
                 console.error("Kunne ikke hente artikler", err);
             }
         };
-        fetchArticles();
 
+        fetchArticles();
     }, []);
 
     return (
-    <div className="w-full overflow-x-hidden">
-        {/* HERO. Top of the site */}
-        <section
-            className="relative h-screen w-screen bg-cover bg-center bg-no-repeat flex items-center justify-center text-white text-center"
-            style={{ backgroundImage: `url(${homePhoto})` }}
-        >
-            <div className="absolute inset-0 bg-black bg-opacity-20 z-0"></div>
+        <main className="home-page">
+            <section className="home-hero">
+                <div className="home-hero__content">
+                    <p className="home-hero__eyebrow">3S Bobil & Caravan</p>
 
-            <div className="absolute inset-0 bg-black/40" /> {/* Overlegg */}
-                <div className="relative z-10 px-4">
-                    <h1 className="text-4xl md:text-5xl  font-light mb-4 text-warm-off-white">Velkommen til ABC Deal</h1>
-                    <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto text-warm-off-white">
-                        Vi gjør det enkelt å kjøpe og selge bobil, campingvogn og bil – trygt og profesjonelt.
+                    <h1>Velkommen til 3S Bobil & Caravan</h1>
+
+                    <p>
+                        Vi gjør det enkelt å kjøpe og selge bobil, campingvogn og bil –
+                        trygt og profesjonelt.
                     </p>
-                    <a
-                        href="https://www.finn.no/mobility/search/car/mobilehome?orgId=8250738"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-6 inline-block px-6 py-2 rounded-md text-primary font-medium shadow-sm bg-warm-off-white hover:bg-primary hover:text-warm-off-white hover:scale-110 transition duration-200 ease-in-out"
-                    >
-                        Til salgs
-                    </a>
 
+                    <div className="home-hero__actions">
+                        <a
+                            href="https://www.finn.no/mobility/search/car/mobilehome?orgId=8250738"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="home-button home-button--primary"
+                        >
+                            Se kjøretøy til salgs
+                        </a>
+
+                        <Link to="/sales-process" className="home-button home-button--secondary">
+                            Slik fungerer prosessen
+                        </Link>
+                    </div>
+                </div>
+
+                <div className="home-hero__image-card">
+                    <img src={homePhoto} alt="Bobil hos 3S Bobil & Caravan" />
                 </div>
             </section>
-        
-            {/* HVA KAN VI HJELPE MED */}
-            <section className="py-20 px-4 text-center">
-                <h2 className="text-3xl font-bold mb-10 text-[#047464]">Hvordan kan vi hjelpe deg?</h2>
-                <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
-                    <Link to="/sales-process" className="bg-warm-off-white rounded-lg p-6 shadow hover:shadow-lg transition">
-                        <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Selge bil eller bobil?</h3>
-                        <p className="text-gray-700">Trygt, effektivt og uten stress – vi hjelper deg hele veien.</p>
+
+            <section className="home-help">
+                <div className="home-section-heading">
+                    <p>Hva kan vi hjelpe med?</p>
+                    <h2>Velg det som passer deg best</h2>
+                </div>
+
+                <div className="home-help__grid">
+                    <Link to="/sales-process" className="home-help-card home-help-card--large">
+                        <span>01</span>
+                        <h3>Selge bil eller bobil?</h3>
+                        <p>Trygt, effektivt og uten stress – vi hjelper deg hele veien.</p>
                     </Link>
+
                     <a
                         href="https://www.finn.no/mobility/search/car/mobilehome?orgId=8250738"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-warm-off-white rounded-lg p-6 shadow hover:shadow-lg transition"
+                        className="home-help-card"
                     >
-                        <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Kjøpe bobil?</h3>
-                        <p className="text-gray-700">Se våre bobiler og få råd om hvilket kjøp som passer deg.</p>
+                        <span>02</span>
+                        <h3>Kjøpe bobil?</h3>
+                        <p>Se våre bobiler og få råd om hvilket kjøp som passer deg.</p>
                     </a>
+
                     <a
                         href="https://www.finn.no/mobility/search/car?orgId=8250738"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-warm-off-white rounded-lg p-6 shadow hover:shadow-lg transition"
+                        className="home-help-card"
                     >
-                        <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Kjøpe bil?</h3>
-                        <p className="text-gray-700">Se våre bobiler og få råd om hvilket kjøp som passer deg.</p>
+                        <span>03</span>
+                        <h3>Kjøpe bil?</h3>
+                        <p>Se våre biler og få råd om hvilket kjøp som passer deg.</p>
                     </a>
-                </div>
-                <div className="grid gap-6 md:grid-cols-2 m-6 max-w-6xl mx-auto">
-                    <div className=" hidden mb:block"></div>
-                    <Link to="/contact" className="bg-warm-off-white rounded-lg p-6 shadow hover:shadow-lg transition">
-                        <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Service eller råd?</h3>
-                        <p className="text-gray-700">Kontakt oss for vurdering, rådgivning eller garanti.</p>
-                    </Link>
-                    <Link to="/complaints" className="bg-warm-off-white rounded-lg p-6 shadow hover:shadow-lg transistion">
-                        <h3 className="text-xl font-semibold mb-2 text-[#004f4f]">Reklamasjoner</h3>
-                        <p className="text-gray-700">Har noe gått galt? Vi tar reklamasjoner på alvor. Trykk her for reklamasjonsskjema. </p>
+
+                    <Link to="/contact" className="home-help-card">
+                        <span>04</span>
+                        <h3>Service eller råd?</h3>
+                        <p>Kontakt oss for vurdering, rådgivning eller garanti.</p>
                     </Link>
 
+                    <Link to="/complaints" className="home-help-card home-help-card--dark">
+                        <span>05</span>
+                        <h3>Reklamasjoner</h3>
+                        <p>Har noe gått galt? Vi tar reklamasjoner på alvor.</p>
+                    </Link>
                 </div>
             </section>
-        
-              {/* ARTIKLER */}
-            <section className="py-20 px-4 bg-[#f0e9df]">
-                <h2 className="text-3xl font-bold text-center text-[#047464] mb-10">Aktuelt</h2>
-                <div className="grid gap-8 md:grid-cols-2 max-w-6xl mx-auto">
-                    {articles.map((article) => (
-                        <div key={article._id} className="bg-warm-off-white rounded-lg shadow overflow-hidden hover:shadow-md transition">
-                            {article.images?.[0] && (
-                            <img
-                                src={article.images[0]}
-                                alt={article.title}
-                                className="w-full h-48 object-cover"
-                            />
-                        )}
-                        <div className="p-6">
-                            <h3 className="text-xl font-semibold mb-2 text-[#047464]">{article.title}</h3>
-                            <p className="text-gray-700 text-sm mb-4">{article.intro}</p>
-                            <Link
-                                to={`/articles/${article._id}`}
-                                className="text-[#047464] font-medium hover:underline hover:text-gray-800"
-                            >
-                                Les mer →
-                            </Link>
-                        </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
 
-              <section>
-                <TipsCarousel/>
-              </section>
-            </div>
-        );
+            <section className="home-articles">
+                <div className="home-section-heading">
+                    <p>Aktuelt</p>
+                    <h2>Siste nytt fra oss</h2>
+                </div>
+
+                <div className="home-articles__grid">
+                    {articles.map((article) => (
+                        <article key={article._id} className="home-article-card">
+                            {article.images?.[0] && (
+                                <img src={article.images[0]} alt={article.title} />
+                            )}
+
+                            <div>
+                                <h3>{article.title}</h3>
+                                <p>{article.intro}</p>
+
+                                <Link to={`/articles/${article._id}`}>
+                                    Les mer →
+                                </Link>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </section>
+
+            <section className="home-tips">
+                <TipsCarousel />
+            </section>
+        </main>
+    );
 };
 
 export default HomePage;
