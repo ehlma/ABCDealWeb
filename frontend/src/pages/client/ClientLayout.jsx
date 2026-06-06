@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, Outlet, NavLink, useLocation } from "react-router-dom";
-import logo from "../../assets/3s-logo.png";
+import logo from "/3s-logo.png";
 import { Menu, X } from "lucide-react";
 import Footer from "../../components/Footer";
 
