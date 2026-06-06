@@ -1,8 +1,8 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom";
-import api, {API_ENDPOINTS} from "../../../api/api.js";
+import { useNavigate } from "react-router-dom";
+import api, { API_ENDPOINTS } from "../../../api/api.js";
 import '../../index.css';
-import logo from "../../assets/Logo.png";
+import logo from "../../assets/3s-logo.png";
 import { useAuth } from "../../contexts/AuthContext";
 
 const Login = () => {
@@ -30,7 +30,7 @@ const Login = () => {
             login(res.data.token, res.data.user); // Bruker context-funksjonen
 
             // naviger videre eller vis suksess
-           navigate("/admin/contacts");
+            navigate("/admin/contacts");
         } catch (error) {
             console.error(error);
             setError(error.response?.data?.message || "Wrong e-mail or password");
@@ -50,7 +50,7 @@ const Login = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         required // gir innebygget pop up "vennligst fyll ut dette feltet"
                         className="w-full border border-gray-300 rounded px-4 py-2"
-                    /> <br/>
+                    /> <br />
                     <input
                         type="password"
                         placeholder="Passord"
@@ -58,42 +58,43 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                         className="w-full border border-gray-300 rounded px-4 py-2"
-                    /> <br/>
+                    /> <br />
                     <button type="submit" className="w-full bg-ui-background text-warm-off-white py-2 rounded hover:bg-[#6D8DAE] transition-colors">Logg inn</button>
                     <div className="text-sm mt-2">
-                        <button type="button" 
+                        <button type="button"
                             onClick={() => setShowReset(!showReset)}
                             className="text-ui-background bg-warm-off-white hover:underline hover:text-red-400 transition-all duration-200">
-                            Glemt passord ? 
+                            Glemt passord ?
                         </button>
                     </div>
                 </form>
                 {error && <p className="text-red-600 text-sm mb-4 text-center">{error}</p>}
                 {showReset && (
                     <div className="mt-4 space-y-2">
-                        <input 
-                            type="email" 
+                        <input
+                            type="email"
                             placeholder="Skriv inn e-post"
                             value={resetEmail}
                             onChange={(e) => setResetEmail(e.target.value)}
                             className="w-full border border-gray-300 rounded px-4 py-2"
                         />
-                        <button 
+                        <button
                             onClick={async () => {
                                 console.log("Reset epost sendt: ", resetEmail);
                                 setResetMsg("");
                                 try {
-                                    const res = await api.post("/auth/reset-password", { email: resetEmail.trim().toLowerCase()
+                                    const res = await api.post("/auth/reset-password", {
+                                        email: resetEmail.trim().toLowerCase()
                                     });
 
-                                        setResetMsg("Passord sendt til e-post");
+                                    setResetMsg("Passord sendt til e-post");
                                 } catch {
-                                        setResetMsg("E-post ikke funnet");
+                                    setResetMsg("E-post ikke funnet");
                                 }
                             }}
                             className="w-full bg-ui-background text-warm-off-white py-2 rounded hover:bg-[#6D8DAE] transition-colors"
                         >
-                            Send nytt passord 
+                            Send nytt passord
                         </button>
                         {resetMsg && <p className="text-sm text-center text-gray-700">{resetMsg}</p>}
 

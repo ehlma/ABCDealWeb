@@ -1,0 +1,104 @@
+.client-layout {
+    @apply flex flex-col flex-1 w-full;
+}
+
+.client-layout__main {
+    @apply flex-grow w-full p-0 m-0;
+}
+
+.navbar {
+    @apply fixed top-0 left-0 z-50 w-full bg-navbar-bg/90 shadow-sm backdrop-blur-md;
+}
+
+.navbar__container {
+    @apply flex items-center justify-between px-4;
+    height: 80px;
+
+}
+
+.navbar__logo {
+    height: 80px;
+    width: auto;
+    cursor: pointer;
+    object-fit: contain;
+}
+
+.navbar__menu {
+    @apply hidden flex-grow justify-center gap-6 font-medium;
+}
+
+.navbar__link {
+    @apply relative block px-5 py-2.5 rounded-full overflow-hidden font-medium;
+}
+
+.navbar__link-bg {
+    @apply absolute inset-0 rounded-full z-0 transition-all duration-300 scale-0 opacity-0 bg-primary-light;
+}
+
+.navbar__link:hover .navbar__link-bg {
+    @apply scale-100 opacity-100;
+}
+
+.navbar__link-bg--active {
+    @apply scale-100 opacity-100 bg-ui-background;
+}
+
+.navbar__link-text {
+    @apply relative z-10 transition-colors duration-300 text-navbar-link;
+}
+
+.navbar__link:hover .navbar__link-text {
+    @apply text-primary;
+}
+
+.navbar__link-text--active {
+    @apply text-white font-semibold;
+}
+
+.navbar__mobile-toggle {
+    @apply bg-transparent border-none p-0 m-0;
+}
+
+.navbar__mobile-toggle svg {
+    @apply w-8 h-8 text-navbar-icon;
+}
+
+.navbar__mobile-menu {
+    @apply absolute left-0 w-full bg-navbar-bg px-8 py-4 z-40 shadow flex flex-col rounded-b space-y-2;
+    top: 82px;
+}
+
+.navbar__mobile-link {
+    @apply text-navbar-link transition-colors duration-200 py-2;
+}
+
+.navbar__mobile-link:hover {
+    @apply text-primary;
+}
+
+.navbar__mobile-link--active {
+    @apply font-bold text-primary;
+}
+
+@media (min-width: 789px) {
+    .navbar__container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .navbar__menu {
+        display: flex;
+    }
+
+    .navbar__mobile-toggle,
+    .navbar__mobile-menu {
+        display: none;
+    }
+}
+
+@media (min-width: 1024px) {
+    .navbar__container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
