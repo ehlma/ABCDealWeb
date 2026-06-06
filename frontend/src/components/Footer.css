@@ -1,0 +1,93 @@
+.footer {
+    @apply bg-ui-background text-white mt-24;
+}
+
+.footer__container {
+    @apply max-w-7xl mx-auto px-6 py-16;
+}
+
+.footer__grid {
+    @apply grid gap-12;
+}
+
+.footer__eyebrow {
+    @apply text-primary uppercase text-sm font-bold mb-3;
+    letter-spacing: 0.2em;
+}
+
+.footer__title {
+    @apply text-2xl font-bold mb-4;
+}
+
+.footer__description {
+    @apply text-white/70 leading-relaxed;
+}
+
+.footer__heading {
+    @apply text-lg font-semibold mb-4;
+}
+
+.footer__nav {
+    @apply space-y-3;
+}
+
+.footer__nav a {
+    @apply text-white/70 transition-colors duration-200;
+}
+
+.footer__nav a:hover {
+    @apply text-primary;
+}
+
+.footer__contact {
+    @apply space-y-4;
+}
+
+.footer__contact-item {
+    @apply flex items-center gap-3 text-white/70;
+}
+
+.footer__contact-item svg {
+    @apply text-primary;
+    width: 1rem;
+    height: 1rem;
+}
+
+.footer__socials {
+    @apply mt-6 flex items-center gap-4;
+}
+
+.footer__social-link {
+    @apply w-11 h-11 rounded-full bg-white/10 flex items-center justify-center transition-all duration-200;
+}
+
+.footer__social-link:hover {
+    @apply bg-primary;
+}
+
+.footer__social-link svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.footer__bottom {
+    @apply mt-12 pt-8 border-t border-white/10 flex flex-col justify-between gap-4 text-sm text-white/50;
+}
+
+.footer__developer-link {
+    @apply transition-colors duration-200;
+}
+
+.footer__developer-link:hover {
+    @apply text-primary;
+}
+
+@media (min-width: 768px) {
+    .footer__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .footer__bottom {
+        flex-direction: row;
+    }
+}

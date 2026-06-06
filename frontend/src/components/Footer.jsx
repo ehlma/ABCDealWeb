@@ -1,48 +1,99 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { Facebook } from "lucide-react";
+import { Facebook, Phone, Mail, MapPin } from "lucide-react";
+import "./Footer.css";
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-800 text-white px-6 py-12 mt-12">
-            <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 items-center sm:items-start sm:text-left">
-                {/* Bedriftsinfo */}
-                <div>
-                    <h4 className="font-semibold text-lg mb-2">ABC Deal</h4>
-                    <p>Org.nr: 999 301 010</p>
-                    <p>E-post: kontakt@abcdeal.no</p>
-                    <p>Telefon: 47 15 11 11</p>
-                </div>
-                {/* Navigasjon */}
-                <div className="flex flex-col items-center text-left">
-                    <h4 className="font-semibold text-lg mb-2">Navigasjon</h4>
-                    <ul className="space-y-1">
-                        <li><Link to="/" className="text-gray-300 hover:text-white transition-colors duration-200">Hjem</Link></li>
-                        <li><Link to="/about" className="text-gray-300 hover:text-white transition-colors duration-200">Om oss</Link></li>
-                        <li><Link to="/contact" className="text-gray-300 hover:text-white transition-colors duration-200">Kontakt</Link></li>
-                        <li><Link to="/complaints" className="text-gray-300 hover:text-white transition-colors duration-200">Reklamasjon</Link></li>
-                    </ul>
-                </div>
-                {/* SOSIALE MEDIER */}
-                <div>
-                    <div className="flex flex-col items-center">
-                        <h4 className="font-semibold text-lg mb-2">Følg oss</h4>
-                        <a
-                            href="https://www.facebook.com/profile.php?id=61565220931869&locale=nb_NO"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-300 hover:text-white transition-colors duration-200"
-                        >
-                            <Facebook className="w-5 h-5" />
-                        </a>
+        <footer className="footer">
+            <div className="footer__container">
+                <div className="footer__grid">
+                    <div>
+                        <p className="footer__eyebrow">3S Bobil & Caravan</p>
+
+                        <h3 className="footer__title">
+                            Trygg handel av bobil og campingvogn
+                        </h3>
+
+                        <p className="footer__description">
+                            Vi hjelper deg gjennom hele prosessen, enten du skal kjøpe,
+                            selge eller trenger rådgivning.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 className="footer__heading">Navigasjon</h4>
+
+                        <ul className="footer__nav">
+                            <li>
+                                <Link to="/">Hjem</Link>
+                            </li>
+                            <li>
+                                <Link to="/about">Om oss</Link>
+                            </li>
+                            <li>
+                                <Link to="/sales-process">Kjøp- & Salgsprosess</Link>
+                            </li>
+                            <li>
+                                <Link to="/contact">Kontakt</Link>
+                            </li>
+                            <li>
+                                <Link to="/complaints">Reklamasjon</Link>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 className="footer__heading">Kontakt oss</h4>
+
+                        <div className="footer__contact">
+                            <div className="footer__contact-item">
+                                <Phone />
+                                <span>+47 408 28 494</span>
+                            </div>
+
+                            <div className="footer__contact-item">
+                                <Mail />
+                                <span>tommy@3sbc.no</span>
+                            </div>
+
+                            <div className="footer__contact-item">
+                                <MapPin />
+                                <span>Siriusveien 9, 1407 Vinterbro</span>
+                            </div>
+                        </div>
+
+                        <div className="footer__socials">
+                            <a
+                                href="https://www.facebook.com/profile.php?id=61590428497070&locale=nb_NO"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="footer__social-link"
+                                aria-label="Facebook"
+                            >
+                                <Facebook />
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="text-center text-sm text-gray-400 mt-8">
-                © {new Date().getFullYear()} ABC Deal. Alle rettigheter reservert.
+
+                <div className="footer__bottom">
+                    <span>© {new Date().getFullYear()} 3S Bobil & Caravan</span>
+
+                    <span>
+                        Utviklet av{" "}
+                        <a
+                            href="https://ehlmaconsulting.no"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="footer__developer-link"
+                        >
+                            Ehlma Consulting
+                        </a>
+                    </span>
+                </div>
             </div>
         </footer>
-    )
-}
+    );
+};
 
 export default Footer;

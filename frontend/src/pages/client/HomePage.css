@@ -12,13 +12,14 @@
     align-items: center;
 }
 
+
+
 .home-hero__content {
     text-align: left;
 }
 
 .home-hero__eyebrow {
     @apply text-primary;
-
     margin: 0 0 1rem;
     font-size: 0.875rem;
     font-weight: 800;
@@ -27,7 +28,7 @@
 }
 
 .home-hero h1 {
-    max-width: 720px;
+    max-width: 700px;
     margin: 0 0 1.5rem;
     font-size: clamp(3rem, 7vw, 6rem);
     line-height: 0.95;

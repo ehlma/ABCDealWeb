@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../../api/api.js";
-import homePhoto from "../../assets/homePhoto.jpeg";
+import homePhoto from "../../assets/homeTommy.jpg";
 import TipsCarousel from "../../components/TipsCarousel.jsx";
 import "./HomePage.css";
 

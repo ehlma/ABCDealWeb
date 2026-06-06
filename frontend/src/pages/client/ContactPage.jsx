@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import api, { API_ENDPOINTS } from "../../../api/api.js";
 // import { useNavigation } from "react-router-dom";
-import contactImage from "../../assets/contactImgs/customer-service-desk.jpg";
+import contactImage from "../../assets/contactImgs/contact.png";
 
 const ContactPage = () => {
 
@@ -71,7 +71,7 @@ const ContactPage = () => {
                     <div className="md:w-1/2 p-12 bg-warm-off-white rounded-r-lg rounded-l-none flex flex-col justify-center">
                         <h2 className="text-3xl font-bold mb-4 text-primary text-center">Skriv til oss i dag!</h2>
                         <p className="mb-4 text-center text-gray-700">
-                            Har du spørsmål om våre bruktbiler eller andre spørsmål? Fyll ut kontaktskjemaet nedenfor, så tar vi kontakt med deg så snart som mulig. Vi ser frem til å hjelpe deg!
+                            Har du spørsmål om våre bobiler, eller andre spørsmål? Fyll ut kontaktskjemaet nedenfor, så tar vi kontakt med deg så snart som mulig. Vi ser frem til å hjelpe deg!
                         </p>
                     </div>
                 </div>
@@ -82,7 +82,7 @@ const ContactPage = () => {
                 {/* <h1 className="text-3xl font-bold mb-4 text-primary text-center">Kontakt oss</h1>
                 <p className="mb-4 text-center text-gray-700">Har du spørsmål, ris eller ros? Fyll ut skjemaet nedenfor!</p> */}
 
-                
+
 
                 <div className="md:w-1/2 text-left">
                     <section className="text-left max-w-lg mb-12">
@@ -158,14 +158,14 @@ const ContactPage = () => {
                 </div>
                 <div className="md:w-1/2 p-6 space-y-4">
                     <h3 className="texg-lg font-semibold text-gray-700">Kontaktinformasjon</h3>
-                    <p><span className="font-medium">Telefon:</span> <a href="#" className="text-primary hover:underline"><br />+47 47 15 11 11</a></p>
-                    <p><span className="font-medium">E-post:</span> <a href="#" className="text-primary hover:underline"><br />#</a></p>
-                    <p><span className="font-medium">Foretningsadresse:</span><br />Spelhaugen 22 A, 5147 Fyllingsdalen</p>
+                    <p><span className="font-medium">Telefon:</span> <a href="#" className="text-primary hover:underline"><br />+47 408 28 494</a></p>
+                    <p><span className="font-medium">E-post:</span> <a href="#" className="text-primary hover:underline"><br />tommy@3sbc.no</a></p>
+                    <p><span className="font-medium">Foretningsadresse:</span> <a href="#" className="text-primary hover:underline"><br />Siriusveien 9, 1407 Vinterbro</a></p>
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1973.5341550290277!2d5.270963777437207!3d60.353813475126564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x463cfbb9107a3d8d%3A0x7b4f7f68fa381569!2sSpelhaugen%2022A%2C%205147%20Fyllingsdalen!5e0!3m2!1sen!2sno!4v1754051896972!5m2!1sen!2sno"
-                        className="w-full h-40 rounded"
+                        src="https://maps.google.com/maps?q=Siriusveien%209,%201407%20Vinterbro&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        className="w-full h-64 rounded-xl shadow-sm"
                         loading="lazy"
-                        title="Google Maps"
+                        title="3S Bobil & Caravan"
                     ></iframe>
 
                 </div>
