@@ -1,0 +1,176 @@
+.sales-process-page {
+    @apply min-h-screen bg-bg-color text-black;
+}
+
+.sales-process-hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 2rem 4rem;
+    text-align: center;
+}
+
+.sales-process-hero__eyebrow {
+    @apply text-primary;
+
+    margin: 0 0 1rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+}
+
+.sales-process-hero h1 {
+    max-width: 850px;
+    margin: 0 auto 1.5rem;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1;
+}
+
+.sales-process-hero>p {
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+    color: rgba(0, 0, 0, 0.68);
+    font-size: 1.2rem;
+    line-height: 1.7;
+}
+
+.sales-process-tabs {
+    @apply bg-warm-off-white;
+
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0.4rem;
+    display: flex;
+    gap: 0.4rem;
+    border-radius: 999px;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+}
+
+.sales-process-tabs button {
+    border: none;
+    padding: 0.9rem 1.6rem;
+    border-radius: 999px;
+    background-color: transparent;
+    color: #000000;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.sales-process-tabs button.active {
+    @apply bg-primary text-white;
+}
+
+.sales-process-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 7rem;
+    display: grid;
+    grid-template-columns: 0.9fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+}
+
+.sales-process-intro {
+    position: sticky;
+    top: 7rem;
+    text-align: left;
+}
+
+.sales-process-intro p {
+    @apply text-primary;
+
+    margin: 0 0 1rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.sales-process-intro h2 {
+    margin: 0 0 1.5rem;
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    line-height: 1.05;
+}
+
+.sales-process-intro span {
+    display: block;
+    max-width: 420px;
+    color: rgba(0, 0, 0, 0.68);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.sales-process-steps {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.sales-process-step {
+    @apply bg-warm-off-white;
+
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    padding: 2rem;
+    border-radius: 2rem;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.06);
+}
+
+.sales-process-step__number {
+    @apply bg-ui-background text-white;
+
+    width: 3.5rem;
+    height: 3.5rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-weight: 800;
+}
+
+.sales-process-step__content h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.35rem;
+}
+
+.sales-process-step__content p {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.68);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+    .sales-process-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .sales-process-intro {
+        position: static;
+    }
+}
+
+@media (max-width: 560px) {
+    .sales-process-hero {
+        padding: 4rem 1.25rem 3rem;
+    }
+
+    .sales-process-layout {
+        padding: 0 1.25rem 5rem;
+    }
+
+    .sales-process-tabs {
+        width: 100%;
+    }
+
+    .sales-process-tabs button {
+        flex: 1;
+        padding: 0.85rem 1rem;
+    }
+
+    .sales-process-step {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+    }
+}

@@ -19,24 +19,6 @@ const AboutPage = () => {
             objectPosition: "top 20%",
             description: "Tommy er en erfaren selger med en genuin evne til å bygge relasjoner og skape tillit. Med bakgrunn fra både salg og coaching, har han i mange år hjulpet kunder med å finne løsninger som passer deres behov – alltid med en personlig og ærlig tilnærming. Hans engasjement og forståelse for mennesker gjør ham til en naturlig kontaktperson for både nye og eksisterende kunder hos ABC Deal.",
         },
-        {
-            name: "Per Erik Bjørk",
-            title: "Partner",
-            phoneNum: "+47 479 26 965",
-            email: "peb@abcdeal.no",
-            image: perErikImage,
-            objectPosition: "top 100%",
-            description: "Per Erik er en trygg og stødig ressurs i ABC Deal AS. Han er den typen mennesker man alltid kan stole på – både internt i teamet og ute hos kundene. Med sin rolige væremåte og pålitelige tilstedeværelse bidrar Per Erik til at kundene våre føler seg ivaretatt gjennom hele prosessen.",
-        },
-        {
-            name: "Leif Jårvik",
-            title: "Partner",
-            phoneNum: "+47 479 17 770",
-            email: "lj@abcdeal.no",
-            image: leifImage,
-            objectPosition: "top 10%",
-            description: "Leif er kjent for sin ærlige og direkte stil. Han er en jordnær og tydelig stemme i ABC Deal AS, og kundene setter pris på hans evne til å si ting som de er – uten unødvendige omveier. Med Leif får du alltid klare råd, ryddige avtaler og en trygg handel. Han er en viktig ressurs både for selskapet og for våre kunder.",
-        },
     ]
 
     return (
