@@ -3,7 +3,6 @@ import tommyImage from "../../assets/tommy.jpg";
 import TeamMemberCard from "../../components/TeamMemberCard";
 import norwayImage from "../../assets/norway.svg";
 import roadmapImage from "../../assets/roadmap.jpg";
-import sustainabilityImage from "../../assets/sustainability.png";
 
 const AboutPage = () => {
     const teamData = [
@@ -116,30 +115,6 @@ const AboutPage = () => {
                 {teamData.map((member) => (
                     <TeamMemberCard key={member.name} {...member} />
                 ))}
-            </div>
-
-            {/* Sustainability */}
-            <div className="mt-24 mb-12 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div className="text-left">
-                    <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4">Bærekraft i praksis</h2>
-                    <p className="text-gray-700 leading-relaxed">
-                        Vi i ABC Deal tror på smartere bruk av ressursene vi allerede har. Vår forretningsmodell
-                        bygger på gjenbruk av eksisterende kjøretøy, noe som reduserer behovet for nyproduksjon i
-                        fabrikkene – en prosess som krever store mengder energi og ressurser. <br /> <br />
-                        I tillegg unngår vi
-                        unødvendig transport av biler til forhandlere og videre til kunde, noe som kutter utslipp
-                        og sparer kapasitet i hele verdikjeden. Ved å forlenge levetiden til biler som allerede er
-                        på veien, bidrar vi til mindre avfall, lavere klimabelastning og en mer sirkulær økonomi.
-                    </p>
-                </div>
-                <div className="mt-8">
-                    <img
-                        src={sustainabilityImage}
-                        alt="Bilde gjenbrukt bil."
-                        className="w-full h-auto rounded-lg"
-                    />
-                </div>
-
             </div>
         </div>
     )

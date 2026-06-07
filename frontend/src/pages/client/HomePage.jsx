@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../../api/api.js";
-import homePhoto from "../../assets/homeTommy.jpg";
+import homePhoto from "../../assets/caravan-view.png";
 import TipsCarousel from "../../components/TipsCarousel.jsx";
 import "./HomePage.css";
 
@@ -30,13 +30,13 @@ const HomePage = () => {
                     <h1>Velkommen til 3S Bobil & Caravan</h1>
 
                     <p>
-                        Vi gjør det enkelt å kjøpe og selge bobil, campingvogn og bil –
+                        Vi gjør det enkelt å kjøpe og selge bobil og campingvogn,
                         trygt og profesjonelt.
                     </p>
 
                     <div className="home-hero__actions">
                         <a
-                            href="https://www.finn.no/mobility/search/car/mobilehome?orgId=8250738"
+                            href="https://www.finn.no/mobility/search/car/mobilehome?orgId=9411670"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="home-button home-button--primary"
