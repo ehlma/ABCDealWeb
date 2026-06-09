@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import api from "../../../api/api";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import "./ArticlePage.css";
 
 const ArticlePage = () => {
     const { id } = useParams();
     const [article, setArticle] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [error, setError] = useState("");
+
     const images = article?.images || [];
 
     useEffect(() => {
@@ -17,105 +19,133 @@ const ArticlePage = () => {
                 setArticle(res.data);
                 setCurrentIndex(0);
             } catch (err) {
-            setError("Kunne ikke hente artikkel.");
+                setError("Kunne ikke hente artikkel.");
             }
         };
 
         fetchArticle();
-
     }, [id]);
 
     useEffect(() => {
         const handleKeyDown = (e) => {
-            if (images.length > 1) {
-                if (e.key === "ArrowRight") {
-                    setCurrentIndex((prev) => (prev + 1) % images.length);
-                } else if (e.key === "ArrowLeft") {
-                    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-                }
+            if (images.length <= 1) return;
+
+            if (e.key === "ArrowRight") {
+                setCurrentIndex((prev) => (prev + 1) % images.length);
+            }
+
+            if (e.key === "ArrowLeft") {
+                setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
             }
         };
+
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-
     }, [images.length]);
 
-    if (error) return <p className="text-red-500">{error}</p>;
-    if (!article) return <p>Laster artikkel...</p>;
+    if (error) return <p className="article-page__error">{error}</p>;
+    if (!article) return <p className="article-page__loading">Laster artikkel...</p>;
 
-    const nexImage = () => setCurrentIndex((prev) => (prev + 1) % images.length);
-    const prevImage = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    const nextImage = () => {
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+    };
+
+    const prevImage = () => {
+        setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    };
 
     return (
-        <div className="bg-[#f0e9df] min-h-screen py-24 px-4 m-0">
-            <div className=" mx-auto bg-warm-off-white shadow-md p-8 rounded">
-                <Link
-                    to="/"
-                    className="text-primary hover:text-ui-background hover:underline cursor-pointer text-sm text-start mb-4 inline-block"
-                >
+        <main className="article-page">
+            <article className="article">
+                <Link to="/" className="article__back-link">
                     ← Tilbake
                 </Link>
 
-                <h1 className="text-4xl font-bold mb-4 text-primary leading-tight">{article.title}</h1>
+                <header className="article__header">
+                    <p className="article__eyebrow">Aktuelt</p>
 
-                <p className="text-sm text-gray-500 mb-4">
-                    Publisert: {new Date(article.createdAt).toLocaleDateString()}
-                </p>
+                    <h1>{article.title}</h1>
 
-                {article.intro && (
-                    <p className="text-base text-gray-700 mb-6 leading-relaxed">
-                        {article.intro}
+                    <p className="article__date">
+                        Publisert: {new Date(article.createdAt).toLocaleDateString("nb-NO")}
                     </p>
-                )}
+
+                    {article.intro && <p className="article__intro">{article.intro}</p>}
+                </header>
 
                 {images.length > 0 && (
-                    <div className="relative mb-6 w-full max-w-[600px] mx-auto">
-                        <div className="relative flex justify-center items-center">
+                    <section className="article-gallery">
+                        <div className="article-gallery__image-wrapper">
                             <img
                                 src={images[currentIndex]}
                                 alt={`Bilde ${currentIndex + 1}`}
-                                className="max-h-[400px] w-full object-cover rounded"
+                                className="article-gallery__image"
                             />
 
-                <button
-                    onClick={prevImage}
-                    className="absolute left-[-58px] top-1/2 -translate-y-1/2 bg-transparent
-                    text-primary-dark hover:scale-125 transition-transform duration-300"
-                >
-                    <ChevronLeft className="w-8 h-8" />
-                </button>
+                            {images.length > 1 && (
+                                <>
+                                    <button
+                                        type="button"
+                                        onClick={prevImage}
+                                        className="article-gallery__button article-gallery__button--left"
+                                        aria-label="Forrige bilde"
+                                    >
+                                        <ChevronLeft />
+                                    </button>
 
-                <button
-                    onClick={nexImage}
-                    className="absolute right-[-58px] top-1/2 -translate-y-1/2 bg-transparent
-                    text-primary-dark hover:scale-125 transition-transform duration-300"
-                >
-                    <ChevronRight className="w-8 h-8" />
-                </button>
-            </div>
+                                    <button
+                                        type="button"
+                                        onClick={nextImage}
+                                        className="article-gallery__button article-gallery__button--right"
+                                        aria-label="Neste bilde"
+                                    >
+                                        <ChevronRight />
+                                    </button>
+                                </>
+                            )}
+                        </div>
 
-            <p className="text-center text-sm text-gray-500 mt-2">
-                {currentIndex + 1} / {images.length}
-            </p>
-        </div>
-        )}
+                        {images.length > 1 && (
+                            <div className="article-gallery__footer">
+                                <p>
+                                    {currentIndex + 1} / {images.length}
+                                </p>
 
-        {/* Brødtekst + footer vises som HTML */}
-        <div
-            className="text-left text-lg leading-relaxed text-[#333333] [&_a]:underline [&_a:hover]:text-blue-600 mt-6"
-            dangerouslySetInnerHTML={{ __html: article.bodyText }}
-        />
-            <hr className="my-8 border-t" />
+                                <div className="article-gallery__dots">
+                                    {images.map((_, index) => (
+                                        <button
+                                            key={index}
+                                            type="button"
+                                            onClick={() => setCurrentIndex(index)}
+                                            className={index === currentIndex ? "active" : ""}
+                                            aria-label={`Gå til bilde ${index + 1}`}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </section>
+                )}
 
-            <p className="text-sm text-gray-600 mt-8">
-                For mer informasjon, kontakt oss på <strong>+47 47 15 11 11</strong> eller via vårt{" "}
-                <Link to="/contact" className="text-ui-background underline">
-                    kontaktskjema
-                </Link>.
-            </p>
-        </div>
-    </div>
-  );
+                <div
+                    className="article__body"
+                    dangerouslySetInnerHTML={{ __html: article.bodyText }}
+                />
+
+                <footer className="article__contact">
+                    <h2>Vil du vite mer?</h2>
+
+                    <p>
+                        Kontakt oss på <strong>+47 408 28 494</strong>, eller send oss en
+                        melding via{" "}
+                        <Link to="/contact">
+                            kontaktskjemaet
+                        </Link>.
+                    </p>
+                </footer>
+            </article>
+        </main>
+    );
 };
 
 export default ArticlePage;
