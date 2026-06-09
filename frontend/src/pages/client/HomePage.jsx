@@ -62,44 +62,54 @@ const HomePage = () => {
                 </div>
 
                 <div className="home-help__grid">
-                    <Link to="/sales-process" className="home-help-card home-help-card--large">
+                    <Link
+                        to="/sales-process"
+                        className="home-help-card home-help-card--large"
+                    >
                         <span>01</span>
-                        <h3>Selge bil eller bobil?</h3>
-                        <p>Trygt, effektivt og uten stress – vi hjelper deg hele veien.</p>
+                        <h3>Selge bobil eller campingvogn?</h3>
+                        <p>
+                            Vi håndterer hele prosessen fra vurdering og markedsføring
+                            til salg og oppgjør.
+                        </p>
                     </Link>
 
                     <a
-                        href="https://www.finn.no/mobility/search/car/mobilehome?orgId=8250738"
+                        href="https://www.finn.no/mobility/search/car/mobilehome?orgId=9411670"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="home-help-card"
                     >
                         <span>02</span>
-                        <h3>Kjøpe bobil?</h3>
-                        <p>Se våre bobiler og få råd om hvilket kjøp som passer deg.</p>
+                        <h3>Kjøpe bobil eller campingvogn?</h3>
+                        <p>
+                            Se våre enheter til salgs og få hjelp til å finne riktig
+                            løsning for ditt behov.
+                        </p>
                     </a>
 
-                    <a
-                        href="https://www.finn.no/mobility/search/car?orgId=8250738"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <Link
+                        to="/contact"
                         className="home-help-card"
                     >
                         <span>03</span>
-                        <h3>Kjøpe bil?</h3>
-                        <p>Se våre biler og få råd om hvilket kjøp som passer deg.</p>
-                    </a>
-
-                    <Link to="/contact" className="home-help-card">
-                        <span>04</span>
                         <h3>Service eller råd?</h3>
-                        <p>Kontakt oss for vurdering, rådgivning eller garanti.</p>
+                        <p>
+                            Kontakt oss for rådgivning, vurdering eller spørsmål om
+                            bobil og campingvogn.
+                        </p>
                     </Link>
 
-                    <Link to="/complaints" className="home-help-card home-help-card--dark">
-                        <span>05</span>
+                    <Link
+                        to="/complaints"
+                        className="home-help-card home-help-card--dark home-help-card--wide"
+                    >
+                        <span>04</span>
                         <h3>Reklamasjoner</h3>
-                        <p>Har noe gått galt? Vi tar reklamasjoner på alvor.</p>
+                        <p>
+                            Har noe gått galt? Vi hjelper deg videre gjennom vår
+                            reklamasjonsprosess.
+                        </p>
                     </Link>
                 </div>
             </section>

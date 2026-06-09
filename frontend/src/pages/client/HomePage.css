@@ -155,11 +155,6 @@
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.1);
 }
 
-.home-help-card--large {
-    grid-row: span 2;
-    min-height: 100%;
-}
-
 .home-help-card--dark {
     @apply bg-ui-background text-white;
 }
@@ -171,6 +166,15 @@
     margin-bottom: 2rem;
     font-size: 0.9rem;
     font-weight: 900;
+}
+
+.home-help-card--large {
+    grid-row: span 2;
+    min-height: 100%;
+}
+
+.home-help-card--wide {
+    grid-column: span 2;
 }
 
 .home-help-card h3 {
