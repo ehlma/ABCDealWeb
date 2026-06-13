@@ -266,7 +266,7 @@
     padding: 5rem 0 0;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1110px) {
     .home-hero {
         grid-template-columns: 1fr;
     }
