@@ -49,7 +49,7 @@ const TipsCarousel = () => {
 
     return (
         <div className="py-12 px-4 text-center">
-            <h2 className="text-2xl font-bold text-[#047464] mb-6">Tips & Vedlikehold</h2>
+            <h2 className="text-2xl font-bold bg-primary mb-6">Tips & Vedlikehold</h2>
 
             <div className="relative h-[220px] max-w-xl mx-auto">     
                 <AnimatePresence mode="wait">
@@ -69,14 +69,14 @@ const TipsCarousel = () => {
                 {/* Navigasjonspiler */}
                 <button
                     onClick={handlePrev}
-                    className="absolute left-[-60px] top-1/2 transform bg-transparent -translate-y-1/2 text-[#047464] hover:text-[#035b50] hover:scale-125 ease-in-out duration-150"
+                    className="absolute left-[-60px] top-1/2 transform bg-transparent -translate-y-1/2 bg-primary hover:text-[#035b50] hover:scale-125 ease-in-out duration-150"
                     aria-label="Forrige tips"
                 >
                     <ChevronLeft className="w-6 h-6" />
                 </button>
                 <button
                     onClick={handleNext}
-                    className="absolute right-[-60px] top-1/2 transform bg-transparent -translate-y-1/2 text-[#047464] hover:text-[#035b50] hover:scale-125 ease-in-out duration-150"
+                    className="absolute right-[-60px] top-1/2 transform bg-transparent -translate-y-1/2 bg-primary hover:text-[#035b50] hover:scale-125 ease-in-out duration-150"
                     aria-label="Neste tips"
                 >
                     <ChevronRight className="w-6 h-6" />
@@ -97,7 +97,7 @@ const TipsCarousel = () => {
                             aria-label={`Gå til tips ${i + 1}`}
                             aria-current={active ? "true" : undefined}
                             className={`w-0.5 h-1 rounded-full transition-all duration-300 focus:outline-none ${
-                                active ? "bg-[#047464] scale-110" : "bg-gray-300 hover:bg-gray-400"
+                                active ? "bg-primary scale-110" : "bg-gray-300 hover:bg-gray-400"
                             }`}
                         />
                     );

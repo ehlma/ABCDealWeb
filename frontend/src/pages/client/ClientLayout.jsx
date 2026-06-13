@@ -41,7 +41,7 @@ const ClientLayout = () => {
                                 className={`
                                 absolute inset-0 rounded-full z-0 transition-all duration-300
                                 ${location.pathname === link.to
-                                    ? "bg-[#047464] scale-100 opacity-100"
+                                    ? "bg-primary scale-100 opacity-100"
                                     : "scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 bg-primary-light"}
                                 `}
                             />

@@ -14,7 +14,7 @@ const ForSalePage = () => {
                         href="https://www.finn.no/mobility/search/car/mobilehome?orgId=8250738"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-block rounded-full bg-[#047464] text-white px-8 py-3 text-lg font-medium shadow-md hover:bg-[#03594d] transition-all duration-300">
+                        className="inline-block rounded-full bg-primary text-white px-8 py-3 text-lg font-medium shadow-md hover:primary-light transition-all duration-300">
                         Se biler på Finn.no
                     </a>
                 </div>
