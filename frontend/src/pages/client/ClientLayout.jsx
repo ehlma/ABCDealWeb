@@ -9,7 +9,7 @@ const navLinks = [
     { to: "/", label: "Hjem" },
     { to: "/about", label: "Om Oss" },
     { to: "/sales-process", label: "Salgs- og kjøpsprosessen" },
-    { to: "https://www.finn.no/mobility/search/car/mobilehome?orgId=9411670", label: "Til Salgs" },
+    { to: "/for-sale", label: "Til Salgs" },
     { to: "/contact", label: "Kontakt Oss" },
     { to: "/complaints", label: "Reklamasjon" },
 ];
