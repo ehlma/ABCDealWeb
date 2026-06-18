@@ -21,7 +21,7 @@ const TeamMemberCard = ({ name, title, phoneNum, email, image, objectPosition, d
 
 
                 {expanded ? (
-                    <p className="text-gray-700 text-sm">{description}</p>
+                    <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-line">{description}</p>
                 ) : null}
 
                 <button 
