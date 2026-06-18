@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: { // Egendefinerte farger
-        primary: "#FF914D",
+        "primary": "#FF914D",
         "primary-light": "#FFE4D1",
         "primary-dark": "#E6732B",
         // "ui-background": "#34495e",

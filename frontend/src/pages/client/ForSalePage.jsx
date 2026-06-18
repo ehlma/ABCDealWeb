@@ -12,9 +12,10 @@ const ForSalePage = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                     <a
                         href="https://www.finn.no/mobility/search/car/mobilehome?orgId=8250738"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block rounded-full bg-[#047464] text-white px-8 py-3 text-lg font-medium shadow-md hover:bg-[#03594d] transition-all duration-300">
+                        // target="_blank"
+                        // rel="noopener noreferrer"
+                        className="inline-block rounded-full bg-primary text-white px-8 py-3 text-lg font-medium shadow-md hover:bg-primary-dark transition-all duration-300"
+                        >
                         Se biler på Finn.no
                     </a>
                 </div>
