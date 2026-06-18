@@ -8,7 +8,7 @@ const TeamMemberCard = ({ name, title, phoneNum, email, image, objectPosition, d
         <div className="bg-white/70 backdrop-blur-md border-white/20 rounded-2xl shadow-sm overflow-hidden text-center transition duration-300 hover:shadow-md">
             <img
                 src={image}
-                alt={`Bilde av ${name}`}
+                alt={`Portrett av ${name}, ${title} i 3S Bobil & Caravan`}
                 className="w-full object-top rounded-t-lg"
                 style={{objectPosition}}
             />

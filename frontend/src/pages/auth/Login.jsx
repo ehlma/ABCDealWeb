@@ -40,7 +40,7 @@ const Login = () => {
     return (
         <div className="w-full min-h-screen flex items-center justify-center px-4">
             <div className="w-full max-w-sm p-8 bg-warm-off-white rounded shadow-md">
-                <img src={logo} alt="ABC Deal logo" className="h-[60px] mx-auto mb-8" />
+                <img src={logo} alt="3S logo" className="h-[60px] mx-auto mb-8" />
                 <h2 className="text-2xl font-bold text-ui-background mb-6 text-center">Logg inn</h2>
                 <form onSubmit={handleLogin} className="space-y-4">
                     <input
@@ -80,7 +80,6 @@ const Login = () => {
                         />
                         <button
                             onClick={async () => {
-                                console.log("Reset epost sendt: ", resetEmail);
                                 setResetMsg("");
                                 try {
                                     const res = await api.post("/auth/reset-password", {

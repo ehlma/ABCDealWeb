@@ -16,6 +16,7 @@ const ArticlePage = () => {
         const fetchArticle = async () => {
             try {
                 const res = await api.get(`/articles/${id}`);
+
                 setArticle(res.data);
                 setCurrentIndex(0);
             } catch (err) {
@@ -25,6 +26,19 @@ const ArticlePage = () => {
 
         fetchArticle();
     }, [id]);
+
+    // SEO
+    useEffect(() => {
+    if (!article) return;
+    document.title = `${article.title} | 3S Bobil & Caravan`;
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+        metaDescription = document.createElement("meta");
+        metaDescription.name = "description";
+        document.head.appendChild(metaDescription);
+    }
+        metaDescription.content = article.intro || "Les aktuelt fra 3S Bobil & Caravan om kjøp og salg av bobil og campingvogn.";
+}, [article]);
 
     useEffect(() => {
         const handleKeyDown = (e) => {
@@ -78,7 +92,7 @@ const ArticlePage = () => {
                         <div className="article-gallery__image-wrapper">
                             <img
                                 src={images[currentIndex]}
-                                alt={`Bilde ${currentIndex + 1}`}
+                                alt={`${article.title} - bilde ${currentIndex + 1}`}
                                 className="article-gallery__image"
                             />
 

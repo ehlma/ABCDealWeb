@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import tommyImage from "../../assets/tommy.jpg";
 import TeamMemberCard from "../../components/TeamMemberCard";
@@ -25,15 +25,32 @@ const AboutPage = () => {
         },
     ]
 
+    // SEO
+    useEffect(() => {
+        document.title = "Om oss | 3S Bobil & Caravan";
+
+        let metaDescription = document.querySelector(
+            'meta[name="description"]'
+        );
+
+        if (!metaDescription) {
+            metaDescription = document.createElement("meta");
+            metaDescription.name = "description";
+            document.head.appendChild(metaDescription);
+        }
+        metaDescription.content =
+            "Lær mer om 3S Bobil & Caravan og Tommy Østli. Over 11 års erfaring med kjøp og salg av bobil og campingvogn.";
+    }, []);
+
     return (
         <div className="p-8 max-w-6xl mx-auto">
             <div className="mt-24 ml-10 mr-10">
 
                 {/* Intro */}
                 <div className="mt-12">
-                    <div className="max-w-[50] text-left">
-                        <h1 className="font-bold text-3xl text-primary">Din reise begynner med oss</h1>
-                        <p className="mt-4 text-gray-700 text-md max-w-[80vh]">Hos ABC Deal redefinerer vi måten biler kjøpes og selges på. Vårt oppdrag er å gjøre bilhandel enkel, trygg og skreddersydd - med full åpenhet og personlig oppfølging for hver eneste kunde.</p>
+                    <div className="w-full max-w-96 text-left">
+                        <h1 className="font-bold text-3xl text-primary">Kjøp og salg av bobil og campingvogn med trygg oppfølging</h1>
+                        <p className="mt-4 text-gray-700 text-md max-w-[80vh]">Hos 3S Bobil & Caravan hjelper vi deg med kjøp og salg av bobil og campingvogn. Vi kombinerer bransjeerfaring, personlig oppfølging og tydelige prosesser for å gjøre handelen trygg, enkel og forutsigbar.</p>
                     </div>
 
                     <div className="mt-4 w-full flex justify-center">
@@ -41,7 +58,7 @@ const AboutPage = () => {
                             <div className="absolute inset-0 bg-bg-color/20 z-10" />
                             <img
                                 src={roadmapImage}
-                                alt="Bilde av landevei."
+                                alt="Bilde av landevei i Norge"
                                 className="w-full h-full object-cover" />
                         </div>
                     </div>
@@ -55,7 +72,7 @@ const AboutPage = () => {
                     {/* Visjon */}
                     <div className="text-left col-span-1 md:col-span-1">
                         <h1 className=" mb-2 font-semibold text-xl text-primary">Vår visjon</h1>
-                        <p className="text-gray-700 text-md max-w-md ml-auto">ABC Deal AS ble etablert i 2020 og drives av engasjerte eiere med lang erfaring innen kjøp og salg av bobiler og campingvogner. Vi kombinerer bransjekunnskap med et moderne og kundevennlig konsept.</p>
+                        <p className="text-gray-700 text-md max-w-md ml-auto">3S Bobil & Caravan AS er bygget på erfaring, struktur og personlig oppfølging. Vi hjelper privatpersoner med trygt kjøp og salg av bobil og campingvogn, med fokus på ryddige prosesser fra første kontakt til ferdig handel.</p>
                     </div>
 
                     {/* Løfte */}
@@ -111,7 +128,7 @@ const AboutPage = () => {
                         <h3 className="font-semibold text-xl text-primary mb-2">Alltid i nærheten</h3>
 
                         <p className="text-gray-700 text-md">
-                            Våre ansatte holder til både i Bergen og i Oslo, men vi har bygget et stort kontaktnett over hele landet. Dette gjør at vi kan tilby raske salg og god eksponering – uansett hvor i Norge du holder til.
+                            Våre ansatte holder til på Vinterbro, men vi har bygget et stort kontaktnett over hele landet. Dette gjør at vi kan tilby raske salg og god eksponering – uansett hvor i Norge du holder til.
                         </p>
                     </div>
                 </div>
@@ -155,7 +172,7 @@ const AboutPage = () => {
                 </div>
             </section>
 
-            {/* CTA-section */}
+            {/* CTA */}
             <section className="mt-24 rounded-2xl bg-primary-light p-10 text-center">
                 <h2 className="text-2xl font-bold text-primary">
                     Klar for å kjøpe eller selge bobil?

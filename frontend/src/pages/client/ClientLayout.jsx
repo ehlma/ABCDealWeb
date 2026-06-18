@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, Outlet, NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import logo from "/3s-logo.png";

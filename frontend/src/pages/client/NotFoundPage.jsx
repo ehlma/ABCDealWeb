@@ -1,6 +1,36 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const NotFoundPage = () => {
+    // SEO
+    useEffect(() => {
+        document.title = "Side ikke funnet | 3S Bobil & Caravan";
+
+        let metaDescription = document.querySelector('meta[name="description"]');
+
+        if (!metaDescription) {
+            metaDescription = document.createElement("meta");
+            metaDescription.name = "description";
+            document.head.appendChild(metaDescription);
+        }
+
+        metaDescription.content =
+            "Siden du leter etter finnes ikke. Gå tilbake til forsiden til 3S Bobil & Caravan.";
+
+        let robotsMeta = document.querySelector('meta[name="robots"]');
+
+        if (!robotsMeta) {
+            robotsMeta = document.createElement("meta");
+            robotsMeta.name = "robots";
+            document.head.appendChild(robotsMeta);
+        }
+
+        robotsMeta.content = "noindex, follow";
+        return () => {
+            robotsMeta.content = "index, follow";
+        };
+    }, []);
+
     return (
         <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
             <img
@@ -14,7 +44,7 @@ const NotFoundPage = () => {
             </p>
             <Link
                 to="/"
-                className="px-4 py-2 bg-primary text-warm-off-white rounded hover:bg-primary-light transition"
+                className="px-4 py-2 bg-primary text-warm-off-white rounded hover:bg-primary-dark hover:text-warm-off-white transition"
             >
                 Gå til forsiden
             </Link>

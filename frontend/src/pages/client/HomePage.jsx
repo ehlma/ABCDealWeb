@@ -21,28 +21,41 @@ const HomePage = () => {
         fetchArticles();
     }, []);
 
+    // SEO
+    useEffect(() => {
+        document.title = "3S Bobil & Caravan | Kjøp og salg av bobil og campingvogn";
+
+        let metaDescription = document.querySelector('meta[name="description"]');
+
+        if (!metaDescription) {
+            metaDescription = document.createElement("meta");
+            metaDescription.name = "description";
+            document.head.appendChild(metaDescription);
+        }
+
+        metaDescription.content =
+            "3S Bobil & Caravan hjelper deg med kjøp og salg av bobil og campingvogn. Trygge prosesser, personlig oppfølging og solid bransjeerfaring.";
+    }, []);
+
     return (
         <main className="home-page">
             <section className="home-hero">
                 <div className="home-hero__content">
                     <p className="home-hero__eyebrow">3S Bobil & Caravan</p>
 
-                    <h1>Velkommen til 3S Bobil & Caravan</h1>
+                    <h1>Kjøp og salg av bobil og campingvogn med trygg oppfølging</h1>
 
                     <p>
-                        Vi gjør det enkelt å kjøpe og selge bobil og campingvogn,
-                        trygt og profesjonelt.
+                        Vi hjelper kunder over hele Norge med kjøp og salg av bobil og campingvogn. Med personlig oppfølging og en trygg salgsprosess gjør vi handelen enkel og forutsigbar.
                     </p>
 
                     <div className="home-hero__actions">
-                        <a
-                            href="https://www.finn.no/mobility/search/car/mobilehome?orgId=9411670"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <Link
+                            to="/for-sale"
                             className="home-button home-button--primary"
                         >
-                            Se kjøretøy til salgs
-                        </a>
+                            Se bobiler og campingvogner til salgs
+                        </Link>
 
                         <Link to="/sales-process" className="home-button home-button--secondary">
                             Slik fungerer prosessen
@@ -51,14 +64,30 @@ const HomePage = () => {
                 </div>
 
                 <div className="home-hero__image-card">
-                    <img src={homePhoto} alt="Bobil hos 3S Bobil & Caravan" />
+                    <img src={homePhoto} alt="Bobil og campingvogn formidlet av 3S Bobil & Caravan" />
+                </div>
+            </section>
+
+            <section className="home-about">
+                <div className="home-about__content">
+                    <p className="home-about__eyebrow">Om 3S Bobil & Caravan</p>
+
+                    <h2>Erfaring, trygghet og personlig oppfølging</h2>
+
+                    <p>
+                        3S Bobil & Caravan hjelper privatpersoner med kjøp og salg av bobil og campingvogn over hele Norge. Med erfaring, struktur og personlig oppfølging sørger vi for en trygg og forutsigbar handel fra første kontakt til overlevering.
+                    </p>
+
+                    <Link to="/about" className="home-about__link">
+                        Les mer om oss
+                    </Link>
                 </div>
             </section>
 
             <section className="home-help">
                 <div className="home-section-heading">
-                    <p>Hva kan vi hjelpe med?</p>
-                    <h2>Velg det som passer deg best</h2>
+                    <p>Hvordan kan vi hjelpe deg med bobil eller campingvogn?</p>
+                    <h2>Hjelp med kjøp, salg og rådgivning</h2>
                 </div>
 
                 <div className="home-help__grid">
@@ -74,10 +103,8 @@ const HomePage = () => {
                         </p>
                     </Link>
 
-                    <a
-                        href="https://www.finn.no/mobility/search/car/mobilehome?orgId=9411670"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <Link
+                        to="/for-sale"
                         className="home-help-card"
                     >
                         <span>02</span>
@@ -86,7 +113,7 @@ const HomePage = () => {
                             Se våre enheter til salgs og få hjelp til å finne riktig
                             løsning for ditt behov.
                         </p>
-                    </a>
+                    </Link>
 
                     <Link
                         to="/contact"
