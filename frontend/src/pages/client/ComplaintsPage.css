@@ -83,7 +83,7 @@
 .complaints-content__text {
     padding: 2.5rem;
     border-radius: 2rem;
-    background-color: transparent;
+    /* background-color: transparent; */
     box-shadow: 0 16px 45px rgba(0, 0, 0, 0.06);
 }
 

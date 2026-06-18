@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import api, { API_ENDPOINTS } from "../../../api/api.js";
 // import { useNavigation } from "react-router-dom";
 import contactImage from "../../assets/contactImgs/contact.png";
@@ -12,7 +12,6 @@ const ContactPage = () => {
         text: "",
     });
 
-    // const[selectedFile, setSelectedFile] = useState(null);
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -21,26 +20,10 @@ const ContactPage = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    // const handleFileChange = (e) => {
-    //     setSelectedFile(e.target.files[0]); // Lagrer den valgte filen
-    // };
-
     const handleSubmit = async (e) => {
         e.preventDefault(); // Forhindrer standsrd side-refresh
         setSuccessMessage(""); // Nullstill meldinger
         setErrorMessage("");
-
-        // Opprette FormData-objekt for å sende tekst og fil
-        // const data = new FormData();
-        // data.append("name", formData.name);
-        // data.append("email", formData.email);
-        // data.append("phoneNum", formData.phoneNum);
-        // data.append("text", formData.text);
-
-        // if (selectedFile) {
-        //     // Legg til filen under navnet "image" for å matche backend-schema
-        //     data.append("image", selectedFile);
-        // }
 
         try {
             // Sende POST-forespørsel til den offentlige kontaktruten
@@ -55,6 +38,23 @@ const ContactPage = () => {
         }
     };
 
+    // SEO
+    useEffect(() => {
+        document.title = "Kontakt oss | 3S Bobil & Caravan";
+
+        let metaDescription = document.querySelector('meta[name="description"]');
+
+        if (!metaDescription) {
+            metaDescription = document.createElement("meta");
+            metaDescription.name = "description";
+            document.head.appendChild(metaDescription);
+        }
+
+        metaDescription.content =
+            "Kontakt 3S Bobil & Caravan for en uforpliktende prat om kjøp eller salg av bobil og campingvogn. Vi hjelper deg med trygge og ryddige prosesser.";
+    }, []);
+
+
 
     return (
         <div className="p-24">
@@ -63,15 +63,15 @@ const ContactPage = () => {
                     <div className="md:w-1/2">
                         <img
                             src={contactImage}
-                            alt="Bilde av campingbiler ved sjøen."
+                            alt="Bobiler og campingvogner ved sjøen"
                             className="w-full h-full object-cover rounded-l-lg rounded-r-none"
                         />
                     </div>
 
                     <div className="md:w-1/2 p-12 bg-warm-off-white rounded-r-lg rounded-l-none flex flex-col justify-center">
-                        <h2 className="text-3xl font-bold mb-4 text-primary text-center">Skriv til oss i dag!</h2>
+                        <h1 className="text-3xl font-bold mb-4 text-primary text-center">Kontakt 3S Bobil & Caravan</h1>
                         <p className="mb-4 text-center text-gray-700">
-                            Har du spørsmål om våre bobiler, eller andre spørsmål? Fyll ut kontaktskjemaet nedenfor, så tar vi kontakt med deg så snart som mulig. Vi ser frem til å hjelpe deg!
+                            Har du spørsmål om kjøp eller salg av bobil og campingvogn? Fyll ut kontaktskjemaet nedenfor, så tar vi kontakt med deg så snart som mulig. Vi ser frem til å hjelpe deg.
                         </p>
                     </div>
                 </div>
@@ -79,15 +79,10 @@ const ContactPage = () => {
 
 
             <section className="flex flex-col md:flex-row gap-12 max-w-5xl w-full mx-auto mt-24">
-                {/* <h1 className="text-3xl font-bold mb-4 text-primary text-center">Kontakt oss</h1>
-                <p className="mb-4 text-center text-gray-700">Har du spørsmål, ris eller ros? Fyll ut skjemaet nedenfor!</p> */}
-
-
-
                 <div className="md:w-1/2 text-left">
                     <section className="text-left max-w-lg mb-12">
                         <h2 className="text-primary font-semibold text-xl">Kontaktskjema</h2>
-                        <p className="">Skriv noe om forventet svartid, hva vi kan hjelpe med osv.</p>
+                        <p className="text-gray-700">Send oss en melding, så svarer vi deg så raskt vi kan.</p>
                     </section>
                     {/* TODO: Legge til kontaktskjema her? */}
                     {successMessage && <p className="text-green-600 text-center mb-4">{successMessage}</p>}
@@ -157,10 +152,16 @@ const ContactPage = () => {
                     </form>
                 </div>
                 <div className="md:w-1/2 p-6 space-y-4">
-                    <h3 className="texg-lg font-semibold text-gray-700">Kontaktinformasjon</h3>
+                    {/* <h3 className="texg-lg font-semibold text-gray-700">Kontaktinformasjon</h3>
                     <p><span className="font-medium">Telefon:</span> <a href="#" className="text-primary hover:underline"><br />+47 408 28 494</a></p>
                     <p><span className="font-medium">E-post:</span> <a href="#" className="text-primary hover:underline"><br />tommy@3sbc.no</a></p>
-                    <p><span className="font-medium">Foretningsadresse:</span> <a href="#" className="text-primary hover:underline"><br />Siriusveien 9, 1407 Vinterbro</a></p>
+                    <p><span className="font-medium">Foretningsadresse:</span> <a href="#" className="text-primary hover:underline"><br />Siriusveien 9, 1407 Vinterbro</a></p> */}
+
+                    <h2 className="text-lg font-semibold text-gray-700">Kontaktinformasjon</h2>
+                    <p><span className="font-medium">Telefon:</span> <a href="tel:+4740828494" className="text-primary hover:underline"><br />+47 408 28 494</a></p>
+                    <p><span className="font-medium">E-post:</span> <a href="mailto:tommy@3sbc.no" className="text-primary hover:underline"><br />tommy@3sbc.no</a></p>
+                    <p><span className="font-medium">Forretningsadresse:</span> <span className="text-gray-700"><br />Siriusveien 9, 1407 Vinterbro</span></p>
+
                     <iframe
                         src="https://maps.google.com/maps?q=Siriusveien%209,%201407%20Vinterbro&t=&z=15&ie=UTF8&iwloc=&output=embed"
                         className="w-full h-64 rounded-xl shadow-sm"
