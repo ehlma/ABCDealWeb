@@ -1,0 +1,215 @@
+.admin-articles {
+    @apply w-full max-w-6xl mx-auto mt-8 px-4 pb-16;
+}
+
+.admin-articles__panel {
+    @apply bg-warm-off-white shadow-md rounded-lg p-8 grid grid-cols-1 gap-10;
+}
+
+@media (min-width: 768px) {
+    .admin-articles__panel {
+        @apply grid-cols-2;
+    }
+}
+
+.admin-articles__form {
+    @apply space-y-4;
+}
+
+.admin-articles__title {
+    @apply text-3xl font-bold mb-6 text-ui-background text-center;
+}
+
+.admin-articles__input,
+.admin-articles__textarea {
+    @apply w-full border border-gray-300 rounded px-4 py-3 bg-white text-ui-background;
+}
+
+.admin-articles__input::placeholder,
+.admin-articles__textarea::placeholder {
+    @apply text-gray-400;
+}
+
+.admin-articles__input:disabled,
+.admin-articles__textarea:disabled,
+.admin-articles__file-input:disabled {
+    @apply opacity-60 cursor-not-allowed;
+}
+
+.admin-articles__file-input {
+    @apply w-full border border-gray-300 rounded px-4 py-3 bg-white text-ui-background;
+}
+
+.admin-articles__textarea {
+    @apply min-h-28;
+}
+
+.admin-articles__textarea--large {
+    @apply min-h-72;
+}
+
+.admin-articles__button {
+    @apply mt-4 bg-ui-background text-white font-medium py-3 px-6 rounded transition;
+}
+
+.admin-articles__button:hover {
+    @apply bg-blue-400 scale-105;
+}
+
+.admin-articles__button:disabled {
+    @apply opacity-60 cursor-not-allowed;
+}
+
+.admin-articles__button:disabled:hover {
+    @apply bg-ui-background scale-100;
+}
+
+.admin-articles__status {
+    @apply mt-4 rounded px-4 py-3 text-sm font-medium flex items-center gap-3;
+}
+
+.admin-articles__status--loading {
+    @apply bg-blue-50 text-blue-800 border border-blue-200;
+}
+
+.admin-articles__status--success {
+    @apply bg-green-50 text-green-800 border border-green-200;
+}
+
+.admin-articles__status--error {
+    @apply bg-red-50 text-red-800 border border-red-200;
+}
+
+.admin-articles__spinner {
+    @apply w-4 h-4 border-2 border-blue-300 rounded-full;
+    border-top-color: #1d4ed8;
+    animation: adminArticlesSpin 0.8s linear infinite;
+}
+
+@keyframes adminArticlesSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.admin-articles__preview-list {
+    @apply flex flex-wrap gap-4 mt-2;
+}
+
+.admin-articles__preview-image {
+    @apply h-24 w-auto rounded object-cover;
+}
+
+.admin-articles__info {
+    @apply text-gray-700 text-base leading-relaxed text-left;
+}
+
+.admin-articles__info-title {
+    @apply text-xl font-semibold mb-3 text-ui-background;
+}
+
+.admin-articles__info-text {
+    @apply mb-8;
+}
+
+.admin-articles__highlight {
+    @apply font-semibold;
+}
+
+.admin-articles__tips-title {
+    @apply text-lg font-semibold mb-3 text-ui-background;
+}
+
+.admin-articles__tips-list {
+    @apply list-disc pl-5 space-y-2;
+}
+
+.admin-articles__published {
+    @apply mt-16;
+}
+
+.admin-articles__published-title {
+    @apply text-3xl font-bold mb-8 text-ui-background text-center;
+}
+
+.admin-articles__grid {
+    @apply grid grid-cols-1 gap-8;
+}
+
+@media (min-width: 768px) {
+    .admin-articles__grid {
+        @apply grid-cols-2;
+    }
+}
+
+.admin-articles__card {
+    @apply bg-warm-off-white shadow-md rounded-lg overflow-hidden flex flex-col;
+}
+
+.admin-articles__image-wrapper {
+    @apply w-full h-56 bg-gray-100;
+}
+
+.admin-articles__image {
+    @apply w-full h-full object-cover;
+}
+
+.admin-articles__image-placeholder {
+    @apply w-full h-full flex items-center justify-center text-gray-400;
+}
+
+.admin-articles__card-content {
+    @apply p-6 flex flex-col flex-1;
+}
+
+.admin-articles__card-title {
+    @apply text-xl font-semibold text-ui-background text-center mb-1;
+}
+
+.admin-articles__date {
+    @apply text-sm text-gray-500 text-center mb-4;
+}
+
+.admin-articles__intro {
+    @apply text-base text-gray-700 text-center mb-6 flex-1;
+}
+
+.admin-articles__actions {
+    @apply flex justify-center gap-4 mt-auto;
+}
+
+.admin-articles__edit-button {
+    @apply text-sm text-warm-off-white bg-ui-background px-5 py-2 rounded transition;
+}
+
+.admin-articles__edit-button:hover {
+    @apply bg-blue-400;
+}
+
+.admin-articles__delete-button {
+    @apply text-sm text-warm-off-white bg-red-900 px-5 py-2 rounded transition;
+}
+
+.admin-articles__delete-button:hover {
+    @apply bg-red-700;
+}
+
+.admin-articles__load-more {
+    @apply flex justify-center mt-10;
+}
+
+.admin-articles__load-more-button {
+    @apply bg-ui-background text-white font-medium py-3 px-8 rounded transition;
+}
+
+.admin-articles__load-more-button:hover {
+    @apply bg-blue-400;
+}
+
+.admin-articles__error {
+    @apply text-red-600 mt-4;
+}
+
+.admin-articles__success {
+    @apply text-green-600 mt-4;
+}
