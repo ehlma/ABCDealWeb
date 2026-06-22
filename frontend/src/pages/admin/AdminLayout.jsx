@@ -30,7 +30,7 @@ const AdminLayout = () => {
                 <div className="flex items-center justify-between px-6 py-4">
                     {/** Logo */}
                     <NavLink to="/">
-                        <h2 className="text-warm-off-white text-lg">ABC Deal Admin</h2>
+                        <h2 className="text-warm-off-white text-lg">3S Admin</h2>
                     </NavLink>
 
                     {/** Desktop meny med animasjon */}

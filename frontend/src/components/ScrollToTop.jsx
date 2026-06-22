@@ -5,8 +5,6 @@ const ScrollToTop = () => {
     const { pathname } = useLocation();
 
     useLayoutEffect(() => {
-        console.log("ScrollToTop trigget:", pathname);
-
         const container = document.getElementById("root");
         if (container) {
             container.scrollTop = 0;
