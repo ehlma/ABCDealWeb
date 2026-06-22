@@ -19,8 +19,12 @@ const AdminLayout = () => {
     const links = [
         { to: "/admin/settings", label: "Ansatte" },
         { to: "/admin/articles", label: "Artikler" },
+
+        {/** TIL FREMTIDIG POTENSIELL OPPGRADERING
+    
         { to: "/admin/contacts", label: "Kontaktskjema" },
         { to: "/admin/complaints", label: "Reklamasjon" },
+        */}
     ];
 
     return (
@@ -48,8 +52,8 @@ const AdminLayout = () => {
                                         className={`
                                             absolute inset-0 rounded-full z-0 transition-all duration-300
                                             ${location.pathname === to
-                                            ? "bg-blue-400 scale-100 opacity-100"
-                                            : "scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 bg-white/10"}
+                                                ? "bg-blue-400 scale-100 opacity-100"
+                                                : "scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 bg-white/10"}
                                         `}
                                     />
                                     {/** Lenketekst */}
@@ -65,18 +69,18 @@ const AdminLayout = () => {
                     <div className="flex items-center gap-4">
                         {isAuthenticated ? (
                             // Bruker innlogget
-                            <button 
+                            <button
                                 onClick={handleLogout}
                                 className="hidden sm:flex flex-col items-center gap-1 text-white hover:text-blue-300 hover:drop-shadow-lg transition-all duration-200 bg-transparent border-none cursor-pointer p-0"
                             >
-                                <LogOut className="w-5 h-5"/>
+                                <LogOut className="w-5 h-5" />
                                 <span>Logg ut</span>
                                 <span>{user.firstName || "Pålogget"}</span>
                             </button>
                         ) : (
                             // Bruker ikke innlogget
                             <NavLink to="/" className="hidden sm:flex flex-col items-center gap-1 text-white hover:text-blue-300 hover:drop-shadow-lg transition-all duration-200">
-                                <CircleUser className="w-5 h-5"/>
+                                <CircleUser className="w-5 h-5" />
                                 <span>Logg inn</span>
                             </NavLink>
                         )}
@@ -85,7 +89,7 @@ const AdminLayout = () => {
                         <button className="sm:hidden bg-transparent border-none p-0 m-0 focus:outline-none" onClick={() => setMenuOpen(!menuOpen)}>
                             {menuOpen ? <X className="w-8 h-8 text-white" /> : <Menu className="w-8 h-8 text-white" />}
                         </button>
-                    </div>     
+                    </div>
                 </div>
 
                 {/** Åpen hamburgermeny*/}
@@ -103,33 +107,33 @@ const AdminLayout = () => {
                                 {label}
                             </NavLink>
                         ))}
-                            <hr className="border-t border-blue-300/30 my-2"/>
-                            {/** Logg ut eller inn for mobil */}
-                            {isAuthenticated ? (
-                                <button
-                                    onClick={handleLogout}
-                                    className="flex flex-col items-center gap-2 text-white hover:text-blue-300 hover:drop-shadow-lg transition-all duration-200 bg-transparent border-none cursor-pointer p-0"
-                                >
-                                    <LogOut className="w-5 h-5"/>
-                                    <span>Logg ut</span>
-                                    <span>{user.firstName || "Pålogget"}</span>
-                                </button>
-                            ) : (
-                                <NavLink to="/" onClick={() => setMenuOpen(false)} className="flex flex-col items-center gap-2 text-white hover:text-blue-300 hover:drop-shadow-lg transition-all duration-200">
-                                    <CircleUser className="w-5 h-5" />
-                                    <span>Logg inn</span>
-                                </NavLink>
-                            )}
+                        <hr className="border-t border-blue-300/30 my-2" />
+                        {/** Logg ut eller inn for mobil */}
+                        {isAuthenticated ? (
+                            <button
+                                onClick={handleLogout}
+                                className="flex flex-col items-center gap-2 text-white hover:text-blue-300 hover:drop-shadow-lg transition-all duration-200 bg-transparent border-none cursor-pointer p-0"
+                            >
+                                <LogOut className="w-5 h-5" />
+                                <span>Logg ut</span>
+                                <span>{user.firstName || "Pålogget"}</span>
+                            </button>
+                        ) : (
+                            <NavLink to="/" onClick={() => setMenuOpen(false)} className="flex flex-col items-center gap-2 text-white hover:text-blue-300 hover:drop-shadow-lg transition-all duration-200">
+                                <CircleUser className="w-5 h-5" />
+                                <span>Logg inn</span>
+                            </NavLink>
+                        )}
                     </div>
                 )}
             </nav>
 
             <div className="pointer-events-none fixed top-[60px] left-0 w-full h-20 z-10 bg-gradient-to-b from-white/90 to-transparent"></div>
-      
-                {/** Sideinnhold  */}
-                <main className="flex-1 pt-[96px] px-[24px] pb-[24px] overflow-y-auto bg-[#f0e9df]">
-                    <Outlet />
-                </main>
+
+            {/** Sideinnhold  */}
+            <main className="flex-1 pt-[96px] px-[24px] pb-[24px] overflow-y-auto bg-[#f0e9df]">
+                <Outlet />
+            </main>
         </div>
     );
 };
