@@ -6,16 +6,16 @@ export const createArticle = async (req, res) => {
         const { title, intro, bodyText, images } = req.body;
 
         if (!title || !bodyText || !images || !images.length) {
-          return res.status(400).json({ message: "Tittel, bilde og brødtekst er påkrevd." });
+            return res.status(400).json({ message: "Tittel, bilde og brødtekst er påkrevd." });
         }
-  
+
         const article = new ArticleForm({
             title,
             intro,
             bodyText,
             images,
         });
-  
+
         const saved = await article.save();
         res.status(201).json(saved);
     } catch (err) {
@@ -26,41 +26,50 @@ export const createArticle = async (req, res) => {
 
 export const getArticles = async (req, res) => {
     try {
-        const articles = await ArticleForm.find().sort({createdAt: -1});
+        const articles = await ArticleForm.find().sort({ createdAt: -1 });
         res.json(articles);
     } catch (err) {
-        res.status(500).json({message: "Kunne ikke hente artikler."});
+        res.status(500).json({ message: "Kunne ikke hente artikler." });
     }
 };
 
 export const updateArticle = async (req, res) => {
     try {
         const { id } = req.params;
-        const { title, intro, bodyText } = req.body;
-      
-      const updateFields = {
-        title,
-        intro,
-        bodyText
-      };
-  
-        if (req.files && req.files.length > 0) {
-            updateFields.images = req.files.map((file) => file.filename);
-        }
-  
-        const updated = await ArticleForm.findByIdAndUpdate(id, updateFields, { new: true });
-  
+        const { title, intro, bodyText, images } = req.body;
+
+        console.log("UPDATE ARTICLE BODY:", req.body);
+
+        const updated = await ArticleForm.findByIdAndUpdate(
+            id,
+            {
+                title,
+                intro,
+                bodyText,
+                images,
+            },
+            {
+                new: true,
+                runValidators: true,
+            }
+        );
+
         if (!updated) {
             return res.status(404).json({ message: "Artikkel ikke funnet" });
         }
-  
-        res.json(updated);
 
-        } catch (err) {
-            res.status(500).json({ message: "Serverfeil", error: err.message });
-        }
+        console.log("UPDATED ARTICLE:", updated);
+
+        res.json(updated);
+    } catch (err) {
+        console.error("Feil ved oppdatering:", err);
+        res.status(500).json({
+            message: "Serverfeil",
+            error: err.message,
+        });
+    }
 };
-  
+
 
 export const getArticleById = async (req, res) => {
     try {
@@ -75,33 +84,33 @@ export const getArticleById = async (req, res) => {
 // Delete article assigned pictures (in cloudinary)
 export const deleteArticle = async (req, res) => {
     try {
-      const { id } = req.params;
-  
-      const article = await ArticleForm.findById(id);
-      if (!article) return res.status(404).json({ message: "Artikkel ikke funnet" });
-  
-      // Trygg filtrering og sletting
-      const imagePublicIds = (article.images || [])
-        .filter((url) => typeof url === "string") // ← unngå null/undefined
-        .map((url) => {
-          const match = url.match(/\/upload\/(?:v\d+\/)?abcdeal-artikler\/(.+)\.(jpg|jpeg|png|webp)/);
-          return match ? `abcdeal-artikler/${match[1]}` : null;
-        })
-        .filter(Boolean); // fjern null
-  
-      console.log("Sletter fra Cloudinary:", imagePublicIds);
-  
-      await Promise.all(
-        imagePublicIds.map((publicId) => cloudinary.uploader.destroy(publicId))
-      );
-  
-      await ArticleForm.findByIdAndDelete(id);
-      res.json({ message: "Artikkel og bilder slettet" });
-  
+        const { id } = req.params;
+
+        const article = await ArticleForm.findById(id);
+        if (!article) return res.status(404).json({ message: "Artikkel ikke funnet" });
+
+        // Trygg filtrering og sletting
+        const imagePublicIds = (article.images || [])
+            .filter((url) => typeof url === "string") // ← unngå null/undefined
+            .map((url) => {
+                const match = url.match(/\/upload\/(?:v\d+\/)?abcdeal-artikler\/(.+)\.(jpg|jpeg|png|webp)/);
+                return match ? `abcdeal-artikler/${match[1]}` : null;
+            })
+            .filter(Boolean); // fjern null
+
+        console.log("Sletter fra Cloudinary:", imagePublicIds);
+
+        await Promise.all(
+            imagePublicIds.map((publicId) => cloudinary.uploader.destroy(publicId))
+        );
+
+        await ArticleForm.findByIdAndDelete(id);
+        res.json({ message: "Artikkel og bilder slettet" });
+
     } catch (err) {
-      console.error("Sletting feilet:", err);
-      res.status(500).json({ message: "Noe gikk galt", error: err.message });
+        console.error("Sletting feilet:", err);
+        res.status(500).json({ message: "Noe gikk galt", error: err.message });
     }
-  };
-  
+};
+
 
