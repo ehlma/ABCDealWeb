@@ -226,7 +226,8 @@ const AdminSettings = () => {
 					<ul className="list-disc list-inside space-y-2">
 						<li>Sørg for at e-postadressen er riktig – denne brukes til innlogging</li>
 						<li>Velg riktig rolle for å gi tilgangsnivå</li>
-						<li>Bruk et sterkt passord</li>
+						<li>Bruk et sterkt passord som du husker: dette kan <span className="font-semibold">ikke</span> endres senere</li>
+						<li>Hvis du har glemt passordet må du velge "Glemt passord" på innloggingssiden</li>
 						<li>Kun brukere med <span className="font-semibold">admin-rolle</span> kan redigere ansatte</li>
 					</ul>
 				</div>
