@@ -79,6 +79,13 @@ const Footer = () => {
                 <div className="footer__bottom">
                     <span>© {new Date().getFullYear()} 3S Bobil & Caravan</span>
 
+                    <Link
+                        to="/login"
+                        aria-label="Admin"
+                    >
+                        Login
+                    </Link>
+
                     <span>
                         Utviklet av{" "}
                         <a
