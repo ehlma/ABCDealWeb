@@ -34,6 +34,7 @@ export const API_ENDPOINTS = {
     adminArticles: '/admin/articles',
     adminArchivedContacts: '/admin/archived/contacts',
     adminArchivedComplaints: '/admin/archived/complaints',
+    adminActivity: '/admin/activity',
 
 };
 

@@ -1,4 +1,5 @@
 import ArticleForm from "../models/ArticleForm.js";
+import Activity from "../models/Activity.js";
 import { cloudinary } from "../utils/cloudinary.js";
 
 export const createArticle = async (req, res) => {
@@ -17,6 +18,11 @@ export const createArticle = async (req, res) => {
         });
   
         const saved = await article.save();
+        await Activity.create({
+            type: "article",
+            action: "created",
+            title: `Artikkel opprettet: ${saved.title}`,
+        });
         res.status(201).json(saved);
     } catch (err) {
         console.error("Feil ved bildeopplasting:", err);
@@ -53,6 +59,12 @@ export const updateArticle = async (req, res) => {
         if (!updated) {
             return res.status(404).json({ message: "Artikkel ikke funnet" });
         }
+
+        await Activity.create({
+            type: "article",
+            action: "updated",
+            title: `Artikkel oppdatert: ${updated.title}`,
+        });
   
         res.json(updated);
 
@@ -96,6 +108,11 @@ export const deleteArticle = async (req, res) => {
       );
   
       await ArticleForm.findByIdAndDelete(id);
+      await Activity.create({
+        type: "article",
+        action: "deleted",
+        title: `Artikkel slettet: ${article.title}`,
+      });
       res.json({ message: "Artikkel og bilder slettet" });
   
     } catch (err) {

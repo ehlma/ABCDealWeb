@@ -10,6 +10,7 @@ import userRoutes from './routes/userRoutes.js';
 import complaintRoutes from './routes/admin/complaintRoutes.js';
 import contactRoutes from './routes/admin/contactRoutes.js';
 import articleRoutes from './routes/admin/articleRoutes.js';
+import activityRoutes from './routes/admin/activityRoutes.js';
 import publicContactRoutes from './routes/publicContactRoutes.js';
 import publicComplaintRoutes from './routes/publicComplaintRoutes.js';
 import archivedContactRoutes from './routes/archivedContactRoutes.js';
@@ -38,6 +39,7 @@ app.use('/api/admin', adminRoutes); // Generell admin-rute
 app.use('/api/admin/complaints', complaintRoutes);
 // contact route
 app.use('/api/admin/contacts', contactRoutes);
+app.use('/api/admin/activity', activityRoutes);
 // user route
 app.use('/api/articles', articleRoutes);
 app.use('/api/settings', userRoutes);
