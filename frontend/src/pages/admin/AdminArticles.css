@@ -101,7 +101,7 @@
 }
 
 .admin-articles__info {
-    @apply text-gray-700 text-base leading-relaxed text-left;
+    @apply text-gray-700 text-base leading-relaxed text-left mt-20;
 }
 
 .admin-articles__info-title {

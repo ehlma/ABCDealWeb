@@ -250,7 +250,7 @@ const AdminArticles = () => {
                         <li>Bruk en tydelig og beskrivende tittel</li>
                         <li>Last opp minst ett bilde, helst i liggende format</li>
                         <li>Skriv en kort introduksjon for å fange leserens interesse</li>
-                        <li>Bruk brødteksten til å utdype innholdet</li>
+                        <li>Bruk brødteksten til å utdype innholdet - dette vises på hjem-siden</li>
                         <li>Hold språket enkelt og lett å lese</li>
                     </ul>
                 </aside>
