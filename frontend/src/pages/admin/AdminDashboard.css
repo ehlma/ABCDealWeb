@@ -1,0 +1,126 @@
+.admin-dashboard {
+    padding: 2rem;
+}
+
+.admin-dashboard__header {
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.admin-dashboard__cards {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.admin-dashboard__card {
+    flex: 1;
+    padding: 1.5rem;
+    border-radius: 12px;
+    /* background: white; */
+    text-decoration: none;
+    color: inherit;
+    border: 0.5px solid #e5e7eb;
+    transition: 0.2s ease;
+    min-height: 180px;
+    background: var(--warm-off-white);
+}
+
+.admin-dashboard__card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.admin-dashboard__card-label {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background-color: #FFE4D1;
+    color: #E6732B;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.admin-dashboard__card h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+}
+
+.admin-dashboard__card p {
+    margin: 0;
+    color: #6b7280;
+}
+
+/* ACTIVITY */
+.admin-dashboard__content {
+    display: grid;
+    grid-template-columns: 3fr 250px;
+    gap: 2rem;
+    text-align: left;
+}
+
+.admin-dashboard__activity {
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    position: relative;
+    background: var(--warm-off-white);
+}
+
+.admin-dashboard__activity h2 {
+    margin: 0 0 1rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    color: #4b5563;
+    text-transform: uppercase;
+}
+
+.admin-dashboard__activity ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.admin-dashboard__activity li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0 0 1.5rem 1.5rem;
+    border-bottom: none;
+    color: #6b7280;
+}
+
+.admin-dashboard__activity li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.35rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #E6732B;
+}
+
+.admin-dashboard__activity li::after {
+    content: "";
+    position: absolute;
+    left: 3.5px;
+    top: 0.85rem;
+    width: 1px;
+    height: calc(100% - 0.35rem);
+    background-color: #e5e7eb;
+}
+
+.admin-dashboard__activity li:last-child::after {
+    display: none;
+}
+
+.admin-dashboard__activity time {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+.admin-dashboard__activity li span {
+    color: #6b7280;
+    font-size: 0.9rem;
+}

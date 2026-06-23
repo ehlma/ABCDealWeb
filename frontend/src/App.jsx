@@ -4,6 +4,7 @@ import './index.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Admin sider
+import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminContacts from './pages/admin/AdminContacts';
 import AdminComplaints from './pages/admin/AdminComplaints';
 import AdminLayout from './pages/admin/AdminLayout';
@@ -61,6 +62,8 @@ function App() {
             <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
               <Route path='/admin' element={<AdminLayout />}>
                 {/* Disse rutene er relative til foreldreruten '/admin' */}
+                <Route index element={<AdminDashboard/>}/>
+                
                 <Route path='contacts' element={<AdminContacts />} />
                 <Route path='complaints' element={<AdminComplaints />} />
                 <Route path='settings' element={<AdminSettings />} />
