@@ -249,6 +249,36 @@
     }
 }
 
+.article-gallery__image-wrapper {
+    position: relative;
+}
+
+.article-gallery__image-loading {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(2px);
+}
+
+.article-gallery__spinner {
+    width: 42px;
+    height: 42px;
+    border: 4px solid rgba(47, 58, 69, 0.25);
+    border-top-color: #2f3a45;
+    border-radius: 9999px;
+    animation: articleGallerySpin 0.8s linear infinite;
+}
+
+@keyframes articleGallerySpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 @media (max-width: 520px) {
     .article-page {
         padding-left: 0.75rem;

@@ -8,6 +8,7 @@ const ArticlePage = () => {
     const { id } = useParams();
     const [article, setArticle] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isImageLoading, setIsImageLoading] = useState(false);
     const [error, setError] = useState("");
 
     const images = article?.images || [];
@@ -19,6 +20,7 @@ const ArticlePage = () => {
 
                 setArticle(res.data);
                 setCurrentIndex(0);
+                setIsImageLoading(false);
             } catch (err) {
                 setError("Kunne ikke hente artikkel.");
             }
@@ -27,46 +29,64 @@ const ArticlePage = () => {
         fetchArticle();
     }, [id]);
 
-    // SEO
     useEffect(() => {
-    if (!article) return;
-    document.title = `${article.title} | 3S Bobil & Caravan`;
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-        metaDescription = document.createElement("meta");
-        metaDescription.name = "description";
-        document.head.appendChild(metaDescription);
-    }
-        metaDescription.content = article.intro || "Les aktuelt fra 3S Bobil & Caravan om kjøp og salg av bobil og campingvogn.";
-}, [article]);
+        if (!article) return;
+
+        document.title = `${article.title} | 3S Bobil & Caravan`;
+
+        let metaDescription = document.querySelector('meta[name="description"]');
+
+        if (!metaDescription) {
+            metaDescription = document.createElement("meta");
+            metaDescription.name = "description";
+            document.head.appendChild(metaDescription);
+        }
+
+        metaDescription.content =
+            article.intro ||
+            "Les aktuelt fra 3S Bobil & Caravan om kjøp og salg av bobil og campingvogn.";
+    }, [article]);
+
+    const goToImage = (newIndex) => {
+        if (newIndex === currentIndex) return;
+
+        setIsImageLoading(true);
+        setCurrentIndex(newIndex);
+    };
+
+    const nextImage = () => {
+        goToImage((currentIndex + 1) % images.length);
+    };
+
+    const prevImage = () => {
+        goToImage((currentIndex - 1 + images.length) % images.length);
+    };
 
     useEffect(() => {
         const handleKeyDown = (e) => {
             if (images.length <= 1) return;
 
             if (e.key === "ArrowRight") {
+                setIsImageLoading(true);
                 setCurrentIndex((prev) => (prev + 1) % images.length);
             }
 
             if (e.key === "ArrowLeft") {
+                setIsImageLoading(true);
                 setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
             }
         };
 
         window.addEventListener("keydown", handleKeyDown);
+
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [images.length]);
 
     if (error) return <p className="article-page__error">{error}</p>;
-    if (!article) return <p className="article-page__loading">Laster artikkel...</p>;
 
-    const nextImage = () => {
-        setCurrentIndex((prev) => (prev + 1) % images.length);
-    };
-
-    const prevImage = () => {
-        setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-    };
+    if (!article) {
+        return <p className="article-page__loading">Laster artikkel...</p>;
+    }
 
     return (
         <main className="article-page">
@@ -81,10 +101,13 @@ const ArticlePage = () => {
                     <h1>{article.title}</h1>
 
                     <p className="article__date">
-                        Publisert: {new Date(article.createdAt).toLocaleDateString("nb-NO")}
+                        Publisert:{" "}
+                        {new Date(article.createdAt).toLocaleDateString("nb-NO")}
                     </p>
 
-                    {article.intro && <p className="article__intro">{article.intro}</p>}
+                    {article.intro && (
+                        <p className="article__intro">{article.intro}</p>
+                    )}
                 </header>
 
                 {images.length > 0 && (
@@ -94,7 +117,15 @@ const ArticlePage = () => {
                                 src={images[currentIndex]}
                                 alt={`${article.title} - bilde ${currentIndex + 1}`}
                                 className="article-gallery__image"
+                                onLoad={() => setIsImageLoading(false)}
+                                onError={() => setIsImageLoading(false)}
                             />
+
+                            {isImageLoading && (
+                                <div className="article-gallery__image-loading">
+                                    <span className="article-gallery__spinner"></span>
+                                </div>
+                            )}
 
                             {images.length > 1 && (
                                 <>
@@ -130,7 +161,7 @@ const ArticlePage = () => {
                                         <button
                                             key={index}
                                             type="button"
-                                            onClick={() => setCurrentIndex(index)}
+                                            onClick={() => goToImage(index)}
                                             className={index === currentIndex ? "active" : ""}
                                             aria-label={`Gå til bilde ${index + 1}`}
                                         />
@@ -151,10 +182,7 @@ const ArticlePage = () => {
 
                     <p>
                         Kontakt oss på <strong>+47 408 28 494</strong>, eller send oss en
-                        melding via{" "}
-                        <Link to="/contact">
-                            kontaktskjemaet
-                        </Link>.
+                        melding via <Link to="/contact">kontaktskjemaet</Link>.
                     </p>
                 </footer>
             </article>

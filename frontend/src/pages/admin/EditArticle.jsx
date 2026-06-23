@@ -1,11 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../../../api/api";
+import "./EditArticle.css";
 
 const EditArticle = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [selectedFile, setSelectedFile] = useState(null);
+    const fileInputRef = useRef(null);
+
+    const [selectedFiles, setSelectedFiles] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isSaving, setIsSaving] = useState(false);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
 
@@ -13,9 +18,10 @@ const EditArticle = () => {
         title: "",
         intro: "",
         bodyText: "",
+        images: [],
     });
 
-    const stripHtml = (html) => {
+    const stripHtml = (html = "") => {
         const div = document.createElement("div");
         div.innerHTML = html;
         return div.textContent || div.innerText || "";
@@ -23,16 +29,23 @@ const EditArticle = () => {
 
     useEffect(() => {
         const fetchArticle = async () => {
+            setIsLoading(true);
+            setError("");
+
             try {
                 const res = await api.get(`/articles/${id}`);
+
                 setFormData({
-                    title: res.data.title,
-                    intro: res.data.intro,
-                    bodyText: res.data.bodyText,
-                    images: res.data.images || [], 
+                    title: res.data.title || "",
+                    intro: res.data.intro || "",
+                    bodyText: stripHtml(res.data.bodyText || ""),
+                    images: res.data.images || [],
                 });
             } catch (err) {
-                setError("Kunne ikke hente artikkel");
+                console.error("Kunne ikke hente artikkel:", err);
+                setError("Kunne ikke hente artikkelen.");
+            } finally {
+                setIsLoading(false);
             }
         };
 
@@ -40,94 +53,266 @@ const EditArticle = () => {
     }, [id]);
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleFileChange = (e) => {
+        setSelectedFiles((prev) => [
+            ...prev,
+            ...Array.from(e.target.files),
+        ]);
+    };
+
+    const handleRemoveSelectedImage = (indexToRemove) => {
+        setSelectedFiles((prev) =>
+            prev.filter((_, index) => index !== indexToRemove)
+        );
+
+        if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+        }
+    };
+
+    const handleRemoveExistingImage = (indexToRemove) => {
+        setFormData((prev) => ({
+            ...prev,
+            images: prev.images.filter((_, index) => index !== indexToRemove),
+        }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         setError("");
         setSuccess("");
+        setIsSaving(true);
 
-        const data = new FormData();
-        data.append("title", formData.title);
-        data.append("intro", formData.intro);
-        data.append("bodyText", formData.bodyText);
-        if (selectedFile) {
-            data.append("image", selectedFile);
+        if (!formData.title || !formData.bodyText) {
+            setError("Tittel og brødtekst er påkrevd.");
+            setIsSaving(false);
+            return;
         }
 
         try {
-            await api.put(`/articles/${id}`, data, {
-                headers: { "Content-Type": "multipart/form-data" },
-            });
+            const imageUploads = await Promise.all(
+                selectedFiles.map(async (file) => {
+                    const data = new FormData();
+                    data.append("file", file);
+                    data.append("upload_preset", "article_uploads");
+
+                    const res = await fetch(
+                        "https://api.cloudinary.com/v1_1/dzsgd5dnu/image/upload",
+                        {
+                            method: "POST",
+                            body: data,
+                        }
+                    );
+
+                    const result = await res.json();
+
+                    if (!res.ok || !result.secure_url) {
+                        throw new Error("Bildeopplasting feilet.");
+                    }
+
+                    return result.secure_url;
+                })
+            );
+
+            const payload = {
+                title: formData.title,
+                intro: formData.intro,
+                bodyText: formData.bodyText,
+                images:
+                    imageUploads.length > 0
+                        ? [...formData.images, ...imageUploads]
+                        : formData.images,
+            };
+
+            await api.put(`/articles/${id}`, payload);
+
             setSuccess("Artikkelen ble oppdatert!");
-            setTimeout(() => navigate("/admin/articles"), 1500);
+            setSelectedFiles([]);
+
+            if (fileInputRef.current) {
+                fileInputRef.current.value = "";
+            }
+
+            setTimeout(() => {
+                navigate("/admin/articles");
+            }, 1200);
         } catch (err) {
-            setError("Noe gikk galt");
+            console.error("Noe gikk galt ved oppdatering:", err);
+            setError("Noe gikk galt ved oppdatering. Prøv igjen.");
+        } finally {
+            setIsSaving(false);
         }
     };
 
+    if (isLoading) {
+        return (
+            <div className="edit-article">
+                <div className="edit-article__status edit-article__status--loading">
+                    <span className="edit-article__spinner"></span>
+                    <p>Henter artikkel...</p>
+                </div>
+            </div>
+        );
+    }
+
     return (
-        <div className="max-w-xl mx-auto p-4 mt-8 bg-warm-off-white">
+        <div className="edit-article">
             <button
                 type="button"
                 onClick={() => navigate("/admin/articles")}
-                className="mb-4 bg-warm-off-white text-primary px-3 py-1 rounded hover:bg-gray-400 hover:text-warm-off-white"
+                className="edit-article__back-button"
             >
                 ← Tilbake
             </button>
 
-            <h2 className="text-2xl font-bold mb-4 text-ui-background">Rediger artikkel</h2>
-            {error && <p className="text-red-600 mb-2">{error}</p>}
-            {success && <p className="text-green-600 mb-2">{success}</p>}
+            <section className="edit-article__panel">
+                <h2 className="edit-article__title">Rediger artikkel</h2>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-                {formData.image && (
-                    <img
-                        src={`http://localhost:5050/uploads/${formData.image}`}
-                        alt="Nåværende bilde"
-                        className="w-full max-w-[200px] mb-4"
+                <form onSubmit={handleSubmit} className="edit-article__form">
+                    <input
+                        name="title"
+                        value={formData.title}
+                        onChange={handleChange}
+                        placeholder="Tittel*"
+                        required
+                        disabled={isSaving}
+                        className="edit-article__input"
                     />
-                )}
 
-                <input
-                    name="title"
-                    value={formData.title}
-                    onChange={handleChange}
-                    placeholder="Tittel"
-                    required
-                    className="w-full border border-gray-300 rounded px-4 py-2"
-                />
-                <textarea
-                    name="intro"
-                    value={formData.intro}
-                    onChange={handleChange}
-                    placeholder="Introduksjon"
-                    rows={3}
-                    className="w-full border border-gray-300 rounded px-4 py-2"
-                />
-                <textarea
-                    name="bodyText"
-                    value={stripHtml(formData.bodyText)}
-                    onChange={handleChange}
-                    placeholder="Brødtekst"
-                    rows={6}
-                    required
-                    className="w-full border border-gray-300 rounded px-4 py-2"
-                />
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => setSelectedFile(e.target.files[0])}
-                    className="w-full"
-                />
-                <button
-                    type="submit"
-                    className="bg-ui-background text-warm-off-white px-4 py-2 rounded hover:bg-blue-400 hover:scale-105"
-                >
-                    Oppdater
-                </button>
-            </form>
+                    <textarea
+                        name="intro"
+                        value={formData.intro}
+                        onChange={handleChange}
+                        placeholder="Introduksjonstekst"
+                        rows={3}
+                        disabled={isSaving}
+                        className="edit-article__textarea"
+                    />
+
+                    <textarea
+                        name="bodyText"
+                        value={formData.bodyText}
+                        onChange={handleChange}
+                        placeholder="Brødtekst*"
+                        rows={8}
+                        required
+                        disabled={isSaving}
+                        className="edit-article__textarea edit-article__textarea--large"
+                    />
+
+                    {formData.images.length > 0 && (
+                        <div>
+                            <h3 className="edit-article__section-title">
+                                Eksisterende bilder
+                            </h3>
+
+                            <div className="edit-article__image-grid">
+                                {formData.images.map((img, index) => (
+                                    <div
+                                        key={`${img}-${index}`}
+                                        className="edit-article__existing-image-item"
+                                    >
+                                        <img
+                                            src={img}
+                                            alt={`Eksisterende bilde ${index + 1}`}
+                                            className="edit-article__image"
+                                        />
+
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                handleRemoveExistingImage(index)
+                                            }
+                                            className="edit-article__remove-image-button"
+                                            disabled={isSaving}
+                                        >
+                                            Fjern bilde
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    <div>
+                        <label className="edit-article__label">
+                            Legg til nye bilder
+                        </label>
+
+                        <input
+                            ref={fileInputRef}
+                            type="file"
+                            accept="image/*"
+                            multiple
+                            onChange={handleFileChange}
+                            disabled={isSaving}
+                            className="edit-article__file-input"
+                        />
+                    </div>
+
+                    {selectedFiles.length > 0 && (
+                        <div className="edit-article__preview-list">
+                            {selectedFiles.map((file, index) => (
+                                <div
+                                    key={`${file.name}-${index}`}
+                                    className="edit-article__preview-item"
+                                >
+                                    <img
+                                        src={URL.createObjectURL(file)}
+                                        alt={`Nytt bilde ${index + 1}`}
+                                        className="edit-article__preview-image"
+                                    />
+
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            handleRemoveSelectedImage(index)
+                                        }
+                                        className="edit-article__remove-image-button"
+                                        disabled={isSaving}
+                                    >
+                                        Fjern
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    <button
+                        type="submit"
+                        disabled={isSaving}
+                        className="edit-article__submit-button"
+                    >
+                        {isSaving ? "Lagrer..." : "Lagre endringer"}
+                    </button>
+
+                    {isSaving && (
+                        <div className="edit-article__status edit-article__status--loading">
+                            <span className="edit-article__spinner"></span>
+                            <p>Lagrer artikkel. Vennligst vent...</p>
+                        </div>
+                    )}
+
+                    {success && (
+                        <div className="edit-article__status edit-article__status--success">
+                            {success}
+                        </div>
+                    )}
+
+                    {error && (
+                        <div className="edit-article__status edit-article__status--error">
+                            {error}
+                        </div>
+                    )}
+                </form>
+            </section>
         </div>
     );
 };

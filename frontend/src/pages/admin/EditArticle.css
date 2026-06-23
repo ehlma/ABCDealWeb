@@ -1,0 +1,138 @@
+.edit-article {
+    @apply w-full max-w-5xl mx-auto mt-8 px-4 pb-16;
+}
+
+.edit-article__back-button {
+    @apply mb-4 bg-warm-off-white text-primary px-4 py-2 rounded transition;
+}
+
+.edit-article__back-button:hover {
+    @apply bg-gray-300 text-ui-background;
+}
+
+.edit-article__panel {
+    @apply bg-warm-off-white shadow-md rounded-lg p-8;
+}
+
+.edit-article__title {
+    @apply text-3xl font-bold mb-6 text-ui-background text-center;
+}
+
+.edit-article__form {
+    @apply space-y-4;
+}
+
+.edit-article__input,
+.edit-article__textarea,
+.edit-article__file-input {
+    @apply w-full border border-gray-300 rounded px-4 py-3 bg-white text-ui-background;
+}
+
+.edit-article__input::placeholder,
+.edit-article__textarea::placeholder {
+    @apply text-gray-400;
+}
+
+.edit-article__input:disabled,
+.edit-article__textarea:disabled,
+.edit-article__file-input:disabled {
+    @apply opacity-60 cursor-not-allowed;
+}
+
+.edit-article__textarea {
+    @apply min-h-28;
+}
+
+.edit-article__textarea--large {
+    @apply min-h-72;
+}
+
+.edit-article__section-title,
+.edit-article__label {
+    @apply block text-sm font-semibold text-ui-background mb-3;
+}
+
+.edit-article__image-grid {
+    @apply grid grid-cols-1 gap-4;
+}
+
+@media (min-width: 640px) {
+    .edit-article__image-grid {
+        @apply grid-cols-2;
+    }
+}
+
+.edit-article__existing-image-item,
+.edit-article__preview-item {
+    @apply bg-white border border-gray-200 rounded p-3;
+}
+
+.edit-article__image {
+    @apply w-full h-40 object-cover rounded mb-3;
+}
+
+.edit-article__preview-list {
+    @apply grid grid-cols-1 gap-4;
+}
+
+@media (min-width: 640px) {
+    .edit-article__preview-list {
+        @apply grid-cols-2;
+    }
+}
+
+.edit-article__preview-image {
+    @apply w-full h-36 object-cover rounded mb-3;
+}
+
+.edit-article__remove-image-button {
+    @apply bg-red-900 text-white text-sm px-3 py-2 rounded transition;
+}
+
+.edit-article__remove-image-button:hover {
+    @apply bg-red-700;
+}
+
+.edit-article__submit-button {
+    @apply bg-ui-background text-warm-off-white px-6 py-3 rounded font-medium transition;
+}
+
+.edit-article__submit-button:hover {
+    @apply bg-blue-400 scale-105;
+}
+
+.edit-article__submit-button:disabled {
+    @apply opacity-60 cursor-not-allowed;
+}
+
+.edit-article__submit-button:disabled:hover {
+    @apply bg-ui-background scale-100;
+}
+
+.edit-article__status {
+    @apply mt-4 rounded px-4 py-3 text-sm font-medium flex items-center gap-3;
+}
+
+.edit-article__status--loading {
+    @apply bg-blue-50 text-blue-800 border border-blue-200;
+}
+
+.edit-article__status--success {
+    @apply bg-green-50 text-green-800 border border-green-200;
+}
+
+.edit-article__status--error {
+    @apply bg-red-50 text-red-800 border border-red-200;
+}
+
+.edit-article__spinner {
+    @apply w-4 h-4 border-2 border-blue-300 rounded-full;
+    border-top-color: #1d4ed8;
+    animation: editArticleSpin 0.8s linear infinite;
+}
+
+@keyframes editArticleSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
