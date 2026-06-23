@@ -15,11 +15,11 @@ const AboutPage = () => {
             email: "tommy@3sbc.no",
             image: tommyImage,
             objectPosition: "top 20%",
-            description: `Tommy Østli er daglig leder og grunnlegger av 3S Bobil & Caravan AS. Han har over 11 års erfaring fra caravanbransjen, og har gjennom karrieren levert bobiler og campingvogner til mer enn 600 fornøyde kunder.
+            description: `Jeg er daglig leder og grunnlegger av 3S Bobil & Caravan AS. Jeg har over 11 års erfaring fra caravanbransjen, og har gjennom karrieren levert bobiler og campingvogner til mer enn 600 fornøyde kunder.
 
-            I tillegg har Tommy seks års erfaring som konsulent innen salgsutvikling, ledelse og organisasjonsutvikling. Kombinert med 25 års erfaring som mellomleder og toppleder i norske og skandinaviske selskaper, gir dette et solid grunnlag for å levere profesjonelle, trygge og effektive salgsprosesser.
+            I tillegg har jeg seks års erfaring som konsulent innen salgsutvikling, ledelse og organisasjonsutvikling. Kombinert med 25 års erfaring som mellomleder og toppleder i norske og skandinaviske selskaper, gir dette meg et solid grunnlag for å levere profesjonelle, trygge og effektive salgsprosesser.
 
-            Filosofien hans er enkel: Ting skal gjøres ordentlig, ryddig og forutsigbart. Tommy legger stor vekt på tilgjengelighet, ærlighet og tett oppfølging gjennom hele prosessen, slik at både kjøper og selger sitter igjen med en god opplevelse.
+            Filosofien min er enkel: Ting skal gjøres ordentlig, ryddig og forutsigbart. Jeg legger stor vekt på tilgjengelighet, ærlighet og tett oppfølging gjennom hele prosessen, slik at både kjøper og selger sitter igjen med en god opplevelse.
 
             Gjennom 3S Bobil & Caravan AS – Suksess, Systematisk, Sammen – er målet å skape trygge, gode og lønnsomme opplevelser for alle parter.`
         },
