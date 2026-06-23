@@ -10,7 +10,7 @@ const TeamMemberCard = ({ name, title, phoneNum, email, image, objectPosition, d
                 src={image}
                 alt={`Portrett av ${name}, ${title} i 3S Bobil & Caravan`}
                 className="w-full object-top rounded-t-lg"
-                style={{objectPosition}}
+                style={{ objectPosition }}
             />
 
             <div className="p-8">
@@ -21,10 +21,10 @@ const TeamMemberCard = ({ name, title, phoneNum, email, image, objectPosition, d
 
 
                 {expanded ? (
-                    <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-line">{description}</p>
+                    <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-line mt-8 mb-8">{description}</p>
                 ) : null}
 
-                <button 
+                <button
                     className="text-primary font-medium text-sm mt-2 hover:underline"
                     onClick={() => setExpanded(!expanded)}
                 >
