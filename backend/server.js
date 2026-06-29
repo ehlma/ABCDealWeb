@@ -2,6 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 import authRoutes from './routes/authRoutes.js';
 import protectedRoutes from './routes/protectedRoutes.js';
@@ -16,8 +18,13 @@ import publicComplaintRoutes from './routes/publicComplaintRoutes.js';
 import archivedContactRoutes from './routes/archivedContactRoutes.js';
 import archivedComplaintRoutes from './routes/archivedComplaintRoutes.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-dotenv.config();
+
+dotenv.config({
+    path: path.join(__dirname, '../.env'),
+});
 
 const app = express();
 app.use(cors());
