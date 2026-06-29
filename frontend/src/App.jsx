@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 
 // Admin sider
 import AdminDashboard from './pages/admin/AdminDashboard';
-import AdminContacts from './pages/admin/AdminContacts';
-import AdminComplaints from './pages/admin/AdminComplaints';
+// import AdminContacts from './pages/admin/AdminContacts';
+// import AdminComplaints from './pages/admin/AdminComplaints';
 import AdminLayout from './pages/admin/AdminLayout';
 import AdminSettings from './pages/admin/AdminSettings';
 import AdminArticles from './pages/admin/AdminArticles';
