@@ -30,7 +30,7 @@ const Login = () => {
             login(res.data.token, res.data.user); // Bruker context-funksjonen
 
             // naviger videre eller vis suksess
-            navigate("/admin/contacts");
+            navigate("/admin");
         } catch (error) {
             console.error(error);
             setError(error.response?.data?.message || "Wrong e-mail or password");
