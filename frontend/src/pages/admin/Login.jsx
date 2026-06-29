@@ -31,7 +31,7 @@ const Login = () => {
             localStorage.setItem("user", JSON.stringify(res.data.user));
 
             // naviger videre eller vis suksess
-           navigate("/admin/contacts");
+           navigate("/admin");
         } catch (error) {
             console.error(error);
             setError("Wrong e-mail or password");

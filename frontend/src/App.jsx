@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import './index.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 // Admin sider
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -30,6 +30,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute'
 import ArticlePage from './pages/client/ArticlePage';
 import ScrollToTop from './components/ScrollToTop';
+// import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
   return (
@@ -64,8 +65,8 @@ function App() {
                 {/* Disse rutene er relative til foreldreruten '/admin' */}
                 <Route index element={<AdminDashboard/>}/>
                 
-                <Route path='contacts' element={<AdminContacts />} />
-                <Route path='complaints' element={<AdminComplaints />} />
+                <Route path='contacts' element={<Navigate to="/admin" replace  />} />
+                <Route path='complaints' element={<Navigate to="/admin" replace  />} />
                 <Route path='settings' element={<AdminSettings />} />
                 <Route path='articles' element={<AdminArticles />} />
                 <Route path="articles/edit/:id" element={<EditArticle />} />
