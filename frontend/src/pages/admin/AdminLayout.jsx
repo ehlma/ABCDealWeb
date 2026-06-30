@@ -17,6 +17,7 @@ const AdminLayout = () => {
 
     // Navigasjonslenker i admin
     const links = [
+        { to: "/admin", label: "Dashboard", end: true },
         { to: "/admin/settings", label: "Ansatte" },
         { to: "/admin/articles", label: "Artikler" },
 
@@ -30,19 +31,20 @@ const AdminLayout = () => {
     return (
         <div className="min-h-screen flex flex-col">
             {/** Header */}
-            <nav className="fixed top-0 left-0 z-[50] w-full bg-ui-background text-warm-off-white shadow">
+            <nav className="fixed top-0 left-0 z-[50] w-full bg-admin-bg text-admin-text shadow">
                 <div className="flex items-center justify-between px-6 py-4">
                     {/** Logo */}
-                    <NavLink to="/admin">
-                        <h2 className="text-warm-off-white text-lg">3S Admin</h2>
+                    <NavLink to="/admin" aria-label="Gå til admin-dashboard">
+                        <img src="/3s-logo.png" alt="3S logo" className="h-14 w-auto rounded-lg bg-white p-1.5 shadow-sm" />
                     </NavLink>
 
                     {/** Desktop meny med animasjon */}
                     <ul className="hidden sm:flex gap-6 font-medium flex-grow justify-center">
-                        {links.map(({ to, label }) => (
+                        {links.map(({ to, label, end }) => (
                             <li key={to}>
                                 <NavLink
                                     to={to}
+                                    end={end}
                                     className={({ isActive }) =>
                                         `relative group px-4 py-2 rounded-full overflow-hidden transition duration-300 font-medium`
                                     }
@@ -52,12 +54,12 @@ const AdminLayout = () => {
                                         className={`
                                             absolute inset-0 rounded-full z-0 transition-all duration-300
                                             ${location.pathname === to
-                                                ? "bg-blue-400 scale-100 opacity-100"
+                                                ? "bg-admin-active scale-100 opacity-100"
                                                 : "scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 bg-white/10"}
                                         `}
                                     />
                                     {/** Lenketekst */}
-                                    <span className="relative z-10 text-white group-hover:text-blue-300 transition-colors duration-300">
+                                    <span className="relative z-10 text-white group-hover:text-admin-text transition-colors duration-300">
                                         {label}
                                     </span>
                                 </NavLink>
@@ -71,7 +73,7 @@ const AdminLayout = () => {
                             // Bruker innlogget
                             <button
                                 onClick={handleLogout}
-                                className="hidden sm:flex flex-col items-center gap-1 text-white hover:text-blue-300 hover:drop-shadow-lg transition-all duration-200 bg-transparent border-none cursor-pointer p-0"
+                                className="hidden sm:flex flex-col items-center gap-1 text-white hover:text-admin-text hover:drop-shadow-lg transition-all duration-200 bg-transparent border-none cursor-pointer p-0"
                             >
                                 <LogOut className="w-5 h-5" />
                                 <span>Logg ut</span>
@@ -79,7 +81,7 @@ const AdminLayout = () => {
                             </button>
                         ) : (
                             // Bruker ikke innlogget
-                            <NavLink to="/" className="hidden sm:flex flex-col items-center gap-1 text-white hover:text-blue-300 hover:drop-shadow-lg transition-all duration-200">
+                            <NavLink to="/" className="hidden sm:flex flex-col items-center gap-1 text-white hover:text-admin-text hover:drop-shadow-lg transition-all duration-200">
                                 <CircleUser className="w-5 h-5" />
                                 <span>Logg inn</span>
                             </NavLink>
@@ -94,32 +96,33 @@ const AdminLayout = () => {
 
                 {/** Åpen hamburgermeny*/}
                 {menuOpen && (
-                    <div className="absolute w-full top-[64px] left-0 bg-blue-700 text-white px-6 py-4 sm:hidden z-40 shadow-md flex flex-col rounded-b space-y-2">
-                        {links.map(({ to, label }) => (
+                    <div className="absolute w-full top-[72px] left-0 bg-admin-bg text-white px-6 py-4 sm:hidden z-40 shadow-md flex flex-col rounded-b space-y-2">
+                        {links.map(({ to, label, end }) => (
                             <NavLink
                                 key={to}
                                 to={to}
+                                end={end}
                                 onClick={() => setMenuOpen(false)}
                                 className={({ isActive }) =>
-                                    `flex flex-row text-white hover:text-blue-300 hover:drop-shadow-lg transition-colors duration-200 ${isActive ? 'font-bold' : ''}`
+                                    `flex flex-row rounded-lg px-3 py-2 text-white hover:bg-white/10 hover:text-admin-text transition-colors duration-200 ${isActive ? 'bg-admin-active font-bold' : ''}`
                                 }
                             >
                                 {label}
                             </NavLink>
                         ))}
-                        <hr className="border-t border-blue-300/30 my-2" />
+                        <hr className="border-t border-white/20 my-2" />
                         {/** Logg ut eller inn for mobil */}
                         {isAuthenticated ? (
                             <button
                                 onClick={handleLogout}
-                                className="flex flex-col items-center gap-2 text-white hover:text-blue-300 hover:drop-shadow-lg transition-all duration-200 bg-transparent border-none cursor-pointer p-0"
+                                className="flex flex-col items-center gap-2 text-white hover:text-admin-text hover:drop-shadow-lg transition-all duration-200 bg-transparent border-none cursor-pointer p-0"
                             >
                                 <LogOut className="w-5 h-5" />
                                 <span>Logg ut</span>
                                 <span>{user.firstName || "Pålogget"}</span>
                             </button>
                         ) : (
-                            <NavLink to="/" onClick={() => setMenuOpen(false)} className="flex flex-col items-center gap-2 text-white hover:text-blue-300 hover:drop-shadow-lg transition-all duration-200">
+                            <NavLink to="/" onClick={() => setMenuOpen(false)} className="flex flex-col items-center gap-2 text-white hover:text-admin-text hover:drop-shadow-lg transition-all duration-200">
                                 <CircleUser className="w-5 h-5" />
                                 <span>Logg inn</span>
                             </NavLink>
@@ -131,8 +134,8 @@ const AdminLayout = () => {
             <div className="pointer-events-none fixed top-[60px] left-0 w-full h-20 z-10 bg-gradient-to-b from-white/90 to-transparent"></div>
 
             {/** Sideinnhold  */}
-            <main className="flex-1 pt-[96px] px-[24px] pb-[24px] overflow-y-auto bg-[#f0e9df]">
-                <Outlet context={{user}}/>
+            <main className="flex-1 pt-[96px] px-[24px] pb-[24px] overflow-y-auto bg-bg-color">
+                <Outlet context={{ user }} />
             </main>
         </div>
     );
