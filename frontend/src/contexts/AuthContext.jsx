@@ -1,65 +1,67 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
-import { jwtDecode } from "jwt-decode";
-import { Children } from "react";
+import api from "../../api/api";
 
 export const AuthContext = createContext(null);
 
 // AuthProvider-komponent
-export const AuthProvider = ({children}) => {
+export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null); // Lagrer brukerinfo hvis innlogget
+    const [token, setToken] = useState(null); // Access token lagres kun i React state
     const [loading, setLoading] = useState(true); // Håndtere initial lasting
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        const storedUser = localStorage.getItem("user"); // Hent brukerinfo
-
-        if (token && storedUser) {
+        const initializeAuth = async () => {
             try {
-                const decodedToken = jwtDecode(token);
+                const response = await api.post("/auth/refresh");
+                const { token: newToken, user: refreshedUser } = response.data;
 
-                // Sjekk om token er utløpt
-                if (decodedToken.exp * 1000 > Date.now()) {
-                    setUser(JSON.parse(storedUser)); // Sett brukerinfo fra localStorage
-                } else {
-                    // Token utløpt, rydd opp
-                    localStorage.removeItem("token");
-                    localStorage.removeItem("user");
-                }
+                setToken(newToken);
+                setUser(refreshedUser);
+                api.defaults.headers.common.Authorization = `Bearer ${newToken}`;
             } catch (error) {
-                console.error("Feil ved dekoding av token eller parsing av brukerinfo: ", error);
-                localStorage.removeItem("token"); // Fjern ugyldig token
-                localStorage.removeItem("user");
+                setToken(null);
+                setUser(null);
+                delete api.defaults.headers.common.Authorization;
+            } finally {
+                setLoading(false); // Ferdig med initial lasting
             }
-        }
+        };
 
-        setLoading(false); // Ferdig med initial lasting
+        initializeAuth();
     }, []);
 
     // Funksjon for innlogging
-    const login = (token, userData) => {
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(userData)); // Lagre brukerdata som streng
-        setUser(userData); // Sett brukerdata som objekt
+    const login = (newToken, userData) => {
+        setToken(newToken);
+        setUser(userData);
+        api.defaults.headers.common.Authorization = `Bearer ${newToken}`;
     };
 
     // Funksjon for utlogging
-    const logout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        setUser(null);
+    const logout = async () => {
+        try {
+            await api.post("/auth/logout");
+        } catch (error) {
+            console.error("Feil ved utlogging:", error);
+        } finally {
+            setToken(null);
+            setUser(null);
+            delete api.defaults.headers.common.Authorization;
+        }
     };
 
     // Verdiene som gjøres tilgjengelige for komponentene
     const authContextValue = {
         user,
-        isAuthenticated: !!user, // Sann hvis user er et objekt/ikke null
+        token,
+        isAuthenticated: !!user,
         loading,
         login,
-        logout
+        logout,
     };
 
     return (
-        <AuthContext.Provider value = {authContextValue}>
+        <AuthContext.Provider value={authContextValue}>
             {!loading && children} {/* Vis barn kun når lasting er ferdig */}
         </AuthContext.Provider>
     );
@@ -73,4 +75,4 @@ export const useAuth = () => {
     }
 
     return context;
-}
+};

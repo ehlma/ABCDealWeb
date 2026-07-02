@@ -80,10 +80,10 @@ const Footer = () => {
                     <span>© {new Date().getFullYear()} 3S Bobil & Caravan</span>
 
                     <Link
-                        to="/login"
+                        to="/admin"
                         aria-label="Admin"
                     >
-                        Login
+                        Admin
                     </Link>
 
                     <span>
