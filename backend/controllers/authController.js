@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import nodemailer from "nodemailer";
+import { roles } from '../../frontend/src/constants/roles.js';
 
 // registrering
 export const registerUser = async (req, res) => {
@@ -31,6 +32,43 @@ export const registerUser = async (req, res) => {
     }
 };
 
+// Hjelpefunksjoner
+const createAccessToken = (user) => {
+  return jwt.sign(
+    {userId: user.userId, role: user.role},
+    process.env.JWT_SECRET,
+    {expiresIn: "2h"}
+  )
+};
+
+const createRefreshToken = (user) => {
+  return jwt.sign(
+    {userId: user.userId, role: user.role},
+    process.env.JWT_REFRESH_SECRET,
+    {expiresIn: "7d"}
+  )
+};
+
+const setRefreshTokenCookie = (res, refreshToken) => {
+  res.cookie("refreshToken", refreshToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  })
+};
+
+const getCookieValue = (cookieHeader, cookieName) => {
+  if (!cookieHeader) return null;
+
+  const cookies = cookieHeader.split(";").map((cookie) => cookie.trim());
+  const targetCookie = cookies.find((cookie) => cookie.startsWith(`${cookieName}=`));
+
+  if (!targetCookie) return null;
+
+  return decodeURIComponent(targetCookie.split("=")[1]);
+};
+
 // login
 export const loginUser = async (req, res) => {
     try {
@@ -42,11 +80,9 @@ export const loginUser = async (req, res) => {
         const validPassword = await bcrypt.compare(password, user.passwordHash);
         if (!validPassword) return res.status(400).json({message: "Invalid e-mail or password"});
 
-        const token = jwt.sign(
-            {userId: user.userId, role: user.role},
-            process.env.JWT_SECRET,
-            {expiresIn: "2h"}
-        );
+        const token = createAccessToken(user);
+        const refreshToken = createRefreshToken(user);
+        setRefreshTokenCookie(res, refreshToken);
 
         res.json({
             token,
@@ -60,6 +96,47 @@ export const loginUser = async (req, res) => {
     } catch (err) {
         res.status(500).json({error: err.message});
     }
+};
+
+export const refreshToken = async (req, res) => {
+  try {
+    const tokenFromCookie = getCookieValue(req.headers.cookie, "refreshToken");
+
+    if (!tokenFromCookie) {
+      return res.status(401).json({message: "Ingen aktiv innlogging."});
+    }
+
+    const decoded = jwt.verify(tokenFromCookie, process.env.JWT_REFRESH_SECRET);
+    const user = await User.findOne({userId: decoded.userId});
+
+    if (!user) {
+      return res.status(401).json({message: "Bruker finnes ikke."});
+    }
+
+    const token = createAccessToken(user);
+
+    return res.status(200).json({
+      token,
+      user: {
+        userId: user.userId,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role,
+      },
+    });
+  } catch (error) {
+    return res.status(401).json({message: "Ugyldig eller utløpt innlogging."});
+  }
+};
+
+export const logoutUser = (req, res) => {
+  res.clearCookie("refreshToken", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+  })
+
+  return res.status(200).json({message: "Logget ut."});
 };
 
 export const sendResetLink = async (req, res) => {
