@@ -14,7 +14,7 @@ const AdminLayout = () => {
         logout();  // Kall logout-funksjon fra context
         setMenuOpen(false); // Lukk menyen etter utlogging
         setUserMenuOpen(false)
-        navigate('/'); // Omdiriger til innloggingsside etter utlogging
+        navigate('/login'); // Omdiriger til innloggingsside etter utlogging
     }
 
     // Navigasjonslenker i admin
