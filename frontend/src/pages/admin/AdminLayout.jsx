@@ -1,17 +1,37 @@
 import { NavLink, Outlet, useNavigate, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X, CircleUser, LogOut, ChevronDown, ExternalLink } from "lucide-react";
 import { useAuth } from "../../contexts/AuthContext";
 
 const AdminLayout = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [userMenuOpen, setUserMenuOpen] = useState(false);
+    const userMenuRef = useRef(null);
+    const mobileMenuRef = useRef(null);
     const { user, isAuthenticated, logout } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
 
-    const handleLogout = () => {
-        logout();  // Kall logout-funksjon fra context
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+                setUserMenuOpen(false);
+            }
+
+            if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+                setMenuOpen(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+    }, []);
+
+    const handleLogout = async () => {
+        await logout();  // Kall logout-funksjon fra context
         setMenuOpen(false); // Lukk menyen etter utlogging
         setUserMenuOpen(false)
         navigate('/login'); // Omdiriger til innloggingsside etter utlogging
@@ -73,7 +93,7 @@ const AdminLayout = () => {
                     <div className="flex items-center gap-4">
                         {isAuthenticated ? (
                             // Bruker innlogget
-                            <div className="relative hidden sm:block">
+                            <div ref={userMenuRef} className="relative hidden sm:block">
                                 <button
                                     onClick={() => setUserMenuOpen(!userMenuOpen)}
                                     className="flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-admin-text hover:bg-admin-active transition-all duration-200"
@@ -127,7 +147,7 @@ const AdminLayout = () => {
 
                 {/** Åpen hamburgermeny*/}
                 {menuOpen && (
-                    <div className="absolute w-full top-full left-0 bg-admin-bg text-admin-text px-6 py-4 sm:hidden z-40 shadow-md flex flex-col rounded-b space-y-2">
+                    <div ref={mobileMenuRef} className="absolute w-full top-full left-0 bg-admin-bg text-admin-text px-6 py-4 sm:hidden z-40 shadow-md flex flex-col rounded-b space-y-2">
                         {links.map(({ to, label, end }) => (
                             <NavLink
                                 key={to}
