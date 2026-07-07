@@ -16,6 +16,7 @@
 
 .home-hero__content {
     text-align: left;
+    margin-top: 4rem;
 }
 
 .home-hero__eyebrow {
@@ -198,7 +199,7 @@
 
 .home-help__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 1.25rem;
 }
 
@@ -235,12 +236,12 @@
 }
 
 .home-help-card--large {
-    grid-row: span 2;
+    grid-row: auto;
     min-height: 100%;
 }
 
 .home-help-card--wide {
-    grid-column: span 2;
+    grid-column: auto;
 }
 
 .home-help-card h3 {
@@ -332,6 +333,9 @@
     padding: 5rem 0 0;
 }
 
+/*
+    MEDIA QUERIES
+*/
 @media (max-width: 1110px) {
     .home-hero {
         grid-template-columns: 1fr;
@@ -380,5 +384,44 @@
 
     .home-help-card {
         min-height: auto;
+    }
+}
+
+@media (min-width: 640px) {
+    .home-hero {
+        padding: 6rem 2rem 5rem;
+    }
+
+    .home-help,
+    .home-articles {
+        padding: 5rem 2rem;
+    }
+
+    .home-help__grid,
+    .home-articles__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1111px) {
+    .home-hero {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+
+    .home-help__grid {
+        grid-template-columns: repeat(3);
+    }
+
+    .home-help-card--large {
+        grid-row: span 2;
+    }
+
+    .home-help-card--wide {
+        grid-column: span 2;
+    }
+
+    .home-article-card {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
