@@ -38,16 +38,16 @@ const AdminLayout = () => {
     }
 
     // Navigasjonslenker i admin
+        // TIL FREMTIDIG POTENSIELL OPPGRADERING
+        // { to: "/admin/contacts", label: "Kontaktskjema" },
+        // { to: "/admin/complaints", label: "Reklamasjon" },
+        
     const links = [
         { to: "/admin", label: "Dashboard", end: true },
         { to: "/admin/settings", label: "Ansatte" },
         { to: "/admin/articles", label: "Artikler" },
 
-        {/** TIL FREMTIDIG POTENSIELL OPPGRADERING
-    
-        { to: "/admin/contacts", label: "Kontaktskjema" },
-        { to: "/admin/complaints", label: "Reklamasjon" },
-        */}
+
     ];
 
     return (
@@ -155,7 +155,7 @@ const AdminLayout = () => {
                                 end={end}
                                 onClick={() => setMenuOpen(false)}
                                 className={({ isActive }) =>
-                                    `flex flex-row rounded-lg px-3 py-2 text-admin-text hover:bg-admin-hover transition-colors duration-200 ${isActive ? 'bg-admin-active font-bold' : ''}`
+                                    `flex flex-row rounded-lg px-3 py-2 text-admin-text hover:bg-admin-active hover:text-white transition-all duration-200 ${isActive ? 'bg-admin-active text-white font-bold' : ''}`
                                 }
                             >
                                 {label}
@@ -172,7 +172,7 @@ const AdminLayout = () => {
                             //     <span>Logg ut</span>
                             //     <span>{user.firstName || "Pålogget"}</span>
                             // </button>
-                            <div className="rounded-xl bg-admin-hover overflow-hidden">
+                            <div className="rounded-xl bg-admin-hover overflow-hidden divide-y divide-admin-border/30">
                                 <div className="flex items-center gap-3 px-4 py-3 border-b border-admin-border/30">
                                     <CircleUser className="w-5 h-5" />
                                     <div className="leading-tight">
@@ -185,14 +185,14 @@ const AdminLayout = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={() => setMenuOpen(false)}
-                                    className="flex items-center gap-2 px-4 py-3 text-sm text-admin-text hover:bg-admin-active transition-colors"
+                                    className="flex items-center gap-2 px-4 py-3 text-sm text-admin-text hover:bg-white/10 hover:text-white transition-all duration-200"
                                 >
                                     <ExternalLink className="w-4 h-4" />
                                     Se nettside
                                 </a>
                                 <button
                                     onClick={handleLogout}
-                                    className="w-full flex items-center gap-2 px-4 py-3 text-sm text-left text-admin-text hover:bg-admin-active transition-colors bg-transparent border-none cursor-pointer"
+                                    className="w-full flex items-center gap-2 px-4 py-3 text-sm text-left text-admin-text hover:bg-white/10 hover:text-white transition-all duration-200 bg-transparent border-none cursor-pointer"
                                 >
                                     <LogOut className="w-4 h-4" />
                                     Logg ut
@@ -200,7 +200,7 @@ const AdminLayout = () => {
                             </div>
                         ) : (
                             // <NavLink to="/" onClick={() => setMenuOpen(false)} className="flex flex-col items-center gap-2 text-white hover:text-admin-text hover:drop-shadow-lg transition-all duration-200">
-                            <NavLink to="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 rounded-lg px-3 py-2 text-admin-text hover:bg-admin-hover transition-colors duration-200">
+                            <NavLink to="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 rounded-lg px-3 py-2 text-admin-text hover:bg-admin-active hover:text-white transition-all duration-200">
                                 <CircleUser className="w-5 h-5" />
                                 <span>Logg inn</span>
                             </NavLink>
