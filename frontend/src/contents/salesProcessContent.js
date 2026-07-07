@@ -44,7 +44,7 @@ const salesProcessContent = {
         eyebrow: "Kjøpsprosess",
         title: "Slik kjøper du hos oss",
         description:
-            "Denne teksten kan justeres senere. Foreløpig kan stegene brukes som struktur for kjøpsprosessen.",
+            "Vi gjør salget enkelt for deg. Vi håndterer vurdering, annonsering, visninger og oppgjør, slik at du kan føle deg trygg gjennom hele prosessen.",
 
         steps: [
             {
