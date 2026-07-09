@@ -1,110 +1,108 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import api, { API_ENDPOINTS } from "../../../api/api";
-import '../../index.css';
-import logo from "../../assets/Logo.png";
+// import { useState } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+// import api, { API_ENDPOINTS } from "../../../api/api";
+// import { useAuth } from "../../contexts/AuthContext";
+// import '../../index.css';
+// import logo from "../../assets/Logo.png";
 
-const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const navigate = useNavigate();
-    const [showReset, setShowReset] = useState(false);
-    const [resetEmail, setResetEmail] = useState("");
-    const [resetMsg, setResetMsg] = useState("");
+// const Login = () => {
+//     const [email, setEmail] = useState("");
+//     const [password, setPassword] = useState("");
+//     const [error, setError] = useState("");
+//     const navigate = useNavigate();
+//     const { login } = useAuth();
+//     const [showReset, setShowReset] = useState(false);
+//     const [resetEmail, setResetEmail] = useState("");
+//     const [resetMsg, setResetMsg] = useState("");
 
+//     const handleLogin = async (e) => {
+//         e.preventDefault();
+//         setError("");
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        setError("");
+//         try {
+//             const res = await api.post(API_ENDPOINTS.login, {
+//                 email,
+//                 password
+//             });
 
-        try {
-            const res = await api.post(API_ENDPOINTS.login, {
-                email,
-                password
-            });
+//             login(res.data.token, res.data.user);
+//             navigate("/admin");
+//         } catch (error) {
+//             console.error(error);
+//             setError("Wrong e-mail or password");
+//         }
+//     };
 
-            // lagre token i localStorage
-            localStorage.setItem("token", res.data.token);
+//     return (
+//         <div className="w-full min-h-screen flex items-center justify-center px-4">
+//             <div className="w-full max-w-sm p-8 bg-gray-100 rounded shadow-md">
+//                 <a href="/" aria-label="Gå til forsiden" className="block w-fit mx-auto mb-8">
+//                     <img src={logo} alt="3S Bobil & Caravan logo" className="h-[60px] cursor-pointer" />
+//                 </a>
+//                 <h2 className="text-2xl font-bold mb-6 text-center">Logg inn</h2>
+//                 <form onSubmit={handleLogin} className="space-y-4">
+//                     <input
+//                         type="email"
+//                         placeholder="E-post"
+//                         value={email}
+//                         onChange={(e) => setEmail(e.target.value)}
+//                         required // gir innebygget pop up "vennligst fyll ut dette feltet"
+//                         className="w-full border border-gray-300 rounded px-4 py-2"
+//                     /> <br />
+//                     <input
+//                         type="password"
+//                         placeholder="Passord"
+//                         value={password}
+//                         onChange={(e) => setPassword(e.target.value)}
+//                         required
+//                         className="w-full border border-gray-300 rounded px-4 py-2"
+//                     /> <br />
+//                     <button type="submit" className="w-full bg-primary text-white py-2 rounded hover:bg-primary-dark transition-colors">Logg inn</button>
+//                     <div className="text-sm mt-2">
+//                         <button type="button"
+//                             onClick={() => setShowReset(!showReset)}
+//                             className="text-primary hover:underline hover:text-red-400 transition-all duration-200">
+//                             Glemt passord ?
+//                         </button>
+//                     </div>
+//                 </form>
+//                 {error && <p className="text-red-600 text-sm mb-4 text-center">{error}</p>}
+//                 {showReset && (
+//                     <div className="mt-4 space-y-2">
+//                         <input
+//                             type="email"
+//                             placeholder="Skriv inn e-post"
+//                             value={resetEmail}
+//                             onChange={(e) => setResetEmail(e.target.value)}
+//                             className="w-full border border-gray-300 rounded px-4 py-2"
+//                         />
+//                         <button
+//                             onClick={async () => {
+//                                 setResetMsg("");
+//                                 try {
+//                                     // const res = await api.post("/auth/reset-password", {
+//                                     //     email: resetEmail.trim().toLowerCase()
+//                                     // });
 
-            // lagre brukerinfo
-            localStorage.setItem("user", JSON.stringify(res.data.user));
+//                                     await api.post("/auth/reset-password", {
+//                                         email: resetEmail.trim().toLowerCase()
+//                                     })
 
-            // naviger videre eller vis suksess
-            navigate("/admin/contacts");
-        } catch (error) {
-            console.error(error);
-            setError("Wrong e-mail or password");
-        }
-    };
+//                                     setResetMsg("Passord sendt til e-post");
+//                                 } catch {
+//                                     setResetMsg("E-post ikke funnet");
+//                                 }
+//                             }}
+//                             className="w-full bg-primary text-white py-2 rounded hover:bg-primary-dark transition-colors"
+//                         >
+//                             Send nytt passord
+//                         </button>
+//                         {resetMsg && <p className="text-sm text-center text-gray-700">{resetMsg}</p>}
+//                     </div>
+//                 )}
+//             </div>
+//         </div>
+//     );
+// };
 
-    return (
-        <div className="w-full min-h-screen flex items-center justify-center px-4">
-            <div className="w-full max-w-sm p-8 bg-gray-100 rounded shadow-md">
-                <img src={logo} alt="ABC Deal logo" className="h-[60px] mx-auto mb-8" />
-                <h2 className="text-2xl font-bold mb-6 text-center">Logg inn</h2>
-                <form onSubmit={handleLogin} className="space-y-4">
-                    <input
-                        type="email"
-                        placeholder="E-post"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required // gir innebygget pop up "vennligst fyll ut dette feltet"
-                        className="w-full border border-gray-300 rounded px-4 py-2"
-                    /> <br />
-                    <input
-                        type="password"
-                        placeholder="Passord"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        className="w-full border border-gray-300 rounded px-4 py-2"
-                    /> <br />
-                    <button type="submit" className="w-full bg-primary text-white py-2 rounded hover:bg-primary-dark transition-colors">Logg inn</button>
-                    <div className="text-sm mt-2">
-                        <button type="button"
-                            onClick={() => setShowReset(!showReset)}
-                            className="text-primary hover:underline hover:text-red-400 transition-all duration-200">
-                            Glemt passord ?
-                        </button>
-                    </div>
-                </form>
-                {error && <p className="text-red-600 text-sm mb-4 text-center">{error}</p>}
-                {showReset && (
-                    <div className="mt-4 space-y-2">
-                        <input
-                            type="email"
-                            placeholder="Skriv inn e-post"
-                            value={resetEmail}
-                            onChange={(e) => setResetEmail(e.target.value)}
-                            className="w-full border border-gray-300 rounded px-4 py-2"
-                        />
-                        <button
-                            onClick={async () => {
-                                setResetMsg("");
-
-                                try {
-                                    const res = await api.post("/auth/reset-password", {
-                                        email: resetEmail.trim().toLowerCase(),
-                                    });
-
-                                    setResetMsg(res.data.message || "Lenke sendt til e-post");
-                                } catch (err) {
-                                    console.error("Reset password error:", err.response?.data || err.message);
-                                    setResetMsg(err.response?.data?.message || "Noe gikk galt");
-                                }
-                            }}
-                            className="w-full bg-primary text-white py-2 rounded hover:bg-primary-dark transition-colors"
-                        >
-                            Send nytt passord
-                        </button>
-                        {resetMsg && <p className="text-sm text-center text-gray-700">{resetMsg}</p>}
-
-                    </div>
-                )}
-            </div>
-        </div>
-    );
-};
-
-export default Login;
+// export default Login;

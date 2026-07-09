@@ -1,5 +1,5 @@
 import "./AdminDashboard.css";
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api, {API_ENDPOINTS} from "../../../api/api";
 
@@ -30,19 +30,19 @@ function AdminDashboard() {
             <section className="admin-dashboard__content">
                 <section className="admin-dashboard__main">
                     <section className="admin-dashboard__cards">
-                        <a href="/admin/settings" className="admin-dashboard__card">
+                        <Link to="/admin/settings" className="admin-dashboard__card">
                             <span className="admin-dashboard__card-label">Administrasjon</span>
 
                             <h2>Ansatte</h2>
                             <p>Administrer ansatte og brukere.</p>
-                        </a>
+                            </Link>
 
-                        <a href="/admin/articles" className="admin-dashboard__card">
+                        <Link to="/admin/articles" className="admin-dashboard__card">
                             <span className="admin-dashboard__card-label">Innhold</span>
 
                             <h2>Artikler</h2>
                             <p>Administrer artikler og innhold.</p>
-                        </a>
+                        </Link>
                     </section>
                 </section>
 
