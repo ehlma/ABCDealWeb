@@ -146,6 +146,7 @@ export const logoutUser = (req, res) => {
   return res.status(200).json({ message: "Logget ut." });
 };
 
+// send reset-lenke
 export const sendResetLink = async (req, res) => {
   const { email } = req.body;
   const resetResponseMessage = "Hvis e-postadressen finnes hos oss, er en tilbakestillingslenke sendt.";
