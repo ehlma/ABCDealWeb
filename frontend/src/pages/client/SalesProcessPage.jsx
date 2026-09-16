@@ -70,7 +70,7 @@ export default function SalesProcessPage() {
 
                             <div className="sales-process-step__content">
                                 <h3>{step.title}</h3>
-                                <p>{step.text}</p>
+                                <p className="step-text">{step.text}</p>
                             </div>
                         </article>
                     ))}
