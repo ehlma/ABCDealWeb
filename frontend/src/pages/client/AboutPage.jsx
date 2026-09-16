@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import tommyImage from "../../assets/tommy.jpg";
 import TeamMemberCard from "../../components/TeamMemberCard";
-import norwayImage from "../../assets/norway.svg";
+import norwayImage from "../../assets/norway.png";
 import roadmapImage from "../../assets/roadmap.jpg";
 
 
