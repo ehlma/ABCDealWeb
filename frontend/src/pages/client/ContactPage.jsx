@@ -160,7 +160,7 @@ const ContactPage = () => {
                     <h2 className="text-lg font-semibold text-gray-700">Kontaktinformasjon</h2>
                     <p><span className="font-medium">Telefon:</span> <a href="tel:+4740828494" className="text-primary hover:underline"><br />+47 408 28 494</a></p>
                     <p><span className="font-medium">E-post:</span> <a href="mailto:tommy@3sbc.no" className="text-primary hover:underline"><br />tommy@3sbc.no</a></p>
-                    <p><span className="font-medium">Forretningsadresse:</span> <span className="text-gray-700"><br />Siriusveien 9, 1407 Vinterbro</span></p>
+                    <p><span className="font-medium">Forretningsadresse:</span> <span className="text-gray-700"><br />Siriusveien 29, 1407 Vinterbro</span></p>
 
                     <iframe
                         src="https://maps.google.com/maps?q=Siriusveien%209,%201407%20Vinterbro&t=&z=15&ie=UTF8&iwloc=&output=embed"
