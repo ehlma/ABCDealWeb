@@ -39,7 +39,7 @@ const AboutPage = () => {
             document.head.appendChild(metaDescription);
         }
         metaDescription.content =
-            "Lær mer om 3S Bobil & Caravan og Tommy Østli. Over 11 års erfaring med kjøp og salg av bobil og campingvogn.";
+            "Lær mer om 3S Bobil & Caravan og Tommy Østli. Over 11 års erfaring med kjøp og salg av bobil.";
     }, []);
 
     return (
@@ -49,8 +49,8 @@ const AboutPage = () => {
                 {/* Intro */}
                 <div className="mt-12">
                     <div className="w-full max-w-96 text-left">
-                        <h1 className="font-bold text-3xl text-primary">Kjøp og salg av bobil og campingvogn med trygg oppfølging</h1>
-                        <p className="mt-4 text-gray-700 text-md max-w-[80vh]">Hos 3S Bobil & Caravan hjelper vi deg med kjøp og salg av bobil og campingvogn. Vi kombinerer bransjeerfaring, personlig oppfølging og tydelige prosesser for å gjøre handelen trygg, enkel og forutsigbar.</p>
+                        <h1 className="font-bold text-3xl text-primary">Salg av bobil i kommisjon med trygg oppfølging</h1>
+                        <p className="mt-4 text-gray-700 text-md max-w-[80vh]">Hos 3S Bobil & Caravan hjelper vi deg med salg av bobiler i kommisjon. Vi kombinerer bransjeerfaring, personlig oppfølging og tydelige prosesser for å gjøre handelen trygg, enkel og forutsigbar.</p>
                     </div>
 
                     <div className="mt-4 w-full flex justify-center">

@@ -80,8 +80,7 @@ export default function SalesProcessPage() {
             <section className="sales-process-cta">
                 <div className="sales-process-cta__content">
                     <p className="sales-process-cta__eyebrow">Klar for neste steg?</p>
-                    <h2>La oss hjelpe deg med kjøp eller salg av bobil</h2>
-                    <p>Enten du skal kjøpe eller selge bobil, hjelper vi deg gjennom hele prosessen med personlig oppfølging og en trygg handel.</p>
+                    <h2>La oss hjelpe deg med salg av bobil</h2>
 
                     <Link
                         to="/contact"

@@ -43,10 +43,10 @@ const HomePage = () => {
                 <div className="home-hero__content">
                     <p className="home-hero__eyebrow">3S Bobil & Caravan</p>
 
-                    <h1>Kjøp og salg av bobil og campingvogn med trygg oppfølging</h1>
+                    <h1>Salg av bobiler i kommisjon for privatpersoner</h1>
 
                     <p>
-                        Vi hjelper kunder over hele Norge med kjøp og salg av bobil og campingvogn. Med personlig oppfølging og en trygg salgsprosess gjør vi handelen enkel og forutsigbar.
+                        Vi hjelper kunder over hele Norge med salg av deres bobil i kommisjon. Med personlig oppfølging og en trygg salgsprosess gjør vi handelen enkel og forutsigbar.
                     </p>
 
                     <div className="home-hero__actions">
@@ -75,7 +75,7 @@ const HomePage = () => {
                     <h2>Erfaring, trygghet og personlig oppfølging</h2>
 
                     <p>
-                        3S Bobil & Caravan hjelper privatpersoner med kjøp og salg av bobil og campingvogn over hele Norge. Med erfaring, struktur og personlig oppfølging sørger vi for en trygg og forutsigbar handel fra første kontakt til overlevering.
+                        3S Bobil & Caravan hjelper privatpersoner med salg av bobiler i kommisjon over hele Norge. Med erfaring, struktur og personlig oppfølging sørger vi for en trygg og forutsigbar handel fra første kontakt til overlevering.
                     </p>
 
                     <Link to="/about" className="home-about__link">
@@ -86,7 +86,7 @@ const HomePage = () => {
 
             <section className="home-help">
                 <div className="home-section-heading">
-                    <p>Hvordan kan vi hjelpe deg med bobil eller campingvogn?</p>
+                    <p>Hvordan kan vi hjelpe deg med bobil?</p>
                     <h2>Hjelp med kjøp, salg og rådgivning</h2>
                 </div>
 
@@ -96,7 +96,7 @@ const HomePage = () => {
                         className="home-help-card home-help-card--large"
                     >
                         <span>01</span>
-                        <h3>Selge bobil eller campingvogn?</h3>
+                        <h3>Selge bobil?</h3>
                         <p>
                             Vi håndterer hele prosessen fra vurdering og markedsføring
                             til salg og oppgjør.
@@ -108,7 +108,7 @@ const HomePage = () => {
                         className="home-help-card"
                     >
                         <span>02</span>
-                        <h3>Kjøpe bobil eller campingvogn?</h3>
+                        <h3>Kjøpe bobil?</h3>
                         <p>
                             Se våre enheter til salgs og få hjelp til å finne riktig
                             løsning for ditt behov.
@@ -123,12 +123,12 @@ const HomePage = () => {
                         <h3>Service eller råd?</h3>
                         <p>
                             Kontakt oss for rådgivning, vurdering eller spørsmål om
-                            bobil og campingvogn.
+                            bobil.
                         </p>
                     </Link>
 
                     <Link
-                        to="/complaints"
+                        to=""
                         className="home-help-card home-help-card--dark home-help-card--wide"
                     >
                         <span>04</span>
