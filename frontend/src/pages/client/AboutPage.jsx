@@ -89,7 +89,7 @@ const AboutPage = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-300 text-center">
 
                         <div className="flex flex-col custom:flex-row items-center justify-center gap-2 p-4 custom:w-auto">
-                            <p className="text-4xl text-primary ">200+</p>
+                            <p className="text-4xl text-primary ">600+</p>
                             <div className="ml-2 text-lg text-gray-700 leading-tight">
                                 <p>Vellykkede</p>
                                 <p>salg</p>
@@ -97,7 +97,7 @@ const AboutPage = () => {
                         </div>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 p-4 custom:border-gray-300 custom:px-6 ">
-                            <p className="text-4xl text-primary">150+</p>
+                            <p className="text-4xl text-primary">600+</p>
                             <div className="ml-2 text-lg text-gray-700 leading-tight">
                                 <p>Fornøyde</p>
                                 <p>kunder</p>
@@ -105,7 +105,7 @@ const AboutPage = () => {
                         </div>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 p-4 custom:border-gray-300 custom:px-6">
-                            <p className="text-4xl text-primary">10+</p>
+                            <p className="text-4xl text-primary">11+</p>
                             <div className="ml-2 text-lg text-gray-700 leading-tight">
                                 <p>År med</p>
                                 <p>erfaring i bransjen</p>

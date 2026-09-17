@@ -58,7 +58,7 @@ const Footer = () => {
 
                             <div className="footer__contact-item">
                                 <MapPin />
-                                <span>Siriusveien 9, 1407 Vinterbro</span>
+                                <span>Siriusveien 29, 1407 Vinterbro</span>
                             </div>
                         </div>
 
@@ -94,7 +94,7 @@ const Footer = () => {
                             rel="noopener noreferrer"
                             className="footer__developer-link"
                         >
-                            Ehlma Consulting
+                            Ehlma Consulting AS
                         </a>
                     </span>
                 </div>
