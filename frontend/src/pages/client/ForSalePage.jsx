@@ -32,7 +32,7 @@ const ForSalePage = () => {
                         // rel="noopener noreferrer"
                         className="inline-block rounded-full bg-primary text-white px-8 py-3 text-lg font-medium shadow-md hover:bg-primary-dark transition-all duration-300"
                     >
-                        Se biler på Finn.no
+                        Se bobiler til salgs
                     </a>
                 </div>
 
