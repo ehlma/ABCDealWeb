@@ -54,7 +54,7 @@ const HomePage = () => {
                             to="/for-sale"
                             className="home-button home-button--primary"
                         >
-                            Se bobiler og campingvogner til salgs
+                            Se bobiler til salgs
                         </Link>
 
                         <Link to="/sales-process" className="home-button home-button--secondary">

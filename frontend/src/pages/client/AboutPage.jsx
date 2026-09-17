@@ -92,15 +92,8 @@ const AboutPage = () => {
                             <p className="text-4xl text-primary ">600+</p>
                             <div className="ml-2 text-lg text-gray-700 leading-tight">
                                 <p>Vellykkede</p>
-                                <p>salg</p>
-                            </div>
-                        </div>
-
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 p-4 custom:border-gray-300 custom:px-6 ">
-                            <p className="text-4xl text-primary">600+</p>
-                            <div className="ml-2 text-lg text-gray-700 leading-tight">
-                                <p>Fornøyde</p>
-                                <p>kunder</p>
+                                <p>salg og</p>
+                                <p>fornøyde kunder</p>
                             </div>
                         </div>
 
