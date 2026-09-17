@@ -14,7 +14,7 @@ const salesProcessContent = {
         eyebrow: "Salgsprosess",
         title: "Skal du selge bobilen din?",
         description:
-            "Vi gjør det sammen – trygt, enkelt og profesjonelt. Å selge bobilen sin kan være både spennende og litt krevende. Hos 3S Bobil & Caravan AS gjør vi det enkelt for deg.",
+            "",
 
         steps: [
             {
@@ -108,7 +108,7 @@ const salesProcessContent = {
         eyebrow: "Kjøpsprosess",
         title: "Slik kjøper du hos oss",
         description:
-            "Vi gjør salget enkelt for deg. Vi håndterer vurdering, annonsering, visninger og oppgjør, slik at du kan føle deg trygg gjennom hele prosessen.",
+            "",
 
         steps: [
             {
