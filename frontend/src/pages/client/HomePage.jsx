@@ -128,13 +128,13 @@ const HomePage = () => {
                     </Link>
 
                     <Link
-                        to=""
+                        to="/contact"
                         className="home-help-card home-help-card--dark home-help-card--wide"
                     >
                         <span>04</span>
                         <h3>Reklamasjoner</h3>
                         <p>
-                            Har noe gått galt? Vi hjelper deg videre gjennom vår
+                            Har noe gått galt? Ta kontakt så hjelper vi deg videre gjennom vår
                             reklamasjonsprosess.
                         </p>
                     </Link>

@@ -20,9 +20,9 @@ const ForSalePage = () => {
     return (
         <>
             <section className="flex flex-col items-center px-4 custom:px-6 lg:px-8 pt-32 pb-20 text-center">
-                <h1 className="text-3xl md:text-4xl font-bold mb-4 text-primary">Bobiler og campingvogner til salgs</h1>
+                <h1 className="text-3xl md:text-4xl font-bold mb-4 text-primary">Bobiler til salgs</h1>
                 <p className="text-base md:text-lg text-gray-700 mb-8 max-w-xl">
-                    Hos 3S Bobil & Caravan finner du aktuelle bobiler og campingvogner til salgs. Alle våre annonser publiseres på Finn.no, hvor du kan se tilgjengelige objekter og ta kontakt dersom du er interessert, dersom du finner en som passer for deg.
+                    Hos 3S Bobil & Caravan finner du aktuelle bobiler til salgs. Alle våre annonser publiseres på Finn.no, hvor du kan se tilgjengelige objekter og ta kontakt dersom du er interessert og finner en som passer for deg.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -44,7 +44,7 @@ const ForSalePage = () => {
 
                         <div className="space-y-4 text-gray-700 leading-relaxed">
                             <p>
-                                Vi hjelper kunder over hele Norge med kjøp og salg av bobil og campingvogn. Målet vårt er å gjøre prosessen så trygg, enkel og forutsigbar som mulig.
+                                Vi hjelper kunder over hele Norge med salg av bobil. Målet vårt er å gjøre prosessen så trygg, enkel og forutsigbar som mulig.
                             </p>
 
                             <p>

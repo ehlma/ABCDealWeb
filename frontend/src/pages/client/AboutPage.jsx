@@ -49,7 +49,7 @@ const AboutPage = () => {
                 {/* Intro */}
                 <div className="mt-12">
                     <div className="w-full max-w-96 text-left">
-                        <h1 className="font-bold text-3xl text-primary">Salg av bobil i kommisjon med trygg oppfølging</h1>
+                        <h1 className="font-bold text-3xl text-primary">Salg av bobil i kommisjon, med trygg oppfølging</h1>
                         <p className="mt-4 text-gray-700 text-md max-w-[80vh]">Hos 3S Bobil & Caravan hjelper vi deg med salg av bobiler i kommisjon. Vi kombinerer bransjeerfaring, personlig oppfølging og tydelige prosesser for å gjøre handelen trygg, enkel og forutsigbar.</p>
                     </div>
 
@@ -79,21 +79,20 @@ const AboutPage = () => {
                     <div className="text-left col-span-1 md:col-span-1">
                         <h3 className=" mb-2 font-semibold text-xl text-primary">Vårt løfte</h3>
                         <p className="text-gray-700 text-md max-w-md ml-auto">
-                            Vårt mål er å gjøre det enkelt for deg å kjøpe eller selge bobil og campingvogn – uten stress og usikkerhet. Vi tar hånd om alt det praktiske, slik at du slipper papirarbeid, annonsering og usikre avtaler.
+                            Vårt mål er å gjøre det enkelt for deg å kjøpe eller selge bobil – uten stress og usikkerhet. Vi tar hånd om alt det praktiske, slik at du slipper papirarbeid, annonsering og usikre avtaler.
                         </p>
                     </div>
                 </div>
 
                 {/* Metrics */}
                 <div className="mt-28 border border-gray-300 rounded-2xl p-6 max-w-5xl mx-auto">
-                    <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-300 text-center">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-gray-300 text-center">
 
                         <div className="flex flex-col custom:flex-row items-center justify-center gap-2 p-4 custom:w-auto">
                             <p className="text-4xl text-primary ">600+</p>
                             <div className="ml-2 text-lg text-gray-700 leading-tight">
-                                <p>Vellykkede</p>
-                                <p>salg og</p>
-                                <p>fornøyde kunder</p>
+                                <p>Vellykkede salg</p>
+                                <p>og fornøyde kunder</p>
                             </div>
                         </div>
 
@@ -150,7 +149,7 @@ const AboutPage = () => {
                     </p>
 
                     <p>
-                        Vi vet at kjøp og salg av bobil handler om mer enn økonomi.
+                        Vi vet at salg av bobil handler om mer enn økonomi.
                         Det handler om trygghet, tillit og gode opplevelser. Derfor
                         legger vi stor vekt på struktur, gode prosesser og tett
                         oppfølging gjennom hele handelen.
@@ -159,7 +158,7 @@ const AboutPage = () => {
                     <p>
                         Hos oss får du det beste fra to verdener: profesjonaliteten til
                         en seriøs aktør og nærheten til en personlig rådgiver. Målet er
-                        å gjøre kjøp og salg av bobil og campingvogn så trygt, enkelt og
+                        å gjøre salg av bobil så trygt, enkelt og
                         forutsigbart som mulig.
                     </p>
                 </div>
@@ -168,7 +167,7 @@ const AboutPage = () => {
             {/* CTA */}
             <section className="mt-24 rounded-2xl bg-primary-light p-10 text-center">
                 <h2 className="text-2xl font-bold text-primary">
-                    Klar for å kjøpe eller selge bobil?
+                    Klar for å selge bobil?
                 </h2>
 
                 <p className="mt-4 text-gray-700 max-w-2xl mx-auto">
