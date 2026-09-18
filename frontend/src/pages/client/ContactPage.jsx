@@ -71,7 +71,7 @@ const ContactPage = () => {
                     <div className="md:w-1/2 p-12 bg-warm-off-white rounded-r-lg rounded-l-none flex flex-col justify-center">
                         <h1 className="text-3xl font-bold mb-4 text-primary text-center">Kontakt 3S Bobil & Caravan</h1>
                         <p className="mb-4 text-center text-gray-700">
-                            Har du spørsmål om kjøp eller salg av bobil og campingvogn? Fyll ut kontaktskjemaet nedenfor, så tar vi kontakt med deg så snart som mulig. Vi ser frem til å hjelpe deg.
+                            Har du spørsmål om kjøp eller salg av bobil? Fyll ut kontaktskjemaet nedenfor, så tar vi kontakt med deg så snart som mulig. Vi ser frem til å hjelpe deg.
                         </p>
                     </div>
                 </div>
