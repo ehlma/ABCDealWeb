@@ -10,6 +10,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+// Eksisterende storage for artikler
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
@@ -18,4 +19,26 @@ const storage = new CloudinaryStorage({
   },
 });
 
-export { cloudinary, storage };
+// Ny storage for kontaktskjema
+const contactStorage = new CloudinaryStorage({
+  cloudinary,
+  params: async (req, file) => {
+    return {
+      folder: "abcdeal-kontaktskjema",
+      allowed_formats: [
+        "jpeg",
+        "jpg",
+        "png",
+        "webp",
+        "pdf",
+      ],
+      resource_type: "auto",
+    };
+  },
+});
+
+export {
+  cloudinary,
+  storage,
+  contactStorage,
+};
