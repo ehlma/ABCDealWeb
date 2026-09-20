@@ -1,52 +1,171 @@
 import React, { useState, useEffect } from "react";
 import api, { API_ENDPOINTS } from "../../../api/api.js";
-// import { useNavigation } from "react-router-dom";
 import contactImage from "../../assets/contactImgs/contact.png";
+import "./ContactPage.css";
 
 const ContactPage = () => {
+    const [contactType, setContactType] = useState("purchase");
 
-    const [formData, setFormData] = useState({
+    const initialFormData = {
         name: "",
         email: "",
         phoneNum: "",
         text: "",
-    });
+        vehicleModel: "",
+        yearModel: "",
+        mileage: "",
+        registrationNumber: "",
+        extraEquipment: "",
+        knownIssues: "",
+        serviceHistory: "",
+    };
+
+    const [formData, setFormData] = useState(initialFormData);
+
+    const [densityControlFile, setDensityControlFile] = useState(null);
+    const [vehicleImages, setVehicleImages] = useState([]);
 
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault(); // Forhindrer standsrd side-refresh
-        setSuccessMessage(""); // Nullstill meldinger
-        setErrorMessage("");
+    const handleDensityControlChange = (e) => {
+        const file = e.target.files[0];
 
-        try {
-            // Sende POST-forespørsel til den offentlige kontaktruten
-            await api.post(API_ENDPOINTS.contactSubmit, formData);
-
-            setSuccessMessage("Din melding er sendt! Vi kontakter deg snart.");
-            setFormData({ name: "", email: "", phoneNum: "", text: "" });
-            // setSelectedFile(null);
-        } catch (error) {
-            console.error("Feil ved innsending av kontaktskjema.", error);
-            setErrorMessage("Kunne ikke sende melding. Vennligst prøv igjen senere.");
+        if (file) {
+            setDensityControlFile(file);
         }
     };
 
-    // SEO
+    const handleImagesChange = (e) => {
+        const files = Array.from(e.target.files);
+
+        if (files.length > 10) {
+            setErrorMessage("Du kan laste opp maksimalt 10 bilder.");
+            e.target.value = "";
+            setVehicleImages([]);
+            return;
+        }
+
+        setErrorMessage("");
+        setVehicleImages(files);
+    };
+
+    const handleContactTypeChange = (type) => {
+        setContactType(type);
+        setSuccessMessage("");
+        setErrorMessage("");
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        setSuccessMessage("");
+        setErrorMessage("");
+
+        try {
+            const data = new FormData();
+
+            data.append("contactType", contactType);
+
+            data.append("name", formData.name);
+            data.append("email", formData.email);
+            data.append("phoneNum", formData.phoneNum);
+
+            if (contactType === "purchase") {
+                data.append("text", formData.text);
+            }
+
+            if (contactType === "sale") {
+                data.append("vehicleModel", formData.vehicleModel);
+                data.append("yearModel", formData.yearModel);
+                data.append("mileage", formData.mileage);
+                data.append(
+                    "registrationNumber",
+                    formData.registrationNumber
+                );
+                data.append(
+                    "extraEquipment",
+                    formData.extraEquipment
+                );
+                data.append(
+                    "knownIssues",
+                    formData.knownIssues
+                );
+                data.append(
+                    "serviceHistory",
+                    formData.serviceHistory
+                );
+
+                if (densityControlFile) {
+                    data.append(
+                        "densityControlFile",
+                        densityControlFile
+                    );
+                }
+
+                vehicleImages.forEach((image) => {
+                    data.append("vehicleImages", image);
+                });
+            }
+
+            await api.post(API_ENDPOINTS.contactSubmit, data);
+
+            setSuccessMessage(
+                contactType === "sale"
+                    ? "Takk! Informasjonen om bobilen er sendt. Vi kontakter deg snart."
+                    : "Din melding er sendt! Vi kontakter deg snart."
+            );
+
+            setFormData(initialFormData);
+            setDensityControlFile(null);
+            setVehicleImages([]);
+
+            const densityInput =
+                document.getElementById("densityControlFile");
+
+            const imagesInput =
+                document.getElementById("vehicleImages");
+
+            if (densityInput) {
+                densityInput.value = "";
+            }
+
+            if (imagesInput) {
+                imagesInput.value = "";
+            }
+        } catch (error) {
+            console.error(
+                "Feil ved innsending av kontaktskjema.",
+                error
+            );
+
+            setErrorMessage(
+                "Kunne ikke sende melding. Vennligst prøv igjen senere."
+            );
+        }
+    };
+
     useEffect(() => {
         document.title = "Kontakt oss | 3S Bobil & Caravan";
 
-        let metaDescription = document.querySelector('meta[name="description"]');
+        let metaDescription =
+            document.querySelector('meta[name="description"]');
 
         if (!metaDescription) {
-            metaDescription = document.createElement("meta");
+            metaDescription =
+                document.createElement("meta");
+
             metaDescription.name = "description";
+
             document.head.appendChild(metaDescription);
         }
 
@@ -54,43 +173,109 @@ const ContactPage = () => {
             "Kontakt 3S Bobil & Caravan for en uforpliktende prat om kjøp eller salg av bobil og campingvogn. Vi hjelper deg med trygge og ryddige prosesser.";
     }, []);
 
-
-
     return (
-        <div className="p-24">
-            <section className="relative w-full max-w-4xl mx-auto mt-12 mb-24">
-                <div className="flex flex-col md:flex-row rounded-lg shadow-md overflow-hidden">
-                    <div className="md:w-1/2">
+        <div className="contact-page">
+            <section className="contact-hero">
+                <div className="contact-hero__content">
+                    <div className="contact-hero__image-wrapper">
                         <img
                             src={contactImage}
                             alt="Bobiler og campingvogner ved sjøen"
-                            className="w-full h-full object-cover rounded-l-lg rounded-r-none"
+                            className="contact-hero__image"
                         />
                     </div>
 
-                    <div className="md:w-1/2 p-12 bg-warm-off-white rounded-r-lg rounded-l-none flex flex-col justify-center">
-                        <h1 className="text-3xl font-bold mb-4 text-primary text-center">Kontakt 3S Bobil & Caravan</h1>
-                        <p className="mb-4 text-center text-gray-700">
-                            Har du spørsmål om kjøp eller salg av bobil? Fyll ut kontaktskjemaet nedenfor, så tar vi kontakt med deg så snart som mulig. Vi ser frem til å hjelpe deg.
+                    <div className="contact-hero__text">
+                        <h1>
+                            Kontakt 3S Bobil & Caravan
+                        </h1>
+
+                        <p>
+                            Har du spørsmål om kjøp eller salg av bobil?
+                            Fyll ut kontaktskjemaet nedenfor, så tar vi
+                            kontakt med deg så snart som mulig. Vi ser
+                            frem til å hjelpe deg.
                         </p>
                     </div>
                 </div>
-            </section >
+            </section>
 
+            <section className="contact-layout">
+                <div className="contact-form-column">
+                    <section className="contact-form-intro">
+                        <h2>Kontaktskjema</h2>
 
-            <section className="flex flex-col md:flex-row gap-12 max-w-5xl w-full mx-auto mt-24">
-                <div className="md:w-1/2 text-left">
-                    <section className="text-left max-w-lg mb-12">
-                        <h2 className="text-primary font-semibold text-xl">Kontaktskjema</h2>
-                        <p className="text-gray-700">Send oss en melding, så svarer vi deg så raskt vi kan.</p>
                     </section>
-                    {/* TODO: Legge til kontaktskjema her? */}
-                    {successMessage && <p className="text-green-600 text-center mb-4">{successMessage}</p>}
-                    {errorMessage && <p className="text-red-600 text-center mb-4">{errorMessage}</p>}
 
-                    <form onSubmit={handleSubmit} className="grid gap-y-4">
-                        <div>
-                            <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-1">Navn*</label>
+                    <div className="contact-form-tabs">
+                        <button
+                            type="button"
+                            onClick={() =>
+                                handleContactTypeChange("purchase")
+                            }
+                            className={
+                                contactType === "purchase"
+                                    ? "active"
+                                    : ""
+                            }
+                        >
+                            Jeg vil kjøpe
+                        </button>
+
+                        <button
+                            type="button"
+                            onClick={() =>
+                                handleContactTypeChange("sale")
+                            }
+                            className={
+                                contactType === "sale"
+                                    ? "active"
+                                    : ""
+                            }
+                        >
+                            Jeg vil selge
+                        </button>
+                    </div>
+
+                    {contactType === "purchase" ? (
+                        <p className="contact-form-description">
+                            Send oss en melding, så svarer vi deg så
+                            raskt vi kan.
+                        </p>
+                    ) : (
+                        <div className="contact-form-description">
+                            <h3>Fortell oss om bobilen din</h3>
+
+                            <p>
+                                Jo mer informasjon vi får, desto bedre
+                                kan vi vurdere bobilen og gi deg en god
+                                tilbakemelding.
+                            </p>
+                        </div>
+                    )}
+
+                    {successMessage && (
+                        <p className="contact-message contact-message--success">
+                            {successMessage}
+                        </p>
+                    )}
+
+                    {errorMessage && (
+                        <p className="contact-message contact-message--error">
+                            {errorMessage}
+                        </p>
+                    )}
+
+                    <form
+                        onSubmit={handleSubmit}
+                        className="contact-form"
+                        encType="multipart/form-data"
+                    >
+                        <div className="contact-field">
+                            <label htmlFor="name">
+                                Navn*
+                            </label>
+
                             <input
                                 type="text"
                                 id="name"
@@ -99,11 +284,14 @@ const ContactPage = () => {
                                 onChange={handleChange}
                                 required
                                 placeholder="Ola Nordmann"
-                                className="shadow-sm appearance-none border rounded w-full py-2 px-2 bg-warm-off-white text-gray-700 leading-tight placeholder-gray-300 focus:outline-none  focus:ring-2 focus:ring-gray-200 focus:border-transparent"
                             />
                         </div>
-                        <div>
-                            <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-1">E-post*</label>
+
+                        <div className="contact-field">
+                            <label htmlFor="email">
+                                E-post*
+                            </label>
+
                             <input
                                 type="email"
                                 id="email"
@@ -112,11 +300,14 @@ const ContactPage = () => {
                                 onChange={handleChange}
                                 required
                                 placeholder="ola@nordmann.no"
-                                className="shadow-sm appearance-none border rounded w-full py-2 px-2 bg-warm-off-white text-gray-700 leading-tight placeholder-gray-300 focus:outline-none  focus:ring-2 focus:ring-gray-200 focus:border-transparent"
                             />
                         </div>
-                        <div>
-                            <label htmlFor="phoneNum" className="block text-gray-700 text-sm font-bold mb-1">Telefonnummer*</label>
+
+                        <div className="contact-field">
+                            <label htmlFor="phoneNum">
+                                Telefonnummer*
+                            </label>
+
                             <input
                                 type="tel"
                                 id="phoneNum"
@@ -125,54 +316,262 @@ const ContactPage = () => {
                                 onChange={handleChange}
                                 required
                                 placeholder="+47 12345678"
-                                className="shadow-sm appearance-none border rounded w-full py-2 px-2 bg-warm-off-white text-gray-700 leading-tight placeholder-gray-300 focus:outline-none  focus:ring-2 focus:ring-gray-200 focus:border-transparent"
                             />
                         </div>
-                        <div>
-                            <label htmlFor="text" className="block text-gray-700 text-sm font-bold mb-1">Din melding*</label>
-                            <textarea
-                                id="text"
-                                name="text"
-                                value={formData.text}
-                                onChange={handleChange}
-                                required
-                                placeholder="Skriv din melding her..."
-                                rows="5"
-                                className="shadow-sm appearance-none border rounded w-full py-2 px-2 bg-warm-off-white text-gray-700 leading-tight placeholder-gray-300 focus:outline-none  focus:ring-2 focus:ring-gray-200 focus:border-transparent"
-                            ></textarea>
-                        </div>
-                        <div className="flex">
+
+                        {contactType === "purchase" && (
+                            <div className="contact-field">
+                                <label htmlFor="text">
+                                    Din melding*
+                                </label>
+
+                                <textarea
+                                    id="text"
+                                    name="text"
+                                    value={formData.text}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Skriv din melding her..."
+                                    rows="5"
+                                />
+                            </div>
+                        )}
+
+                        {contactType === "sale" && (
+                            <>
+                                <div className="contact-form-section-title">
+                                    <h3>
+                                        Informasjon om bobilen
+                                    </h3>
+                                </div>
+
+                                <div className="contact-field">
+                                    <label htmlFor="vehicleModel">
+                                        Biltype og modell*
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="vehicleModel"
+                                        name="vehicleModel"
+                                        value={formData.vehicleModel}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="F.eks. Hymer B-Class 680"
+                                    />
+                                </div>
+
+                                <div className="contact-field">
+                                    <label htmlFor="yearModel">
+                                        Årsmodell*
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="yearModel"
+                                        name="yearModel"
+                                        value={formData.yearModel}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="F.eks. 2020"
+                                        min="1950"
+                                        max="2100"
+                                    />
+                                </div>
+
+                                <div className="contact-field">
+                                    <label htmlFor="mileage">
+                                        Kilometerstand*
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="mileage"
+                                        name="mileage"
+                                        value={formData.mileage}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="F.eks. 45000"
+                                        min="0"
+                                    />
+                                </div>
+
+                                <div className="contact-field">
+                                    <label htmlFor="registrationNumber">
+                                        Registreringsnummer*
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="registrationNumber"
+                                        name="registrationNumber"
+                                        value={
+                                            formData.registrationNumber
+                                        }
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="F.eks. AB12345"
+                                    />
+                                </div>
+
+                                <div className="contact-field">
+                                    <label htmlFor="extraEquipment">
+                                        Informasjon om ekstrautstyr*
+                                    </label>
+
+                                    <textarea
+                                        id="extraEquipment"
+                                        name="extraEquipment"
+                                        value={formData.extraEquipment}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="F.eks. markise, solcellepanel, ryggekamera, sykkelstativ..."
+                                        rows="4"
+                                    />
+                                </div>
+
+                                <div className="contact-field">
+                                    <label htmlFor="knownIssues">
+                                        Kjente feil og mangler*
+                                    </label>
+
+                                    <textarea
+                                        id="knownIssues"
+                                        name="knownIssues"
+                                        value={formData.knownIssues}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="Beskriv eventuelle kjente feil eller mangler. Skriv «Ingen kjente» dersom du ikke kjenner til noen."
+                                        rows="4"
+                                    />
+                                </div>
+
+                                <div className="contact-field">
+                                    <label htmlFor="serviceHistory">
+                                        Servicehistorikk*
+                                    </label>
+
+                                    <textarea
+                                        id="serviceHistory"
+                                        name="serviceHistory"
+                                        value={formData.serviceHistory}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="Fortell kort om servicehistorikken..."
+                                        rows="4"
+                                    />
+                                </div>
+
+                                <div className="contact-field">
+                                    <label htmlFor="densityControlFile">
+                                        Dokumentasjon på siste tetthetskontroll*
+                                    </label>
+
+                                    <input
+                                        type="file"
+                                        id="densityControlFile"
+                                        name="densityControlFile"
+                                        onChange={
+                                            handleDensityControlChange
+                                        }
+                                        required
+                                        accept=".pdf,image/jpeg,image/png,image/webp"
+                                        className="contact-file-input"
+                                    />
+
+                                    <p className="contact-field-help">
+                                        Du kan laste opp PDF, JPG, PNG eller WEBP.
+                                    </p>
+                                </div>
+
+                                <div className="contact-field">
+                                    <label htmlFor="vehicleImages">
+                                        Bilder av bobilen*
+                                    </label>
+
+                                    <input
+                                        type="file"
+                                        id="vehicleImages"
+                                        name="vehicleImages"
+                                        onChange={handleImagesChange}
+                                        required
+                                        multiple
+                                        accept="image/jpeg,image/png,image/webp"
+                                        className="contact-file-input"
+                                    />
+
+                                    <p className="contact-field-help">
+                                        Last opp inntil 10 bilder av både
+                                        eksteriør og interiør.
+                                    </p>
+
+                                    {vehicleImages.length > 0 && (
+                                        <p className="contact-files-selected">
+                                            {vehicleImages.length}{" "}
+                                            bilde
+                                            {vehicleImages.length > 1
+                                                ? "r"
+                                                : ""}{" "}
+                                            valgt
+                                        </p>
+                                    )}
+                                </div>
+                            </>
+                        )}
+
+                        <div className="contact-submit-wrapper">
                             <button
                                 type="submit"
-                                className="bg-primary shadow-sm hover:bg-primary-dark text-white font-bold py-2 px-6 rounded-xl transition md:w-auto block focus:outline-none focus:shadow-outline w-full max-w-fit"
+                                className="contact-submit-button"
                             >
-                                Send melding
+                                {contactType === "sale"
+                                    ? "Send informasjon"
+                                    : "Send melding"}
                             </button>
                         </div>
                     </form>
                 </div>
-                <div className="md:w-1/2 p-6 space-y-4">
-                    {/* <h3 className="texg-lg font-semibold text-gray-700">Kontaktinformasjon</h3>
-                    <p><span className="font-medium">Telefon:</span> <a href="#" className="text-primary hover:underline"><br />+47 408 28 494</a></p>
-                    <p><span className="font-medium">E-post:</span> <a href="#" className="text-primary hover:underline"><br />tommy@3sbc.no</a></p>
-                    <p><span className="font-medium">Foretningsadresse:</span> <a href="#" className="text-primary hover:underline"><br />Siriusveien 9, 1407 Vinterbro</a></p> */}
 
-                    <h2 className="text-lg font-semibold text-gray-700">Kontaktinformasjon</h2>
-                    <p><span className="font-medium">Telefon:</span> <a href="tel:+4740828494" className="text-primary hover:underline"><br />+47 408 28 494</a></p>
-                    <p><span className="font-medium">E-post:</span> <a href="mailto:tommy@3sbc.no" className="text-primary hover:underline"><br />tommy@3sbc.no</a></p>
-                    <p><span className="font-medium">Forretningsadresse:</span> <span className="text-gray-700"><br />Siriusveien 29, 1407 Vinterbro</span></p>
+                <div className="contact-info-column">
+                    <h2>Kontaktinformasjon</h2>
+
+                    <p>
+                        <span>Telefon:</span>
+
+                        <a href="tel:+4740828494">
+                            <br />
+                            +47 408 28 494
+                        </a>
+                    </p>
+
+                    <p>
+                        <span>E-post:</span>
+
+                        <a href="mailto:tommy@3sbc.no">
+                            <br />
+                            tommy@3sbc.no
+                        </a>
+                    </p>
+
+                    <p>
+                        <span>Forretningsadresse:</span>
+
+                        <span className="contact-address">
+                            <br />
+                            Siriusveien 29, 1407 Vinterbro
+                        </span>
+                    </p>
 
                     <iframe
-                        src="https://maps.google.com/maps?q=Siriusveien%209,%201407%20Vinterbro&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                        className="w-full h-64 rounded-xl shadow-sm"
+                        src="https://maps.google.com/maps?q=Siriusveien%2029,%201407%20Vinterbro&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        className="contact-map"
                         loading="lazy"
                         title="3S Bobil & Caravan"
-                    ></iframe>
-
+                    />
                 </div>
             </section>
-        </div >
-    )
-}
+        </div>
+    );
+};
 
 export default ContactPage;
