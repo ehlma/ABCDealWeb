@@ -18,9 +18,15 @@ const salesProcessContent = {
 
         steps: [
             {
+                title: "KONTAKT OSS",
+                text:
+                    "Ta kontakt med oss via kontaktskjema eller på telefon.\n"
+                ,
+            },
+            {
                 title: "SEND OSS INFORMASJON OM BOBILEN",
                 text:
-                    "For at vi skal bli best mulig kjent med bobilen, ber vi deg sende oss:\n\n" +
+                    "Etter du har tatt kontakt med oss ber vi deg sende følgende informasjon om bobilen: \n\n" +
                     "• Biltype og modell\n" +
                     "• Årsmodell\n" +
                     "• Kilometerstand\n" +
@@ -36,7 +42,7 @@ const salesProcessContent = {
             {
                 title: "VI SNAKKER SAMMEN",
                 text:
-                    "Når vi har mottatt informasjonen, tar vi raskt kontakt med deg.\n" +
+                    "Når vi har mottatt informasjonen, tar vi raskt kontakt med deg igjen.\n" +
                     "Vi går gjennom bobilen, historikken, utstyret, dine forventninger og markedet.\n" +
                     "Vi ønsker å ha en åpen og ærlig dialog om pris og salgsprosessen, slik at vi sammen legger en god plan for salget."
                 ,
