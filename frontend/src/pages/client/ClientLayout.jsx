@@ -11,7 +11,7 @@ const navLinks = [
     { to: "/sales-process", label: "Salgs- og kjøpsprosessen" },
     { to: "/for-sale", label: "Til Salgs" },
     { to: "/contact", label: "Kontakt Oss" },
-    { to: "/complaints", label: "Reklamasjon" },
+    //{ to: "/complaints", label: "Reklamasjon" },
 ];
 
 const ClientLayout = () => {

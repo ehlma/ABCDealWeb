@@ -1,33 +1,53 @@
 import { NavLink, Outlet, useNavigate, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X, CircleUser, LogOut, ChevronDown, ExternalLink } from "lucide-react";
 import { useAuth } from "../../contexts/AuthContext";
 
 const AdminLayout = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [userMenuOpen, setUserMenuOpen] = useState(false);
+    const userMenuRef = useRef(null);
+    const mobileMenuRef = useRef(null);
     const { user, isAuthenticated, logout } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
 
-    const handleLogout = () => {
-        logout();  // Kall logout-funksjon fra context
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+                setUserMenuOpen(false);
+            }
+
+            if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+                setMenuOpen(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+    }, []);
+
+    const handleLogout = async () => {
+        await logout();  // Kall logout-funksjon fra context
         setMenuOpen(false); // Lukk menyen etter utlogging
         setUserMenuOpen(false)
-        navigate('/'); // Omdiriger til innloggingsside etter utlogging
+        navigate('/login'); // Omdiriger til innloggingsside etter utlogging
     }
 
     // Navigasjonslenker i admin
+        // TIL FREMTIDIG POTENSIELL OPPGRADERING
+        // { to: "/admin/contacts", label: "Kontaktskjema" },
+        // { to: "/admin/complaints", label: "Reklamasjon" },
+        
     const links = [
         { to: "/admin", label: "Dashboard", end: true },
         { to: "/admin/settings", label: "Ansatte" },
         { to: "/admin/articles", label: "Artikler" },
 
-        {/** TIL FREMTIDIG POTENSIELL OPPGRADERING
-    
-        { to: "/admin/contacts", label: "Kontaktskjema" },
-        { to: "/admin/complaints", label: "Reklamasjon" },
-        */}
+
     ];
 
     return (
@@ -73,7 +93,7 @@ const AdminLayout = () => {
                     <div className="flex items-center gap-4">
                         {isAuthenticated ? (
                             // Bruker innlogget
-                            <div className="relative hidden sm:block">
+                            <div ref={userMenuRef} className="relative hidden sm:block">
                                 <button
                                     onClick={() => setUserMenuOpen(!userMenuOpen)}
                                     className="flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-admin-text hover:bg-admin-active transition-all duration-200"
@@ -127,7 +147,7 @@ const AdminLayout = () => {
 
                 {/** Åpen hamburgermeny*/}
                 {menuOpen && (
-                    <div className="absolute w-full top-full left-0 bg-admin-bg text-admin-text px-6 py-4 sm:hidden z-40 shadow-md flex flex-col rounded-b space-y-2">
+                    <div ref={mobileMenuRef} className="absolute w-full top-full left-0 bg-admin-bg text-admin-text px-6 py-4 sm:hidden z-40 shadow-md flex flex-col rounded-b space-y-2">
                         {links.map(({ to, label, end }) => (
                             <NavLink
                                 key={to}
@@ -135,7 +155,7 @@ const AdminLayout = () => {
                                 end={end}
                                 onClick={() => setMenuOpen(false)}
                                 className={({ isActive }) =>
-                                    `flex flex-row rounded-lg px-3 py-2 text-admin-text hover:bg-admin-hover transition-colors duration-200 ${isActive ? 'bg-admin-active font-bold' : ''}`
+                                    `flex flex-row rounded-lg px-3 py-2 text-admin-text hover:bg-admin-active hover:text-white transition-all duration-200 ${isActive ? 'bg-admin-active text-white font-bold' : ''}`
                                 }
                             >
                                 {label}
@@ -152,7 +172,7 @@ const AdminLayout = () => {
                             //     <span>Logg ut</span>
                             //     <span>{user.firstName || "Pålogget"}</span>
                             // </button>
-                            <div className="rounded-xl bg-admin-hover overflow-hidden">
+                            <div className="rounded-xl bg-admin-hover overflow-hidden divide-y divide-admin-border/30">
                                 <div className="flex items-center gap-3 px-4 py-3 border-b border-admin-border/30">
                                     <CircleUser className="w-5 h-5" />
                                     <div className="leading-tight">
@@ -165,14 +185,14 @@ const AdminLayout = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={() => setMenuOpen(false)}
-                                    className="flex items-center gap-2 px-4 py-3 text-sm text-admin-text hover:bg-admin-active transition-colors"
+                                    className="flex items-center gap-2 px-4 py-3 text-sm text-admin-text hover:bg-white/10 hover:text-white transition-all duration-200"
                                 >
                                     <ExternalLink className="w-4 h-4" />
                                     Se nettside
                                 </a>
                                 <button
                                     onClick={handleLogout}
-                                    className="w-full flex items-center gap-2 px-4 py-3 text-sm text-left text-admin-text hover:bg-admin-active transition-colors bg-transparent border-none cursor-pointer"
+                                    className="w-full flex items-center gap-2 px-4 py-3 text-sm text-left text-admin-text hover:bg-white/10 hover:text-white transition-all duration-200 bg-transparent border-none cursor-pointer"
                                 >
                                     <LogOut className="w-4 h-4" />
                                     Logg ut
@@ -180,7 +200,7 @@ const AdminLayout = () => {
                             </div>
                         ) : (
                             // <NavLink to="/" onClick={() => setMenuOpen(false)} className="flex flex-col items-center gap-2 text-white hover:text-admin-text hover:drop-shadow-lg transition-all duration-200">
-                            <NavLink to="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 rounded-lg px-3 py-2 text-admin-text hover:bg-admin-hover transition-colors duration-200">
+                            <NavLink to="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 rounded-lg px-3 py-2 text-admin-text hover:bg-admin-active hover:text-white transition-all duration-200">
                                 <CircleUser className="w-5 h-5" />
                                 <span>Logg inn</span>
                             </NavLink>

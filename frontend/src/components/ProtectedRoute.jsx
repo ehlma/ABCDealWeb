@@ -14,7 +14,7 @@ const ProtectedRoute = ({ allowedRoles }) => {
         Hvis bruker ikke er autentisert, sendes de til innloggingssiden. 
         "replace" forhindrer at de kan gå tilbake til den beskyttede siden med nettleserens tilbakeknapp
         */
-       return <Navigate to="/" replace/> // Endret til "/" TODO: Eller access-denied side??
+       return <Navigate to="/login" replace/> // Endret til "/" TODO: Eller access-denied side??
     }
 
     // Hvis bruker er logget inn, fortsett å vise innholdet av den nestede ruten

@@ -2,6 +2,10 @@
     @apply min-h-screen bg-bg-color text-black;
 }
 
+.step-text {
+    white-space: pre-line;
+}
+
 .sales-process-hero {
     max-width: 1100px;
     margin: 0 auto;
@@ -128,9 +132,14 @@
     font-weight: 800;
 }
 
+.sales-process-step__content {
+    text-align: left;
+}
+
 .sales-process-step__content h3 {
     margin: 0 0 0.75rem;
     font-size: 1.35rem;
+    font-weight: 500;
 }
 
 .sales-process-step__content p {

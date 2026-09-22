@@ -70,7 +70,7 @@ export default function SalesProcessPage() {
 
                             <div className="sales-process-step__content">
                                 <h3>{step.title}</h3>
-                                <p>{step.text}</p>
+                                <p className="step-text">{step.text}</p>
                             </div>
                         </article>
                     ))}
@@ -81,7 +81,6 @@ export default function SalesProcessPage() {
                 <div className="sales-process-cta__content">
                     <p className="sales-process-cta__eyebrow">Klar for neste steg?</p>
                     <h2>La oss hjelpe deg med kjøp eller salg av bobil</h2>
-                    <p>Enten du skal kjøpe eller selge bobil, hjelper vi deg gjennom hele prosessen med personlig oppfølging og en trygg handel.</p>
 
                     <Link
                         to="/contact"

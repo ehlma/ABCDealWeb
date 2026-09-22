@@ -71,7 +71,7 @@ const ContactPage = () => {
                     <div className="md:w-1/2 p-12 bg-warm-off-white rounded-r-lg rounded-l-none flex flex-col justify-center">
                         <h1 className="text-3xl font-bold mb-4 text-primary text-center">Kontakt 3S Bobil & Caravan</h1>
                         <p className="mb-4 text-center text-gray-700">
-                            Har du spørsmål om kjøp eller salg av bobil og campingvogn? Fyll ut kontaktskjemaet nedenfor, så tar vi kontakt med deg så snart som mulig. Vi ser frem til å hjelpe deg.
+                            Har du spørsmål om kjøp eller salg av bobil? Fyll ut kontaktskjemaet nedenfor, så tar vi kontakt med deg så snart som mulig. Vi ser frem til å hjelpe deg.
                         </p>
                     </div>
                 </div>
@@ -160,7 +160,7 @@ const ContactPage = () => {
                     <h2 className="text-lg font-semibold text-gray-700">Kontaktinformasjon</h2>
                     <p><span className="font-medium">Telefon:</span> <a href="tel:+4740828494" className="text-primary hover:underline"><br />+47 408 28 494</a></p>
                     <p><span className="font-medium">E-post:</span> <a href="mailto:tommy@3sbc.no" className="text-primary hover:underline"><br />tommy@3sbc.no</a></p>
-                    <p><span className="font-medium">Forretningsadresse:</span> <span className="text-gray-700"><br />Siriusveien 9, 1407 Vinterbro</span></p>
+                    <p><span className="font-medium">Forretningsadresse:</span> <span className="text-gray-700"><br />Siriusveien 29, 1407 Vinterbro</span></p>
 
                     <iframe
                         src="https://maps.google.com/maps?q=Siriusveien%209,%201407%20Vinterbro&t=&z=15&ie=UTF8&iwloc=&output=embed"
