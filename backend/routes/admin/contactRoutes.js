@@ -1,4 +1,15 @@
-import express from 'express';
+import express from "express";
+import { submitContact } from "../../controllers/contactController.js";
+
+const router = express.Router();
+
+router.post("/", submitContact);
+
+export default router;
+
+// FOR LAGRING I DABASEN VED BRUK AV KONTAKTSKJEMA I ADMINPANELET: 
+
+/* import express from 'express';
 import { submitContact, getAllContacts } from '../../controllers/contactController.js';
 import verifyToken from '../../middleware/authMiddleware.js';
 import { authorizeRoles } from '../../middleware/roleMiddleware.js';
@@ -26,4 +37,4 @@ router.patch('/:id', verifyToken, authorizeRoles("admin"), async (req, res) => {
     }
 });
 
-export default router;
+export default router;*/
