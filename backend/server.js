@@ -59,8 +59,10 @@ app.use('/api/contact', publicContactRoutes);
 app.use('/api/complaints', publicComplaintRoutes);
 
 // Ruter for arkiverte kontaktskjema/reklamasjoner (kun admin)
+/* 
 app.use('/api/admin/archived/contacts', archivedContactRoutes);
 app.use('/api/admin/archived/complaints', archivedComplaintRoutes);
+*/
 
 
 // test-route

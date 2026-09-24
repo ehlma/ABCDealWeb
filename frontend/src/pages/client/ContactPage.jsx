@@ -14,6 +14,7 @@ const ContactPage = () => {
 
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [isSending, setIsSending] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -21,20 +22,29 @@ const ContactPage = () => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Forhindrer standsrd side-refresh
-        setSuccessMessage(""); // Nullstill meldinger
+        e.preventDefault();
+
+        setSuccessMessage("");
         setErrorMessage("");
+        setIsSending(true);
 
         try {
-            // Sende POST-forespørsel til den offentlige kontaktruten
             await api.post(API_ENDPOINTS.contactSubmit, formData);
 
             setSuccessMessage("Din melding er sendt! Vi kontakter deg snart.");
-            setFormData({ name: "", email: "", phoneNum: "", text: "" });
-            // setSelectedFile(null);
+            setFormData({
+                name: "",
+                email: "",
+                phoneNum: "",
+                text: "",
+            });
         } catch (error) {
-            console.error("Feil ved innsending av kontaktskjema.", error);
-            setErrorMessage("Kunne ikke sende melding. Vennligst prøv igjen senere.");
+            console.error("Feil ved innsending av kontaktskjema:", error);
+            setErrorMessage(
+                "Kunne ikke sende melding. Vennligst prøv igjen senere."
+            );
+        } finally {
+            setIsSending(false);
         }
     };
 
@@ -84,9 +94,6 @@ const ContactPage = () => {
                         <h2 className="text-primary font-semibold text-xl">Kontaktskjema</h2>
                         <p className="text-gray-700">Send oss en melding, så svarer vi deg så raskt vi kan.</p>
                     </section>
-                    {/* TODO: Legge til kontaktskjema her? */}
-                    {successMessage && <p className="text-green-600 text-center mb-4">{successMessage}</p>}
-                    {errorMessage && <p className="text-red-600 text-center mb-4">{errorMessage}</p>}
 
                     <form onSubmit={handleSubmit} className="grid gap-y-4">
                         <div>
@@ -141,13 +148,17 @@ const ContactPage = () => {
                                 className="shadow-sm appearance-none border rounded w-full py-2 px-2 bg-warm-off-white text-gray-700 leading-tight placeholder-gray-300 focus:outline-none  focus:ring-2 focus:ring-gray-200 focus:border-transparent"
                             ></textarea>
                         </div>
+                        {successMessage && <p className="text-green-600 text-center mb-4">{successMessage}</p>}
+                        {errorMessage && <p className="text-red-600 text-center mb-4">{errorMessage}</p>}
                         <div className="flex">
                             <button
                                 type="submit"
-                                className="bg-primary shadow-sm hover:bg-primary-dark text-white font-bold py-2 px-6 rounded-xl transition md:w-auto block focus:outline-none focus:shadow-outline w-full max-w-fit"
+                                disabled={isSending}
+                                className="bg-primary shadow-sm hover:bg-primary-dark text-white font-bold py-2 px-6 rounded-xl transition md:w-auto block focus:outline-none focus:shadow-outline w-full max-w-fit disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                Send melding
+                                {isSending ? "Sender..." : "Send melding"}
                             </button>
+
                         </div>
                     </form>
                 </div>
@@ -163,8 +174,7 @@ const ContactPage = () => {
                     <p><span className="font-medium">Forretningsadresse:</span> <span className="text-gray-700"><br />Siriusveien 29, 1407 Vinterbro</span></p>
 
                     <iframe
-                        src="https://maps.google.com/maps?q=Siriusveien%209,%201407%20Vinterbro&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                        className="w-full h-64 rounded-xl shadow-sm"
+                        src="https://maps.google.com/maps?q=Siriusveien%2029,%201407%20Vinterbro&t=&z=15&ie=UTF8&iwloc=&output=embed" className="w-full h-64 rounded-xl shadow-sm"
                         loading="lazy"
                         title="3S Bobil & Caravan"
                     ></iframe>
