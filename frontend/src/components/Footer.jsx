@@ -11,7 +11,7 @@ const Footer = () => {
                         <p className="footer__eyebrow">3S Bobil & Caravan</p>
 
                         <h3 className="footer__title">
-                            Trygg handel av bobil og campingvogn
+                            Trygt salg av bobil
                         </h3>
 
                         <p className="footer__description">
@@ -89,7 +89,7 @@ const Footer = () => {
                     <span>
                         Utviklet av{" "}
                         <a
-                            href="https://ehlmaconsulting.no"
+                            href="#"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="footer__developer-link"
