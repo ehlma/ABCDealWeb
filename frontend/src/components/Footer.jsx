@@ -88,14 +88,14 @@ const Footer = () => {
 
                     <span>
                         Utviklet av{" "}
-                        <a
+                        <p
                             href="#"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="footer__developer-link"
                         >
                             Ehlma Consulting AS
-                        </a>
+                        </p>
                     </span>
                 </div>
             </div>
