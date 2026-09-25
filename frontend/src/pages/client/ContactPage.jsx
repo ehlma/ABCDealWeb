@@ -67,7 +67,7 @@ const ContactPage = () => {
 
 
     return (
-        <div className="p-24">
+        <div className="min-h-screen px-6 md:px-12 lg:px-24 pt-32 pb-32">
             <section className="relative w-full max-w-4xl mx-auto mt-12 mb-24">
                 <div className="flex flex-col md:flex-row rounded-lg shadow-md overflow-hidden">
                     <div className="md:w-1/2">
@@ -88,7 +88,7 @@ const ContactPage = () => {
             </section >
 
 
-            <section className="flex flex-col md:flex-row gap-12 max-w-5xl w-full mx-auto mt-24">
+            <section className="flex flex-col md:flex-row gap-16 max-w-6xl w-full mx-auto mt-24">
                 <div className="md:w-1/2 text-left">
                     <section className="text-left max-w-lg mb-12">
                         <h2 className="text-primary font-semibold text-xl">Kontaktskjema</h2>

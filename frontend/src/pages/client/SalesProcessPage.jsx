@@ -10,7 +10,7 @@ export default function SalesProcessPage() {
 
     // SEO
     useEffect(() => {
-        document.title = "Salgs- og kjøpsprosessen | 3S Bobil & Caravan";
+        document.title = "Kjøp- og salgsprosessen | 3S Bobil & Caravan";
 
         let metaDescription = document.querySelector(
             'meta[name="description"]'
@@ -29,7 +29,7 @@ export default function SalesProcessPage() {
     return (
         <main className="sales-process-page">
             <section className="sales-process-hero">
-                <p className="sales-process-hero__eyebrow">Salgs- og kjøpsprosessen</p>
+                <p className="sales-process-hero__eyebrow">Kjøp- og salsprosessen</p>
 
                 <h1>{salesProcessContent.hero.title}</h1>
 

@@ -38,10 +38,10 @@ const AdminLayout = () => {
     }
 
     // Navigasjonslenker i admin
-        // TIL FREMTIDIG POTENSIELL OPPGRADERING
-        // { to: "/admin/contacts", label: "Kontaktskjema" },
-        // { to: "/admin/complaints", label: "Reklamasjon" },
-        
+    // TIL FREMTIDIG POTENSIELL OPPGRADERING
+    // { to: "/admin/contacts", label: "Kontaktskjema" },
+    // { to: "/admin/complaints", label: "Reklamasjon" },
+
     const links = [
         { to: "/admin", label: "Dashboard", end: true },
         { to: "/admin/settings", label: "Ansatte" },
@@ -122,7 +122,7 @@ const AdminLayout = () => {
                                         </a>
                                         <button
                                             onClick={handleLogout}
-                                            className="w-full flex items-center gap-2 px-4 py-3 text-sm text-left hover:bg-slate-100 transition-colors"
+                                            className="w-full flex items-center gap-2 px-4 py-3 text-sm text-left bg-white text-slate-800 hover:bg-slate-100 transition-colors border-none cursor-pointer"
                                         >
                                             <LogOut className="w-4 h-4" />
                                             Logg ut
