@@ -48,12 +48,12 @@ const Footer = () => {
                         <div className="footer__contact">
                             <div className="footer__contact-item">
                                 <Phone />
-                                <span>+47 408 28 494</span>
+                                <a href="tel:+4740828494">+47 408 28 494</a>
                             </div>
 
                             <div className="footer__contact-item">
                                 <Mail />
-                                <span>tommy@3sbc.no</span>
+                                <a href="mailto:tommy@3sbc.no">tommy@3sbc.no</a>
                             </div>
 
                             <div className="footer__contact-item">

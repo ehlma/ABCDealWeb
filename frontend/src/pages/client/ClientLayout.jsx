@@ -8,7 +8,7 @@ import "./ClientLayout.css";
 const navLinks = [
     { to: "/", label: "Hjem" },
     { to: "/about", label: "Om Oss" },
-    { to: "/sales-process", label: "Salgs- og kjøpsprosessen" },
+    { to: "/sales-process", label: "Kjøp- og salgsprosessen" },
     { to: "/for-sale", label: "Til Salgs" },
     { to: "/contact", label: "Kontakt Oss" },
     //{ to: "/complaints", label: "Reklamasjon" },

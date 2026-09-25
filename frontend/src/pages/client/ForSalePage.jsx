@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const ForSalePage = () => {
 
@@ -61,12 +62,12 @@ const ForSalePage = () => {
                                 Finner du ikke det du leter etter, eller ønsker du hjelp med salg av din egen bobil?
                             </p>
 
-                            <a
-                                href="/contact"
+                            <Link
+                                to="/contact"
                                 className="inline-block rounded-full border-2 border-primary text-primary px-6 py-3 font-medium hover:bg-primary hover:text-white transition-all duration-300"
                             >
                                 Kontakt oss
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </section>
