@@ -9,7 +9,7 @@
 .sales-process-hero {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 6rem 2rem 4rem;
+    padding: 12rem 2rem 4rem;
     text-align: center;
 }
 
@@ -162,7 +162,7 @@
 
 @media (max-width: 560px) {
     .sales-process-hero {
-        padding: 4rem 1.25rem 3rem;
+        padding: 7rem 1.25rem 3rem;
     }
 
     .sales-process-layout {
