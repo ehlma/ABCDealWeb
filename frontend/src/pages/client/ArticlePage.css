@@ -177,6 +177,8 @@
     color: rgba(0, 0, 0, 0.76);
     font-size: 1.12rem;
     line-height: 1.85;
+
+    white-space: pre-wrap;
 }
 
 .article__body p {

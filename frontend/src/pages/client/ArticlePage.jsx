@@ -172,10 +172,9 @@ const ArticlePage = () => {
                     </section>
                 )}
 
-                <div
-                    className="article__body"
-                    dangerouslySetInnerHTML={{ __html: article.bodyText }}
-                />
+                <div className="article__body">
+                    {article.bodyText}
+                </div>
 
                 <footer className="article__contact">
                     <h2>Vil du vite mer?</h2>
